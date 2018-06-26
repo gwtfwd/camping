@@ -51,7 +51,7 @@
             </div> 
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('https://www.suedkorea-reisen.de/fileadmin/images/header_statisch/suedkorea_header/klassische_rundreisen/Jeju_Island.jpg')">
+          <div class="carousel-item"><img src='resources/images/beach.jpg'  >
             <div class="carousel-caption2 d-none d-md-block">
             	<p style=" font-size:26px; font-weight:bold; "> Healing In The Sea</p>
             	<p style=" font-size:40px; font-weight:bold; margin-top:-15px; ">바다 앞에서 즐기는 감성 글램핑</p>

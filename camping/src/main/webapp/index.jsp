@@ -14,6 +14,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <%-- <link href="<c:url value ='/resources/vendor/bootstrap/css/bootstrap.css'/>" rel="stylesheet"> --%> 
+    
 
     <!-- Custom styles for this template -->
     <link href="resources/css/half-slider.css" rel="stylesheet">
@@ -42,7 +44,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('https://cdn.namuwikiusercontent.com/s/90a8852e97e6263aad77ce578c066c5089c9d9965df967ce4e770b32dd0aff9ac4c44ce790d520a0581b9bda767406a7ea63a174525066658369406f5aadb40e14f99bfb82790f23ed474c18c1834818?e=1533025272&k=0jzSO3jqAwhqaLpx9z9m1A')">
+          <div class="carousel-item active" style="background-image: url('resources/images/tree.jpg')">
            <div class="carousel-caption d-none d-md-block ">
            		<p style=" font-size:26px; font-weight:bold; ">The Better More Enjoyable!</p>
             	<p style=" font-size:43px; font-weight:bold; margin-top:-15px;">2018 NEW OPEN & RENEWAL</p>
@@ -51,16 +53,16 @@
             </div> 
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item"><img src='resources/images/beach.jpg'  >
-            <div class="carousel-caption2 d-none d-md-block">
+          <div class="carousel-item"  style="background-image: url('resources/images/beach.jpg')">
+            <div class="carousel-caption d-none d-md-block">
             	<p style=" font-size:26px; font-weight:bold; "> Healing In The Sea</p>
             	<p style=" font-size:40px; font-weight:bold; margin-top:-15px; ">바다 앞에서 즐기는 감성 글램핑</p>
              	<p style=" font-size:15px; font-weight:bold; margin-top:-10px;">탁트인 바다전경이 펼쳐진 곳으로 놀러오세요 </p>
-            	<button class="button button-dark" >자세히 보기</button>
+            	<button class="button button-white" >자세히 보기</button>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('http://www.wealthmanagement.com/sites/wealthmanagement.com/files/city-blur-night.jpg')">  
+          <div class="carousel-item" style="background-image: url('resources/images/blur.jpg')">  
             <div class="carousel-caption d-none d-md-block">
            	 <p style="font-size:26px; font-weight:bold; "> Oasis In The City </p>
              <p style="font-size:43px; font-weight:bold; margin-top:-15px;">도심 글램핑의 멋</p>

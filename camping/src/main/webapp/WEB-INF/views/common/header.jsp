@@ -1,13 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    
-<head>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>camping information</title>
 
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
-</head>
-
+	
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+    <link href="<c:url value ='/resources/vendor/bootstrap/css/bootstrap.css'/>" rel="stylesheet">
     
-	<nav class="navbar navbar-expand-lg navbar-dark bg-white relative-top" >
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="resources/css/half-slider.css" rel="stylesheet"> -->
+    <link href="<c:url value ='/resources/css/half-slider.css'/>" rel="stylesheet">
+    
+    <!-- icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- Bootstrap core JavaScript -->
+	<!-- <script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+	
+	<script src="<c:url value='/resources/vendor/jquery/jquery.min.js'/>"></script>
+	<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
+	<script src="<c:url value='/resources/vendor/bootstrap/js/bootstrap.min.js'/>"></script> 
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-white relative-top" style="border-bottom-style: inset; border-color:#6c757d; border-bottom-width:thin;">
       <div class="container">
         <div class="collapse navbar-collapse" id="navbarResponsive" >
 	          <ul class="navbar-nav mr-auto menubar">
@@ -16,7 +43,7 @@
 	                <span class="sr-only">(current)</span>
 	              </a>
 	            </li> -->
-	            <li class="nav-item" ><a class="nav-link-kr" href="#" style="margin-left:-45px">공지사항</a></li>
+	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/board/list" style="margin-left:-45px">공지사항</a></li>
 	            <li class="nav-item"><a class="nav-link-kr" href="#" >야영장찾기</a>
 	           		  <ul>
 			           <li><a href="#" class="nav-link-kr">유형별 찾기</a></li>
@@ -46,10 +73,9 @@
 			    </li>
 	          </ul>
           
-          
           <ul class="navbar-nav mc-auto" >
           	<li class="nav-item">
-              <a class="nav-link-en1" href="#" style="margin-left:-50px">Camping Information</a>
+              <a class="nav-link-en1" href="/camping" style="margin-left:-50px">Camping Information</a>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
@@ -57,7 +83,7 @@
               <a class="nav-link-en" href="#"  >JOIN</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link-en" href="#" >LOGIN</a>
+              <a class="nav-link-en" href="/camping/member/login" >LOGIN</a>
             </li>
             <li class="nav-item">
               <a class="nav-link-en" href="#" >MYPAGE</a>
@@ -70,3 +96,4 @@
         </div>
       </div>
     </nav>
+    

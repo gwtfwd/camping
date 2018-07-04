@@ -1,37 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>camping information</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <%-- <link href="<c:url value ='/resources/vendor/bootstrap/css/bootstrap.css'/>" rel="stylesheet"> --%> 
     
-
-    <!-- Custom styles for this template -->
-    <link href="resources/css/half-slider.css" rel="stylesheet">
-    
-    <!-- icon -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	 <!-- Bootstrap core JavaScript -->
-    <script src="resources/vendor/jquery/jquery.min.js"></script>
-    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </head>
 <body>
 	
 	<!-- Header -->
-  	<jsp:include page="WEB-INF/views/common/header.jsp"></jsp:include>
+  	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
    	
    	<!-- contents -->
@@ -130,7 +109,7 @@
    	
    	
    	<!-- Footer -->
-  	<jsp:include page="WEB-INF/views/common/footer.jsp"></jsp:include>
+  	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
    	<!-- Footer -->
 </body>
 </html>

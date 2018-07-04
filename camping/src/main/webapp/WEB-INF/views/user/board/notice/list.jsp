@@ -6,21 +6,30 @@
 
 <head>
 
-</head>
-<body>
-
 	<!-- Header -->
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
+
+	<script type="text/javascript" class="init">
+		$(document).ready(function() {
+			$('#example').DataTable();
+		} );
+
+	</script>
+
+</head>
+<body>
+
 	
 	
-	<div class="container">	
-		<br><br>
+	
+	<div class="container" style="height:600px">	
+		<br><br><br><br>
 		<p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br>
 		
 		<div class="row"> 	
-			<table class="table" style="width:100%;">
-		        <thead>
+			<table id="example" class="hover" style="width:100%">
+		        <thead style="text-align:center;">
 		            <tr>
 		                <th style="width:10%">No</th>
 		                <th style="width:40%">Subject</th>
@@ -29,7 +38,7 @@
 		                <th style="width:10%">View</th>
 		            </tr>
 		        </thead>
-		        <tbody>
+		        <tbody style="text-align:center;">
 		            <tr>
 		                <td>1</td>
 		                <td>System Architect</td>

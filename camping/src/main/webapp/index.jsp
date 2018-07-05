@@ -6,6 +6,10 @@
 
 <head>
     
+    <!-- Header -->
+  	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
+   	<!-- Header -->
+    
 </head>
 <body>
 	
@@ -67,7 +71,7 @@
         <div class="container-fluid clearfix">
         	<h2 style="text-align:center; font-weight:bold; font-family:서울남산 장체M;">Campsite Search</h2><br>
 	        <div class="img-container">
-	        		<a href="#"><img src='resources/images/map3.ico' width="180px" height="180px" ></a><br><br>
+	        		<a href="#"><img src='resources/images/map.png' width="180px" height="180px" ></a><br><br>
 	        		<p style="font-family:서울남산 장체M; font-size:30px; font-weight:bold;">지역별 검색
 	         </div>
 	         <div class="img-container">		
@@ -92,9 +96,9 @@
     <section class="py-5">
       <div class="container" >
         <div class="container-fluid clearfix">
-        	<h3 style="text-align:center; font-weight:bold; font-family:서울남산 장체M;">Campsite Search</h3><br>
+        	<h2 style="text-align:center; font-weight:bold; font-family:서울남산 장체M;">Campsite Search</h2><br>
 	        <div class="img-container">
-	        		<a href="#"><img src='resources/images/map3.ico' width="180px" height="180px" ></a><br><br>
+	        		<a href="#"><img src='resources/images/map.png' width="180px" height="180px" ></a><br><br>
 	        		<p style="font-family:서울남산 장체M; font-size:30px; font-weight:bold;">지역별 검색
 	         </div>
 	         <div class="img-container">		

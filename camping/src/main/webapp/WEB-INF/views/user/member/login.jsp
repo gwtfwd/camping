@@ -4,30 +4,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<style type="text/css">
-
-.btn-primary11 {
-  background-color: #1b1e24;
-  border-color: #1b1e24;
-}
-
-.btn11 {
-  font-size: 12px;
-  padding: 4px 15px;
-  line-height: 20px;
-  font-weight: 400;
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 0px;
-  border-radius: 0px;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
-  transition: all 200ms ease;
-}
-</style>
+	<!-- link -->
+  	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
+   	<!-- link -->
+   	
+	<style type="text/css">
+	
+	.btn-primary11 {
+	  background-color: #1b1e24;
+	  border-color: #1b1e24;
+	}
+	
+	.btn11 {
+	  font-size: 12px;
+	  padding: 4px 15px;
+	  line-height: 20px;
+	  font-weight: 400;
+	  -moz-border-radius: 0px;
+	  -webkit-border-radius: 0px;
+	  border-radius: 0px;
+	  -webkit-transition: all 200ms ease;
+	  -moz-transition: all 200ms ease;
+	  -ms-transition: all 200ms ease;
+	  -o-transition: all 200ms ease;
+	  transition: all 200ms ease;
+	}
+	</style>
 
 </head>
 <body>
@@ -37,7 +41,7 @@
    	<!-- Header -->
 	
 	
-	<div class="container" style="height:600px">
+	<div class="container" style="height:800px">
 		<div class="row">
 			<div class="col-md-3">
 			</div>
@@ -69,7 +73,7 @@
                             </div>
                             
                             <div class="col-md-12 " style="font-family:함초롬돋움; font-size:13px;">                                                                                                                                        
-                                <input type="checkbox" value="chkId"/>아이디 저장
+                                <input type="checkbox" value="chkId"/> 아이디 저장
                             </div>
                         
                             

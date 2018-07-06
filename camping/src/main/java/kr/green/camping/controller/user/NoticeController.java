@@ -1,7 +1,6 @@
 package kr.green.camping.controller.user;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -23,7 +22,7 @@ import kr.green.camping.vo.user.NoticeVO;
 public class NoticeController {
 
 	
-	/** ParkService */
+	/** NoticeService */
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
 	

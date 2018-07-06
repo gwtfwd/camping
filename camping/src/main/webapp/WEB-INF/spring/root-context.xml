@@ -26,11 +26,11 @@
 		    <property name="dataSource" ref="dataSource" />
 		    <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 		</bean>
-		<bean id="Mapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		    <property name="mapperInterface" value="kr.green.camping.dao.Mapper"></property>
+		<bean id="noticeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		    <property name="mapperInterface" value="kr.green.camping.dao.user.NoticeMapper"></property>
 		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		</bean>
-		<!-- <mybatis-spring:scan base-package="kr.green.camping.controller.dao"/> -->
+		<mybatis-spring:scan base-package="kr.green.spring.controller.dao"/>
 		
 		
 		

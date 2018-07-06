@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.green.camping.dao.user.NoticeMapper">
 
-	<select id="getNotice" resultType="kr.green.camping.vo.NoticeVO">
+	<select id="getNotice" resultType="kr.green.camping.vo.user.NoticeVO">
 		select * from notice 
 	</select>
 	
 	<!-- getCountBoard가 int이므로 integer클래스를 resultType으로 -->
 	<select id="getCountNotice" resultType="java.lang.Integer">
-		select count(no) from notice 
+		select count(*) from notice 
 	</select>
 	
 

@@ -78,7 +78,7 @@
                         
                             
                             <div class="col-md-12" style="font-family:함초롬돋움;">
-                            	<button type="button" class="btn11 btn-primary11 pull-right" style="color:white; font-size:15px; width:100px; height:30px;">Login</button>
+                            	<button type="submit" class="btn11 btn-primary11 pull-right" style="color:white; font-size:15px; width:100px; height:30px;">Login</button>
                         	</div>
                         	
                         	<div class="form-group">

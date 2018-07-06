@@ -12,7 +12,7 @@
 	                <span class="sr-only">(current)</span>
 	              </a>
 	            </li> -->
-	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/board/list" style="margin-left:-45px">공지사항</a></li>
+	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/notice/list" style="margin-left:-45px">공지사항</a></li>
 	            <li class="nav-item"><a class="nav-link-kr" href="#" >야영장찾기</a>
 	           		  <ul>
 			           <li><a href="#" class="nav-link-kr">유형별 찾기</a></li>

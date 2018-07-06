@@ -13,5 +13,8 @@
 		select count(*) from notice 
 	</select>
 	
+	<select id="getNoticePage" resultType="kr.green.camping.vo.user.NoticeVO">
+		select * from notice order by no desc limit #{pageStart}, #{perPageNum} 
+	</select>
 
 </mapper>

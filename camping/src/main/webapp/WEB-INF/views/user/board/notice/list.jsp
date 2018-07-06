@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,13 +12,13 @@
    	<!-- link -->
 	
 
-	<script type="text/javascript" class="init">
+	<!-- <script type="text/javascript" class="init">
 		$(document).ready(function() {
 			$('#example').DataTable();
 			stateSave : true
 		} );
 
-	</script>
+	</script> -->
 
 </head>
 <body>
@@ -34,7 +35,7 @@
 		<div class="col-md-1"></div>
 		
 		<div class="col-md-10">
-			<table id="example" class="hover" style="width:100%">
+			<table class="table table-hover" style="width:100%">
 		        <thead style="text-align:center;">
 		            <tr>
 		                <th style="width:10%">No</th>
@@ -50,7 +51,7 @@
 		    			<td>${notice.no}</td>
 			        	<td >${notice.subject}</td>
 			        	<td>${notice.name}</td>
-			        	<td>${notice.registered_at}</td>
+			        	<td><fmt:formatDate value="${notice.registered_at}" pattern="yyyy-MM-dd" /></td>
 			        	<td>${notice.view}</td>
 			        </tr>
 			        </c:forEach>

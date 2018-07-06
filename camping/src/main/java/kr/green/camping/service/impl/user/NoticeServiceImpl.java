@@ -22,8 +22,8 @@ public class NoticeServiceImpl implements NoticeService {
 	 * @exception Exception
 	 */
 	@Override
-	public List<NoticeVO> getNotice(Criteria cri) throws Exception {
-		return noticeMapper.getNotice();
+	public List<NoticeVO> getNoticePage(Criteria cri) throws Exception {
+		return noticeMapper.getNoticePage(cri);
 	}
 	
 	/**

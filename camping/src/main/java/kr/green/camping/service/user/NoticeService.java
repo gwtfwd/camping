@@ -7,7 +7,7 @@ import kr.green.camping.vo.user.NoticeVO;
 
 public interface NoticeService {
 
-	List<NoticeVO> getNotice(Criteria cri) throws Exception;
+	List<NoticeVO> getNoticePage(Criteria cri) throws Exception;
 	
 	int getCountNotice(Criteria cri);
 	

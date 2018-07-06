@@ -35,9 +35,9 @@ public class NoticeController {
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totCnt);
 
-		ArrayList<NoticeVO> list = (ArrayList) noticeService.getNotice(pageMaker.getCriteria());
+		ArrayList<NoticeVO> list = (ArrayList) noticeService.getNoticePage(pageMaker.getCriteria());
 
-		System.out.println("******** pageMaker : " + pageMaker + ", totCnt : " + totCnt + " ********");
+		System.out.println("ls : " + list.size()+ ", totCnt : " + totCnt + " ********");
 
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);

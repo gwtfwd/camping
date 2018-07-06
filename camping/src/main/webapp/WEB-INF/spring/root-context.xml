@@ -34,7 +34,7 @@
 		</bean>
 		
 		
-		<mybatis-spring:scan base-package="kr.green.spring.controller.dao"/>
+		<mybatis-spring:scan base-package="kr.green.camping.dao.user"/>
 		
 		
 		

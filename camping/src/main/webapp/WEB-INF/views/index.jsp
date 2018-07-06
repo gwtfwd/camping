@@ -27,7 +27,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('resources/images/tree.jpg')">
+          <div class="carousel-item active" style="background-image: url('resources/images/forest.jpg')">
            <div class="carousel-caption d-none d-md-block ">
            		<p style=" font-size:26px; font-weight:bold; ">The Better More Enjoyable!</p>
             	<p style=" font-size:43px; font-weight:bold; margin-top:-15px;">2018 NEW OPEN & RENEWAL</p>
@@ -45,7 +45,7 @@
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('resources/images/blur.jpg')">  
+          <div class="carousel-item" style="background-image: url('resources/images/city.jpg')">  
             <div class="carousel-caption d-none d-md-block">
            	 <p style="font-size:26px; font-weight:bold; "> Oasis In The City </p>
              <p style="font-size:43px; font-weight:bold; margin-top:-15px;">도심 글램핑의 멋</p>

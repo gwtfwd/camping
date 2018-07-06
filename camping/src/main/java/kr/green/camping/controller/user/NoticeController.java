@@ -46,7 +46,18 @@ public class NoticeController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String noticeDetailGet(NoticeVO vo, Model model, int no) throws Exception {
+		
+		
+		NoticeVO notice = noticeService.getNotice(vo, no);
+		
+		
+		model.addAttribute("notice", notice);
+			
+	    
+		return "user/board/notice/detail";
+	}
 	
 	
 	

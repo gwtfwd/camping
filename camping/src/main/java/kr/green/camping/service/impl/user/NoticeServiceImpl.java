@@ -37,5 +37,25 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.getCountNotice();
 	}
 	
+	/**
+	 * 글을 조회한다.
+	 * @param vo - 조회할 정보가 담긴 NoticeVO
+	 * @return 조회한 글
+	 * @exception Exception
+	 */
+	@Override
+	public NoticeVO getNotice(NoticeVO vo, int no) throws Exception {
+		
+		NoticeVO resultVO = noticeMapper.getNoticeByNo(no);
+		
+		return resultVO;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

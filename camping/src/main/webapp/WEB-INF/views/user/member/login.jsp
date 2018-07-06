@@ -50,7 +50,7 @@
                     <div>
                         <div>
                             <br><br><br><br>
-                            <h3 style="text-align:center; font-family:Segoe Print">welcome</h3>
+                            <h3 style="text-align:center; font-family:Segoe Print;">welcome</h3>
                             <br><br>
                         </div>
                         

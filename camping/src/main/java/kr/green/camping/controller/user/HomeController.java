@@ -1,4 +1,4 @@
-package kr.green.camping.controller;
+package kr.green.camping.controller.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

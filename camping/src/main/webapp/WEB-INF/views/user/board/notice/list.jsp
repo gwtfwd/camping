@@ -14,6 +14,7 @@
 	<script type="text/javascript" class="init">
 		$(document).ready(function() {
 			$('#example').DataTable();
+			stateSave : true
 		} );
 
 	</script>
@@ -44,190 +45,28 @@
 		            </tr>
 		        </thead>
 		        <tbody style="text-align:center;">
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
-		            <tr>
-		                <td>1</td>
-		                <td>System Architect</td>
-		                <td>aaa</td>
-		                <td>61</td>
-		                <td>44</td>
-		            </tr>
+		           <c:forEach items="${list}" var="notice">
+			    	<tr>
+		    			<td>${notice.no}</td>
+			        	<td >${notice.subject}</td>
+			        	<td>${notice.name}</td>
+			        	<td>${notice.registered_at}</td>
+			        	<td>${notice.view}</td>
+			        </tr>
+			        </c:forEach>
 		        </tbody>
 			  </table>
+			  <ul class="pagination" style="justify-content:center;">
+				  <c:if test="${pageMaker.prev }">
+					<li class="page-item"><a class="page-link" href="/camping/notice/list?page=${pageMaker.startPage-1}">Prev</a></li>
+				  </c:if>
+				  <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+				  	<li class="page-item"><a class="page-link" href="/camping/notice/list?page=${page }">${page }</a></li>
+				  </c:forEach>
+				  <c:if test="${pageMaker.next }">
+				  	<li class="page-item"><a class="page-link" href="/camping/notice/list?page=${pageMaker.endPage+1}">Next</a></li>
+			   	  </c:if>	
+			   </ul>
 		  </div> 
 		  <div class="col-md-1"></div>
 		  </div>

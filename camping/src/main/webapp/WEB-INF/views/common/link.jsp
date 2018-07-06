@@ -19,8 +19,8 @@
     
     <!-- icon -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="icon" href="/favicon1.ico" type="image/x-icon">
-	<link rel="shortcut icon" href="/favicon1.ico" type="image/x-icon" />
+	<!-- <link rel="icon" href="/resources/images/tent32.png" type="image/x-icon"/> -->
+	<link rel="shortcut icon" href="/resources/images/tent32.png" type="image/x-icon"/>
 	
 	
 	<!-- Bootstrap core JavaScript -->

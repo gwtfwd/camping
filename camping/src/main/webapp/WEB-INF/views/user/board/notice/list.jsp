@@ -46,7 +46,7 @@
 			                <th style="width:10%">View</th>
 			            </tr>
 			        </thead>
-			        <tbody style="text-align:center;">
+			        <tbody style="text-align:center; font-family:µ¸¿ò;">
 			           <c:forEach items="${list}" var="notice">
 				    	<tr>
 			    			<td>${notice.no}</td>

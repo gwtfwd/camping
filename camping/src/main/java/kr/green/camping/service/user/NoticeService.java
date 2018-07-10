@@ -7,14 +7,22 @@ import kr.green.camping.vo.user.NoticeVO;
 
 public interface NoticeService {
 
-	// ±Û ¸ñ·Ï Á¶È¸
-	List<NoticeVO> getNoticePage(Criteria cri) throws Exception;
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
+	public List<NoticeVO> getNoticePage(Criteria cri) throws Exception;
 	
-	// ±Û ÃÑ °³¼ö Á¶È¸
-	int getCountNotice(Criteria cri);
+	// ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
+	public int getCountNotice(Criteria cri) throws Exception;
 	
-	// ±Û Á¶È¸
-	NoticeVO getNotice(NoticeVO vo, int no) throws Exception;
+	// ï¿½ï¿½ ï¿½ï¿½È¸
+	//public NoticeVO getNotice(NoticeVO vo, int no) throws Exception;
+	
+	public NoticeVO getNotice(NoticeVO vo) throws Exception;
+	
+	// ê¸€ ìˆ˜ì •
+	public void modifyNotice(NoticeVO vo) throws Exception;
+
+	
+
 	
 }
 

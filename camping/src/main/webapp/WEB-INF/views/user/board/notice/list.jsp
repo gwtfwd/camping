@@ -11,14 +11,28 @@
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
 	
-
-	<!-- <script type="text/javascript" class="init">
-		$(document).ready(function() {
-			$('#example').DataTable();
-			stateSave : true
-		} );
-
-	</script> -->
+	<style type="text/css">
+	
+	.btn-primary11 {
+	  background-color: #1b1e24;
+	  border-color: #1b1e24;
+	}
+	
+	.btn11 {
+	  font-size: 12px;
+	  padding: 4px 15px;
+	  line-height: 20px;
+	  font-weight: 400;
+	  -moz-border-radius: 0px;
+	  -webkit-border-radius: 0px;
+	  border-radius: 0px;
+	  -webkit-transition: all 200ms ease;
+	  -moz-transition: all 200ms ease;
+	  -ms-transition: all 200ms ease;
+	  -o-transition: all 200ms ease;
+	  transition: all 200ms ease;
+	}
+	</style>
 
 </head>
 <body>
@@ -33,9 +47,8 @@
 		
 		<div class="row"> 
 		
-			<div class="col-md-1"></div>
 			
-			<div class="col-md-10">
+			<div class="col-md-12">
 				<table class="table table-hover" style="width:100%">
 			        <thead style="text-align:center;">
 			            <tr>
@@ -46,7 +59,7 @@
 			                <th style="width:10%">View</th>
 			            </tr>
 			        </thead>
-			        <tbody style="text-align:center; font-family:µ¸¿ò;">
+			        <tbody class="fontH" style="text-align:center;">
 			           <c:forEach items="${list}" var="notice">
 				    	<tr>
 			    			<td>${notice.no}</td>
@@ -58,7 +71,7 @@
 				        </c:forEach>
 			        </tbody>
 				  </table>
-				  <ul class="pagination" style="justify-content:center;">
+				  <ul class="pagination fontH" style="justify-content:center;">
 					  <c:if test="${pageMaker.prev }">
 						<li class="page-item"><a class="page-link" href="/camping/notice/list?page=${pageMaker.startPage-1}">Prev</a></li>
 					  </c:if>
@@ -70,7 +83,6 @@
 				   	  </c:if>	
 				   </ul>
 			  </div> 
-			  <div class="col-md-1"></div>
 		  </div>
 		  
 	</div>

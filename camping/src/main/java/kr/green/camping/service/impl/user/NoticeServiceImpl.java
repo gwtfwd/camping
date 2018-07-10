@@ -16,9 +16,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	
 	/**
-	 * ±Û ¸ñ·ÏÀ» Á¶È¸ÇÑ´Ù.
-	 * @param searchVO - Á¶È¸ÇÒ Á¤º¸°¡ ´ã±ä VO
-	 * @return ±Û ¸ñ·Ï
+	 * ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ñ´ï¿½.
+	 * @param searchVO - ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ VO
+	 * @return ï¿½ï¿½ ï¿½ï¿½ï¿½
 	 * @exception Exception
 	 */
 	@Override
@@ -27,30 +27,42 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	/**
-	 * ±Û ÃÑ °¹¼ö¸¦ Á¶È¸ÇÑ´Ù.
-	 * @param searchVO - Á¶È¸ÇÒ Á¤º¸°¡ ´ã±ä VO
-	 * @return ±Û ÃÑ °¹¼ö
+	 * @throws Exception 
+	 * ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ñ´ï¿½.
+	 * @param searchVO - ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ VO
+	 * @return ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 * @exception
 	 */
 	@Override
-	public int getCountNotice(Criteria cri) {
+	public int getCountNotice(Criteria cri) throws Exception {
 		return noticeMapper.getCountNotice();
 	}
 	
 	/**
-	 * ±ÛÀ» Á¶È¸ÇÑ´Ù.
-	 * @param vo - Á¶È¸ÇÒ Á¤º¸°¡ ´ã±ä NoticeVO
-	 * @return Á¶È¸ÇÑ ±Û
+	 * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ñ´ï¿½.
+	 * @param vo - ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ NoticeVO
+	 * @return ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½
 	 * @exception Exception
 	 */
 	@Override
-	public NoticeVO getNotice(NoticeVO vo, int no) throws Exception {
-		
-		NoticeVO resultVO = noticeMapper.getNoticeByNo(no);
+	public NoticeVO getNotice(NoticeVO vo) throws Exception {
+
+		NoticeVO resultVO = noticeMapper.getNoticeByNo(vo);
 		
 		return resultVO;
 	}
 	
+	/**
+	 * ê¸€ì„ ìˆ˜ì •í•œë‹¤.
+	 * @param vo - ìˆ˜ì •í•  ì •ë³´ê°€ ë‹´ê¸´ ParkVO
+	 * @return voidí˜•
+	 * @exception Exception
+	 */
+	@Override
+	public void modifyNotice(NoticeVO vo) throws Exception {
+		noticeMapper.modifyNotice(vo);
+	}
+
 	
 	
 	

@@ -20,4 +20,14 @@ public class HomeController {
 		return "/user/member/login";
 	}
 	
+	
+	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
+	public String join() {
+		
+		return "/user/member/join";
+	}
+	
+	
+	
+	
 }

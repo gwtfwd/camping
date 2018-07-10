@@ -3,6 +3,8 @@ package kr.green.camping.controller.user;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,11 +49,10 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String noticeDetailGet(NoticeVO vo, Model model, int no) throws Exception {
+	public String noticeDetailGet(NoticeVO vo, Model model) throws Exception {
 		
 		
-		NoticeVO notice = noticeService.getNotice(vo, no);
-		
+		NoticeVO notice = noticeService.getNotice(vo);
 		
 		model.addAttribute("notice", notice);
 			
@@ -59,7 +60,27 @@ public class NoticeController {
 		return "user/board/notice/detail";
 	}
 	
+/*	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String noticeModifyGet(NoticeVO vo, Model model, int no) throws Exception {
+		
+		NoticeVO notice = noticeService.getNotice(vo);
+		notice.setNo(no);
+		
+		model.addAttribute("notice", notice);
+		
+		return "user/board/notice/modify";
+	}
 	
+	@RequestMapping(value="/modify", method= RequestMethod.POST)
+	public String noticeModifyPost(NoticeVO vo, int no, HttpServletRequest request) throws Exception {
+	
+		HttpSession session = request.getParameter();
+		
+		noticeService.modifyNotice(vo);
+		System.out.println("////////////no : " + no);
+		
+		return "redirect:/notice/list";
+	}*/
 	
 	
 }

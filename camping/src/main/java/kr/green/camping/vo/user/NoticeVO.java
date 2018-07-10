@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class NoticeVO {
 
-	private Integer no;				// ÀÏ·Ã¹øÈ£
-	private String name;			// ÀÌ¸§
-	private String subject;			// Á¦¸ñ
-	private String contents;		// ³»¿ë
-	private Date registered_at;		// µî·ÏÀÏ½Ã
-	private String  registered_id;	// µî·ÏÀÚid
-	private Date updated_at;		// ¼öÁ¤ÀÏ½Ã
-	private String  updated_id;		// ¼öÁ¤ÀÚid
-	private Integer view;			// Á¶È¸¼ö
+	private Integer no;				// ì¼ë ¨ë²ˆí˜¸
+	private String name;			// ì´ë¦„
+	private String subject;			// ì œëª©
+	private String contents;		// ë‚´ìš©
+	private Date registered_at;		// ë“±ë¡ì¼ì‹œ
+	private String  registered_id;	// ë“±ë¡ìid
+	private Date updated_at;		// ìˆ˜ì •ì¼ì‹œ
+	private String  updated_id;		// ìˆ˜ì •ìid
+	private Integer view;			// ì¡°íšŒìˆ˜
 	
 	
 	public Integer getNo() {

@@ -18,10 +18,13 @@
 	}
 	
 	.btn11 {
-	  font-size: 12px;
+	  font-size: 15px;
 	  padding: 4px 15px;
 	  line-height: 20px;
 	  font-weight: 400;
+	  color:white; 
+	  width:100px; 
+	  height:30px;
 	  -moz-border-radius: 0px;
 	  -webkit-border-radius: 0px;
 	  border-radius: 0px;
@@ -76,24 +79,24 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-12 " style="font-family:함초롬돋움; font-size:13px;">                                                                                                                                        
+                            <div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
                                 <input type="checkbox" value="chkId"/> 아이디 저장
                             </div>
                         
                             
-                            <div class="col-md-12" style="font-family:함초롬돋움;">
-                            	<button type="submit" class="btn11 btn-primary11 pull-right" style="color:white; font-size:15px; width:100px; height:30px;">Login</button>
+                            <div class="col-md-12">
+                            	<button type="submit" class="btn11 btn-primary11 pull-right fontH">Login</button>
                         	</div>
                         	
                         	<div class="form-group">
                         		<br>
-                                <label ><a href="#" class="col-md-3 col-xs-12 control-label" style="font-family:함초롬돋움; font-size:13px; color:black;">아이디 찾기</a></label><br>
-                                <label ><a href="#" class="col-md-3 col-xs-12 control-label" style="font-family:함초롬돋움; font-size:13px; color:black;">비밀번호 찾기</a></label>
+                                <label ><a href="#" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">아이디 찾기</a></label><br>
+                                <label ><a href="#" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">비밀번호 찾기</a></label>
                             </div>
                         	
-                        	<div class="col-md-12" style="font-family:함초롬돋움; font-size:13px;">                                                                                                                                        
-                                <label style="font-family:함초롬돋움; font-size:13px; vertical-align: bottom;">아직 회원이 아니신가요?</label>
-                                <button type="button" class="btn11 btn-primary11 pull-right" style="color:white; font-size:15px; width:100px; height:30px;">Join</button>
+                        	<div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
+                                <label style="vertical-align: bottom;">아직 회원이 아니신가요?</label>
+                                <button type="button" class="btn11 btn-primary11 pull-right">Join</button>
                             </div>
                         </div>
                    	</div>

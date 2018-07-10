@@ -16,7 +16,7 @@
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
 		    <property name="url"
-		              value="jdbc:mysql://localhost:3306/camping?useSSL=false&amp;serverTimezone=UTC">
+		              value="jdbc:mysql://localhost:3306/camp?useSSL=false&amp;serverTimezone=UTC">
 		    </property>
 		    <property name="username" value="root"></property>
 		    <property name="password" value="cjgreen"></property>
@@ -34,7 +34,7 @@
 		</bean>
 		
 		
-		<mybatis-spring:scan base-package="kr.green.camping.dao.user"/>
+		<!-- <mybatis-spring:scan base-package="kr.green.camping.dao.user"/> -->
 		
 		
 		

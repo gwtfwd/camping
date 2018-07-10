@@ -4,15 +4,15 @@
 
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-white relative-top" style="border-bottom-style: inset; border-color:#6c757d; border-bottom-width:thin;">
-      <div class="container">
-        <div class="collapse navbar-collapse" id="navbarResponsive" >
+      <!-- <div class="container"> -->
+        <!-- <div class="collapse navbar-collapse" id="navbarResponsive" > -->
 	          <ul class="navbar-nav mr-auto menubar">
 	          	<!-- <li class="nav-item active">
 	              <a class="nav-link-en" href="#">HOME
 	                <span class="sr-only">(current)</span>
 	              </a>
 	            </li> -->
-	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/notice/list" style="margin-left:-45px">공지사항</a></li>
+	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/notice/list" style="margin-left:20px">공지사항</a></li>
 	            <li class="nav-item"><a class="nav-link-kr" href="#" >야영장찾기</a>
 	           		  <ul>
 			           <li><a href="#" class="nav-link-kr">유형별 찾기</a></li>
@@ -49,7 +49,7 @@
           </ul>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link-en" href="#"  >JOIN</a>
+              <a class="nav-link-en" href="/camping/member/join"  >JOIN</a>
             </li>
             <li class="nav-item">
               <a class="nav-link-en" href="/camping/member/login" >LOGIN</a>
@@ -59,10 +59,10 @@
             </li>
             <li class="nav-item">
              <input type="text" style="width: 110px; border: none; border-bottom-style: inset; margin-left:10px" placeholder="search">
-             <a href="#" ><i class="fa fa-search" style="padding: 0.5rem 1rem; margin-bottom: -1px; margin-left: -10px; font-size:21px; margin-right:-50px;"></i></a>
+             <a href="#" ><i class="fa fa-search" style="padding: 0.5rem 1rem; margin-bottom: -1px; margin-left: -10px; font-size:21px; margin-right:20px;"></i></a>
  			</li>         
           </ul>
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
     </nav>
     

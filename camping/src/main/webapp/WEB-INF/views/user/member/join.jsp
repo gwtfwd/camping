@@ -22,38 +22,141 @@
 		});
 	</script>
 	
-	<!-- <script>
-		function phoneFomatter(num,type){
-		    
-		    var formatNum = '';
-		    
-		    if(num.length==11){
-		        if(type==0){
-		            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3');
-		        }else{
-		            formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-		        }
-		    }else if(num.length==8){
-		        formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
-		    }else{
-		        if(num.indexOf('02')==0){
-		            if(type==0){
-		                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-****-$3');
-		            }else{
-		                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
-		            }
-		        }else{
-		            if(type==0){
-		                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-***-$3');
-		            }else{
-		                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-		            }
-		        }
-		    }
-		    return formatNum;
-		    
+	<!-- <script >
+		function validationId(id){
+			
+			var inforId = document.getElementById('inforId');
+			var idText = id.value;
+			var idRegex = /^\w{5,10}$/;
+			inforId.style.display = 'none';
+
+			if (idText != null && idRegex.test(idText)){
+				return true;
+			}
+			else {
+				inforId.style.display = 'block';
+				return false;
+			}
 		}
+		
+		function validationPw(pw){
+			
+			var inforPw = document.getElementById('inforPw');
+			var pwText = pw.value;
+			var pwRegex = /^(?=\w{8,20})(\w*((\d[a-zA-Z])|([a-zA-Z]\d))\w*)$/;
+			inforPw.style.display = 'none';
+			
+			if (pwText != null && pwRegex.test(pwText)){
+				return true;
+			}
+			else {
+				inforPw.style.display = 'block';
+				return false;
+			}
+		}
+		
+		function validationPw_chk(pw,pw_chk){
+			
+			var inforPw = document.getElementById('inforPw');
+			var inforPw_chk = document.getElementById('inforPw_chk');
+			var pwText = pw.value;
+			var pw_chkText = pw_chk.value;
+			inforPw.style.display = 'none';
+			
+			if (pwText == pw_chkText)){
+				return true;
+			}
+			else {
+				inforPw.style.display = 'block';
+				return false;
+			}
+		}
+	
+		
+		var formId = document.getElementById('formId');
+		formId.onsubmit = function(){
+			
+			var id = document.getElementById('id');							/* id와 pw는 input태그의 id값 */
+			var pw = document.getElementById('pw');					
+			var pw_chk = document.getElementById('pw_chk');					
+			var isOK = true;												// 제출을 할건지 말건지 결정하는 변수
+			
+			if (!validationId(id)){
+				isOK = false;
+			}
+
+			if (!validationPw(pw)){
+				isOK = false;
+			}
+			if (!validationPw(pw_chk)){
+				isOK = false;
+			}
+			if(!isOK){
+				return false;
+			}
+			return true;
+			
+		}
+		
 	</script> -->
+	
+	<script language="javascript">
+
+        function checked() {
+        	
+            var idtext = document.getElementById("id");		// 아이디의 id값
+            var pwtext = document.getElementById("pw");		// 비밀번호의 id값
+            var pwcktext = document.getElementById("pw_chk");		// 비밀번호 확인의 id값
+            var gentext = document.getElementsById("gender");	// 체크박스 성별의 id값
+        
+            
+            var id = idtext.value;
+            var pw = pwtext.value;
+            var pw_chk = pwcktext.value;
+
+            var idRegex = /^\w{5,10}$/;													// id 유효성 검사
+            var pwRegex = /^(?=\w{8,20})(\w*((\d[a-zA-Z])|([a-zA-Z]\d))\w*)$/;			// pw 유효성 검사
+          
+            
+            if(!idRegex.test(id)) {													// id 유효성 검사가 맞지 않으면
+                alert("아이디는 영문자와 숫자로 이루어져 있으며, 5~10자 이어야 합니다.");
+                idtext.value = "";
+                idtext.focus();
+                return false;
+            }
+            else if (!pwRegex.test(pw)) {												// pw 유효성 검사가 맞지 않으면
+                alert("비밀번호는 영문자와 숫자가 1개이상 포함되어 있어야 하며, 8~20자 이어야 합니다.");
+                pwtext.value = "";
+                pwtext.focus();
+                return false;
+            } 
+            else if (!(pw_chk.slice(0, pw_chk.length) === pw.slice(0, pw.length))) {
+                alert("비밀번호가 일치하지 않습니다.");
+                pwcktext.value = "";
+                pwcktext.focus();
+                return false;
+            } 
+            
+            //체크박스 유효성 검사
+            else if(document.data.gender[0].checked == false && document.data.gender[1].checked == false) {
+                 alert("성별을 체크해 주세요");
+                 return false;
+            }
+          
+            else {
+                if(checks()) {
+                   alert("회원가입을 진행합니다");
+                   return true;
+                }
+                else {
+                   return false;
+                }
+             }
+          }
+        
+    </script>
+
+
 	
 	<style type="text/css">
 	
@@ -120,7 +223,7 @@
 		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
 		<h3 style="text-align:center; font-family:Segoe Print;">Join</h3> <br><br>
 		
-		<form method="post" id="formId">
+		<form method="post" >
 			<div class="row"> 
 				<div class="col-md-1"></div>
 				
@@ -130,9 +233,9 @@
 				
 				<div class="col-md-7">
 					<input type="text" class="form-control fontH" id="id" name="id" autocomplete="off" onchange="validationId(this)">
-					<div class="fontH" style="color:#000; display:none;" id="inforId">
+					<!-- <div class="fontH" style="color:#000; display:none;" id="inforId">
 						아이디는 영문자와 숫자로 이루어져 있으며, 5~10자 이어야 합니다.
-					</div>
+					</div> -->
 				</div>
 					
 				<div class="col-md-1">
@@ -165,8 +268,8 @@
 				
 				<div class="col-md-7">
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="gender" value="male" style="font-size:13px; margin-top:12px;">&nbsp;남자 &nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="gender" value="female" style="font-size:13px; margin-top:12px;">&nbsp;여자
+					<input type="radio" id="gender" name="gender" value="male" style="font-size:13px; margin-top:12px;">&nbsp;남자 &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" id="gender" name="gender" value="female" style="font-size:13px; margin-top:12px;">&nbsp;여자
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -182,9 +285,9 @@
 				
 				<div class="col-md-7">
 					<input type="password" class="form-control fontH" id="pw" name="pw" onchange="validationPw(this)">
-					<div class="fontH" style="color:#000; display:none;" id="inforPw">
+					<!-- <div class="fontH" style="color:#000; display:none;" id="inforPw">
 						비밀번호는 영문자와 숫자가 1개이상 포함되어 있어야 하며, 8~20자 이어야 합니다.
-					</div>
+					</div> -->
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -201,9 +304,9 @@
 				
 				<div class="col-md-7">
 					<input type="password" class="form-control fontH" id="pw_chk" name="pw_chk" onchange="validationPw_chk(this)">
-					<div class="fontH" style="color:#000; display:none;" id="inforPw_chk">
+					<!-- <div class="fontH" style="color:#000; display:none;" id="inforPw_chk">
 						비밀번호가 일치하지 않습니다.
-					</div>
+					</div> -->
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -287,90 +390,6 @@
 		</form>
 	</div>
 	
-	
-	<script >
-		function validationId(id){
-			
-			var inforId = document.getElementById('inforId');
-			var idText = id.value;
-			var idRegex = /^\w{5,10}$/;
-			inforId.style.display = 'none';
-
-			if (idText != null && idRegex.test(idText)){
-				return true;
-			}
-			else {
-				inforId.style.display = 'block';
-				return false;
-			}
-		}
-		
-		function validationPw(pw){
-			
-			var inforPw = document.getElementById('inforPw');
-			var pwText = pw.value;
-			var pwRegex = /^(?=\w{8,20})(\w*((\d[a-zA-Z])|([a-zA-Z]\d))\w*)$/;
-			inforPw.style.display = 'none';
-			
-			if (pwText != null && pwRegex.test(pwText)){
-				return true;
-			}
-			else {
-				inforPw.style.display = 'block';
-				return false;
-			}
-		}
-		
-		function validationPw_chk(pw,pw_chk){
-			
-			var inforPw = document.getElementById('inforPw');
-			var inforPw_chk = document.getElementById('inforPw_chk');
-			var pwText = pw.value;
-			var pw_chkText = pw_chk.value;
-			inforPw.style.display = 'none';
-			
-			if (pwText == pw_chkText)){
-				return true;
-			}
-			else {
-				inforPw.style.display = 'block';
-				return false;
-			}
-		}
-	
-		
-		var formId = document.getElementById('formId');
-		formId.onsubmit = function(){
-			
-			var id = document.getElementById('id');							/* id와 pw는 input태그의 id값 */
-			var pw = document.getElementById('pw');					
-			var pw_chk = document.getElementById('pw_chk');					
-			var isOK = true;												// 제출을 할건지 말건지 결정하는 변수
-			
-			if (!validationId(id)){
-				isOK = false;
-			}
-
-			if (!validationPw(pw)){
-				isOK = false;
-			}
-			if (!validationPw(pw_chk)){
-				isOK = false;
-			}
-			if(!isOK){
-				return false;
-			}
-			return true;
-			
-		}
-		
-		
-		
-	</script>
-	
-	
-		
-				
 	
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

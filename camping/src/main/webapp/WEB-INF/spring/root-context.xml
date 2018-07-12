@@ -33,6 +33,12 @@
 		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		</bean>
 		
+		<!-- @Resource(name = "memberMapper") -->
+		<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		    <property name="mapperInterface" value="kr.green.camping.dao.user.MemberMapper"></property>
+		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		</bean>
+		
 		
 		<!-- <mybatis-spring:scan base-package="kr.green.camping.dao.user"/> -->
 		

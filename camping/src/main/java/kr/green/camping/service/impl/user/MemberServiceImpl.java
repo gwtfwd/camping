@@ -39,5 +39,19 @@ public class MemberServiceImpl implements MemberService{
 
 		return user;
 	}
+
+
+	@Override
+	public int chkDupId(JoinVO join, String id) throws Exception {
+
+		int count = 0;
+		
+		count = memberMapper.chkDupId(id);
+		
+		return count;
+	}
+
+
+	
 	
 }

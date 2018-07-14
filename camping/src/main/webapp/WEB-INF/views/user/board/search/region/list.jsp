@@ -44,7 +44,7 @@
 	<div class="container" style="height:950px">	
 		<br><br><br><br>
 		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
-		<h4 style="text-align:center; font-family:Segoe Print;">Notice</h4><br><br>
+		<h4 style="text-align:center; font-family:Segoe Print;">Search By Region</h4><br><br>
 		
 		<div class="row"> 
 			
@@ -66,7 +66,7 @@
 			        <thead style="text-align:center;">
 			            <tr>
 			                <th style="width:10%">No</th>
-			                <th style="width:40%">Subject</th>
+			                <th style="width:40%">Campsite name</th>
 			                <th style="width:20%">Name</th>
 			                <th style="width:20%">Date</th>
 			                <th style="width:10%">View</th>
@@ -87,13 +87,13 @@
 				  
 				  <ul class="pagination fontH" style="justify-content:center;">
 					  <c:if test="${pageMaker.prev }">
-						<li class="page-item"><a class="page-link fontH" href="/camping/notice/list?page=${pageMaker.startPage-1}"> < </a></li>
+						<li class="page-item"><a class="page-link fontH" href="/camping/search/region/list?page=${pageMaker.startPage-1}"> < </a></li>
 					  </c:if>
 					  <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-					  	<li class="page-item"><a class="page-link fontH" href="/camping/notice/list?page=${page }">${page }</a></li>
+					  	<li class="page-item"><a class="page-link fontH" href="/camping/search/region/list?page=${page }">${page }</a></li>
 					  </c:forEach>
 					  <c:if test="${pageMaker.next }">
-					  	<li class="page-item"><a class="page-link fontH" href="/camping/notice/list?page=${pageMaker.endPage+1}"> > </a></li>
+					  	<li class="page-item"><a class="page-link fontH" href="/camping/search/region/list?page=${pageMaker.endPage+1}"> > </a></li>
 				   	  </c:if>	
 				   </ul>
 			  </div> 

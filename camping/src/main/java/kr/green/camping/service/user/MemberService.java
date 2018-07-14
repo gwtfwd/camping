@@ -10,6 +10,8 @@ public interface MemberService {
 	public void join(JoinVO join) throws Exception;
 	
 	public LoginVO loginById(String id) throws Exception;
+
+	public int chkDupId(JoinVO join, String id) throws Exception;
 	
 	
 }

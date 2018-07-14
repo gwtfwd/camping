@@ -15,9 +15,12 @@
 	</insert>
 	
 	<select id="loginById" resultType="kr.green.camping.vo.user.LoginVO">
-		select * from account where id=#{id}
+		select * from account where id = #{id}
 	</select>
   	
+	<select id="chkDupId" parameterType="String" resultType="Integer">
+      	select count(*) from account where id = #{id}
+	</select>
 	
 	
 </mapper>

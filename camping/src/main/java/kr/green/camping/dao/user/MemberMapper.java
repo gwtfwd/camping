@@ -14,7 +14,7 @@ public interface MemberMapper {
 	
 	public LoginVO loginById(@Param("id") String id);
 	
-	
+	public int chkDupId(@Param("id") String id);
 	
 }
 

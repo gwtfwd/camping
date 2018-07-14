@@ -15,8 +15,8 @@
 	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/notice/list" style="margin-left:20px">공지사항</a></li>
 	            <li class="nav-item"><a class="nav-link-kr" href="#" >야영장찾기</a>
 	           		  <ul>
-			           <li><a href="#" class="nav-link-kr">유형별 찾기</a></li>
-			           <li><a href="#" class="nav-link-kr">지역별 찾기</a></li>
+	           		 	<li><a href="/camping/search/region/list" class="nav-link-kr">지역별 찾기</a></li>
+			           	<li><a href="#" class="nav-link-kr">유형별 찾기</a></li>
 			         </ul> 
 			    </li>
 	            <li class="nav-item"><a class="nav-link-kr" href="#" >이용안내</a>

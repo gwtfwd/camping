@@ -11,7 +11,7 @@
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
 	
-	
+	<!-- mask -->
 	<script>
 		$(document).ready(function(){
 			  $('#birth').mask('0000/00/00',{placeholder: "yyyy/mm/dd"});			/* ,{placeholder: "__/__/____"} */
@@ -19,8 +19,7 @@
 		});
 	</script>
 	
-    
-    
+	<!-- 회원가입 유효성 검사 -->
     <script>
 		$(function() {
 			$("form")
@@ -78,7 +77,7 @@
 					},
 					email : {
 						required : "필수로입력하세요",
-						email : "메일규칙에 어긋납니다 ex)camping@gmail.com"
+						email : "메일규칙에 어긋납니다 ex) camping@gmail.com"
 					}
 				}
 			});
@@ -94,14 +93,97 @@
 		);
 	</script>
     
-    <!-- <script>
-    	$(function() {
-    		$("input").checkboxradio({
-    			icon: false
-    		});
-    	});
-    </script> -->
     
+    <!-- 아이디 중복체크 -->
+    <!-- <script type="text/javascript">
+    
+		//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+		var idck = 0;
+		
+		$(function() {
+			
+		    //idck 버튼을 클릭했을 때 
+		    $("#idck").click(function() {
+		        
+		        //userid 를 param.
+		        var id =  $("#id").val(); 
+		        
+		        $.ajax({
+		            async: true,
+		            type : 'POST',
+		            data : id,
+		            url : "idcheck.do",
+		            dataType : "json",
+		            contentType: "application/json; charset=UTF-8",
+		            success : function(data) {
+		                if (data.cnt > 0) {
+		                    
+		                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+		                    //아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+		                    $("#divInputId").addClass("has-error")
+		                    $("#divInputId").removeClass("has-success")
+		                    $("#id").focus();
+		                    
+		                
+		                } else {
+		                    alert("사용가능한 아이디입니다.");
+		                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+		                    $("#divInputId").addClass("has-success")
+		                    $("#divInputId").removeClass("has-error")
+		                    $("#name").focus();
+		                    //아이디가 중복하지 않으면  idck = 1 
+		                    idck = 1;
+		                    
+		                }
+		            },
+		            error : function(error) {
+		                
+		                alert("error : " + error);
+		            }
+		        });
+		    });
+		});
+	 
+	</script> -->
+    
+   	<!-- 아이디 중복체크 -->
+	<script>
+	 function chkDupId(){
+		 
+		  var prmId = $('#id').val();
+		  
+		  if($("#id").val() == ''){alert('ID를 입력해주세요.'); return;}
+		  
+		  $.ajax({
+		     type : 'POST',  
+		     data:"prmId="+ prmId,
+		     dataType : 'text',
+		     url : '/chkDupId.do',  
+		     success : function(rData, textStatus, xhr) {
+		      var chkRst = rData;
+		      if(chkRst == 0){
+		       alert("사용가능한 ID 입니다.");
+		       $("#idChk").val('Y');
+		      }else{
+		       alert("입력하신 ID는 이미 사용중 입니다.");
+		       $("#idChk").val('N');
+		      }
+		     },
+		     error : function(xhr, status, e) {  
+		      alert(e);
+		     }
+		  });  
+	 }
+		
+	 function insertChk(){
+		  
+		  var frm = document.companyForm; 
+		  
+		  if(!chkVal('id','아이디'))return false;
+		  if($("#idChk").val() == 'N'){alert('ID중복확인을 해주세요.'); return;}
+	 }
+
+	</script>
     
 	
 	<style type="text/css">
@@ -179,13 +261,11 @@
 				
 				<div class="col-md-7">
 					<input type="text" class="form-control fontH" id="id" name="id" autocomplete="off" tabindex=1>
-					<!-- <div class="fontH" style="color:#000; display:none;" id="inforId">
-						아이디는 영문자와 숫자로 이루어져 있으며, 5~10자 이어야 합니다.
-					</div> -->
 				</div>
 					
 				<div class="col-md-1">
-					<button type="button" class="btn22 btn-primary22 fontH" style="margin-left:-10px">중복확인</button>
+					<input type="hidden" id="idChk" value="N" /><!-- ID체크 했는지, 안했는지. -->
+					<button type="button" class="btn22 btn-primary22 fontH" style="margin-left:-10px" onclick="javascript:chkDupId()">중복확인</button>
 				</div>
 			</div>
 			<br>
@@ -217,12 +297,6 @@
 					<input type="radio"  name="gender" value="male" style="font-size:13px; margin-top:12px;" checked>&nbsp;남자 &nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio"  name="gender" value="female" style="font-size:13px; margin-top:12px;">&nbsp;여자
 				</div>
-				<!-- <div class="col-md-7">
-					<label for="radio-1">여자</label>
-				    <input type="radio" name="radio-1" id="radio-1" checked>
-				    <label for="radio-2">남자</label>
-				    <input type="radio" name="radio-1" id="radio-2">
-				</div> -->
 				<div class="col-md-1"></div>
 			</div>
 			<br>
@@ -237,9 +311,6 @@
 				
 				<div class="col-md-7">
 					<input type="password" class="form-control fontH" id="pw" name="pw" tabindex=3>
-					<!--  <div class="fontH" style="color:#000; display:none;" id="inforPw">
-						비밀번호는 영문자와 숫자가 1개이상 포함되어 있어야 하며, 8~20자 이어야 합니다.
-					</div> -->
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -256,9 +327,6 @@
 				
 				<div class="col-md-7">
 					<input type="password" class="form-control fontH" id="pw_chk" name="pw_chk" tabindex=4>
-					<!-- <div class="fontH" style="color:#000; display:none;" id="inforPw_chk">
-						비밀번호가 일치하지 않습니다.
-					</div> -->
 				</div>
 				
 				<div class="col-md-1"></div>

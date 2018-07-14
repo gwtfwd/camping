@@ -45,7 +45,7 @@
 		  cursor: pointer;
 		  display: inline-block;
 		  position: relative;
-		  transition: 0.3s;
+		  transition: 0.5s;
 		}
 		
 		.button span:after {
@@ -54,7 +54,7 @@
 		  opacity: 0;
 		  top: 0;
 		  right: -20px;
-		  transition: 0.3s;
+		  transition: 0.5s;
 		}
 		
 		.button:hover span {
@@ -80,18 +80,18 @@
 	 <section>
 	      <div class="container" style="height:800px; margin-top:170px;">
 	        <div class="container-fluid clearfix">
-	        	<h3 class="fontH" style="text-align:center;">회원가입을 환영합니다!</h3>
+	        	<h3 class="fontH" style="text-align:center;"><b>회원가입</b>을 환영합니다!</h3>
 	        	
-		        <div class="img-container" style="margin-top:120px;">
-	        		<a href="#"><img src='resources/images/user.png' width="180px" height="180px" ></a><br><br>
+		        <div class="img-container" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px;">
+	        		<a href="#"><img src='resources/images/user.png' width="180px" height="180px" style="margin-top:50px"></a><br><br>
 	        		<!-- <p class="fontH" style="font-size:15px; color:#6c757d;">전국 야영장 정보를 알고싶은 분<br><br> -->
-	        		<a href="/camping/member/join"><button class="button" style="vertical-align:middle;"><span>개인 회원 가입</span></button></a>
+	        		<a href="/camping/member/join"><button class="button" style="vertical-align:middle; margin-bottom:50px;"><span>개인 회원 가입</span></button></a>
 		         </div>
 		         
-		         <div class="img-container" style="margin-top:120px; color:#6c757d;">		
-	       			<a href="#"><img src='resources/images/admin.png' width="180px" height="180px" ></a><br><br>
+		         <div class="img-container" style="margin-top:100px; border:#C5C6C7 1px solid; margin-left:40px;  width:450px;" >		
+	       			<a href="#"><img src='resources/images/admin.png' width="180px" height="180px" style="margin-top:50px"></a><br><br>
 	       			<!-- <p class="fontH" style="font-size:15px; ">야영장을 등록하고 관리하는 분<br><br> -->
-	       			<a href="#"><button class="button" style="vertical-align:middle;"><span>관리자 회원 가입</span></button></a>
+	       			<a href="#"><button class="button" style="vertical-align:middle; margin-bottom:50px;"><span>관리자 회원 가입</span></button></a>
 				</div>
 				
 	        </div> 

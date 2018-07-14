@@ -12,7 +12,7 @@ public interface MemberMapper {
 	
 	public void join(@Param("join") JoinVO join);
 	
-	
+	public LoginVO loginById(@Param("id") String id);
 	
 	
 	

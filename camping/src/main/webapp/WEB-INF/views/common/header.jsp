@@ -44,19 +44,32 @@
           
           <ul class="navbar-nav mc-auto" >
           	<li class="nav-item">
-              <a class="nav-link-en1" href="/camping" style="margin-left:-50px">Camping Information</a>
+              <a class="nav-link-en1" href="/camping" style="margin-left:-95px">Camping Information</a>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link-en" href="/camping/member/join"  >JOIN</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link-en" href="/camping/member/login" >LOGIN</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link-en" href="#" >MYPAGE</a>
-            </li>
+          
+          	<c:if test="${!member}">
+	            <li class="nav-item">
+	              <a class="nav-link-en" href="/camping/selectJoin"  >SIGN UP</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link-en" href="/camping/member/login" >LOGIN</a>
+	            </li>
+            </c:if>	
+            
+            <c:if test="${member}">
+            	<li class="nav-item nav-link-en3">
+            		${user.id}ดิ
+            	</li>
+            	<li class="nav-item">
+	              <a class="nav-link-en" href="#" >MYPAGE</a>
+	            </li>
+	            <li class="nav-item">
+	              <a class="nav-link-en" href="/camping/member/logout" >LOGOUT</a>
+	            </li>
+            </c:if>
+            
             <li class="nav-item">
              <input type="text" style="width: 110px; border: none; border-bottom-style: inset; margin-left:10px" placeholder="search">
              <a href="#" ><i class="fa fa-search" style="padding: 0.5rem 1rem; margin-bottom: -1px; margin-left: -10px; font-size:21px; margin-right:20px;"></i></a>

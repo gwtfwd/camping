@@ -2,6 +2,7 @@ package kr.green.camping.controller.user;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,6 +38,25 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginPost(HttpServletRequest request, Model model) throws Exception {
+		
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		
+		LoginVO user = memberService.loginById(id);
+		
+		
+		if( user != null && passwordEncoder.matches(pw, user.getPw())) {
+			
+			model.addAttribute("user", user);
+			
+			return "redirect:/";
+		}
+	
+		return "redirect:/member/login";
+	}
+	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String joinGet() {
 		
@@ -51,7 +71,7 @@ public class MemberController {
 		
 		if( searchuser != null ) {
 			
-			return "redirect:/camping/member/login";
+			return "redirect:/member/login";
 		}
 		else {
 			
@@ -64,6 +84,23 @@ public class MemberController {
 			return "redirect:/";
 		}
 	}
+	
+	@RequestMapping(value = "/member/logout")
+	public String logout(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("user");
+		
+		return "redirect:/";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

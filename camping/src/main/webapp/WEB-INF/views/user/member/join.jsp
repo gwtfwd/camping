@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -11,9 +11,6 @@
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
 	
-	<script src="//code.jquery.com/jquery.min.js"></script>
-	<script src="<c:url value='/resources/vendor/jquery/jquery.mask.js'/>"></script>
-
 	
 	<script>
 		$(document).ready(function(){
@@ -22,63 +19,90 @@
 		});
 	</script>
 	
-	<script language="javascript">
-
-        function checked() {
-        	
-            var idtext = document.getElementById("id");		// ¾ÆÀÌµğÀÇ id°ª
-            var pwtext = document.getElementById("pw");		// ºñ¹Ğ¹øÈ£ÀÇ id°ª
-            var pwcktext = document.getElementById("pw_chk");		// ºñ¹Ğ¹øÈ£ È®ÀÎÀÇ id°ª
-            var gentext = document.getElementsById("gender");	// Ã¼Å©¹Ú½º ¼ºº°ÀÇ id°ª
-        
-            
-            var id = idtext.value;
-            var pw = pwtext.value;
-            var pw_chk = pwcktext.value;
-
-            var idRegex = /^\w{5,10}$/;													// id À¯È¿¼º °Ë»ç
-            var pwRegex = /^(?=\w{8,20})(\w*((\d[a-zA-Z])|([a-zA-Z]\d))\w*)$/;			// pw À¯È¿¼º °Ë»ç
-          
-            
-            if(!idRegex.test(id)) {													// id À¯È¿¼º °Ë»ç°¡ ¸ÂÁö ¾ÊÀ¸¸é
-                alert("¾ÆÀÌµğ´Â ¿µ¹®ÀÚ¿Í ¼ıÀÚ·Î ÀÌ·ç¾îÁ® ÀÖÀ¸¸ç, 5~10ÀÚ ÀÌ¾î¾ß ÇÕ´Ï´Ù.");
-                idtext.value = "";
-                idtext.focus();
-                return false;
-            }
-            else if (!pwRegex.test(pw)) {												// pw À¯È¿¼º °Ë»ç°¡ ¸ÂÁö ¾ÊÀ¸¸é
-                alert("ºñ¹Ğ¹øÈ£´Â ¿µ¹®ÀÚ¿Í ¼ıÀÚ°¡ 1°³ÀÌ»ó Æ÷ÇÔµÇ¾î ÀÖ¾î¾ß ÇÏ¸ç, 8~20ÀÚ ÀÌ¾î¾ß ÇÕ´Ï´Ù.");
-                pwtext.value = "";
-                pwtext.focus();
-                return false;
-            } 
-            else if (!(pw_chk.slice(0, pw_chk.length) === pw.slice(0, pw.length))) {
-                alert("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
-                pwcktext.value = "";
-                pwcktext.focus();
-                return false;
-            } 
-            
-            //Ã¼Å©¹Ú½º À¯È¿¼º °Ë»ç
-            else if(document.data.gender[0].checked == false && document.data.gender[1].checked == false) {
-                 alert("¼ºº°À» Ã¼Å©ÇØ ÁÖ¼¼¿ä");
-                 return false;
-            }
-          
-            else {
-                if(checks()) {
-                   alert("È¸¿ø°¡ÀÔÀ» ÁøÇàÇÕ´Ï´Ù");
-                   return true;
-                }
-                else {
-                   return false;
-                }
-             }
-          }
-        
-    </script>
-
-
+    
+    
+    <script>
+		$(function() {
+			$("form")
+				.validate( {
+					rules : {
+						id : {
+							required : true,
+							minlength : 4,
+							regex : /^[[A-Za-z]\w{4,9}$/
+						},
+						pw : {
+							required : true,
+							minlength : 8,
+							regex : /^(?=\w{8,20})(\w*((\d[a-zA-Z])|([a-zA-Z]\d))\w*)$/
+						},
+						pw_chk : {
+							required : true,
+							equalTo : pw
+						},
+						name : {
+							required : true,
+							minlength : 2
+						},
+						phone : {
+							required : true,
+						},
+						email : {
+							required : true,
+							email : true
+						}
+				},
+				
+				//ê·œì¹™ì²´í¬ ì‹¤íŒ¨ì‹œ ì¶œë ¥ë  ë©”ì‹œì§€
+				messages : {
+					id : {
+						required : "í•„ìˆ˜ë¡œì…ë ¥í•˜ì„¸ìš”",
+						minlength : "ìµœì†Œ 4ê¸€ìì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤",
+						regex : "ì•„ì´ë””ëŠ” ì˜ë¬¸ìì™€ ìˆ«ìë¡œ ì´ë£¨ì–´ì ¸ ìˆìœ¼ë©°,ì²«ê¸€ìëŠ” ì•ŒíŒŒë²³ì´ê³  5~10ì ì´ì–´ì•¼ í•©ë‹ˆë‹¤."
+					},
+					pw : {
+						required : "í•„ìˆ˜ë¡œì…ë ¥í•˜ì„¸ìš”",
+						minlength : "ìµœì†Œ 8ê¸€ìì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤",
+						regex : "ë¹„ë°€ë²ˆí˜¸ëŠ” ì˜ë¬¸ìì™€ ìˆ«ìê°€ 1ê°œì´ìƒ í¬í•¨ë˜ì–´ ìˆì–´ì•¼ í•˜ë©°, 8~20ì ì´ì–´ì•¼ í•©ë‹ˆë‹¤."
+					},
+					pw_chk : {
+						required : "í•„ìˆ˜ë¡œì…ë ¥í•˜ì„¸ìš”",
+						equalTo : "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."
+					},
+					name : {
+						required : "í•„ìˆ˜ë¡œì…ë ¥í•˜ì„¸ìš”",
+						minlength : "ìµœì†Œ 2ê¸€ìì´ìƒì´ì–´ì•¼ í•©ë‹ˆë‹¤"
+					},
+					phone : {
+						required : "í•„ìˆ˜ë¡œì…ë ¥í•˜ì„¸ìš”",
+					},
+					email : {
+						required : "í•„ìˆ˜ë¡œì…ë ¥í•˜ì„¸ìš”",
+						email : "ë©”ì¼ê·œì¹™ì— ì–´ê¸‹ë‚©ë‹ˆë‹¤ ex)camping@gmail.com"
+					}
+				}
+			});
+		})
+		
+		$.validator.addMethod(
+				"regex", 
+				function(value, element, regexp) {
+					var re = new RegExp(regexp);
+					return this.optional(element) || re.test(value);
+				}, 
+				"Please check your input."
+		);
+	</script>
+    
+    <!-- <script>
+    	$(function() {
+    		$("input").checkboxradio({
+    			icon: false
+    		});
+    	});
+    </script> -->
+    
+    
 	
 	<style type="text/css">
 	
@@ -139,29 +163,29 @@
    	<!-- Header -->
 	
 	
-	<div class="container" style="height:950px">	
+	<div class="container" style="height:1100px">	
 		<br><br><br><br>
 		
 		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
 		<h3 style="text-align:center; font-family:Segoe Print;">Join</h3> <br><br>
 		
-		<form method="post" >
+		<form method="post" id="formId">
 			<div class="row"> 
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="id">¾ÆÀÌµğ</label>
+					<label class="control-label fontH" for="id">ì•„ì´ë””</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="id" name="id" autocomplete="off" onchange="validationId(this)">
+					<input type="text" class="form-control fontH" id="id" name="id" autocomplete="off" tabindex=1>
 					<!-- <div class="fontH" style="color:#000; display:none;" id="inforId">
-						¾ÆÀÌµğ´Â ¿µ¹®ÀÚ¿Í ¼ıÀÚ·Î ÀÌ·ç¾îÁ® ÀÖÀ¸¸ç, 5~10ÀÚ ÀÌ¾î¾ß ÇÕ´Ï´Ù.
+						ì•„ì´ë””ëŠ” ì˜ë¬¸ìì™€ ìˆ«ìë¡œ ì´ë£¨ì–´ì ¸ ìˆìœ¼ë©°, 5~10ì ì´ì–´ì•¼ í•©ë‹ˆë‹¤.
 					</div> -->
 				</div>
 					
 				<div class="col-md-1">
-					<button type="button" class="btn22 btn-primary22 fontH" style="margin-left:-10px">Áßº¹È®ÀÎ</button>
+					<button type="button" class="btn22 btn-primary22 fontH" style="margin-left:-10px">ì¤‘ë³µí™•ì¸</button>
 				</div>
 			</div>
 			<br>
@@ -170,11 +194,11 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="name">ÀÌ¸§</label>
+					<label class="control-label fontH" for="name">ì´ë¦„</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="name" name="name" autocomplete="off">
+					<input type="text" class="form-control fontH" id="name" name="name" autocomplete="off" tabindex=2>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -185,14 +209,20 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="birth">¼ºº°</label>
+					<label class="control-label fontH" for="gender">ì„±ë³„</label>
 				</div>
 				
 				<div class="col-md-7">
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" id="gender" name="gender" value="male" style="font-size:13px; margin-top:12px;">&nbsp;³²ÀÚ &nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" id="gender" name="gender" value="female" style="font-size:13px; margin-top:12px;">&nbsp;¿©ÀÚ
+					<input type="radio"  name="gender" value="male" style="font-size:13px; margin-top:12px;" checked>&nbsp;ë‚¨ì &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio"  name="gender" value="female" style="font-size:13px; margin-top:12px;">&nbsp;ì—¬ì
 				</div>
+				<!-- <div class="col-md-7">
+					<label for="radio-1">ì—¬ì</label>
+				    <input type="radio" name="radio-1" id="radio-1" checked>
+				    <label for="radio-2">ë‚¨ì</label>
+				    <input type="radio" name="radio-1" id="radio-2">
+				</div> -->
 				<div class="col-md-1"></div>
 			</div>
 			<br>
@@ -201,14 +231,14 @@
 			<div class="row"> 
 				<div class="col-md-1"></div>
 				
-				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="pw">ºñ¹Ğ¹øÈ£</label>
+				<div class="col-md-2" style="text-align:right; padding-top:7px;" >
+					<label class="control-label fontH" for="pw">ë¹„ë°€ë²ˆí˜¸</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="password" class="form-control fontH" id="pw" name="pw" onchange="validationPw(this)">
-					<!-- <div class="fontH" style="color:#000; display:none;" id="inforPw">
-						ºñ¹Ğ¹øÈ£´Â ¿µ¹®ÀÚ¿Í ¼ıÀÚ°¡ 1°³ÀÌ»ó Æ÷ÇÔµÇ¾î ÀÖ¾î¾ß ÇÏ¸ç, 8~20ÀÚ ÀÌ¾î¾ß ÇÕ´Ï´Ù.
+					<input type="password" class="form-control fontH" id="pw" name="pw" tabindex=3>
+					<!--  <div class="fontH" style="color:#000; display:none;" id="inforPw">
+						ë¹„ë°€ë²ˆí˜¸ëŠ” ì˜ë¬¸ìì™€ ìˆ«ìê°€ 1ê°œì´ìƒ í¬í•¨ë˜ì–´ ìˆì–´ì•¼ í•˜ë©°, 8~20ì ì´ì–´ì•¼ í•©ë‹ˆë‹¤.
 					</div> -->
 				</div>
 				
@@ -221,13 +251,13 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="pw_chk">ºñ¹Ğ¹øÈ£È®ÀÎ</label>
+					<label class="control-label fontH" for="pw_chk">ë¹„ë°€ë²ˆí˜¸í™•ì¸</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="password" class="form-control fontH" id="pw_chk" name="pw_chk" onchange="validationPw_chk(this)">
+					<input type="password" class="form-control fontH" id="pw_chk" name="pw_chk" tabindex=4>
 					<!-- <div class="fontH" style="color:#000; display:none;" id="inforPw_chk">
-						ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.
+						ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 					</div> -->
 				</div>
 				
@@ -240,11 +270,11 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="birth">»ı³â¿ùÀÏ</label>
+					<label class="control-label fontH" for="birth">ìƒë…„ì›”ì¼</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="birth" name="birth" autocomplete="off" > 
+					<input type="text" class="form-control fontH" id="birth" name="birth" autocomplete="off" tabindex=5> 
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -254,11 +284,11 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="phone">ÀüÈ­¹øÈ£</label>
+					<label class="control-label fontH" for="phone">ì „í™”ë²ˆí˜¸</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="phone" name="phone" autocomplete="off" >
+					<input type="text" class="form-control fontH" id="phone" name="phone" autocomplete="off" tabindex=6>
 				</div>
 	
 				<div class="col-md-1"></div>
@@ -270,11 +300,11 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="email">ÀÌ¸ŞÀÏ</label>
+					<label class="control-label fontH" for="email">ì´ë©”ì¼</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="email" class="form-control fontH" id="email" name="email" autocomplete="off">
+					<input type="email" class="form-control fontH" id="email" name="email" autocomplete="off" tabindex=7>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -286,26 +316,25 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="address">ÁÖ¼Ò</label>
+					<label class="control-label fontH" for="address">ì£¼ì†Œ</label>
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="address" name="address" autocomplete="off"><br>
-					<input type="text" class="form-control fontH" id="address" name="address" autocomplete="off">
+					<input type="text" class="form-control fontH" id="address" name="address" autocomplete="off" tabindex=8>
 				</div>
 				
 				<div class="col-md-1"></div>
 			</div>
 			<br><br>
 			
-				<!-- <label for="num">Ã·ºÎÆÄÀÏ:</label> -->
+				<!-- <label for="num">ì²¨ë¶€íŒŒì¼:</label> -->
 				
 			<div style="text-align:center;">			
 				<a href="/camping"> 
-		       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">Ãë¼Ò</button>
+		       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">ì·¨ì†Œ</button>
 		        </a>			
 				<a href="/camping/member/join"> 
-		       		<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px">¿Ï·á</button>
+		       		<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px">ì™„ë£Œ</button>
 		        </a>			
 			</div>
 					

@@ -26,6 +26,22 @@
 	
 	<context:component-scan base-package="kr.green.camping" />
 	
+	<beans:bean id="loginInterceptor" class="kr.green.camping.interceptor.LoginInterceptor"></beans:bean>
+	
+	
+	<interceptors>
+	
+		<!-- 로그인 path가 주어졌을 때 loginInterceptor가 호출하도록 interceptor태그에 등록 -->
+		<interceptor>
+			<mapping path="/member/login"/>
+       		<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	
+	
+	
+	
+	</interceptors>
+	
 	
 	
 </beans:beans>

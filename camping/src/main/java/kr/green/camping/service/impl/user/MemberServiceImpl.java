@@ -19,9 +19,9 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public LoginVO login(String id, String pw) throws Exception {
 		
-		LoginVO resultVO = memberMapper.login(id, pw);
+		LoginVO user = memberMapper.login(id, pw);
 
-		return resultVO;
+		return user;
 	}
 	
 	
@@ -32,6 +32,12 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 	
-	
+	@Override
+	public LoginVO loginById(String id) throws Exception {
+		
+		LoginVO user = memberMapper.loginById(id);
+
+		return user;
+	}
 	
 }

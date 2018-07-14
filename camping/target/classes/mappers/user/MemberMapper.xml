@@ -14,7 +14,9 @@
 		values (#{join.id}, #{join.name}, #{join.gender}, #{join.pw}, #{join.phone}, #{join.birth}, #{join.email}, #{join.address}, #{join.admin})
 	</insert>
 	
-	
+	<select id="loginById" resultType="kr.green.camping.vo.user.LoginVO">
+		select * from account where id=#{id}
+	</select>
   	
 	
 	

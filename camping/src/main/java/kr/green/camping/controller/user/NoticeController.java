@@ -39,7 +39,6 @@ public class NoticeController {
 
 		ArrayList<NoticeVO> list = (ArrayList) noticeService.getNoticePage(pageMaker.getCriteria());
 
-		System.out.println("ls : " + list.size()+ ", totCnt : " + totCnt + " ********");
 
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);

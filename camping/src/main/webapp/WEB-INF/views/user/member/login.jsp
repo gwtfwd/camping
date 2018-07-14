@@ -34,7 +34,8 @@
 	  -o-transition: all 200ms ease;
 	  transition: all 200ms ease;
 	}
-	</style>
+	
+	</style> 
 
 
 
@@ -47,13 +48,12 @@
 	
 	
 	<div class="container" style="height:800px">
-	
 		<div class="row">
 		
-			<div class="col-md-3">
-			</div>
+			<div class="col-md-3"></div>
+			
             <div class="col-md-6">
-            	<form>
+            	<form method="post">
                     <div>
                         <div>
                             <br><br><br><br><br><br><br><br>
@@ -64,9 +64,9 @@
                         
                         <div >  
                             <div class="form-group" >
-                                <div class="col-md-12 ">                                            
+                                <div class="col-md-12">                                            
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="ID"/>
+                                        <input type="text" id="id" name="id" class="form-control" placeholder="ID" autocomplete="off"/>
                                     </div>                                            
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                             <div class="form-group" >
                                 <div class="col-md-12 ">                                            
                                     <div class="input-group">
-                                        <input type="password" class="form-control" placeholder="PASSWORD"/>
+                                        <input type="password" id="pw" name="pw" class="form-control" placeholder="PASSWORD"/>
                                     </div>                                            
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                         
                             
                             <div class="col-md-12">
-                            	<button type="submit" class="btn11 btn-primary11 pull-right fontH">Login</button>
+                            	<a href="/camping/member/login"><button type="submit" class="btn11 btn-primary11 pull-right fontH">Login</button></a>
                         	</div>
                         	
                         	<div class="form-group">
@@ -96,14 +96,15 @@
                         	
                         	<div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
                                 <label style="vertical-align: bottom;">아직 회원이 아니신가요?</label>
-                                <button type="button" class="btn11 btn-primary11 pull-right">Join</button>
+                               <a href="/camping/member/join"> <button type="button" class="btn11 btn-primary11 pull-right">Join</button></a>
                             </div>
                         </div>
                    	</div>
+                   	
                  </form>
             </div>
-            <div class="col-md-3">
-			</div>
+            
+            <div class="col-md-3"></div>
 		</div>
 	</div>
 	

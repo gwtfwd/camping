@@ -78,9 +78,9 @@
 	
 	
 	 <section>
-	      <div class="container" style="height:800px; margin-top:170px;">
+	      <div class="container" style="height:800px; margin-top:150px;">
 	        <div class="container-fluid clearfix">
-	        	<h3 class="fontH" style="text-align:center;"><b>회원가입</b>을 환영합니다!</h3>
+	        	<h4 class="fontH" style="text-align:center;"><b>회원가입</b>을 환영합니다!</h4><br><br>
 	        	
 		        <div class="img-container" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px;">
 	        		<a href="#"><img src='resources/images/user.png' width="180px" height="180px" style="margin-top:50px"></a><br><br>

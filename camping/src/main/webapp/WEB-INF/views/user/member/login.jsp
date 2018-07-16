@@ -96,7 +96,7 @@
                         	
                         	<div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
                                 <label style="vertical-align: bottom;">아직 회원이 아니신가요?</label>
-                               <a href="/camping/member/join"> <button type="button" class="btn11 btn-primary11 pull-right">Join</button></a>
+                               <a href="/camping/selectJoin"> <button type="button" class="btn11 btn-primary11 pull-right">Join</button></a>
                             </div>
                         </div>
                    	</div>

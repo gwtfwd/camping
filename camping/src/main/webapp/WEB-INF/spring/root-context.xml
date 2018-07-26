@@ -39,6 +39,19 @@
 		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		</bean>
 		
+		<!-- @Resource(name = "searchMapper") -->
+		<bean id="searchMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		    <property name="mapperInterface" value="kr.green.camping.dao.user.SearchMapper"></property>
+		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		</bean>
+		
+		
+		<!-- @Resource(name = "freeMapper") -->
+		<bean id="freeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		    <property name="mapperInterface" value="kr.green.camping.dao.user.FreeMapper"></property>
+		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		</bean>
+		
 		
 		<!-- <mybatis-spring:scan base-package="kr.green.camping.dao.user"/> -->
 		

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.green.camping.dao.user.FreeMapper">
+
+	<select id="getCountFree" resultType="java.lang.Integer">
+		select count(*) from free
+	</select>
+	
+	<select id="getFreePage" resultType="kr.green.camping.vo.user.FreeVO">
+		select * from free order by no desc limit #{pageStart}, #{perPageNum} 
+	</select>
+	
+	<select id="getFreeByNo" resultType="kr.green.camping.vo.user.FreeVO">
+		select * from free where no = #{no}
+	</select>
+	
+	<insert id="writeFree">
+		insert into free (subject, contents, registered_id, registered_at, name) values (#{subject}, #{contents}, #{registered_id}, now(), #{name})
+	</insert>
+	
+
+</mapper>

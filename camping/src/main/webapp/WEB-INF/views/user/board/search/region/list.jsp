@@ -10,6 +10,12 @@
 	<!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
+   	
+	<link href="<c:url value ='/resources/css/list.css'/>" rel="stylesheet">
+	
+	
+	<base href="http://localhost:8080">
+	
 	
 	<style type="text/css">
 	
@@ -34,72 +40,58 @@
 	  transition: all 200ms ease;
 	}
 	</style>
-
+	
 </head>
 <body>
 	<!-- Header -->
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
-	
+   	
+   	
+   	
 	<div class="container" style="height:950px">	
 		<br><br><br><br>
-		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
-		<h4 style="text-align:center; font-family:Segoe Print;">Search By Region</h4><br><br>
+		<h4 class="fontH" style="text-align:center;">지역별 야영장 찾기</h4>
 		
-		<div class="row"> 
+		<div class="row" style="margin-top:100px;"> 
+		
+			<div class="fontH" id="map">
 			
-			<div class="col-md-12"> 
-				<div class="input-group">
-					<select class="form-control11 fontH" name="type" style="margin-right:5px;">
-						<option value="0" <c:out value="${type==0? 'selectes':''}"/>>제목</option>
-						<option value="1" <c:out value="${type==1? 'selectes':''}"/>>내용</option>
-						<option value="1" <c:out value="${type==2? 'selectes':''}"/>>글쓴이</option>
-						<option value="2" <c:out value="${type==3? 'selectes':''}"/>>아이디</option>
-					</select>
-					<input type="text" name="search" autocomplete="off" style="margin-right:5px;">
-					<button type="submit" class="btn11 btn-primary11 fontH">Search</button>
-				</div>
-			</div><br><br>
+				<a href="/camping/search/region/list?area=서울" id="map-seoul">서울</a>
+				<a href="/camping/search/region/list?area=인천" id="map-incheon">인천</a>
+				<a href="/camping/search/region/list?area=경기도" id="map-gyeonggi">경기도</a>
+				<a href="/camping/search/region/list?area=강원도" id="map-gangwon">강원도</a>
+				<a href="/camping/search/region/list?area=충청남도" id="map-chungnam">충청남도</a>
+				<a href="/camping/search/region/list?area=대전" id="map-daejeon">대전</a>
+				<a href="/camping/search/region/list?area=세종" id="map-sejong">세종</a>
+				<a href="/camping/search/region/list?area=충청북도" id="map-chungbuk">충청북도</a>
+				<a href="/camping/search/region/list?area=경상북도" id="map-gyeongbuk">경상북도</a>
+				<a href="/camping/search/region/list?area=대구" id="map-daegu">대구</a>
+				<a href="/camping/search/region/list?area=경상남도" id="map-gyeongnam">경상남도</a>
+				<a href="/camping/search/region/list?area=울산" id="map-ulsan">울산</a>
+				<a href="/camping/search/region/list?area=부산" id="map-busan">부산</a>
+				<a href="/camping/search/region/list?area=전라북도" id="map-jeonbuk">전라북도</a>
+				<a href="/camping/search/region/list?area=전라남도" id="map-jeonnam">전라남도</a>
+				<a href="/camping/search/region/list?area=광주" id="map-gwangju">광주</a>
+				<a href="/camping/search/region/list?area=제주도" id="map-jeju">제주도</a>
+			
+			</div>
 
-			<div class="col-md-12">	
-				<table class="table table-hover" style="width:100%">
-			        <thead style="text-align:center;">
-			            <tr>
-			                <th style="width:10%">No</th>
-			                <th style="width:40%">Campsite name</th>
-			                <th style="width:20%">Name</th>
-			                <th style="width:20%">Date</th>
-			                <th style="width:10%">View</th>
-			            </tr>
-			        </thead>
-			        <tbody class="fontH" style="text-align:center;">
-			           <c:forEach items="${list}" var="notice">
-				    	<tr>
-			    			<td>${notice.no}</td>
-				        	<td><a href="/camping/notice/detail?no=${notice.no}" style="color:black;">${notice.subject}</a></td>
-				        	<td>${notice.name}</td>
-				        	<td><fmt:formatDate value="${notice.registered_at}" pattern="yyyy-MM-dd" /></td>
-				        	<td>${notice.view}</td>
-				        </tr>
-				        </c:forEach>
-			        </tbody>
-				  </table><br>
-				  
-				  <ul class="pagination fontH" style="justify-content:center;">
-					  <c:if test="${pageMaker.prev }">
-						<li class="page-item"><a class="page-link fontH" href="/camping/search/region/list?page=${pageMaker.startPage-1}"> < </a></li>
-					  </c:if>
-					  <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-					  	<li class="page-item"><a class="page-link fontH" href="/camping/search/region/list?page=${page }">${page }</a></li>
-					  </c:forEach>
-					  <c:if test="${pageMaker.next }">
-					  	<li class="page-item"><a class="page-link fontH" href="/camping/search/region/list?page=${pageMaker.endPage+1}"> > </a></li>
-				   	  </c:if>	
-				   </ul>
-			  </div> 
-		  </div>
-		  
+			
+			<div class="fontH" id="map-list">
+			
+				<br><h6>&nbsp;지역을 선택해주세요</h6><hr>
+				
+				<!-- 리스트 -->
+				<div class="ex3">
+				
+				</div>
+				
+			</div>
+		</div>
 	</div>
+	 
+	
 	
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -157,8 +157,8 @@
 				</div>
 				
 		         <div class="img-container col-md-2" style="background-image: linear-gradient(60deg, #29323c 0%, #485563 100%); height:250px;">	
-		         	<h5 class="fontH" style="margin-top:15%" ><a href="#" style="color:#fff; font-weight:bold;">유형별 찾기</a></h5>
-		         	<a href="#"><img src='resources/images/type.png' style="width:75px; height:75px; margin-top:15%;"></a>	
+		         	<h5 class="fontH" style="margin-top:15%" ><a href="/camping/search/type/list" style="color:#fff; font-weight:bold;">유형별 찾기</a></h5>
+		         	<a href="/camping/search/type/list"><img src='resources/images/type.png' style="width:75px; height:75px; margin-top:15%;"></a>	
 				</div>
 				
 		         <div class="img-container col-md-2" style="background-color:#C9BA97; height:250px;">	
@@ -185,7 +185,7 @@
 				</div>
 				
 		         <div class="img-container col-md-4" style="background-image: url('resources/images/jeju.jpg'); height:250px; margin-top:-250px;">	
-					<p style="margin-top:15%" ><a href="#" style="color:#343a40; font-weight:bold; font-family:Meiryo; font-size:30px;">Jeju Island</a></p>
+					<p style="margin-top:15%" ><a href="#" style="color:#343a40; font-weight:bold; font-family:Meiryo; font-size:30px; text-decoration: underline;">Jeju Island</a></p>
 				</div>
 				
 		         <div class="img-container col-md-1">		

@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+#map{
+	position:relative;
+}
+
+#map a{
+	position:absolute;
+}
+
+#map-seoul {
+    left: 117px;
+    top: 74px;
+}
+#map-incheon {
+    left: 70px;
+    top: 101px;
+}
+#map-gyeonggi {
+    left: 120px;
+    top: 118px;
+}
+#map-gangwon {
+    left: 202px;
+    top: 75px;
+}
+#map-chungnam {
+    left: 79px;
+    top: 175px;
+}
+#map-daejeon {
+    left: 113px;
+    top: 209px;
+}
+#map-sejong {
+    left: 147px;
+    top: 191px;
+}
+#map-chungbuk {
+    left: 162px;
+    top: 149px;
+}
+#map-gyeongbuk {
+    left: 225px;
+    top: 203px;
+}
+#map-daegu {
+    left: 260px;
+    top: 245px;
+}
+#map-gyeongnam {
+    left: 197px;
+    top: 303px;
+}
+#map-ulsan {
+    right: 55px;
+    top: 287px;
+}
+#map-busan {
+    right: 65px;
+    top: 310px;
+}
+#map-jeonbuk {
+    left: 103px;
+    top: 268px;
+}
+#map-jeonnam {
+    left: 87px;
+    top: 350px;
+}
+#map-gwangju {
+    left: 95px;
+    top: 325px;
+}
+#map-jeju {
+    left: 100px;
+    bottom: 18px;
+}
+
+.ex3 {
+    background-color: transparent;
+    width: 740px;
+    height: 430px;
+    overflow: auto;
+}
+
+
+#map{
+  	width: 400px;
+  	height: 520px;
+  	margin-right:5px;
+  	border:1px solid #dadada;
+  	background:url('http://localhost:8080/camping/resources/images/map3.png') no-repeat center;
+  }
+#map-list{
+  	width: 750px;
+  	height: 520px;
+  	margin-left:5px;
+  	margin-right:0px;
+  	border:1px solid #dadada;
+  }
+@media (max-width: 768px) {
+  #map{
+  	width: 400px;
+  	height: 520px;
+  	margin-right:5px;
+  	border:1px solid #dadada;
+  	background:url('http://localhost:8080/camping/resources/images/map3.png') no-repeat center;
+  }
+  #map-list{
+  	width: 750px;
+  	height: 520px;
+  	margin-left:5px;
+  	margin-right:0px;
+  	border:1px solid #dadada;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

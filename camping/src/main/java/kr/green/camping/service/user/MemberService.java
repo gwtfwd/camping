@@ -11,7 +11,7 @@ public interface MemberService {
 	
 	public LoginVO loginById(String id) throws Exception;
 
-	public int chkDupId(JoinVO join, String id) throws Exception;
+
 	
 	
 }

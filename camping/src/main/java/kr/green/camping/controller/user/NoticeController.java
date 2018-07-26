@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.pagination.PageMaker;
 import kr.green.camping.service.user.NoticeService;
+import kr.green.camping.vo.user.LoginVO;
 import kr.green.camping.vo.user.NoticeVO;
 
 
@@ -30,7 +31,17 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getNotice(Model model, Criteria cri) throws Exception {
+	public String getNotice(Model model, Criteria cri, HttpServletRequest request) throws Exception {
+		
+		/*로그인유지*/
+		HttpSession session = request.getSession();
+		LoginVO user = (LoginVO) session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
 		
 		int totCnt = noticeService.getCountNotice(cri);
 		PageMaker pageMaker = new PageMaker();
@@ -38,8 +49,10 @@ public class NoticeController {
 		pageMaker.setTotalCount(totCnt);
 
 		ArrayList<NoticeVO> list = (ArrayList) noticeService.getNoticePage(pageMaker.getCriteria());
-
-
+		
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
 		
@@ -48,11 +61,23 @@ public class NoticeController {
 	
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String noticeDetailGet(NoticeVO vo, Model model) throws Exception {
+	public String noticeDetailGet(NoticeVO vo, Model model, HttpServletRequest request) throws Exception {
+		
+		/*로그인유지*/
+		HttpSession session = request.getSession();
+		LoginVO user = (LoginVO) session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
 		
 		
 		NoticeVO notice = noticeService.getNotice(vo);
 		
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
 		model.addAttribute("notice", notice);
 			
 	    

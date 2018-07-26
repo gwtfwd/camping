@@ -9,10 +9,17 @@ public class JoinVO {
 	private String phone;
 	private String birth;
 	private String email;
+	private String postcode;
 	private String address;
 	private String admin;
 	
 	
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
 	public String getId() {
 		return id;
 	}

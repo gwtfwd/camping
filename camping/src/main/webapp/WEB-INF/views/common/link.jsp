@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 
@@ -39,11 +38,11 @@
 	<!-- mask -->
 	<script src="<c:url value='/resources/vendor/jquery/jquery.mask.js'/>"></script>
 
-	<!-- À¯È¿¼º°Ë»ç -->
+	<!-- ìœ íš¨ì„±ê²€ì‚¬ -->
 	<script src="<c:url value='/resources/vendor/jquery/additiional-methods.js'/>"></script>
 	<script src="<c:url value='/resources/vendor/jquery/jquery.validate.js'/>"></script>
 
-	<!-- join¶óµð¿À¹Ú½º -->
+	<!-- joinë¼ë””ì˜¤ë°•ìŠ¤ -->
 	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>

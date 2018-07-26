@@ -13,8 +13,7 @@ public interface NoticeMapper {
 	public int getCountNotice() throws Exception;
 	
 	public NoticeVO getNoticeByNo(NoticeVO vo) throws Exception;
-	
-	// 글 수정
+
 	public void modifyNotice(NoticeVO vo) throws Exception;
 
 	

@@ -10,8 +10,8 @@
 	</select>
 	
 	<insert id="join" >
-		insert into account (id, name, gender, pw, phone, birth, email, address, admin) 
-		values (#{join.id}, #{join.name}, #{join.gender}, #{join.pw}, #{join.phone}, #{join.birth}, #{join.email}, #{join.address}, #{join.admin})
+		insert into account (id, name, gender, pw, phone, birth, email, postcode, address, admin) 
+		values (#{join.id}, #{join.name}, #{join.gender}, #{join.pw}, #{join.phone}, #{join.birth}, #{join.email}, #{join.postcode}, #{join.address}, #{join.admin})
 	</insert>
 	
 	<select id="loginById" resultType="kr.green.camping.vo.user.LoginVO">

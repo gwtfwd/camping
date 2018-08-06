@@ -3,8 +3,118 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.green.camping.dao.user.SearchMapper">
-
-
 	
+	<!-- camp -->
+	<select id="getCampByNo" resultType="kr.green.camping.vo.user.CampVO">
+		select * from camp where no = #{no}
+	</select>
+	<select id="readCampByNo" resultType="kr.green.camping.vo.user.CampVO" parameterType="HashMap">
+    	select * from camp where no = #{no}
+  	</select>
+  	
+  	<update id="like_cnt_up">
+		update camp set like = like + 1 where no = #{no}
+	</update>
+	
+  	<update id="like_cnt_down">
+		update camp set like = like - 1 where no = #{no}
+	</update>
+	
+	
+	<!-- 좋아요 -->
+	<insert id="create" parameterType="HashMap">
+		insert into liketo (like_no, camp_no, user_id, like_check) VALUES ((SELECT NVL(MAX(like_no), 0) + 1 as like from like), #{campNo}, #{userId}, 0)
+	</insert>
 
+	<delete id="deletebyCampNo" parameterType="int">
+		delete from liketo where camp_no =  #{campNo}
+	</delete>
+
+	<delete id="deletebyUserId" parameterType="int">
+		delete from liketo where user_id = #{userId}
+	</delete>
+	
+	<select id="countbyLike" resultType="int" parameterType="HashMap">
+	   select count(like_no) as cnt from liketo where user_id = #{userId} and camp_no = #{campNo}
+	  </select>
+	
+	<update id="like_check" parameterType="HashMap">
+		update liketo set like_check = like_check + 1 where user_id = #{userId} and camp_no = #{campNo}	
+	</update>
+
+	<update id="like_check_cancel" parameterType="HashMap">
+		update liketo set like_check = 0 where user_id = #{userId} and camp_no = #{campNo}
+	</update>
+	
+	<select id="readLike" resultType="kr.green.camping.vo.user.LikeVO" parameterType="HashMap">
+    	select * from liketo where user_id = #{user_id} and camp_no = #{camp_no}
+  	</select>
+	
+	
+	
+	<!-- region -->
+	<select id="getSeoul" resultType="kr.green.camping.vo.user.CampVO">
+		select camp_name from camp where address_jibun like "%서울%" or address_road like "%서울%"; 
+	</select>
+	
+	
+	
+	<!-- type -->
+	<select id="getTypeByNo" resultType="kr.green.camping.vo.user.CampVO">
+		select * from camp where no = #{no}
+	</select>
+	
+	
+	
+	
+	
+	<!-- 검색 -->
+	<select id="getType" resultType="kr.green.camping.vo.user.CampVO">
+		select no, 
+			camp_type_no, 
+			camp_name, 
+			address_road,
+			address_jibun,
+			camp_tel,
+			latitude,
+			longitude,
+			area,
+			man_agency_tel,
+			man_agency_name,
+			registered_id,
+			registered_at
+		from camp
+		where 1 = 1 
+			<if test="type==1">
+				 and camp_type_no = 'P0001'
+			</if>
+			<if test="type==2">
+				 and camp_type_no = 'P0003'
+			</if>
+			<if test="type==3">
+				 and camp_type_no = 'P0002'
+			</if>
+		order by camp_name asc
+		limit
+			#{cri.pageStart},#{cri.perPageNum}
+	</select>
+	
+	<select id="getCountType" resultType="java.lang.Integer">
+		select
+			count(no)
+		from
+			camp
+		where 1=1
+			<if test="type==1">
+				 and camp_type_no = 'P0001'
+			</if>
+			<if test="type==2">
+				 and camp_type_no = 'P0003'
+			</if>
+			<if test="type==3">
+				 and camp_type_no = 'P0002'
+			</if>
+	</select>
+	
+	
 </mapper>

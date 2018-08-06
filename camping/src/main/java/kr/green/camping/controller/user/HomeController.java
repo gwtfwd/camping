@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.green.camping.vo.user.JoinVO;
-import kr.green.camping.vo.user.LoginVO;
 
 @Controller
 public class HomeController {
@@ -20,7 +19,7 @@ public class HomeController {
 		
 		
 		HttpSession session = request.getSession();
-		LoginVO user = (LoginVO) session.getAttribute("user");
+		JoinVO user = (JoinVO) session.getAttribute("user");
 		
 		
 		boolean member = false;

@@ -17,7 +17,6 @@ import kr.green.camping.pagination.PageMaker;
 import kr.green.camping.service.user.FreeService;
 import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
-import kr.green.camping.vo.user.LoginVO;
 import kr.green.camping.vo.user.NoticeVO;
 
 @Controller
@@ -30,30 +29,41 @@ public class FreeController {
 	private FreeService freeService;
 	
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getFree(Model model, Criteria cri, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/list")
+	public String getFree(Model model, Criteria cri, HttpServletRequest request, Integer type, String search) throws Exception {
 		
 		/*로그인유지*/
 		HttpSession session = request.getSession();
-		LoginVO user = (LoginVO) session.getAttribute("user");
+		JoinVO user = (JoinVO) session.getAttribute("user");
 		
 		boolean member = false;
 		if( user != null) {
 			member = true;
 		}
 		
-		int totCnt = freeService.getCountFree(cri);
+		if(cri == null) 
+			cri = new Criteria();
+		
+		ArrayList<FreeVO> list = null;
+		int totalCount = 0;
+		
+		if(type == null)
+			type = 0;
+		
+		list = (ArrayList)freeService.searchFree(cri, "%"+search+"%",type);
+		totalCount = freeService.getCountFree("%"+search+"%",type);
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(cri);
-		pageMaker.setTotalCount(totCnt);
+		pageMaker.setTotalCount(totalCount);
 
-		ArrayList<NoticeVO> list = (ArrayList) freeService.getFreePage(pageMaker.getCriteria());
-		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
+	    model.addAttribute("search",search);
+	    model.addAttribute("type",type);
 		
 		return "user/board/free/list";
 	}
@@ -62,23 +72,22 @@ public class FreeController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String freeDetailGet(FreeVO vo, Model model, HttpServletRequest request) throws Exception {
 		
+		freeService.view(vo);
+		
 		/*로그인유지*/
 		HttpSession session = request.getSession();
-		LoginVO user = (LoginVO) session.getAttribute("user");
+		JoinVO user = (JoinVO) session.getAttribute("user");
 		
 		boolean member = false;
 		if( user != null) {
 			member = true;
 		}
 		
-		
 		FreeVO free = freeService.getFree(vo);
-		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("free", free);
-			
 	    
 		return "user/board/free/detail";
 	}
@@ -88,7 +97,7 @@ public class FreeController {
 		
 		/*로그인유지*/
 		HttpSession session = request.getSession();
-		LoginVO user = (LoginVO)session.getAttribute("user");
+		JoinVO user = (JoinVO)session.getAttribute("user");
 
 		
 		boolean member = false;
@@ -107,9 +116,10 @@ public class FreeController {
 		
 		/*로그인유지*/
 		HttpSession session = request.getSession();
-		LoginVO user = (LoginVO)session.getAttribute("user");
+		JoinVO user = (JoinVO)session.getAttribute("user");
+		
 		vo.setRegistered_id(user.getId());
-		//vo.setName();
+		vo.setName(user.getName());
 		
 		boolean member = false;
 		if( user != null) {
@@ -120,6 +130,60 @@ public class FreeController {
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
+		
+		return "redirect:/free/list";
+	}
+	
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String freeModifyGet(HttpServletRequest request,FreeVO vo, Model model, int no) throws Exception {
+		
+		/*로그인유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO)session.getAttribute("user");
+		
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		FreeVO free = freeService.getFree(vo);
+		free.setNo(no);
+		
+		model.addAttribute("free", free);
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		
+		return "user/board/free/modify";
+	}
+	
+	@RequestMapping(value="/modify", method= RequestMethod.POST)
+	public String freeModifyPost(FreeVO vo, int no, HttpServletRequest request, Model model) throws Exception {
+		
+		/*로그인유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO)session.getAttribute("user");
+		
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		freeService.modifyFree(vo);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		
+		return "redirect:/free/list";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String freeDeletePost(FreeVO vo) throws Exception {
+		
+		
+		freeService.deleteFree(vo);
 		
 		return "redirect:/free/list";
 	}

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -56,79 +55,106 @@
 			<div class="col-md-1"></div>
 			
 			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="num">��ȣ</label>
+				<label class="control-label" for="name">야영장명</label>
 			</div>
 			
 			<div class="col-md-7 fontH">
-				<input type="text" class="form-control" id="num" name="number" style="background-color:white;" value="${free.no}" disabled>
-			</div>
-			
-			<div class="col-md-1"></div>
-		</div>
-		<br><br>
-		
-		<div class="row"> 
-			<div class="col-md-1"></div>
-			
-			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="sub">����</label>
-			</div>
-			
-			<div class="col-md-7 fontH">
-				<input type="text" class="form-control" id="sub" name="title" style="background-color:white;"  value="${free.subject}"disabled>
-			</div>
-			
-			<div class="col-md-1"></div>
-		</div>
-		<br><br>
-		
-		<div class="row"> 
-			<div class="col-md-1"></div>
-			
-			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="auth">�ۼ���</label>
-			</div>
-			
-			<div class="col-md-7 fontH">
-				<input type="text" class="form-control" id="auth" name="author" style="background-color:white;" value="${free.registered_id}" disabled>
-			</div>
-			
-			<div class="col-md-1"></div>
-		</div>
-		<br><br>
-		
-		<div class="row"> 
-			<div class="col-md-1"></div>
-			
-			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="cont">����</label>
-			</div>
-			
-			<div class="col-md-7 fontH">
-				<textarea rows="8" cols="90" id="cont" name="contents" style="background-color:white; border-radius: 4px; border: 1px solid #ced4da;" disabled>${free.contents}</textarea>
+				<input type="text" class="form-control" id="name" name="name" style="background-color:white;" value="${camp.camp_name}" disabled>
 			</div>
 			
 			<div class="col-md-1"></div>
 		</div>
 		<br>
 		
-			<!-- <label for="num">÷������:</label> -->
+		
+		<div class="row"> 
+			<div class="col-md-1"></div>
+			
+			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
+				<label class="control-label" for="address_jibun">지번 주소</label>
+			</div>
+			
+			<div class="col-md-7 fontH">
+				<input type="text" class="form-control" id="address_jibun" name="address_jibun" style="background-color:white;"  value="${camp.address_jibun}"disabled>
+			</div>
+			
+			<div class="col-md-1"></div>
+		</div>
+		<br>
+		
+		
+		<div class="row"> 
+			<div class="col-md-1"></div>
+			
+			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
+				<label class="control-label" for="address_road">도로명 주소</label>
+			</div>
+			
+			<div class="col-md-7 fontH">
+				<input type="text" class="form-control" id="address_road" name="address_road" style="background-color:white;"  value="${camp.address_road}"disabled>
+			</div>
+			
+			<div class="col-md-1"></div>
+		</div>
+		<br>
+		
+		
+		<div class="row"> 
+			<div class="col-md-1"></div>
+			
+			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
+				<label class="control-label" for="camp_tel">전화번호</label>
+			</div>
+			
+			<div class="col-md-7 fontH">
+				<input type="text" class="form-control" id="camp_tel" name="camp_tel" style="background-color:white;" value="${camp.camp_tel}" disabled>
+			</div>
+			
+			<div class="col-md-1"></div>
+		</div>
+		<br>
+		
+		<div class="row"> 
+			<div class="col-md-1"></div>
+			
+			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
+				<label class="control-label" for="man_agency_name">관리기관명</label>
+			</div>
+			
+			<div class="col-md-7 fontH">
+				<input type="text" class="form-control" id="man_agency_name" name="man_agency_name" style="background-color:white;" value="${camp.man_agency_name}" disabled>
+			</div>
+			
+			<div class="col-md-1"></div>
+		</div>
+		<br>
+		
+		
+		<div class="row"> 
+			<div class="col-md-1"></div>
+			
+			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
+				<label class="control-label" for="man_agency_tel">관리기관 전화번호</label>
+			</div>
+			
+			<div class="col-md-7 fontH">
+				<input type="text" class="form-control" id="man_agency_tel" name="man_agency_tel" style="background-color:white;" value="${camp.man_agency_tel}" disabled>
+			</div>
+			
+			<div class="col-md-1"></div>
+		</div>
+		<br>
+		
 		<div style="text-align:center;">			
-			<a href="/camping/free/list"> 
-	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">���</button>
+			<a href="/camping/search/type/list"> 
+	       		<button type="button" class="btn11 btn-primary11 fontH">목록</button>
 	        </a>			
-	        <c:if test="${user.id.compareTo(free.registered_id) == 0 }">
-				<a href="/camping/free/modify?no=${free.no}"> 
-		       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">����</button>
-		        </a>			
-				<a href="/camping/free/delete?no=${free.no}"> 
-		       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">����</button>
-		        </a>	
-	        </c:if>		
 		</div>
 					
 	</div>
 		
+		
+				
 	
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

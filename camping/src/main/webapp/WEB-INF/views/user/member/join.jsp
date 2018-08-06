@@ -249,18 +249,18 @@
 	</div>
 	
 	
-		<!-- mask -->
+	<!-- mask -->
 	<script>
 		$(document).ready(function(){
-			  $('#birth').mask('0000/00/00',{placeholder: "yyyy/mm/dd"});			/* ,{placeholder: "__/__/____"} */
-			  $('#phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});		/* , {placeholder: "(___)-____-____"} */
+			  $('#birth').mask('0000/00/00',{placeholder: "yyyy/mm/dd"});			
+			  $('#phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});		
 		});
 	
 
-	<!-- 아이디중복검사 -->
+	/*아이디중복검사 */
 	
 		$("#dup").on("click",function(){
-			var id = $("#id").val();			/* id가 id인 input 태그에 입력된 id 가져오기 */
+			var id = $("#id").val();			
 			
 			if($("#id").val() == ''){alert('ID를 입력해주세요.'); return;}
 			
@@ -283,8 +283,7 @@
 	
 	
 		
-	<!-- 회원가입 유효성 검사 -->
-    
+	/* 회원가입 유효성 검사 */
 		$(function() {
 			$("form")
 				.validate( {
@@ -321,7 +320,7 @@
 					id : {
 						required : "필수로입력하세요",
 						minlength : "최소 4글자이상이어야 합니다",
-						regex : "아이디는 영문자와 숫자로 이루어져 있으며,첫글자는 알파벳이고 5~10자 이어야 합니다."
+						regex : "아이디는 영문자와 숫자로 이루어져 있으며, 첫글자는 알파벳이고 5~10자 이어야 합니다."
 					},
 					pw : {
 						required : "필수로입력하세요",
@@ -359,7 +358,7 @@
     
     
     
-    <!-- 우편번호조회 -->
+    /* 우편번호조회 */
 	    function openPostcode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {

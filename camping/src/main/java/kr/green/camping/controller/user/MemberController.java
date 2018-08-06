@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.camping.service.user.MemberService;
 import kr.green.camping.vo.user.JoinVO;
-import kr.green.camping.vo.user.LoginVO;
 
 
 
@@ -50,7 +50,7 @@ public class MemberController {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
-		LoginVO user = memberService.loginById(id);
+		JoinVO user = memberService.loginById(id);
 		
 		
 		if( user != null && passwordEncoder.matches(pw, user.getPw())) {
@@ -73,7 +73,7 @@ public class MemberController {
 	public String JoinPost(HttpServletRequest request, Model model, JoinVO join, String id, String pw) throws Exception {
 		
 		
-		LoginVO searchuser = memberService.login(id, pw);
+		JoinVO searchuser = memberService.login(id, pw);
 		
 		if( searchuser != null ) {
 			
@@ -102,31 +102,38 @@ public class MemberController {
 	
 	
 	
-		// 아이디중복확인
-		@RequestMapping("/dup")
-		@ResponseBody
-		public Map<Object, Object> idcheck(@RequestBody String id) throws Exception{
-			
-			
-			
-		    int count = 0;
-		    
-		    Map<Object, Object> map = new HashMap<Object, Object>();
-		    
-		    LoginVO user = memberService.loginById(id);
-		    
-		    
-		    if( user != null) {
-		    	count = 1;
-		    }
-		    
-		    map.put("cnt", count);
-		    System.out.println(id);
-		    
-		    return map;
-		    
-		}
+	// 아이디중복확인
+	@RequestMapping("/dup")
+	@ResponseBody
+	public Map<Object, Object> idcheck(@RequestBody String id) throws Exception{
+		
+	    int count = 0;
+	    
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    
+	    JoinVO user = memberService.loginById(id);
+	    
+	    
+	    if( user != null) {
+	    	count = 1;
+	    }
+	    
+	    map.put("cnt", count);
+	    System.out.println(id);
+	    
+	    return map;
+	    
+	}
 	
+	// 로그인 성공 후 글쓰기 허용
+	@RequestMapping(value = "/needLogin")
+	public ModelAndView needLogin() throws Exception {
+		
+		ModelAndView mav = new ModelAndView("/user/board/free/loginWarning");
+		mav.addObject("msg","로그인 후 이용해주시기 바랍니다.");
+		
+		return mav;
+	}
 	
 	
 	

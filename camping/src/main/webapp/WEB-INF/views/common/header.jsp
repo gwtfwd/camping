@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 
@@ -11,40 +11,50 @@
 	                <span class="sr-only">(current)</span>
 	              </a>
 	            </li> -->
-	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/notice/list" style="margin-left:20px">°øÁö»çÇ×</a></li>
-	            <li class="nav-item"><a class="nav-link-kr" href="#" >¾ß¿µÀåÃ£±â</a>
+	            <li class="nav-item" ><a class="nav-link-kr" href="/camping/notice/list" style="margin-left:20px">ê³µì§€ì‚¬í•­</a></li>
+	            <li class="nav-item"><a class="nav-link-kr" href="#" >ì•¼ì˜ìž¥ì°¾ê¸°</a>
 	           		  <ul>
-	           		 	<li><a href="/camping/search/region/list" class="nav-link-kr">Áö¿ªº° Ã£±â</a></li>
-			           	<li><a href="/camping/search/type/list" class="nav-link-kr">À¯Çüº° Ã£±â</a></li>
+	           		 	<li><a href="/camping/search/region/list" class="nav-link-kr">ì§€ì—­ë³„ ì°¾ê¸°</a></li>
+			           	<li><a href="/camping/search/type/list" class="nav-link-kr">ìœ í˜•ë³„ ì°¾ê¸°</a></li>
 			         </ul> 
 			    </li>
-	            <li class="nav-item"><a class="nav-link-kr" href="#" >ÀÌ¿ë¾È³»</a>
+	            <li class="nav-item"><a class="nav-link-kr" href="#" >ì´ìš©ì•ˆë‚´</a>
 	            	 <ul>
-			           <li><a href="#" class="nav-link-kr">°´½ÇÁ¤º¸</a></li>
-			           <li><a href="#" class="nav-link-kr">ÀÌ¿ë¿ä±Ý</a></li>
+			           <li><a href="#" class="nav-link-kr">ê°ì‹¤ì •ë³´</a></li>
+			           <li><a href="#" class="nav-link-kr">ì´ìš©ìš”ê¸ˆ</a></li>
 			         </ul>
 			    </li>
-	            <li class="nav-item"><a class="nav-link-kr" href="#" >¿¹¾à¾È³»</a>
+	            <li class="nav-item"><a class="nav-link-kr" href="#" >ì˜ˆì•½ì•ˆë‚´</a>
 	            	 <ul>
-			           <li><a href="#" class="nav-link-kr">½Ç½Ã°£¿¹¾à</a></li>
-			           <li><a href="#" class="nav-link-kr">¿¹¾àÈ®ÀÎ</a></li>
-			           <li><a href="#" class="nav-link-kr">¿¹¾àÃë¼Ò</a></li>
+			           <li><a href="#" class="nav-link-kr">ì‹¤ì‹œê°„ì˜ˆì•½</a></li>
+			           <li><a href="#" class="nav-link-kr">ì˜ˆì•½í™•ì¸</a></li>
+			           <li><a href="#" class="nav-link-kr">ì˜ˆì•½ì·¨ì†Œ</a></li>
 			         </ul> 
 			     </li>
-	            <li class="nav-item"><a class="nav-link-kr" href="#" >Ä¿¹Â´ÏÆ¼</a>
+	            <li class="nav-item"><a class="nav-link-kr" href="#" >ì»¤ë®¤ë‹ˆí‹°</a>
 	            	<ul>
-			           <li><a href="#" class="nav-link-kr">¾ß¿µÀåÈÄ±â</a></li>
-			           <li><a href="/camping/free/list" class="nav-link-kr">ÀÚÀ¯°Ô½ÃÆÇ</a></li>
+			           <li><a href="#" class="nav-link-kr">ì•¼ì˜ìž¥í›„ê¸°</a></li>
+			           <li><a href="/camping/free/list" class="nav-link-kr">ìžìœ ê²Œì‹œíŒ</a></li>
 			         </ul> 
 			    </li>
 	          </ul>
-          
-          <ul class="navbar-nav mc-auto" >
-          	<li class="nav-item">
-              <a class="nav-link-en1" href="/camping" style="margin-left:-95px">Camping Information</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
+          	<c:if test="${member}">
+            	<ul class="navbar-nav mc-auto" >
+	          	<li class="nav-item">
+	              <a class="nav-link-en1" href="/camping" style="margin-left:20px">Camping Information</a>
+	            </li>
+	          	</ul>
+	          	<ul class="navbar-nav ml-auto">
+            </c:if>
+            
+          <c:if test="${!member}">
+	          <ul class="navbar-nav mc-auto" >
+	          	<li class="nav-item">
+	              <a class="nav-link-en1" href="/camping" style="margin-left:-95px">Camping Information</a>
+	            </li>
+	          </ul>
+	          <ul class="navbar-nav ml-auto">
+          </c:if>
           
           	<c:if test="${!member}">
 	            <li class="nav-item">
@@ -57,10 +67,10 @@
             
             <c:if test="${member}">
             	<li class="nav-item nav-link-en3">
-            		${user.id}´Ô
+            		${user.id}ë‹˜
             	</li>
             	<li class="nav-item">
-	              <a class="nav-link-en" href="#" >MYPAGE</a>
+	              <a class="nav-link-en" href="#">MYPAGE</a>
 	            </li>
 	            <li class="nav-item">
 	              <a class="nav-link-en" href="/camping/member/logout" >LOGOUT</a>

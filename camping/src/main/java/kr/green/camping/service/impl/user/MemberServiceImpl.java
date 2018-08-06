@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import kr.green.camping.dao.user.MemberMapper;
 import kr.green.camping.service.user.MemberService;
 import kr.green.camping.vo.user.JoinVO;
-import kr.green.camping.vo.user.LoginVO;
 
 
 @Service("memberService")
@@ -17,9 +16,9 @@ public class MemberServiceImpl implements MemberService{
 	private MemberMapper memberMapper;
 	
 	@Override
-	public LoginVO login(String id, String pw) throws Exception {
+	public JoinVO login(String id, String pw) throws Exception {
 		
-		LoginVO user = memberMapper.login(id, pw);
+		JoinVO user = memberMapper.login(id, pw);
 
 		return user;
 	}
@@ -33,9 +32,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public LoginVO loginById(String id) throws Exception {
+	public JoinVO loginById(String id) throws Exception {
 		
-		LoginVO user = memberMapper.loginById(id);
+		JoinVO user = memberMapper.loginById(id);
 
 		return user;
 	}

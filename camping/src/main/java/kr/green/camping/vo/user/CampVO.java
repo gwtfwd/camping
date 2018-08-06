@@ -19,8 +19,15 @@ public class CampVO {
 	private String updated_id;				// 수정자id
 	private Date registered_at;				// 등록일시
 	private Date updated_at;				// 수정일시
+	private Integer like;					// 좋아요
 	
 	
+	public Integer getLike() {
+		return like;
+	}
+	public void setLike(Integer like) {
+		this.like = like;
+	}
 	public Integer getNo() {
 		return no;
 	}

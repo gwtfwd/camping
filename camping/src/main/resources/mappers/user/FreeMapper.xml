@@ -4,9 +4,6 @@
   
 <mapper namespace="kr.green.camping.dao.user.FreeMapper">
 
-	<select id="getCountFree" resultType="java.lang.Integer">
-		select count(*) from free
-	</select>
 	
 	<select id="getFreePage" resultType="kr.green.camping.vo.user.FreeVO">
 		select * from free order by no desc limit #{pageStart}, #{perPageNum} 
@@ -20,5 +17,57 @@
 		insert into free (subject, contents, registered_id, registered_at, name) values (#{subject}, #{contents}, #{registered_id}, now(), #{name})
 	</insert>
 	
+	<update id="modifyFree">
+		update free set subject=#{subject}, contents=#{contents} where no=#{no}
+	</update>
+	
+	<delete id="deleteFree">
+		delete from free where no = #{no}
+	</delete>
+	
+	<update id="view">
+		update free set view = view + 1 where no = #{no}
+	</update>
 
+	
+	<!-- 검색 -->
+	<select id="searchFree" resultType="kr.green.camping.vo.user.NoticeVO">
+		select * from free
+		where 1 = 1 
+			<if test="type==1">
+				 and subject like #{search}
+			</if>
+			<if test="type==2">
+				 and contents like #{search}
+			</if>
+			<if test="type==3">
+				 and name like #{search}
+			</if>
+			<if test="type==4">
+				 and registered_id like #{search}
+			</if>
+		order by no desc
+		limit
+			#{cri.pageStart},#{cri.perPageNum}
+	</select>
+	
+	<select id="getCountFree" resultType="java.lang.Integer">
+		select
+			count(no)
+		from
+			free
+		where 1=1
+			<if test="type==1">
+				 and subject like #{search}
+			</if>
+			<if test="type==2">
+				 and contents like #{search}
+			</if>
+			<if test="type==3">
+				 and name like #{search}
+			</if>
+			<if test="type==3">
+				 and id like #{search}
+			</if>
+	</select>
 </mapper>

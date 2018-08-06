@@ -6,9 +6,6 @@
 
 
 	<!-- getCountBoard가 int이므로 integer클래스를 resultType으로 -->
-	<select id="getCountNotice" resultType="java.lang.Integer">
-		select count(*) from notice 
-	</select>
 	
 	<select id="getNoticePage" resultType="kr.green.camping.vo.user.NoticeVO">
 		select * from notice order by no desc limit #{pageStart}, #{perPageNum} 
@@ -21,6 +18,91 @@
 	<update id="modifyNotice">
 		update notice set subject=#{subject}, contents=#{contents} where no=#{no}
 	</update>
+	
+	<update id="view">
+		update notice set view = view + 1 where no = #{no}
+	</update>
+	
+	
+	<!-- 검색 -->
+	<select id="searchNotice" resultType="kr.green.camping.vo.user.NoticeVO">
+		select * from notice
+		where 1 = 1 
+			<if test="type==1">
+				 and subject like #{search}
+			</if>
+			<if test="type==2">
+				 and contents like #{search}
+			</if>
+			<if test="type==3">
+				 and name like #{search}
+			</if>
+			<if test="type==4">
+				 and registered_id like #{search}
+			</if>
+		order by no desc
+		limit
+			#{cri.pageStart},#{cri.perPageNum}
+	</select>
+	
+	<select id="getCountNotice" resultType="java.lang.Integer">
+		select
+			count(no)
+		from
+			notice
+		where 1=1
+			<if test="type==1">
+				 and subject like #{search}
+			</if>
+			<if test="type==2">
+				 and contents like #{search}
+			</if>
+			<if test="type==3">
+				 and name like #{search}
+			</if>
+			<if test="type==4">
+				 and id like #{search}
+			</if>
+	</select>
+	
+	
+	
+	
+	<!-- 제목검색 -->
+	<!-- <select id="getListPageBySubject" resultType="kr.green.camping.vo.user.NoticeVO">
+		select * from notice where subject like #{search} order by number desc limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getCountFreeBySubject" resultType="java.lang.Integer">
+		select count(no) from notice where title like #{search} 
+	</select>
+	
+	내용검색
+	<select id="getListPageByContents" resultType="kr.green.camping.vo.user.NoticeVO">
+		select * from notice where contents like #{search} order by number desc limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getCountFreeByContents" resultType="java.lang.Integer">
+		select count(no) from notice where contents like #{search} 
+	</select> 
+	
+	글쓴이검색
+	<select id="getListPageByName" resultType="kr.green.camping.vo.user.NoticeVO">
+		select * from notice where name like #{search} order by number desc limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getCountFreeByName" resultType="java.lang.Integer">
+		select count(no) from notice where name like #{search} 
+	</select>
+	
+	id검색
+	<select id="getListPageById" resultType="kr.green.camping.vo.user.NoticeVO">
+		select * from notice where registered_id like #{search} order by number desc limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getCountFreeById" resultType="java.lang.Integer">
+		select count(no) from notice where registered_id like #{search} 
+	</select>  -->
 	
 
 </mapper>

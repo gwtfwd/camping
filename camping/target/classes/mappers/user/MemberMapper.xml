@@ -5,7 +5,7 @@
   
 <mapper namespace="kr.green.camping.dao.user.MemberMapper">
   
-  	<select id="login" resultType="kr.green.camping.vo.user.LoginVO">
+  	<select id="login" resultType="kr.green.camping.vo.user.JoinVO">
 		select * from account where id = #{id} and pw = #{pw}
 	</select>
 	
@@ -14,7 +14,7 @@
 		values (#{join.id}, #{join.name}, #{join.gender}, #{join.pw}, #{join.phone}, #{join.birth}, #{join.email}, #{join.postcode}, #{join.address}, #{join.admin})
 	</insert>
 	
-	<select id="loginById" resultType="kr.green.camping.vo.user.LoginVO">
+	<select id="loginById" resultType="kr.green.camping.vo.user.JoinVO">
 		select * from account where id = #{id}
 	</select>
   	

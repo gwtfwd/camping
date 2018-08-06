@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -57,7 +57,7 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-					<label class="control-label" for="sub">力格</label>
+					<label class="control-label" for="sub">鞝滊</label>
 				</div>
 				
 				<div class="col-md-7 fontH">
@@ -88,11 +88,11 @@
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-					<label class="control-label" for="contents">郴侩</label>
+					<label class="control-label" for="contents">雮挫毄</label>
 				</div>
 				
 				<div class="col-md-7 fontH">
-					<textarea rows="8" cols="90" id="contents" name="contents" style="background-color:white; border-radius: 4px; border: 1px solid #ced4da;"></textarea>
+					<textarea rows="8" cols="79" id="contents" name="contents" style="background-color:white; border-radius: 4px; border: 1px solid #ced4da;"></textarea>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -100,20 +100,20 @@
 			<br>
 		
 		
-			<!-- <label for="num">梅何颇老:</label> -->
+			<!-- <label for="num">觳秬韺岇澕:</label> -->
 		<div style="text-align:center;">			
        		<a href="/camping/free/write" >
-       			<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px">肯丰</button>
+       			<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px">鞕勲</button>
        		</a>
 			<a href="/camping/free/list" >
-			  	<button class="btn11 btn-primary11 fontH">秒家</button>
+			  	<button class="btn11 btn-primary11 fontH">旆唽</button>
 		 	</a>
 			
 			<%-- <a href="/camping/notice/modify?no=${notice.no}"> 
-	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">荐沥</button>
+	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">靾橃爼</button>
 	        </a>			
 			<a href="#"> 
-	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">昏力</button>
+	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">靷牅</button>
 	        </a> --%>			
 		</div>
 		</form>			

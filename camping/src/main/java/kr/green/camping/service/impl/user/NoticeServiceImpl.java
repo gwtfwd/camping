@@ -15,35 +15,12 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeMapper noticeMapper;
 	
 	
-	/**
-	 * �� ����� ��ȸ�Ѵ�.
-	 * @param searchVO - ��ȸ�� ������ ��� VO
-	 * @return �� ���
-	 * @exception Exception
-	 */
 	@Override
 	public List<NoticeVO> getNoticePage(Criteria cri) throws Exception {
 		return noticeMapper.getNoticePage(cri);
 	}
 	
-	/**
-	 * @throws Exception 
-	 * �� �� ������ ��ȸ�Ѵ�.
-	 * @param searchVO - ��ȸ�� ������ ��� VO
-	 * @return �� �� ����
-	 * @exception
-	 */
-	@Override
-	public int getCountNotice(Criteria cri) throws Exception {
-		return noticeMapper.getCountNotice();
-	}
 	
-	/**
-	 * ���� ��ȸ�Ѵ�.
-	 * @param vo - ��ȸ�� ������ ��� NoticeVO
-	 * @return ��ȸ�� ��
-	 * @exception Exception
-	 */
 	@Override
 	public NoticeVO getNotice(NoticeVO vo) throws Exception {
 
@@ -52,22 +29,74 @@ public class NoticeServiceImpl implements NoticeService {
 		return resultVO;
 	}
 	
-	/**
-	 * 글을 수정한다.
-	 * @param vo - 수정할 정보가 담긴 ParkVO
-	 * @return void형
-	 * @exception Exception
-	 */
 	@Override
 	public void modifyNotice(NoticeVO vo) throws Exception {
 		noticeMapper.modifyNotice(vo);
 	}
 
 	
+	@Override
+	public int view(NoticeVO vo) throws Exception {
+		return noticeMapper.view(vo);
+	}
+	
+	
+	// 검색
+	@Override
+	public List<NoticeVO> searchNotice(Criteria cri, String search, Integer type) throws Exception {
+		return noticeMapper.searchNotice(cri, search,type);
+	}
+	
+	@Override
+	public int getCountNotice(String search,Integer type) throws Exception {
+		return noticeMapper.getCountNotice(search, type);
+	}
 	
 	
 	
+	/*// 제목검색
+	@Override
+	public List<NoticeVO> getListPageBySubject(Criteria cri, String search) throws Exception {
+		return noticeMapper.getListPageBySubject(cri, search);
+	}
 	
+	@Override
+	public int getCountFreeBySubject(String search) throws Exception {
+		return noticeMapper.getCountFreeBySubject(search);
+	}
+	
+	// 내용검색
+	@Override
+	public List<NoticeVO> getListPageByContents(Criteria cri, String search) throws Exception {
+		return noticeMapper.getListPageByContents(cri, search);
+	}
+	
+	@Override
+	public int getCountFreeByContents(String search) throws Exception {
+		return noticeMapper.getCountFreeByContents(search);
+	}
+	
+	// 글쓴이 검색
+	@Override
+	public List<NoticeVO> getListPageByName(Criteria cri, String search) throws Exception {
+		return noticeMapper.getListPageByName(cri, search);
+	}
+	
+	@Override
+	public int getCountFreeByName(String search) throws Exception {
+		return noticeMapper.getCountFreeByName(search);
+	}
+	
+	// id검색
+	@Override
+	public List<NoticeVO> getListPageById(Criteria cri, String search) throws Exception {
+		return noticeMapper.getListPageById(cri, search);
+	}
+	
+	@Override
+	public int getCountFreeById(String search) throws Exception {
+		return noticeMapper.getCountFreeById(search);
+	}*/
 	
 	
 }

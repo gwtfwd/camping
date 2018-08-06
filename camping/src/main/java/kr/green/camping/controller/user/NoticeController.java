@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.pagination.PageMaker;
 import kr.green.camping.service.user.NoticeService;
-import kr.green.camping.vo.user.LoginVO;
+import kr.green.camping.vo.user.JoinVO;
 import kr.green.camping.vo.user.NoticeVO;
 
 
@@ -30,31 +30,46 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getNotice(Model model, Criteria cri, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/list")
+	public String getNotice(Model model, Criteria cri, HttpServletRequest request, Integer type, String search) throws Exception {
 		
 		/*로그인유지*/
 		HttpSession session = request.getSession();
-		LoginVO user = (LoginVO) session.getAttribute("user");
+		JoinVO user = (JoinVO) session.getAttribute("user");
 		
 		boolean member = false;
 		if( user != null) {
 			member = true;
 		}
 		
+		if(cri == null) 
+			cri = new Criteria();
 		
-		int totCnt = noticeService.getCountNotice(cri);
+		ArrayList<NoticeVO> list = null;
+		int totalCount = 0;
+		
+		if(type == null)
+			type = 0;
+		
+		list = (ArrayList)noticeService.searchNotice(cri, "%"+search+"%",type);
+		totalCount = noticeService.getCountNotice("%"+search+"%",type);
+		
+		
+		
+		//int totCnt = noticeService.getCountNotice(cri);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(cri);
-		pageMaker.setTotalCount(totCnt);
+		pageMaker.setTotalCount(totalCount);
 
-		ArrayList<NoticeVO> list = (ArrayList) noticeService.getNoticePage(pageMaker.getCriteria());
+		//ArrayList<NoticeVO> list = (ArrayList) noticeService.getNoticePage(pageMaker.getCriteria());
 		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
+	    model.addAttribute("search",search);
+	    model.addAttribute("type",type);
 		
 		return "user/board/notice/list";
 	}
@@ -63,15 +78,16 @@ public class NoticeController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String noticeDetailGet(NoticeVO vo, Model model, HttpServletRequest request) throws Exception {
 		
+		noticeService.view(vo);
+		
 		/*로그인유지*/
 		HttpSession session = request.getSession();
-		LoginVO user = (LoginVO) session.getAttribute("user");
+		JoinVO user = (JoinVO) session.getAttribute("user");
 		
 		boolean member = false;
 		if( user != null) {
 			member = true;
 		}
-		
 		
 		NoticeVO notice = noticeService.getNotice(vo);
 		

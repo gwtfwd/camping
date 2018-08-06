@@ -29,6 +29,9 @@
 	<beans:bean id="loginInterceptor" class="kr.green.camping.interceptor.LoginInterceptor"></beans:bean>
 	
 	
+	<beans:bean id="UserInterceptor" class="kr.green.camping.interceptor.UserInterceptor"></beans:bean>
+	
+	
 	<interceptors>
 	
 		<!-- 로그인 path가 주어졌을 때 loginInterceptor가 호출하도록 interceptor태그에 등록 -->
@@ -37,7 +40,10 @@
        		<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	
-	
+		<interceptor>
+			<mapping path="/free/write"/>			<!-- 인터셉터가 수행될 페이지 -->
+			<beans:ref bean="UserInterceptor"/>
+		</interceptor>
 	
 	
 	</interceptors>

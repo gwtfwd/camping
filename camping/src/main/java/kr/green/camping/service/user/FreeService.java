@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.vo.user.FreeVO;
+import kr.green.camping.vo.user.ReplyVO;
 
 @Service
 public interface FreeService {
@@ -23,9 +24,38 @@ public interface FreeService {
 	
 	public int view(FreeVO vo) throws Exception;
 	
-	// �˻�
+	// 검색
 	public List<FreeVO> searchFree(Criteria cri, String search, Integer type) throws Exception;
 	public int getCountFree(String search, Integer type) throws Exception;
 	
+	// 댓글
+	//public void insertReply(ReplyVO vo) throws Exception;
+	
+	
+	
+	
+	
+	
+	public List<ReplyVO> replyList(Integer bno) throws Exception;
+	public int replyInsert(ReplyVO replyVO) throws Exception;
+   // public int replyUpdate(ReplyVO replyVO) throws Exception;
+    //public int replyDelete(int reno) throws Exception;
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
+
+
+
+
+

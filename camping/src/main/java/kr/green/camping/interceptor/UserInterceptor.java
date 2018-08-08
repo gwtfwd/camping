@@ -12,7 +12,6 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		try {
-			// list에서 등록버튼을 누를 때 로그인 상태가 아니면 로그인화면으로 이동시킨다.
 			if (request.getSession().getAttribute("user") == null) {
 				
 				response.sendRedirect(request.getContextPath() + "/member/needLogin");

@@ -70,4 +70,55 @@
 				 and id like #{search}
 			</if>
 	</select>
+	
+	
+	<!-- 댓글 -->
+	<!-- <insert id="insertReply" parameterType="kr.green.camping.vo.user.ReplyVO" >
+	
+		reno의 값이 null이면 0, null이 아니면 reno의 값+1 출력
+	    <selectKey resultType="String" keyProperty="reno" order="BEFORE">
+	        select ifnull(max(reno),0)+1 from reply
+	    </selectKey>
+	        
+	    insert into reply(brdno, reno, reid, rememo, redate, redeleteflag) values (#{brdno}, #{reno}, #{reid}, #{rememo}, NOW(), 'N')
+	    
+	</insert>
+	
+	<update id="updateReply" parameterType="kr.green.camping.vo.user.ReplyVO">
+	    update reply set rememo=#{rememo} where reno=#{reno}
+	</update> --> 
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="replyCount" resultType="int">
+        select count(*) from reply where bno = #{bno}
+    </select>
+    
+    <select id="replyList" resultType="kr.green.camping.vo.user.ReplyVO">
+        select * from reply where bno = #{bno}
+    </select>
+    
+    
+    <insert id="replyInsert" parameterType="kr.green.camping.vo.user.ReplyVO">
+        insert into reply (reno, bno, recontent, reid, redate) values(#{reno}, #{bno}, #{recontent}, #{reid}, now()) 
+    </insert>
+    
+   <!--  <update id="replyUpdate" parameterType="kr.green.camping.vo.user.ReplyVO">
+        update reply set recontent = #{recontent} where reno = #{reno}
+    </update>
+    
+    <delete id="replyDelete" parameterType="int">
+        delete from reply where reno = #{reno}
+    </delete> -->
+
+
+	
+	
+	
+	
 </mapper>

@@ -48,7 +48,6 @@
 	
 	<div class="container" style="height:880px">	
 		<br><br><br><br>
-		
 		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
 		<h4 style="text-align:center; font-family:Segoe Print;">Write</h4> <br><br>
 		
@@ -66,7 +65,7 @@
 				
 				<div class="col-md-1"></div>
 			</div>
-			<br><br>
+			<br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
@@ -81,7 +80,23 @@
 				
 				<div class="col-md-1"></div>
 			</div>
-			<br><br>
+			<br>
+			
+			
+			<div class="row"> 
+				<div class="col-md-1"></div>
+				
+				<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
+					<label class="control-label" for="file">첨부파일</label>
+				</div>
+				
+				<div class="col-md-7 fontH">
+					<input type="file" name="file">
+				</div>
+				
+				<div class="col-md-1"></div>
+			</div>
+			<br>
 			
 			
 			<div class="row"> 

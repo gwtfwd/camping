@@ -10,6 +10,7 @@ import kr.green.camping.dao.user.FreeMapper;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.user.FreeService;
 import kr.green.camping.vo.user.FreeVO;
+import kr.green.camping.vo.user.ReplyVO;
 
 @Service("freeService")
 public class FreeServiceImpl implements FreeService {
@@ -52,7 +53,7 @@ public class FreeServiceImpl implements FreeService {
 		return freeMapper.view(vo);
 	}
 	
-	// �˻�
+	// 검색
 	@Override
 	public List<FreeVO> searchFree(Criteria cri, String search, Integer type) throws Exception {
 		return freeMapper.searchFree(cri, search,type);
@@ -64,5 +65,52 @@ public class FreeServiceImpl implements FreeService {
 	}
 	
 	
+	// 댓글처리
+	/*public void insertReply(ReplyVO vo) throws Exception {
+        if (vo.getReno()==null || "".equals(vo.getReno())) {
+        	freeMapper.insertReply(vo);
+        } else {
+        	freeMapper.updateReply(vo);
+        }
+    }*/
+	
+	
+	
+	
+	
+	
+
+	 public List<ReplyVO> replyList(Integer bno) throws Exception{
+	        
+	        return freeMapper.replyList(bno);
+	    }
+	    
+    public int replyInsert(ReplyVO replyVO) throws Exception{
+        
+        return freeMapper.replyInsert(replyVO);
+    }
+    
+   /* public int replyUpdate(ReplyVO replyVO) throws Exception{
+        
+        return freeMapper.replyUpdate(replyVO);
+    }
+    
+    public int replyDelete(int reno) throws Exception{
+        
+        return freeMapper.replyDelete(reno);
+    }*/
+
+
+	
 	
 }
+
+
+
+
+
+
+
+
+
+

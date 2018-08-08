@@ -41,37 +41,36 @@
 		}
 		
 		
-		function like_func(campNo, userId){
-			  var frm_read = $('#frm_read');
-			  console.log("campNo, userId : " + campNo +","+ userId);
-			  
-			  $.ajax({
-			    url: "/camping/search/type/liketo/like.do",
-			    type: "GET",
-			    cache: false,
-			    dataType: "json",
-			    data: 'campNo=' +campNo+ '&userId=' +userId,
-			    contentType:"application/json; charset=UTF-8",
-			    success: function(data) {
-			      var msg = '';
-			      var like_img = '';
-			      msg += data.msg;
-			      alert(msg);
-			      
-			      if(data.like_check == 0){
-			        like_img = "resources/images/dislike.png";
-			      } else {
-			        like_img = "resources/images/heart1.png";
-			      }      
-			      $('#like_img', frm_read).attr('src', like_img);
-			      $('#like_cnt').html(data.like_cnt);
-			      $('#like_check').html(data.like_check);
-			    },
-			    error: function(request, status, error){
-			      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			    }
-			  });
-			}
+		$(document).ready(function () {
+
+	        $(".heart").on("click", function () {
+				
+	            var heart = $(this).children(".like-hidden").val();
+	            var camp = $(this).children(".camp-hidden").val();
+				console.log(heart+","+camp);
+				
+	            var sendData = {'camp_no' : camp,'heart' : heart};
+	            var d;
+	            $.ajax({
+	                url :'/camping/search/heart',
+	                type :'GET',
+	                data : sendData,
+	                success : function(data){
+	                    d = data;
+	                    console.log(data);
+	                    console.log(d);
+	                } 
+	            });
+	            console.log(d);
+	            if(d==1) {
+                    $(this).children.prop("src","/camping/resources/images/dislike.png");
+                }
+                else{
+                    $(this).children.prop("src","/camping/resources/images/heart1.png");
+                }
+	        });
+	    });
+		
 
 	</script>
 
@@ -107,8 +106,9 @@
 				        <thead style="text-align:center;">
 				            <tr>
 				                <!-- <th style="width:10%">No</th> -->
+				                <th style="width:10%">no</th>
 				                <th style="width:40%">야영장명</th>
-				                <th style="width:50%">주소</th>
+				                <th style="width:40%">주소</th>
 				                <th style="width:10%">추천</th>
 				            </tr>
 				        </thead>
@@ -116,16 +116,30 @@
 				           <c:forEach items="${list}" var="camp" >
 						    	<tr>
 					    			<%-- <td>${camp.no}</td> --%>
+						        	<td>${camp.no}</td>
 						        	<td><a href="/camping/search/type/detail?no=${camp.no}" style="color:black;">${camp.camp_name}</a></td>
 						        	<td>${camp.address_road}</td>
 						        	<td>
+						        		
 									    <c:if test="${member}">
-									     	<a href="javascript: like_func('${camp.no}', '${user.id}' )" ><img src='/camping/resources/images/dislike.png' id='like_img'></a>
+									     	<c:if test="${camp.like_cnt == 0 }">
+									     		<a class="heart"><img src='/camping/resources/images/dislike.png' >
+									     		<input type="hidden" class="like-hidden" value="${camp.like_cnt }"/>
+									     		<input type="hidden" class="camp-hidden" value="${camp.no }"/></a>
+									    	</c:if>
+									     	<c:if test="${camp.like_cnt != 0 }">
+									     		<a class="heart"><img src='/camping/resources/images/heart1.png' >
+									     		<input type="hidden" class="like-hidden" value="${camp.like_cnt }"/>
+									     		<input type="hidden" class="camp-hidden" value="${camp.no }"/></a>
+									    	</c:if>
+									    	
 									    </c:if>
 									    <c:if test="${!member}">
 									     	<a href="/camping/member/needLogin"><img src='/camping/resources/images/dislike.png'></a>
 									    </c:if> 
-									    <span id='like_cnt' style='margin-left: 5px;'>${like.like_cnt} Likes</span>
+									    <span  style='margin-left: 5px;' >${camp.like_cnt} Likes</span>
+									    
+									    
 									    
 					        			<%-- <c:choose>
 										    <c:when test="${user_id ne null}">

@@ -33,7 +33,7 @@ public class NoticeController {
 	@RequestMapping(value = "/list")
 	public String getNotice(Model model, Criteria cri, HttpServletRequest request, Integer type, String search) throws Exception {
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
@@ -80,7 +80,7 @@ public class NoticeController {
 		
 		noticeService.view(vo);
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		

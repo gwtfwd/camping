@@ -8,47 +8,32 @@
 	<select id="getCampByNo" resultType="kr.green.camping.vo.user.CampVO">
 		select * from camp where no = #{no}
 	</select>
-	<select id="readCampByNo" resultType="kr.green.camping.vo.user.CampVO" parameterType="HashMap">
-    	select * from camp where no = #{no}
-  	</select>
-  	
-  	<update id="like_cnt_up">
-		update camp set like = like + 1 where no = #{no}
-	</update>
-	
-  	<update id="like_cnt_down">
-		update camp set like = like - 1 where no = #{no}
-	</update>
-	
+
 	
 	<!-- 좋아요 -->
-	<insert id="create" parameterType="HashMap">
-		insert into liketo (like_no, camp_no, user_id, like_check) VALUES ((SELECT NVL(MAX(like_no), 0) + 1 as like from like), #{campNo}, #{userId}, 0)
-	</insert>
+	 	<insert id="insertBoardLike">
+            INSERT INTO liketo (camp_no, user_id)
+            VALUES (#{camp_no}, #{user_id})
+        </insert>
 
-	<delete id="deletebyCampNo" parameterType="int">
-		delete from liketo where camp_no =  #{campNo}
-	</delete>
+        <delete id="deleteBoardLike">
+            DELETE FROM liketo
+            WHERE camp_no = #{camp_no} AND user_id = #{user_id}
+        </delete>
 
-	<delete id="deletebyUserId" parameterType="int">
-		delete from liketo where user_id = #{userId}
-	</delete>
-	
-	<select id="countbyLike" resultType="int" parameterType="HashMap">
-	   select count(like_no) as cnt from liketo where user_id = #{userId} and camp_no = #{campNo}
-	  </select>
-	
-	<update id="like_check" parameterType="HashMap">
-		update liketo set like_check = like_check + 1 where user_id = #{userId} and camp_no = #{campNo}	
-	</update>
+        <select id="updateBoardLike">
+            UPDATE camp
+            SET
+            like_cnt = (SELECT COUNT(*)
+            FROM liketo
+            WHERE camp_no = #{camp_no})
+            WHERE no = #{camp_no}
+        </select>
 
-	<update id="like_check_cancel" parameterType="HashMap">
-		update liketo set like_check = 0 where user_id = #{userId} and camp_no = #{campNo}
-	</update>
+        <select id="getBoardLike" resultType="int">
+            SELECT COUNT(like_no) FROM liketo WHERE camp_no = #{camp_no} AND user_id = #{user_id}
+        </select>	
 	
-	<select id="readLike" resultType="kr.green.camping.vo.user.LikeVO" parameterType="HashMap">
-    	select * from liketo where user_id = #{user_id} and camp_no = #{camp_no}
-  	</select>
 	
 	
 	
@@ -82,7 +67,8 @@
 			man_agency_tel,
 			man_agency_name,
 			registered_id,
-			registered_at
+			registered_at,
+			like_cnt
 		from camp
 		where 1 = 1 
 			<if test="type==1">

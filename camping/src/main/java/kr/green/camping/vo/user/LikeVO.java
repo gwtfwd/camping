@@ -5,7 +5,6 @@ public class LikeVO {
 	private Integer like_no;
 	private Integer camp_no;
 	private String user_id;
-	private Integer like_check;
 	
 	
 	public Integer getLike_no() {
@@ -25,12 +24,6 @@ public class LikeVO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
-	}
-	public Integer getLike_check() {
-		return like_check;
-	}
-	public void setLike_check(Integer like_check) {
-		this.like_check = like_check;
 	}
 	
 	

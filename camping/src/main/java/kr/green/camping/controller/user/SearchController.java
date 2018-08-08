@@ -4,28 +4,25 @@ package kr.green.camping.controller.user;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.pagination.PageMaker;
-import kr.green.camping.service.user.FreeService;
 import kr.green.camping.service.user.SearchService;
 import kr.green.camping.vo.user.CampVO;
-import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 import kr.green.camping.vo.user.LikeVO;
-import kr.green.camping.vo.user.NoticeVO;
-import net.sf.json.JSONObject;
 
 
 @Controller
@@ -42,6 +39,7 @@ public class SearchController {
 	@RequestMapping(value = "/region/list", method = RequestMethod.GET)
 	public String getSearchRegion(String area, Model model, HttpServletRequest request) throws Exception {
 		
+		/*Î°úÍ∑∏Ïù∏ Ïú†ÏßÄ*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
@@ -60,7 +58,7 @@ public class SearchController {
 		return "user/board/search/region/list";
 	}
 	
-	@ResponseBody // ajax∏¶ ∫Œ∏£±‚ ¿ß«— æÓ≥Î≈◊¿Ãº«
+	@ResponseBody // ajaxÔøΩÔøΩ ÔøΩŒ∏ÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÃºÔøΩ
 	@RequestMapping(value="/kr.green.camping.dao.user.SearchMapper/getSeoul.do", method = RequestMethod.GET)
     public List<CampVO> getSeoul(CampVO vo) throws Throwable {
 		return searchService.getSeoul(vo);
@@ -70,9 +68,15 @@ public class SearchController {
 	@RequestMapping(value = "/type/list", method = RequestMethod.GET)
 	public String getSearchType(Model model, HttpServletRequest request, Criteria cri, Integer type) throws Exception {
 		
+		/*Î°úÍ∑∏Ïù∏ Ïú†ÏßÄ*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
+		/*
+		 * heart != null && camp_no != null
+		 * Ï∂îÏ≤úÏù¥ ÏïàÎêòÏñ¥ ÏûàÏúºÎ©¥ Ï∂îÏ≤úÌï¥Ï£ºÍ≥† Ï¢ãÏïÑÏöîÏàò Ï¶ùÍ∞Ä
+		 * Ï∂îÏ≤úÏù¥ ÎêòÏñ¥Ïûà„ÖáÎ©¥ Ï∂îÏ≤ú Ìï¥Ï†úÌïòÍ≥† Ï¢ãÏïÑÏöîÏàò Í∞êÏÜå
+		 * */
 		
 		boolean member = false;
 		if( user != null) {
@@ -96,21 +100,22 @@ public class SearchController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totalCount);
+		for(CampVO tmp:list) {
+        	System.out.println(tmp.getLike_cnt());
+        }
 
-		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
 	    model.addAttribute("type",type);
-		
 
 	    return "user/board/search/type/list";
 	}
 	
 	@RequestMapping(value = "/type/list", method = RequestMethod.POST)
-	public String postSearchType(Model model, HttpServletRequest request, Criteria cri, Integer type) throws Exception {
+	public String postSearchType(@RequestParam("camp_no") int camp_no, Model model, HttpServletRequest request, Criteria cri, Integer type) throws Exception {
 		
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
@@ -132,82 +137,40 @@ public class SearchController {
 		
 		list = (ArrayList)searchService.getType(cri, type);
 		totalCount = searchService.getCountType(type);
-		//LikeVO like = searchService.readLike(hashMap);
-		
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totalCount);
 		
 		
+		String user_id = ((JoinVO) request.getSession().getAttribute("login")).getId();
+		
+		LikeVO likevo = new LikeVO();
+		likevo.setCamp_no(camp_no);
+		likevo.setUser_id(user_id);
+
+        int boardlike = searchService.getBoardLike(likevo);
+        System.out.println(boardlike);
+
+        
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
 	    model.addAttribute("type",type);
-	   // model.addAttribute("like",like);
-		
+	    model.addAttribute("heart",boardlike);
+	    
 
 	    return "user/board/search/type/list";
 	}
 
 	
-	@ResponseBody
-	  @RequestMapping(value="/type/liketo/like.do", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
-	  public String liketo(HttpSession session, String userId, Integer campNo) throws Exception{
-		
-	    //System.out.println("--> like() created");
-		JoinVO user = (JoinVO)session.getAttribute("user");
-		CampVO vo = new CampVO();
-		vo.setNo(campNo);
-		CampVO camp = searchService.getCamp(vo);
-		
-		JSONObject obj = new JSONObject();
-	    
-	    
-	    ArrayList<String> msgs = new ArrayList<String>();
-	    HashMap <String, Object> hashMap = new HashMap<String, Object>();
-	    hashMap.put("campNo", campNo);
-	    hashMap.put("userId", userId);
-	    LikeVO likeVO = searchService.readLike(hashMap);
-	    
-	    
-	    CampVO campVO = searchService.readCampByNo(hashMap);
-	    int like_cnt =  campVO.getLike();     //∞‘Ω√∆«¿« ¡¡æ∆ø‰ ƒ´øÓ∆Æ
-	    int like_check = 0;
-	    like_check = likeVO.getLike_check();    //¡¡æ∆ø‰ √º≈© ∞™
-	    
-	    if(searchService.countbyLike(hashMap)==0){
-	    	searchService.create(hashMap);
-	    }
-	      
-	    if(like_check == 0) {
-	      msgs.add("¡¡æ∆ø‰!");
-	      searchService.like_check(hashMap);
-	      like_check++;
-	      like_cnt++;
-	      searchService.like_cnt_up(vo);   //¡¡æ∆ø‰ ∞πºˆ ¡ı∞°
-	    } else {
-	      msgs.add("¡¡æ∆ø‰ √Îº“");
-	      searchService.like_check_cancel(hashMap);
-	      like_check--;
-	      like_cnt--;
-	      searchService.like_cnt_down(vo);   //¡¡æ∆ø‰ ∞πºˆ ∞®º“
-	    }
-	    obj.put("campNo", campNo);
-	    obj.put("userId", userId);
-	    obj.put("like_check", like_check);
-	    obj.put("like_cnt", like_cnt);
-	    obj.put("msg", msgs);
-	    
-	    return obj.toString();
-	  }
 	
 	
 	@RequestMapping(value = "/type/detail", method = RequestMethod.GET)
 	public String typeDetailGet(CampVO vo, Model model, HttpServletRequest request) throws Exception {
 		
-		/*∑Œ±◊¿Œ¿Ø¡ˆ*/
+		/*Î°úÍ∑∏Ïù∏ Ïú†ÏßÄ*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
@@ -218,12 +181,59 @@ public class SearchController {
 		
 		CampVO camp = searchService.getCamp(vo);
 		
+		
+		/*String user_id = ((JoinVO) request.getSession().getAttribute("login")).getId();
+		
+		LikeVO likevo = new LikeVO();
+		likevo.setCamp_no(camp_no);
+		likevo.setUser_id(user_id);
+
+        int boardlike = searchService.getBoardLike(likevo);
+        System.out.println(boardlike);*/
+		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("camp", camp);
+		/*model.addAttribute("heart",boardlike);*/
 	    
 		return "user/board/search/type/detail";
 	}
+	
+	
+	@ResponseBody
+    @RequestMapping(value = "/heart")
+    //public  Map<Object, Object> heart(@RequestBody HttpServletRequest httpRequest) throws Exception {
+	public  int heart( Integer heart,  Integer camp_no, HttpServletRequest httpRequest) throws Exception {
+
+//        int heart = Integer.parseInt(httpRequest.getParameter("heart"));
+//        int camp_no = Integer.parseInt(httpRequest.getParameter("camp_no"));
+		JoinVO user = (JoinVO) httpRequest.getSession().getAttribute("user");
+        String user_id = "";
+        user_id = user.getId();
+
+        LikeVO likeVO = new LikeVO();
+
+        likeVO.setCamp_no(camp_no);
+        likeVO.setUser_id(user_id);
+
+        System.out.println(heart);
+
+        /*
+		 * heart != null && camp_no != null
+		 * Ï∂îÏ≤úÏù¥ ÏïàÎêòÏñ¥ ÏûàÏúºÎ©¥ Ï∂îÏ≤úÌï¥Ï£ºÍ≥† Ï¢ãÏïÑÏöîÏàò Ï¶ùÍ∞Ä
+		 * Ï∂îÏ≤úÏù¥ ÎêòÏñ¥Ïûà„ÖáÎ©¥ Ï∂îÏ≤ú Ìï¥Ï†úÌïòÍ≥† Ï¢ãÏïÑÏöîÏàò Í∞êÏÜå
+		 * */
+        
+        if(heart >= 1) {
+            searchService.deleteBoardLike(likeVO);
+            heart=0;
+        } else {
+        	searchService.insertBoardLike(likeVO);
+            heart=1;
+        }
+        return heart;
+
+    }
 	
 	
 }

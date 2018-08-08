@@ -1,6 +1,7 @@
 package kr.green.camping.controller.user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.camping.pagination.Criteria;
@@ -17,7 +21,7 @@ import kr.green.camping.pagination.PageMaker;
 import kr.green.camping.service.user.FreeService;
 import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
-import kr.green.camping.vo.user.NoticeVO;
+import kr.green.camping.vo.user.ReplyVO;
 
 @Controller
 
@@ -32,7 +36,7 @@ public class FreeController {
 	@RequestMapping(value = "/list")
 	public String getFree(Model model, Criteria cri, HttpServletRequest request, Integer type, String search) throws Exception {
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
@@ -74,7 +78,7 @@ public class FreeController {
 		
 		freeService.view(vo);
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
@@ -95,7 +99,7 @@ public class FreeController {
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String freeWriteGet(HttpServletRequest request, Model model) {
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO)session.getAttribute("user");
 
@@ -114,7 +118,7 @@ public class FreeController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String boardWritePost(HttpServletRequest request, Model model, FreeVO vo, MultipartFile file) throws Exception {
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO)session.getAttribute("user");
 		
@@ -138,7 +142,7 @@ public class FreeController {
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String freeModifyGet(HttpServletRequest request,FreeVO vo, Model model, int no) throws Exception {
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO)session.getAttribute("user");
 		
@@ -161,7 +165,7 @@ public class FreeController {
 	@RequestMapping(value="/modify", method= RequestMethod.POST)
 	public String freeModifyPost(FreeVO vo, int no, HttpServletRequest request, Model model) throws Exception {
 		
-		/*·Î±×ÀÎÀ¯Áö*/
+		/*ë¡œê·¸ì¸ ìœ ì§€*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO)session.getAttribute("user");
 		
@@ -187,6 +191,60 @@ public class FreeController {
 		
 		return "redirect:/free/list";
 	}
+	
+	// ëŒ“ê¸€ì €ì¥
+    /*@RequestMapping(value = "/ReplySave")
+    public String ReplySave(HttpServletRequest request, ReplyVO vo) throws Exception {
+        
+    	freeService.insertReply(vo);
+
+        return "redirect:/free/detail?no=" + vo.getBrdno();
+    }*/
+
+	
+	  @RequestMapping("/reply/list") //ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸
+	    @ResponseBody
+	    private List<ReplyVO> replyList(Model model, Integer bno) throws Exception{
+	        
+	        return freeService.replyList(bno);
+	    }
+	    
+	    @RequestMapping("/reply/insert") //ëŒ“ê¸€ ì‘ì„± 
+	    @ResponseBody
+	    private int replyInsert(@RequestParam int bno, @RequestParam String recontent, HttpServletRequest request) throws Exception{
+	        
+	    	HttpSession session = request.getSession();
+			JoinVO user = (JoinVO)session.getAttribute("user");
+	    	
+	    	ReplyVO replyVO = new ReplyVO();
+	    	replyVO.setBno(bno);
+	    	replyVO.setRecontent(recontent);
+	    	replyVO.setReid(user.getId());  
+	        
+	        return freeService.replyInsert(replyVO);
+	    }
+	    
+	    /*@RequestMapping("/reply/update") //ëŒ“ê¸€ ìˆ˜ì •  
+	    @ResponseBody
+	    private int replyUpdate(@RequestParam int reno, @RequestParam String recontent) throws Exception{
+	        
+	    	ReplyVO replyVO = new ReplyVO();
+	    	replyVO.setReno(reno);
+	    	replyVO.setRecontent(recontent);
+	        
+	        return freeService.replyUpdate(replyVO);
+	    }
+	    
+	    @RequestMapping("/reply/delete/{reno}") //ëŒ“ê¸€ ì‚­ì œ  
+	    @ResponseBody
+	    private int replyDelete(@PathVariable int reno) throws Exception{
+	        
+	        return freeService.replyDelete(reno);
+	    }*/
+
+
+	
+	
 	
 	
 	

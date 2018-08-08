@@ -4,29 +4,30 @@ import java.util.Date;
 
 public class CampVO {
 
-	private Integer no;						// ÀÏ·Ã¹øÈ£
-	private String camp_type_no;			// ¾ß¿µÀå ±¸ºÐ ÀÏ·Ã¹øÈ£
-	private String camp_name;				// ¾ß¿µÀå¸í
-	private String address_road;			// ¼ÒÀçÁö µµ·Î¸í ÁÖ¼Ò
-	private String address_jibun;			// ¼ÒÀçÁö Áö¹ø ÁÖ¼Ò
-	private String camp_tel;				// ¾ß¿µÀå ÀüÈ­¹øÈ£
-	private Double latitude;				// À§µµ
-	private Double longtitude;				// °æµµ
-	private Integer area;					// ºÎÁö¸éÀû
-	private String man_agency_tel;			// °ü¸®±â°ü ÀüÈ­¹øÈ£
-	private String man_agency_name;			// °ü¸®±â°ü¸í
-	private String registered_id;			// µî·ÏÀÚid
-	private String updated_id;				// ¼öÁ¤ÀÚid
-	private Date registered_at;				// µî·ÏÀÏ½Ã
-	private Date updated_at;				// ¼öÁ¤ÀÏ½Ã
-	private Integer like;					// ÁÁ¾Æ¿ä
+	private Integer no;						// ï¿½Ï·Ã¹ï¿½È£
+	private String camp_type_no;			// ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·Ã¹ï¿½È£
+	private String camp_name;				// ï¿½ß¿ï¿½ï¿½ï¿½ï¿½
+	private String address_road;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ö¼ï¿½
+	private String address_jibun;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½
+	private String camp_tel;				// ï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£
+	private Double latitude;				// ï¿½ï¿½ï¿½ï¿½
+	private Double longtitude;				// ï¿½æµµ
+	private Integer area;					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String man_agency_tel;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£
+	private String man_agency_name;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String registered_id;			// ï¿½ï¿½ï¿½ï¿½ï¿½id
+	private String updated_id;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
+	private Date registered_at;				// ï¿½ï¿½ï¿½ï¿½Ï½ï¿½
+	private Date updated_at;				// ï¿½ï¿½ï¿½ï¿½ï¿½Ï½ï¿½
+	private Integer like_cnt;					// ï¿½ï¿½ï¿½Æ¿ï¿½
 	
 	
-	public Integer getLike() {
-		return like;
+	public Integer getLike_cnt() {
+
+		return like_cnt;
 	}
-	public void setLike(Integer like) {
-		this.like = like;
+	public void setLike_cnt(Integer like_cnt) {
+		this.like_cnt = like_cnt;
 	}
 	public Integer getNo() {
 		return no;

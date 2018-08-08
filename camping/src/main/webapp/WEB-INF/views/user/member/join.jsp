@@ -241,7 +241,7 @@
 		       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">취소</button>
 		        </a>			
 				<a href="/camping/member/join"> 
-		       		<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px">완료</button>
+		       		<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px" id="save">완료</button>
 		        </a>			
 			</div>
 					
@@ -253,7 +253,13 @@
 	<script>
 		$(document).ready(function(){
 			  $('#birth').mask('0000/00/00',{placeholder: "yyyy/mm/dd"});			
-			  $('#phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});		
+			  $('#phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});	
+			  
+			  $('#save').click(function() {
+			       var str = document.getElementById('formId');
+			       str.submit();
+			       alert("회원가입이 성공적으로 완료되었습니다.");
+			    });
 		});
 	
 

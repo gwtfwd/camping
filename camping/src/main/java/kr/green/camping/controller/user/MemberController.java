@@ -102,7 +102,7 @@ public class MemberController {
 	
 	
 	
-	// ¾ÆÀÌµğÁßº¹È®ÀÎ
+	// ì•„ì´ë”” ì¤‘ë³µê²€ì‚¬
 	@RequestMapping("/dup")
 	@ResponseBody
 	public Map<Object, Object> idcheck(@RequestBody String id) throws Exception{
@@ -125,12 +125,12 @@ public class MemberController {
 	    
 	}
 	
-	// ·Î±×ÀÎ ¼º°ø ÈÄ ±Û¾²±â Çã¿ë
+	// ë¡œê·¸ì¸ í›„ ê¸€ì“°ê¸°
 	@RequestMapping(value = "/needLogin")
 	public ModelAndView needLogin() throws Exception {
 		
 		ModelAndView mav = new ModelAndView("/user/board/free/loginWarning");
-		mav.addObject("msg","·Î±×ÀÎ ÈÄ ÀÌ¿ëÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+		mav.addObject("msg","ë¡œê·¸ì¸ í›„ ì´ìš©í•´ì£¼ì„¸ìš”.");
 		
 		return mav;
 	}

@@ -30,60 +30,26 @@ public class SearchServiceImpl implements SearchService{
 		CampVO resultVO = searchMapper.getCampByNo(vo);
 		return resultVO;
 	}
-	@Override
-	  public CampVO readCampByNo(HashMap hashMap) throws Exception {
-	    return searchMapper.readCampByNo(hashMap);
-	  }
-	@Override
-	public int like_cnt_up(CampVO vo) throws Exception {
-		return searchMapper.like_cnt_up(vo);
-	}
-	@Override
-	public int like_cnt_down(CampVO vo) throws Exception {
-		return searchMapper.like_cnt_down(vo);
-	}
-	
-	
-	
-	//like
-	@Override
-	public void create(HashMap hashMap) throws Exception {
-		
-		searchMapper.create(hashMap);
-	}
-	@Override
-	public void deletebyCampNo(HashMap hashMap) throws Exception {
-		
-		searchMapper.deletebyCampNo(hashMap);
-	}
-	@Override
-	public void deletebyUserId(HashMap hashMap) throws Exception {
-		
-		searchMapper.deletebyUserId(hashMap);
-	}
-	@Override
-	  public int countbyLike(HashMap hashMap) throws Exception{
-	    int count = searchMapper.countbyLike(hashMap);
-	    return count;
-	  }
-	@Override
-	  public int like_check(HashMap hashMap) throws Exception {
-	    int count = searchMapper.like_check(hashMap);
-	    return count;
-	  }
 
-	 @Override
-	 public int like_check_cancel(HashMap hashMap) throws Exception {
-	    int count = searchMapper.like_check_cancel(hashMap);
-	    return count;
-	  }
-	 @Override
-	  public LikeVO readLike(HashMap hashMap) throws Exception {
-	    LikeVO likeVO = searchMapper.readLike(hashMap);
-	    return likeVO;
-	  }
 	
-	 
+	
+	// 좋아요
+	@Override
+    public void insertBoardLike(LikeVO vo) throws Exception {
+		searchMapper.insertBoardLike(vo);
+		searchMapper.updateBoardLike(vo.getCamp_no());
+    }
+
+    @Override
+    public void deleteBoardLike(LikeVO vo) throws Exception {
+    	searchMapper.deleteBoardLike(vo);
+    	searchMapper.updateBoardLike(vo.getCamp_no());
+    }
+    
+    @Override
+    public int getBoardLike(LikeVO vo) throws Exception {
+            return searchMapper.getBoardLike(vo);
+    }
 	 
 	 
 	
@@ -107,7 +73,7 @@ public class SearchServiceImpl implements SearchService{
 	
 	
 	
-	// �˻�
+	// 검색
 	@Override
 	public List<CampVO> getType(Criteria cri, Integer type) throws Exception {
 		return searchMapper.getType(cri, type);

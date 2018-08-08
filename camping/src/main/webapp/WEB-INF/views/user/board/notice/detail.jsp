@@ -52,79 +52,96 @@
 		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
 		<h4 style="text-align:center; font-family:Segoe Print;">Detail</h4> <br><br>
 		
-		<div class="row"> 
-			<div class="col-md-1"></div>
-			
-			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="num">번호</label>
-			</div>
-			
-			<div class="col-md-7 fontH">
-				<input type="text" class="form-control" id="num" name="number" style="background-color:white;" value="${notice.no}" disabled>
-			</div>
-			
-			<div class="col-md-1"></div>
-		</div>
-		<br><br>
 		
-		<div class="row"> 
-			<div class="col-md-1"></div>
-			
-			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="sub">제목</label>
+		<form method="post" id="formDetail">
+			<div class="row" style="border-bottom:1px solid #C8CACC; border-top:1px solid #C8CACC;"> 
+				
+				<div class="col-md-1 fontH" style="padding-top:7px;">
+					<label class="control-label" for="number">번호</label>
+				</div>
+				<div class="col-md-5 fontH">
+					<input type="text" class="form-control" id="number" name="number" style="background-color:white; border-width:0px;" value="${notice.no}" readonly>
+				</div>
+				
+				<div class="col-md-1 fontH" style="padding-top:7px;">
+					<label class="control-label" for="view">조회수</label>
+				</div>
+				
+				<div class="col-md-3 fontH">
+					<input type="text" class="form-control" id="view" name="view" style="background-color:white; border-width:0px;" value="${notice.view}" readonly>
+				</div>
+				
 			</div>
 			
-			<div class="col-md-7 fontH">
-				<input type="text" class="form-control" id="sub" name="title" style="background-color:white;"  value="${notice.subject}"disabled>
+			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
+			
+				<div class="col-md-1 fontH" style="padding-top:7px;"> 
+					<label class="control-label" for="subject">제목</label>
+				</div>
+				
+				<div class="col-md-5 fontH">
+					<input type="text" class="form-control" id="subject" name="subject" style="background-color:white; border-width:0px;"  value="${notice.subject}" readonly>
+				</div>
+				
+				<div class="col-md-1 fontH" style="padding-top:7px;">
+					<label class="control-label" for="id">작성자</label>
+				</div>
+				
+				<div class="col-md-3 fontH">
+					<input type="text" class="form-control" id="id" name="id" style="background-color:white; border-width:0px;" value="${notice.registered_id}" readonly>
+				</div>
+				
 			</div>
 			
-			<div class="col-md-1"></div>
-		</div>
-		<br><br>
+			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
+				
+				
+				<div class="col-md-1 fontH" style="padding-top:7px;">
+					<label class="control-label" for="file">첨부파일</label>
+				</div>
+				
+				<div class="col-md-5 fontH" >
+					<input type="text" class="form-control" id="file" name="file" style="background-color:white; border-width:0px;" value="" readonly>
+				</div>
+				
+				<div class="col-md-1 fontH" style="padding-top:7px;">
+					<label class="control-label" for="registered_at">작성일자</label>
+				</div>
+				
+				<div class="col-md-2 fontH" >
+					<input type="text" class="form-control" id="registered_at" name="registered_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${notice.registered_at}" pattern="yyyy-MM-dd" />" readonly>
+				</div>
+				
+				<div class="col-md-1 fontH" style="padding-top:7px;">
+					<label class="control-label" for="updated_at">수정일자</label>
+				</div>
+				
+				<div class="col-md-2 fontH" >
+					<input type="text" class="form-control" id="updated_at" name="updated_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${notice.updated_at}" pattern="yyyy-MM-dd" />" readonly>
+				</div>
+				
+			</div><br>
+			
+			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
+				
+				<div class="col-md-1 fontH" style="padding-top:4px;">
+					<label class="control-label" for="contents">내용</label>
+				</div>
+				
+				<div class="col-md-10 fontH" style="margin-left: 9px;">
+					<textarea rows="20" cols="140" id="contents" name="contents" style="background-color:white; border-width:0px;" readonly>${notice.contents}</textarea>
+				</div>
+				
+			</div>
+			<br>
+			
+			<div style="text-align:center;">			
+		        <a href="/camping/notice/list"> 
+		       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">LIST</button>
+		        </a>	
+			</div><br><br>
+		</form>
 		
-		<div class="row"> 
-			<div class="col-md-1"></div>
-			
-			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="auth">작성자</label>
-			</div>
-			
-			<div class="col-md-7 fontH">
-				<input type="text" class="form-control" id="auth" name="author" style="background-color:white;" value="${notice.name}" disabled>
-			</div>
-			
-			<div class="col-md-1"></div>
-		</div>
-		<br><br>
-		
-		<div class="row"> 
-			<div class="col-md-1"></div>
-			
-			<div class="col-md-2 fontH" style="text-align:right; padding-top:7px;">
-				<label class="control-label" for="cont">내용</label>
-			</div>
-			
-			<div class="col-md-7 fontH">
-				<textarea rows="8" cols="90" id="cont" name="contents" style="background-color:white; border-radius: 4px; border: 1px solid #ced4da;" disabled>${notice.contents}</textarea>
-			</div>
-			
-			<div class="col-md-1"></div>
-		</div>
-		<br>
-		
-			<!-- <label for="num">첨부파일:</label> -->
-		<div style="text-align:center;">			
-			<a href="/camping/notice/list"> 
-	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">목록</button>
-	        </a>			
-			<%-- <a href="/camping/notice/modify?no=${notice.no}"> 
-	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">수정</button>
-	        </a>			
-			<a href="#"> 
-	       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">삭제</button>
-	        </a> --%>			
-		</div>
-					
 	</div>
 		
 		

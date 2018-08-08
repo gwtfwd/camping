@@ -16,7 +16,7 @@
 	</select>
 	
 	<update id="modifyNotice">
-		update notice set subject=#{subject}, contents=#{contents} where no=#{no}
+		update notice set subject=#{subject}, contents=#{contents}, updated_at=now() where no=#{no}
 	</update>
 	
 	<update id="view">

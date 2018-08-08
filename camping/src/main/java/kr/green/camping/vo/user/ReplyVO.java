@@ -38,7 +38,7 @@ public class ReplyVO {
 	}
 	public String getRedate() {
 		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		return df.format(redate); 
 	}
 	public void setRedate(Date redate) {

@@ -59,38 +59,36 @@ public class FreeServiceImpl implements FreeService {
 		return freeMapper.searchFree(cri, search,type);
 	}
 	
+	
+	
 	@Override
 	public int getCountFree(String search,Integer type) throws Exception {
 		return freeMapper.getCountFree(search, type);
 	}
 	
 	
-	// 댓글처리
-	/*public void insertReply(ReplyVO vo) throws Exception {
-        if (vo.getReno()==null || "".equals(vo.getReno())) {
-        	freeMapper.insertReply(vo);
-        } else {
-        	freeMapper.updateReply(vo);
-        }
-    }*/
+	// 댓글
+	@Override
+	public int replyCount() throws Exception {
+		return freeMapper.replyCount();
+	}
 	
-	
-	
-	
-	
-	
-
 	 public List<ReplyVO> replyList(Integer bno) throws Exception{
 	        
 	        return freeMapper.replyList(bno);
 	    }
+	 
+	 @Override
+		public List<ReplyVO> getReplyPage(Criteria cri) throws Exception {
+			return freeMapper.getReplyPage(cri); 
+		}
 	    
     public int replyInsert(ReplyVO replyVO) throws Exception{
         
         return freeMapper.replyInsert(replyVO);
     }
     
-   /* public int replyUpdate(ReplyVO replyVO) throws Exception{
+   public int replyUpdate(ReplyVO replyVO) throws Exception{
         
         return freeMapper.replyUpdate(replyVO);
     }
@@ -98,7 +96,7 @@ public class FreeServiceImpl implements FreeService {
     public int replyDelete(int reno) throws Exception{
         
         return freeMapper.replyDelete(reno);
-    }*/
+    }
 
 
 	

@@ -6,9 +6,9 @@
 
 <head>
     
-    <!-- Header -->
+    <!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
-   	<!-- Header -->
+   	<!-- link -->
     
     <style>
 		.btn11 {
@@ -235,7 +235,7 @@
 			        <p style="text-align:center; font-family:Meiryo; font-size:18px; color:white;">KakaoTalk : camping_info</p>
 			        <p style="text-align:center; font-family:Meiryo; font-size:18px; margin-top:-10px; color:white;">e-mail : camping@gmail.com</p>
 				</div>
-	        </div> 
+	        </div> <br><br>
 	        <br>
 	      </div>
     </section>

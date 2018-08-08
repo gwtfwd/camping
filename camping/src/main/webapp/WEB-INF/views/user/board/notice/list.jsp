@@ -67,7 +67,7 @@
 				            <tr>
 				                <th style="width:10%">No</th>
 				                <th style="width:40%">Subject</th>
-				                <th style="width:20%">Name</th>
+				                <th style="width:20%">Author</th>
 				                <th style="width:20%">Date</th>
 				                <th style="width:10%">View</th>
 				            </tr>
@@ -77,7 +77,7 @@
 					    	<tr>
 				    			<td>${notice.no}</td>
 					        	<td><a href="/camping/notice/detail?no=${notice.no}" style="color:black;">${notice.subject}</a></td>
-					        	<td>${notice.name}</td>
+					        	<td>${notice.registered_id}</td>
 					        	<td><fmt:formatDate value="${notice.registered_at}" pattern="yyyy-MM-dd" /></td>
 					        	<td>${notice.view}</td>
 					        </tr>

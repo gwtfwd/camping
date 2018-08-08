@@ -135,7 +135,18 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/login/findId", method = RequestMethod.GET)
+	public String findIdGet() {
+		
+		return "/user/member/findId";
+	}
 	
+	
+	@RequestMapping(value = "/login/findPw", method = RequestMethod.GET)
+	public String findPwGet() {
+		
+		return "/user/member/findPw";
+	}
 	
 	
 	

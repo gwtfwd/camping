@@ -1838,6 +1838,8 @@ pre code {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+
+
 @media screen and (prefers-reduced-motion: reduce) {
   .form-control {
     transition: none;
@@ -4653,6 +4655,7 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 
+
 .page-link {
   position: relative;
   display: block;
@@ -4662,6 +4665,7 @@ input[type="button"].btn-block {
   color: #000;
   background-color: #fff;
   border: 1px solid #fff;
+  border-radius:60px;
 }
 
 .page-link:hover {
@@ -4670,6 +4674,7 @@ input[type="button"].btn-block {
   text-decoration: none;
   background-color: #fff;
   border-color: #fff;
+  border-radius:60px;
 }
 
 .page-link:focus {
@@ -4681,6 +4686,19 @@ input[type="button"].btn-block {
 .page-link:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
+
+.page-link:active {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #fff;
+  background-color: #6bacce;
+  border: 1px solid #6bacce;
+  border-radius:60px;
+} 
+
 
 .page-item:first-child .page-link {
   margin-left: 0;

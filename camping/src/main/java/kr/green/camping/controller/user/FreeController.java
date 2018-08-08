@@ -73,8 +73,8 @@ public class FreeController {
 	}
 	
 	
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String freeDetailGet(FreeVO vo, Model model, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/detail")
+	public String freeDetailPost(FreeVO vo, Model model, HttpServletRequest request) throws Exception {
 		
 		freeService.view(vo);
 		
@@ -92,17 +92,20 @@ public class FreeController {
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("free", free);
-	    
+		
 		return "user/board/free/detail";
 	}
 	
+	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String freeWriteGet(HttpServletRequest request, Model model) {
+	public String boardWriteGet(HttpServletRequest request, Model model, FreeVO vo, MultipartFile file) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO)session.getAttribute("user");
-
+		
+		vo.setRegistered_id(user.getId());
+		vo.setName(user.getName());
 		
 		boolean member = false;
 		if( user != null) {
@@ -114,6 +117,7 @@ public class FreeController {
 		
 		return "user/board/free/write";
 	}
+	
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String boardWritePost(HttpServletRequest request, Model model, FreeVO vo, MultipartFile file) throws Exception {
@@ -140,7 +144,7 @@ public class FreeController {
 	
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public String freeModifyGet(HttpServletRequest request,FreeVO vo, Model model, int no) throws Exception {
+	public String freeModifyGet(HttpServletRequest request, FreeVO vo, Model model, int no) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -159,11 +163,11 @@ public class FreeController {
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		
-		return "user/board/free/modify";
+		return "/user/board/free/modify";
 	}
 	
 	@RequestMapping(value="/modify", method= RequestMethod.POST)
-	public String freeModifyPost(FreeVO vo, int no, HttpServletRequest request, Model model) throws Exception {
+	public String freeModifyPost(FreeVO vo, HttpServletRequest request, Model model) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -204,9 +208,29 @@ public class FreeController {
 	
 	  @RequestMapping("/reply/list") //댓글 리스트
 	    @ResponseBody
-	    private List<ReplyVO> replyList(Model model, Integer bno) throws Exception{
-	        
-	        return freeService.replyList(bno);
+	    private List<ReplyVO> replyList(Model model, Integer bno, Criteria cri) throws Exception{
+		  
+		if(cri == null) 
+				cri = new Criteria();
+			
+		ArrayList<ReplyVO> list = null;
+		int totalCount = 0;
+			
+		
+		list = (ArrayList)freeService.getReplyPage(cri); 
+		totalCount = freeService.replyCount();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(cri);
+		pageMaker.setTotalCount(totalCount);
+
+		
+		model.addAttribute("list", list);
+	    model.addAttribute("pageMaker", pageMaker);
+	    
+	    System.out.println("totalCount : " + totalCount + "pageMaker : " + pageMaker);
+        
+        return freeService.replyList(bno);
 	    }
 	    
 	    @RequestMapping("/reply/insert") //댓글 작성 
@@ -224,7 +248,7 @@ public class FreeController {
 	        return freeService.replyInsert(replyVO);
 	    }
 	    
-	    /*@RequestMapping("/reply/update") //댓글 수정  
+	    @RequestMapping("/reply/update") //댓글 수정  
 	    @ResponseBody
 	    private int replyUpdate(@RequestParam int reno, @RequestParam String recontent) throws Exception{
 	        
@@ -240,7 +264,7 @@ public class FreeController {
 	    private int replyDelete(@PathVariable int reno) throws Exception{
 	        
 	        return freeService.replyDelete(reno);
-	    }*/
+	    }
 
 
 	

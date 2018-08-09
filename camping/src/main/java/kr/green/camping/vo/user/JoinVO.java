@@ -14,6 +14,7 @@ public class JoinVO {
 	private String admin;
 	
 	
+	
 	public String getPostcode() {
 		return postcode;
 	}

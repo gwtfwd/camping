@@ -1,11 +1,13 @@
 package kr.green.camping.service.impl.user;
 
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import kr.green.camping.dao.user.MemberMapper;
 import kr.green.camping.service.user.MemberService;
+import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 
 
@@ -38,23 +40,88 @@ public class MemberServiceImpl implements MemberService{
 
 		return user;
 	}
+	
+	@Override
+	public void modifyJoin(JoinVO vo) throws Exception {
+		memberMapper.modifyJoin(vo);
+	}
 
 
-
-
-	/*@Override
-	public int chkDupId(JoinVO user, String id) {
-
-		int count = 0;
+	/*아이디찾기*/
+	@Override
+	public JoinVO getid(String name, String phone) {
 		
-		count = memberMapper.chkDupId(id);
+		JoinVO user = memberMapper.getid(name, phone);
+
+		return user;
+	}	
 		
-		return count;
-	}*/
-
-
-
-
+	@Override
+	public boolean findid(String name, String phone) {
+		
+		JoinVO user = getid(name, phone);
+		
+		if( user != null ) {
+			String id = user.getId();
+			return true;
+		}
+		
+		return false;
+	}
 	
 	
+	/*비밀번호찾기*/
+	@Override
+	public JoinVO getpw(String id, String phone, String email) {
+		
+		JoinVO user = memberMapper.getpw(id, phone, email);
+
+		return user;
+	}	
+		
+	@Override
+	public boolean findpw(String id, String phone, String email) {
+		
+		JoinVO user = getpw(id, phone, email);
+		
+		if( user != null ) {
+			String pw = user.getPw();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+		
+		
+		
 }
+	
+	
+	
+	
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

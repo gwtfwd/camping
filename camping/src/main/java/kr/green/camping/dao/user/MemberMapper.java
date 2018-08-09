@@ -12,8 +12,20 @@ public interface MemberMapper {
 	public void join(@Param("join") JoinVO join);
 	
 	public JoinVO loginById(@Param("id") String id);
+	public void modifyJoin(@Param("join") JoinVO join) throws Exception;
 	
-	/*public int chkDupId(@Param("id") String id);*/
+	
+	
+	
+	// 아이디찾기
+	public JoinVO getid(@Param("name") String name, @Param("phone") String phone);
+	public boolean findid(@Param("name") String name, @Param("phone") String phone);
+	
+	
+	// 비밀번호찾기
+	public JoinVO getpw(@Param("id") String id, @Param("phone") String phone, @Param("email") String email);
+	public boolean findpw(@Param("id") String id, @Param("phone") String phone, @Param("email") String email);
+	
 	
 }
 

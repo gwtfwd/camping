@@ -172,7 +172,7 @@
 							<li class="page-item"><a class="page-link fontH" href="/camping/search/type/list?page=${pageMaker.startPage-1}&search=${search}&type=${type}"> < </a></li>
 						  </c:if>
 						  <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-						  	<li class="page-item"><a class="page-link fontH" href="/camping/search/type/list?page=${page }&search=${search}&type=${type}">${page }</a></li>
+						  	<li class="page-item <c:out value="${page==cri.page?'active':''}"/>"><a class="page-link fontH" href="/camping/search/type/list?page=${page }&search=${search}&type=${type}">${page }</a></li>
 						  </c:forEach>
 						  <c:if test="${pageMaker.next }">
 						  	<li class="page-item"><a class="page-link fontH" href="/camping/search/type/list?page=${pageMaker.endPage+1}&search=${search}&type=${type}"> > </a></li>

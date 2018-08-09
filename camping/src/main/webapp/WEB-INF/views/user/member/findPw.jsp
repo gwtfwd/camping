@@ -30,6 +30,30 @@
 	<script>
 		$(document).ready(function(){
 			  $('#phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});
+			  
+			//  찾기
+			$('#formId').submit(function(){
+				// id가 name인 객체를 name이라는 변수에 저장
+				var id = $("#id");
+				if(id.val() == ""){
+					alert("아이디을 입력하세요.");
+					
+					// return false 면 submit을 실행하지 않고 멈춤
+					return false;
+				}
+				
+				var phone = $("#phone");
+				if(phone.val() == ""){
+					alert("전화번호를 입력하세요.");
+					return false;
+				}
+				var email = $("#email");
+				if(email.val() == ""){
+					alert("이메일을 입력하세요.");
+					return false;
+				}
+				return true;
+			});
 		});
 	</script>
    	
@@ -40,6 +64,8 @@
 	<div class="fontH" style="background-image: linear-gradient(-60deg, #f4d03f 0%, #16a085 100%); color:#fff; padding:20px;">
 		비밀번호 찾기
 	</div>
+
+
 
  	<div class="container">
 		<form method="post" id="formId" style="margin-top:30px;">
@@ -61,7 +87,7 @@
 			</div>
 			
 			<div style="width:445px; margin-left:20px; border-top: 1px solid #ced4da;  margin-top:30px; font-size:85%" ><br>
-                가입하신 이메일로 비밀번호를 전송해드리겠습니다.
+                가입하신 이메일로 임시비밀번호를 전송해드리겠습니다.
             </div>
 
 

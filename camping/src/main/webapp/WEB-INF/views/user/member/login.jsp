@@ -99,7 +99,7 @@
 	    
 	    /* 아이디찾기 */
 	    function openfindId(){  
-		    window.open("/camping/member/login/findId",'_blank','toolbar=no,location=no,status=no, menubar=no, scrollbars=auto, width=490, height=400, top=100, left=100');  
+		    window.open("/camping/member/login/findId",'_blank','toolbar=no,location=no,status=no, menubar=no, scrollbars=auto, width=490, height=530, top=100, left=100');  
 		} 
 
 	    /* 비밀번호찾기 */

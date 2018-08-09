@@ -27,6 +27,13 @@
 	  border-radius: 0px;
 	  transition: all 200ms ease;
 	}
+	
+	.page-item.active .page-link {
+	  z-index: 1;
+	  color: #000;
+	  background-color: #fafafa;
+	  border-color: #fafafa;
+	}
 	</style>
 
 </head>
@@ -34,7 +41,6 @@
 	<!-- Header -->
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
-
 	<div class="container" style="height: 950px">
 		<br>
 		<br>
@@ -60,45 +66,50 @@
 				</div>
 			</div>
 		</form>
-			<div class="col-md-12" style="margin-top:7px;">
-				<table class="table table-hover" style="width: 100%">
-					<thead style="text-align: center;">
+		
+		<div class="col-md-12" style="margin-top:7px;">
+			<table class="table table-hover" style="width: 100%">
+				<thead style="text-align: center;">
+					<tr>
+						<th style="width: 10%">No</th>
+						<th style="width: 40%">Subject</th>
+						<th style="width: 20%">Author</th>
+						<th style="width: 20%">Date</th>
+						<th style="width: 10%">View</th>
+					</tr>
+				</thead>
+				<tbody class="fontH" style="text-align: center;">
+					<c:forEach items="${list}" var="free">
 						<tr>
-							<th style="width: 10%">No</th>
-							<th style="width: 40%">Subject</th>
-							<th style="width: 20%">Author</th>
-							<th style="width: 20%">Date</th>
-							<th style="width: 10%">View</th>
+							<td>${free.no}</td>
+							<td><a href="/camping/free/detail?no=${free.no}" style="color: black;">${free.subject}</a></td>
+							<td>${free.registered_id}</td>
+							<td><fmt:formatDate value="${free.registered_at}" pattern="yyyy-MM-dd" /></td>
+							<td>${free.view}</td>
 						</tr>
-					</thead>
-					<tbody class="fontH" style="text-align: center;">
-						<c:forEach items="${list}" var="free">
-							<tr>
-								<td>${free.no}</td>
-								<td><a href="/camping/free/detail?no=${free.no}" style="color: black;">${free.subject}</a></td>
-								<td>${free.registered_id}</td>
-								<td><fmt:formatDate value="${free.registered_at}" pattern="yyyy-MM-dd" /></td>
-								<td>${free.view}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table><br>
-				<!-- <a href="/camping/free/write"><button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-top: -80px; margin-right: 15px;">Write</button></a><br> -->
-				
-	
+					</c:forEach>
+				</tbody>
+			</table><br>
+			<!-- <a href="/camping/free/write"><button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-top: -80px; margin-right: 15px;">Write</button></a><br> -->
+			<div style="height:32px;">
+				<a href="/camping/free/write"><button type="button" class="btn11 btn-primary11 fontH pull-right" >Write</button></a><br>
+			</div>
+			<div>
 				<ul class="pagination fontH" style="justify-content: center;">
+				
 					<c:if test="${pageMaker.prev }">
 						<li class="page-item"><a class="page-link fontH" href="/camping/free/list?page=${pageMaker.startPage-1}&search=${search}&type=${type}"> < </a></li>
 					</c:if>
 					<c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-						<li class="page-item"><a class="page-link fontH" href="/camping/free/list?page=${page }&search=${search}&type=${type}">${page }</a></li>
+						<li class="page-item <c:out value="${page==cri.page?'active':''}"/>"><a class="page-link fontH" href="/camping/free/list?page=${page }&search=${search}&type=${type}">${page }</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next }">
 						<li class="page-item"><a class="page-link fontH" href="/camping/free/list?page=${pageMaker.endPage+1}&search=${search}&type=${type}"> > </a></li>
 					</c:if>
 				</ul>
 			</div>
-			<a href="/camping/free/write"><button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-top: -80px; margin-right: 15px;">Write</button></a><br>
+		</div>
+		
 	</div>
 
 	<!-- Footer -->

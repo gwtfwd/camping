@@ -68,6 +68,8 @@ public class FreeController {
 	    model.addAttribute("pageMaker", pageMaker);
 	    model.addAttribute("search",search);
 	    model.addAttribute("type",type);
+	    model.addAttribute("cri",cri);
+	    
 		
 		return "user/board/free/list";
 	}
@@ -159,6 +161,7 @@ public class FreeController {
 		FreeVO free = freeService.getFree(vo);
 		free.setNo(no);
 		
+		
 		model.addAttribute("free", free);
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
@@ -178,6 +181,10 @@ public class FreeController {
 		if( user != null) {
 			member = true;
 		}
+		
+		vo.setUpdated_id(user.getId());
+		
+		System.out.println(vo.getUpdated_id());
 		
 		freeService.modifyFree(vo);
 		
@@ -244,8 +251,15 @@ public class FreeController {
 	    	replyVO.setBno(bno);
 	    	replyVO.setRecontent(recontent);
 	    	replyVO.setReid(user.getId());  
+	    	
+	    	// 게시글리스트에 댓글수 나타내기 : 댓글을 등록한 후 댓글수의 정보를 불러오고,해당게시글의 댓글수를 저장
+	    	freeService.replyInsert(replyVO);
 	        
-	        return freeService.replyInsert(replyVO);
+	    	//게시글의 정보를 불러오는 서비스를 호출하고 
+	    	
+	    	
+	    	
+	        return 1;
 	    }
 	    
 	    @RequestMapping("/reply/update") //댓글 수정  

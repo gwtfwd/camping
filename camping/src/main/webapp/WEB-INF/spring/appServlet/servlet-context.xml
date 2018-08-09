@@ -28,8 +28,8 @@
 	
 	<beans:bean id="loginInterceptor" class="kr.green.camping.interceptor.LoginInterceptor"></beans:bean>
 	
-	
 	<beans:bean id="UserInterceptor" class="kr.green.camping.interceptor.UserInterceptor"></beans:bean>
+	
 	
 	
 	<interceptors>

@@ -4687,18 +4687,6 @@ input[type="button"].btn-block {
   cursor: pointer;
 }
 
-.page-link:active {
-  position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #fff;
-  background-color: #6bacce;
-  border: 1px solid #6bacce;
-  border-radius:60px;
-} 
-
 
 .page-item:first-child .page-link {
   margin-left: 0;
@@ -4714,8 +4702,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #6bacce;
+  border-color: #6bacce;
 }
 
 .page-item.disabled .page-link {

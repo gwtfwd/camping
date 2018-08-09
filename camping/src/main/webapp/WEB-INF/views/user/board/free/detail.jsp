@@ -341,12 +341,12 @@
 				        <input type="hidden" name="bno" value="${free.no}"> 
 				        <c:if test="${member }">
 				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
-				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
+				        	<input class="fontH" type="password" name="reid" size="20" maxlength="20" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
 				        	<textarea name="recontent" rows="5" cols="160" maxlength="1500" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
 				        </c:if>
 				        <c:if test="${!member }">
 				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
-				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
+				        	<input class="fontH" type="password" name="reid" size="20" maxlength="20" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
 				        	<textarea name="recontent" rows="5" cols="160" maxlength="1500" onfocus="needLogin(this)" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
 				        </c:if><br>
 				        <button class="btn33 btn-primary33 fontH pull-right" type="button" name="replyInsertBtn" style="margin-bottom:10px;">OK</button>
@@ -366,7 +366,7 @@
 					<li class="page-item"><a class="page-link fontH" href="/camping/free/reply/list?page=${pageMaker.startPage-1}"> < </a></li>
 				</c:if>
 				<c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-					<li class="page-item"><a class="page-link fontH" href="/camping/free/reply/list?page=${page }">${page }</a></li>
+					<li class="page-item <c:out value="${page==cri.page?'active':''}"/>"><a class="page-link fontH" href="/camping/free/reply/list?page=${page}" >${page }</a></li>
 				</c:forEach>
 				<c:if test="${pageMaker.next }">
 					<li class="page-item"><a class="page-link fontH" href="/camping/free/reply/list?page=${pageMaker.endPage+1}"> > </a></li>

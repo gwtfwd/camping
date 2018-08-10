@@ -5,6 +5,7 @@
 <mapper namespace="kr.green.camping.dao.user.FreeMapper">
 
 	
+	<!-- 자유게시판 -->
 	<select id="getFreePage" resultType="kr.green.camping.vo.user.FreeVO">
 		select * from free order by no desc limit #{pageStart}, #{perPageNum} 
 	</select>

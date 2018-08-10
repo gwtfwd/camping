@@ -45,6 +45,11 @@ public class MemberServiceImpl implements MemberService{
 	public void modifyJoin(JoinVO vo) throws Exception {
 		memberMapper.modifyJoin(vo);
 	}
+	
+	@Override
+	public void deleteUser(JoinVO vo) throws Exception {
+		memberMapper.deleteUser(vo);
+	}
 
 
 	/*아이디찾기*/

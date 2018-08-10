@@ -10,8 +10,8 @@
 	</select>
 	
 	<insert id="join" >
-		insert into account (id, name, gender, pw, phone, birth, email, postcode, address, admin) 
-		values (#{join.id}, #{join.name}, #{join.gender}, #{join.pw}, #{join.phone}, #{join.birth}, #{join.email}, #{join.postcode}, #{join.address}, #{join.admin})
+		insert into account (id, name, gender, pw, phone, birth, email, postcode, address, address_detail, admin) 
+		values (#{join.id}, #{join.name}, #{join.gender}, #{join.pw}, #{join.phone}, #{join.birth}, #{join.email}, #{join.postcode}, #{join.address},#{join.address_detail}, #{join.admin})
 	</insert>
 	
 	<select id="loginById" resultType="kr.green.camping.vo.user.JoinVO">
@@ -20,9 +20,14 @@
 	
 	<update id="modifyJoin">
 		update account set name=#{join.name}, gender=#{join.gender}, pw=#{join.pw}, phone=#{join.phone}, birth=#{join.birth}, 
-							email=#{join.email},postcode=#{join.postcode},address=#{join.address},admin=#{join.admin} 
+							email=#{join.email},postcode=#{join.postcode},address=#{join.address},address_detail=#{join.address_detail},admin=#{join.admin} 
 		where id=#{join.id}
 	</update>
+	
+	<delete id="deleteUser">
+		delete from account where id = #{join.id}
+	</delete>
+	
   	
 	
 	

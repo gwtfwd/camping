@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.camping.service.user.MemberService;
+import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 
 
@@ -194,7 +195,7 @@ public class MemberController {
 		return "/user/member/findPw";
 	}
 	
-	// 임시비밀번호
+	// 임시비밀번호 생성
 	public static String getNewPw() throws Exception {
 		
 		char[] charSet = { '0','1','2','3','4','5','6','7','8','9','A','B',
@@ -248,7 +249,7 @@ public class MemberController {
 	
 	// mailSending 코드
 	@RequestMapping(value = "/mail/mailSending")
-	public String mailSending(String email, String newPw, HttpServletRequest request, Model model) {
+	public String mailSending(String email, String newPw, HttpServletRequest request, Model model) throws Exception{
 
 	    String tomail  = email;    // 받는 사람 이메일
 	    String title   = "변경된 비밀번호 입니다.";      // 제목
@@ -276,6 +277,172 @@ public class MemberController {
 	    return "redirect:/member/login/findPw/result";
 	}
 	
+	
+	
+	// 마이페이지 비밀번호 입력
+	@RequestMapping(value = "/confirmPw", method = RequestMethod.GET)
+	public String confirmGet(HttpServletRequest request, Model model) throws Exception{
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO) session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		
+		return "/user/member/confirmPw";
+	}
+	
+	
+	@RequestMapping(value = "/confirmPw", method = RequestMethod.POST)
+	public String confirmPost(HttpServletRequest request, Model model) throws Exception {
+		
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO) session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		String pw = request.getParameter("pw");
+		
+		if( passwordEncoder.matches(pw, user.getPw())) {
+			
+			return "redirect:/member/mypageDetail";
+		}
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+
+		
+		return "redirect:/member/confirmPw";
+	}
+	
+	
+	// 마이페이지 상세
+	@RequestMapping(value = "/mypageDetail", method = RequestMethod.GET)
+	public String mypageDetailGet(HttpServletRequest request, Model model) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO) session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		JoinVO join = memberService.loginById(user.getId());
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		model.addAttribute("join", join);
+		
+		return "/user/member/myDetail";
+	}
+	
+	
+	@RequestMapping(value = "/mypageDetail", method = RequestMethod.POST)
+	public String mypageDetailPost(HttpServletRequest request, Model model, JoinVO join) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO) session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		model.addAttribute("join", join);
+		
+		return "/user/member/myDetail";
+	}
+	
+	
+	// 회원정보 수정
+	@RequestMapping(value = "/mypageModify", method = RequestMethod.GET)
+	public String freeModifyGet(HttpServletRequest request, Model model) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO)session.getAttribute("user");
+		
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		JoinVO join = memberService.loginById(user.getId());
+		
+		model.addAttribute("join", join);
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		
+		return "/user/member/myModify";
+	}
+		
+		
+	@RequestMapping(value="/mypageModify", method= RequestMethod.POST)
+	public String mypageModifyPost(JoinVO vo, HttpServletRequest request, Model model, String pw) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO)session.getAttribute("user");
+		
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		JoinVO join = memberService.loginById(user.getId());
+		
+		if(pw == null || pw == "") {
+			vo.setPw(user.getPw());
+		}
+		else {
+			String encPw = passwordEncoder.encode(vo.getPw());
+			vo.setPw(encPw);
+		}
+		
+		vo.setId(join.getId());
+		vo.setAdmin("user");
+		
+		memberService.modifyJoin(vo);
+		
+			
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		model.addAttribute("join", join);
+		
+		return "redirect:/member/mypageDetail";
+	}
+	
+	
+	// 회원정보 삭제
+	@RequestMapping(value = "/mypageDelete")
+	public String mypageDeletePost(JoinVO vo) throws Exception {
+		
+		memberService.deleteUser(vo);
+		
+		System.out.println(" id : "+vo.getId());
+		
+		return "redirect:/member/logout";
+	}
 	
 }
 

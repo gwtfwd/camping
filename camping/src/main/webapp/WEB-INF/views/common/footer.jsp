@@ -9,6 +9,7 @@
 	    width:100%;
 	    height:50px;   
 	    background:#ccc;
+	    margin-top:70px;
 	}
 	</style> 
 

@@ -87,22 +87,18 @@
 		<br><br><br><br>
 		
 		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
-		<h3 style="text-align:center; font-family:Segoe Print;">Join</h3> <br><br>
+		<h4 class="fontH" style="text-align:center;">회원정보수정</h4> <br><br>
 		
 		<form method="post" id="formId">
 			<div class="row"> 
 				<div class="col-md-1"></div>
 				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
-					<label class="control-label fontH" for="id">아이디<b style="color: red;">&nbsp;*</b></label>
+					<label class="control-label fontH" for="id">아이디</label>
 				</div>
 				
-				<div class="col-md-6">
-					<input type="text" class="form-control fontH" id="id" name="id" autocomplete="off" style="width:540px;" tabindex=1>
-				</div>
-					
-				<div class="col-md-2">
-					<button type="button" class="btn22 btn-primary22 fontH" id="dup" style="margin-left:-33px; width:100px;" >중복확인</button>
+				<div class="col-md-7">
+					<input type="text" class="form-control fontH" id="id" name="id" value="${join.id }" autocomplete="off" readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -116,7 +112,7 @@
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="name" name="name" autocomplete="off" tabindex=2>
+					<input type="text" class="form-control fontH" id="name" name="name" autocomplete="off" value="${join.name}" tabindex=1>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -132,8 +128,8 @@
 				
 				<div class="col-md-7">
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio"  name="gender" value="male" style="font-size:13px; margin-top:12px;" checked>&nbsp;남자 &nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio"  name="gender" value="female" style="font-size:13px; margin-top:12px;">&nbsp;여자
+					<input type="radio"  name="gender" value="male" style="font-size:13px; margin-top:12px;" <c:out value="${join.gender.compareTo('male')==0?'checked':'' }"/> >&nbsp;남자 &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio"  name="gender" value="female" style="font-size:13px; margin-top:12px;" <c:out value="${join.gender.compareTo('female')==0?'checked':'' }"/>>&nbsp;여자
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -148,7 +144,7 @@
 				</div>
 				
 				<div class="col-md-7">
-					<input type="password" class="form-control fontH" id="pw" name="pw" tabindex=3>
+					<input type="password" class="form-control fontH" id="pw" name="pw" tabindex=2>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -164,7 +160,7 @@
 				</div>
 				
 				<div class="col-md-7">
-					<input type="password" class="form-control fontH" id="pwck" name="pwck" tabindex=4>
+					<input type="password" class="form-control fontH" id="pwck" name="pwck" tabindex=3>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -180,7 +176,7 @@
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="phone" name="phone" autocomplete="off" tabindex=5>
+					<input type="text" class="form-control fontH" id="phone" name="phone" autocomplete="off" value="${join.phone}" tabindex=4>
 				</div>
 	
 				<div class="col-md-1"></div>
@@ -196,7 +192,7 @@
 				</div>
 				
 				<div class="col-md-7">
-					<input type="email" class="form-control fontH" id="email" name="email" autocomplete="off" tabindex=6>
+					<input type="email" class="form-control fontH" id="email" name="email" autocomplete="off" value="${join.email}" tabindex=5>
 				</div>
 				
 				<div class="col-md-1"></div>
@@ -212,7 +208,7 @@
 				</div>
 				
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="birth" name="birth" autocomplete="off" tabindex=7> 
+					<input type="text" class="form-control fontH" id="birth" name="birth" autocomplete="off" value="${join.birth}" tabindex=7> 
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -229,28 +225,27 @@
 				<div class="col-md-7">
 					<!-- <input type="text" class="form-control fontH" id="address" name="address" autocomplete="off" tabindex=8> -->
 					<div class="row">
-						<div class="col-md-3"><input type="text" class="form-control fontH" id="postcode" name="postcode" onclick="openPostcode()" placeholder="우편번호" ></div>
+						<div class="col-md-3"><input type="text" class="form-control fontH" id="postcode" name="postcode" onclick="openPostcode()" value="${join.postcode}" placeholder="우편번호" ></div>
 						<div class="col-md-3"><input type="button" class="btn22 btn-primary22 fontH" style="width:105px; margin-left:-20px;" onclick="openPostcode()" value="우편번호 >"></div>
 						<div class="col-md-6"></div>
 					</div><br>
 					
 					
-					<input type="text" class="form-control fontH" autocomplete="off" id="address" name ="address" placeholder="주소"><br>
-					<input type="text" class="form-control fontH" autocomplete="off" id="address_detail" name="address_detail" placeholder="상세주소">
+					<input type="text" class="form-control fontH" autocomplete="off" id="address" name ="address" value="${join.address}" placeholder="주소"><br>
+					<input type="text" class="form-control fontH" autocomplete="off" id="address_detail" name="address_detail" value="${join.address_detail}" placeholder="상세주소">
 				</div>
 				
 				<div class="col-md-1"></div>
 			</div>
 			<br><br>
 			
-				<!-- <label for="num">첨부파일:</label> -->
 				
 			<div style="text-align:center;">			
-				<a href="/camping"> 
+				<a href="/camping/member/mypageDetail"> 
 		       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">취소</button>
 		        </a>			
-				<a href="/camping/member/join"> 
-		       		<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px" id="save">완료</button>
+				<a href="/camping/member/mypageModify"> 
+		       		<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px" id="modify">완료</button>
 		        </a>			
 			</div>
 					
@@ -264,37 +259,14 @@
 			  $('#birth').mask('0000/00/00',{placeholder: "yyyy/mm/dd"});			
 			  $('#phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});	
 			  
-			  $('#save').click(function() {
+			  $('#modify').click(function() {
 			       var str = document.getElementById('formId');
 			       str.submit();
-			       alert("회원가입이 성공적으로 완료되었습니다.");
+			       alert("회원정보수정이 성공적으로 완료되었습니다.");
 			    });
 		});
 	
 
-	/*아이디중복검사 */
-	
-		$("#dup").on("click",function(){
-			var id = $("#id").val();			
-			
-			if($("#id").val() == ''){alert('ID를 입력해주세요.'); return;}
-			
-			$.ajax({
-				async:true,
-				type:'POST',
-				data:id,
-				url:"camping/member/dup",
-				dataType:"json",
-				contentType:"application/json; charset=UTF-8",
-				success : function(data){
-					if(data.cnt > 0){
-						alert("입력하신 아이디는 이미 존재합니다.");
-					}else{
-						alert("입력하신 아이디는 사용 가능합니다.");
-					}
-				}
-			});
-		});
 	
 	
 		
@@ -303,18 +275,11 @@
 			$("form")
 				.validate( {
 					rules : {
-						id : {
-							required : true,
-							minlength : 4,
-							regex : /^[[A-Za-z]\w{4,9}$/
-						},
 						pw : {
-							required : true,
 							minlength : 8,
 							regex : /^(?=\w{8,20})(\w*((\d[a-zA-Z])|([a-zA-Z]\d))\w*)$/
 						},
 						pw_chk : {
-							required : true,
 							equalTo : pw
 						},
 						name : {
@@ -332,18 +297,11 @@
 				
 				//규칙체크 실패시 출력될 메시지
 				messages : {
-					id : {
-						required : "필수로입력하세요",
-						minlength : "최소 4글자이상이어야 합니다",
-						regex : "아이디는 영문자와 숫자로 이루어져 있으며, 첫글자는 알파벳이고 5~10자 이어야 합니다."
-					},
 					pw : {
-						required : "필수로입력하세요",
 						minlength : "최소 8글자이상이어야 합니다",
 						regex : "비밀번호는 영문자와 숫자가 1개이상 포함되어 있어야 하며, 8~20자 이어야 합니다."
 					},
 					pw_chk : {
-						required : "필수로입력하세요",
 						equalTo : "비밀번호가 일치하지 않습니다."
 					},
 					name : {

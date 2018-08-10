@@ -2,6 +2,7 @@ package kr.green.camping.dao.user;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 
 
@@ -13,7 +14,7 @@ public interface MemberMapper {
 	
 	public JoinVO loginById(@Param("id") String id);
 	public void modifyJoin(@Param("join") JoinVO join) throws Exception;
-	
+	public void deleteUser(@Param("join") JoinVO join) throws Exception;
 	
 	
 	

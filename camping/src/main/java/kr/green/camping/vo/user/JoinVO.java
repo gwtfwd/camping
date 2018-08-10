@@ -11,9 +11,16 @@ public class JoinVO {
 	private String email;
 	private String postcode;
 	private String address;
-	private String admin;
+	private String address_detail;
+	private String admin;	
 	
 	
+	public String getAddress_detail() {
+		return address_detail;
+	}
+	public void setAddress_detail(String address_detail) {
+		this.address_detail = address_detail;
+	}
 	
 	public String getPostcode() {
 		return postcode;

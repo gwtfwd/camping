@@ -13,8 +13,7 @@ public interface MemberService {
 	
 	public JoinVO loginById(String id) throws Exception;
 	public void modifyJoin(JoinVO vo) throws Exception;
-	
-	
+	public void deleteUser(JoinVO vo) throws Exception;
 	
 	
 	//아이디 찾기

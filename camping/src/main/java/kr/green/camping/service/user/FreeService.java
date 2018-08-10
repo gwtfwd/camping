@@ -11,19 +11,18 @@ import kr.green.camping.vo.user.ReplyVO;
 @Service
 public interface FreeService {
 
-	
+	// 자유게시판
 	public List<FreeVO> getFreePage(Criteria cri) throws Exception;
 	public FreeVO getFree(FreeVO vo) throws Exception;
-	
 	public void writeFree(FreeVO vo) throws Exception;
 	public void modifyFree(FreeVO vo) throws Exception;
 	public void deleteFree(FreeVO vo) throws Exception;
 	public int view(FreeVO vo) throws Exception;
 	
+	
 	// 검색
 	public List<FreeVO> searchFree(Criteria cri, String search, Integer type) throws Exception;
 	public int getCountFree(String search, Integer type) throws Exception;
-	
 	
 	
 	// 댓글

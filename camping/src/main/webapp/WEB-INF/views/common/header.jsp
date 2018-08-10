@@ -70,7 +70,7 @@
             		${user.id}님
             	</li>
             	<li class="nav-item">
-	              <a class="nav-link-en" href="#">MYPAGE</a>
+	              <a class="nav-link-en" href="/camping/member/confirmPw">MYPAGE</a>
 	            </li>
 	            <li class="nav-item">
 	              <a class="nav-link-en" href="/camping/member/logout" >LOGOUT</a>

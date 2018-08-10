@@ -33,6 +33,7 @@ public class FreeController {
 	private FreeService freeService;
 	
 	
+	// 자유게시판 리스트
 	@RequestMapping(value = "/list")
 	public String getFree(Model model, Criteria cri, HttpServletRequest request, Integer type, String search) throws Exception {
 		
@@ -75,6 +76,7 @@ public class FreeController {
 	}
 	
 	
+	// 자유게시판 상세페이지
 	@RequestMapping(value = "/detail")
 	public String freeDetailPost(FreeVO vo, Model model, HttpServletRequest request) throws Exception {
 		
@@ -99,6 +101,7 @@ public class FreeController {
 	}
 	
 	
+	// 자유게시판 등록
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String boardWriteGet(HttpServletRequest request, Model model, FreeVO vo, MultipartFile file) throws Exception {
 		
@@ -145,6 +148,7 @@ public class FreeController {
 	}
 	
 	
+	// 자유게시판 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String freeModifyGet(HttpServletRequest request, FreeVO vo, Model model, int no) throws Exception {
 		
@@ -168,6 +172,7 @@ public class FreeController {
 		
 		return "/user/board/free/modify";
 	}
+	
 	
 	@RequestMapping(value="/modify", method= RequestMethod.POST)
 	public String freeModifyPost(FreeVO vo, HttpServletRequest request, Model model) throws Exception {
@@ -194,29 +199,22 @@ public class FreeController {
 		return "redirect:/free/list";
 	}
 	
+	
+	// 자유게시판 삭제
 	@RequestMapping(value = "/delete")
 	public String freeDeletePost(FreeVO vo) throws Exception {
-		
 		
 		freeService.deleteFree(vo);
 		
 		return "redirect:/free/list";
 	}
 	
-	// 댓글저장
-    /*@RequestMapping(value = "/ReplySave")
-    public String ReplySave(HttpServletRequest request, ReplyVO vo) throws Exception {
-        
-    	freeService.insertReply(vo);
 
-        return "redirect:/free/detail?no=" + vo.getBrdno();
-    }*/
-
-	
-	  @RequestMapping("/reply/list") //댓글 리스트
-	    @ResponseBody
-	    private List<ReplyVO> replyList(Model model, Integer bno, Criteria cri) throws Exception{
-		  
+	// 자유게시판 댓글
+	@RequestMapping("/reply/list")
+    @ResponseBody
+    private List<ReplyVO> replyList(Model model, Integer bno, Criteria cri) throws Exception{
+	  
 		if(cri == null) 
 				cri = new Criteria();
 			
@@ -230,55 +228,57 @@ public class FreeController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totalCount);
-
+	
 		
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
 	    
 	    System.out.println("totalCount : " + totalCount + "pageMaker : " + pageMaker);
+	    
+	    return freeService.replyList(bno);
+    }
+	   
+	//댓글 작성 
+    @RequestMapping("/reply/insert") 
+    @ResponseBody
+    private int replyInsert(@RequestParam int bno, @RequestParam String recontent, HttpServletRequest request) throws Exception{
         
-        return freeService.replyList(bno);
-	    }
+    	HttpSession session = request.getSession();
+		JoinVO user = (JoinVO)session.getAttribute("user");
+    	
+    	ReplyVO replyVO = new ReplyVO();
+    	replyVO.setBno(bno);
+    	replyVO.setRecontent(recontent);
+    	replyVO.setReid(user.getId());  
+    	
+    	// 게시글리스트에 댓글수 나타내기 : 댓글을 등록한 후 댓글수의 정보를 불러오고,해당게시글의 댓글수를 저장
+    	freeService.replyInsert(replyVO);
+        
+    	//게시글의 정보를 불러오는 서비스를 호출하고 
+    	
+        return 1;
+    }
 	    
-	    @RequestMapping("/reply/insert") //댓글 작성 
-	    @ResponseBody
-	    private int replyInsert(@RequestParam int bno, @RequestParam String recontent, HttpServletRequest request) throws Exception{
-	        
-	    	HttpSession session = request.getSession();
-			JoinVO user = (JoinVO)session.getAttribute("user");
-	    	
-	    	ReplyVO replyVO = new ReplyVO();
-	    	replyVO.setBno(bno);
-	    	replyVO.setRecontent(recontent);
-	    	replyVO.setReid(user.getId());  
-	    	
-	    	// 게시글리스트에 댓글수 나타내기 : 댓글을 등록한 후 댓글수의 정보를 불러오고,해당게시글의 댓글수를 저장
-	    	freeService.replyInsert(replyVO);
-	        
-	    	//게시글의 정보를 불러오는 서비스를 호출하고 
-	    	
-	    	
-	    	
-	        return 1;
-	    }
-	    
-	    @RequestMapping("/reply/update") //댓글 수정  
-	    @ResponseBody
-	    private int replyUpdate(@RequestParam int reno, @RequestParam String recontent) throws Exception{
-	        
-	    	ReplyVO replyVO = new ReplyVO();
-	    	replyVO.setReno(reno);
-	    	replyVO.setRecontent(recontent);
-	        
-	        return freeService.replyUpdate(replyVO);
-	    }
-	    
-	    @RequestMapping("/reply/delete/{reno}") //댓글 삭제  
-	    @ResponseBody
-	    private int replyDelete(@PathVariable int reno) throws Exception{
-	        
-	        return freeService.replyDelete(reno);
-	    }
+    //댓글 수정 
+    @RequestMapping("/reply/update")  
+    @ResponseBody
+    private int replyUpdate(@RequestParam int reno, @RequestParam String recontent) throws Exception{
+        
+    	ReplyVO replyVO = new ReplyVO();
+    	replyVO.setReno(reno);
+    	replyVO.setRecontent(recontent);
+        
+        return freeService.replyUpdate(replyVO);
+    }
+    
+    
+    //댓글 삭제
+    @RequestMapping("/reply/delete/{reno}")   
+    @ResponseBody
+    private int replyDelete(@PathVariable int reno) throws Exception{
+        
+        return freeService.replyDelete(reno);
+    }
 
 
 	

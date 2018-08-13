@@ -56,10 +56,10 @@ public class MemberController {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
-		JoinVO user = memberService.loginById(id);
+		JoinVO user = memberService.login(id, pw);
 		
 		
-		if( user != null && passwordEncoder.matches(pw, user.getPw())) {
+		if( user != null ) {
 			
 			model.addAttribute("user", user);
 			
@@ -135,7 +135,7 @@ public class MemberController {
 	@RequestMapping(value = "/needLogin")
 	public ModelAndView needLogin() throws Exception {
 		
-		ModelAndView mav = new ModelAndView("/user/board/free/loginWarning");
+		ModelAndView mav = new ModelAndView("/user/member/loginWarning");
 		mav.addObject("msg","로그인 후 이용해주세요.");
 		
 		return mav;

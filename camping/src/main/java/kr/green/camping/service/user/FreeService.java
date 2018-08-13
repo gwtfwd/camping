@@ -26,12 +26,12 @@ public interface FreeService {
 	
 	
 	// 댓글
+	public Integer replyCount(int bno) throws Exception;
 	public List<ReplyVO> replyList(Integer bno) throws Exception;
 	public List<ReplyVO> getReplyPage(Criteria cri) throws Exception;
-	public int replyCount() throws Exception;
-	public int replyInsert(ReplyVO replyVO) throws Exception;
-	public int replyUpdate(ReplyVO replyVO) throws Exception;
-	public int replyDelete(int reno) throws Exception;
+	public Integer replyInsert(ReplyVO replyVO) throws Exception;
+	public Integer replyUpdate(ReplyVO replyVO) throws Exception;
+	public Integer replyDelete(int reno) throws Exception;
 
 	
 	

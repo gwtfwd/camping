@@ -256,16 +256,24 @@
 	<!-- mask -->
 	<script>
 		$(document).ready(function(){
+			
 			  $('#birth').mask('0000/00/00',{placeholder: "yyyy/mm/dd"});			
 			  $('#phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});	
 			  
 			  $('#modify').click(function() {
 			       var str = document.getElementById('formId');
 			       str.submit();
-			       alert("회원정보수정이 성공적으로 완료되었습니다.");
+			       
+			       if (confirm("수정하시겠습니까?") == true){    //확인
+			    	   alert("회원정보수정이 성공적으로 완료되었습니다."); 
+			    	   document.form.submit();
+			    	    
+			    	}else{   //취소
+			    	    return false;
+			    	}
 			    });
+			  
 		});
-	
 
 	
 	

@@ -28,8 +28,9 @@
 	
 	<beans:bean id="loginInterceptor" class="kr.green.camping.interceptor.LoginInterceptor"></beans:bean>
 	
-	<beans:bean id="UserInterceptor" class="kr.green.camping.interceptor.UserInterceptor"></beans:bean>
+	<beans:bean id="userInterceptor" class="kr.green.camping.interceptor.UserInterceptor"></beans:bean>
 	
+	<beans:bean id="authInterceptor" class="kr.green.camping.interceptor.AuthInterceptor"></beans:bean>
 	
 	
 	<interceptors>
@@ -42,7 +43,12 @@
 	
 		<interceptor>
 			<mapping path="/free/write"/>			<!-- 인터셉터가 수행될 페이지 -->
-			<beans:ref bean="UserInterceptor"/>
+			<beans:ref bean="userInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/member/mypageDetail"/>
+			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	
 	

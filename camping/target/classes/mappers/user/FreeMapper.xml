@@ -19,7 +19,7 @@
 	</insert>
 	
 	<update id="modifyFree">
-		update free set subject=#{subject}, contents=#{contents}, updated_at=now(), updated_id=#{registered_id} where no=#{no}
+		update free set subject=#{subject}, contents=#{contents}, updated_at=now(), updated_id=#{registered_id}, reply_cnt = #{reply_cnt } where no=#{no}
 	</update>
 	
 	<delete id="deleteFree">
@@ -32,7 +32,7 @@
 
 	
 	<!-- 검색 -->
-	<select id="searchFree" resultType="kr.green.camping.vo.user.NoticeVO">
+	<select id="searchFree" resultType="kr.green.camping.vo.user.FreeVO">
 		select * from free
 		where 1 = 1 
 			<if test="type==1">
@@ -75,7 +75,7 @@
 	
 	<!-- 댓글 -->
 	
-	<select id="replyCount" resultType="int">
+	<select id="replyCount" resultType="java.lang.Integer">
         select count(*) from reply where bno = #{bno}
     </select>
     
@@ -95,7 +95,7 @@
         update reply set recontent = #{recontent} where reno = #{reno}
     </update>
     
-    <delete id="replyDelete" parameterType="int">
+    <delete id="replyDelete" parameterType="java.lang.Integer">
         delete from reply where reno = #{reno}
     </delete>
 

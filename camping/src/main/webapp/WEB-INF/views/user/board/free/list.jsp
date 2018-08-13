@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -82,7 +81,9 @@
 					<c:forEach items="${list}" var="free">
 						<tr>
 							<td>${free.no}</td>
-							<td><a href="/camping/free/detail?no=${free.no}" style="color: black;">${free.subject}</a></td>
+							<td><a href="/camping/free/detail?no=${free.no}" style="color: black;">${free.subject}</a>
+								<span class="fontH" style="margin-left: 5px;">[${free.reply_cnt}]</span>
+							</td>
 							<td>${free.registered_id}</td>
 							<td><fmt:formatDate value="${free.registered_at}" pattern="yyyy-MM-dd" /></td>
 							<td>${free.view}</td>

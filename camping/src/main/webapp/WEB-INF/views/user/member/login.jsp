@@ -45,7 +45,7 @@
 	 
 	        if (getCookie("id")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
 	            document.loginForm.id.value = getCookie("id"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
-	            document.loginForm.idsave.checked = true; // 체크는 체크됨으로
+	            document.loginForm.idSave.checked = true; // 체크는 체크됨으로
 	        }
 	 
 	    }
@@ -85,7 +85,7 @@
 	            return;
 	        }
 	 
-	        if (document.loginForm.idsave.checked == true) { // 아이디 저장을 체크 하였을때
+	        if (document.loginForm.idSave.checked == true) { // 아이디 저장을 체크 하였을때
 	            setCookie("id", document.loginForm.id.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
 	        } else { // 아이디 저장을 체크 하지 않았을때
 	            setCookie("id", document.loginForm.id.value, 0); //날짜를 0으로 저장하여 쿠키삭제
@@ -155,7 +155,7 @@
                             </div>
                             
                             <div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
-                                <input type="checkbox" name="idsave" value="saveOk"/> 아이디 저장
+                                <input type="checkbox" name="idSave" value="saveOk"/> 아이디 저장
                             </div>
                         
                             

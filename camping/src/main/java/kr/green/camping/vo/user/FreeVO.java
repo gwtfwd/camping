@@ -13,8 +13,15 @@ public class FreeVO {
 	private String updated_id;
 	private Date updated_at;
 	private Integer view;
+	private Integer reply_cnt;
 	
 	
+	public Integer getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(Integer reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
 	public Integer getNo() {
 		return no;
 	}

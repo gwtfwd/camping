@@ -16,7 +16,6 @@
 	
 	.container{
       min-height:850px;
-      
    	}
    	.container::-webkit-scrollbar { 
        display: none; 
@@ -61,20 +60,13 @@
 	  width:80px;
 	  border-width:0px;
 	  text-align:center;
-	  /* -moz-border-radius: 0px;
-	  -webkit-border-radius: 0px; */
 	  border-radius: 35px;
- 	  /* -webkit-transition: all 200ms ease;
-	  -moz-transition: all 200ms ease;
-	  -ms-transition: all 200ms ease;
-	  -o-transition: all 200ms ease; */
 	  transition: all 200ms ease;
  	}
 	</style>
 	
 	
 	<script>
-	
 	$(document).ready(function(){
 		  
 		  $('#delete').click(function() {
@@ -101,20 +93,26 @@
 	      /* 댓글등록버튼 클릭시 이벤트발생 */
 	      $('[name=replyInsertBtn]').click(function() {                      
 	         
-	         /* name이 replyInsertForm인 내용을 가져와서 
+	    	  /* name이 replyInsertForm인 내용을 가져와서 
 	            insertData 변수에 담고 replyInsert함수를 호출 */
-	         var insertData = $('[name=replyinsertform]').serialize();       
+	         var insertData = $('[name=replyinsertform]').serialize();
+	    	  
+	    	  if ($('#recontent').val() == null || $('#recontent').val().length < 10){
+	              
+	              alert("최소 10글자 이상 입력하셔야 됩니다.");
+	              $('#recontent').focus();
+	              return ;
+	         }
 	         replyInsert(insertData);                              
 	         
 	      });
-
 	   });
 		 
 		//댓글 목록 
 		function replyList(){
 			
-			/* 댓글목록을 표시하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
-		      var bno = '${free.no}';  
+		  /* 댓글목록을 표시하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
+	      var bno = '${free.no}';  
 		      
 	      /* ajax로 데이터보내기 */
 		    $.ajax({
@@ -133,7 +131,7 @@
 		                	+ '<div class="col-md-10" style="font-size:12px;">' + value.redate + '</div>'
 		                	
 		                	+ '<div class="col-md-1" style="text-align: right;">' 
-		                	+ '<a onclick="replyUpdate('+value.reno+',\''+value.recontent+'\');">'				/* \' 는 따옴표를 의미 */
+		                	+ '<a onclick="replyUpdate('+value.reno+',\''+value.recontent+'\');">'				/*   \' 는 따옴표를 의미   */
 		                	+ '<img src="<c:url value='/resources/images/edit.png'/>"></a>' 
 		                	
 		                    + '&nbsp;&nbsp; <a onclick="replyDelete('+value.reno+');">'
@@ -178,8 +176,6 @@
 			    +'</div>';
 		    
 		    $('.replyContent'+reno).html(a);
-		    
-		    
 		} 
 		 
 		//댓글 수정
@@ -198,39 +194,37 @@
 		 
 		//댓글 삭제 
 		function replyDelete(reno){
+			
+			var bno = '${free.no}'; 
+			
 		    $.ajax({
 		        url : '/camping/free/reply/delete/'+reno,
 		        type : 'get',
+		        data : {
+		        	'bno' : bno,
+		        	'reno' : reno
+		        },
 		        success : function(data){
 		            if(data == 1) replyList(reno); //댓글 삭제후 목록 출력 
 		            alert("삭제되었습니다.");
 		        }
 		    });
 		}
-		 
-		/* $(document).ready(function(){
-			replyList(); //페이지 로딩시 댓글 목록 출력 
-		}); */
-		
-		
+
 		function needLogin(x) {
 	      window.location.href = "/camping/member/needLogin"
-	   }
+	    }
+		
 	</script>
 
-
-		
 </head>
 <body>
 	<!-- Header -->
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
 	
-	
 	<div class="container" >	
 		<br><br><br><br>
-
-		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
 		<h4 style="text-align:center; font-family:Segoe Print;">Detail</h4> <br><br>
 		
 		<form method="post" id="formDetail">
@@ -246,7 +240,6 @@
 				<div class="col-md-1 fontH" style="padding-top:7px;">
 					<label class="control-label" for="view">조회수</label>
 				</div>
-				
 				<div class="col-md-3 fontH">
 					<input type="text" class="form-control" id="view" name="view" style="background-color:white; border-width:0px;" value="${free.view}" readonly>
 				</div>
@@ -258,7 +251,6 @@
 				<div class="col-md-1 fontH" style="padding-top:7px;"> 
 					<label class="control-label" for="subject">제목</label>
 				</div>
-				
 				<div class="col-md-5 fontH">
 					<input type="text" class="form-control" id="subject" name="subject" style="background-color:white; border-width:0px;"  value="${free.subject}" readonly>
 				</div>
@@ -266,7 +258,6 @@
 				<div class="col-md-1 fontH" style="padding-top:7px;">
 					<label class="control-label" for="id">작성자</label>
 				</div>
-				
 				<div class="col-md-3 fontH">
 					<input type="text" class="form-control" id="id" name="id" style="background-color:white; border-width:0px;" value="${free.registered_id}" readonly>
 				</div>
@@ -275,11 +266,9 @@
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
 				
-				
 				<div class="col-md-1 fontH" style="padding-top:7px;">
 					<label class="control-label" for="file">첨부파일</label>
 				</div>
-				
 				<div class="col-md-5 fontH" >
 					<input type="text" class="form-control" id="file" name="file" style="background-color:white; border-width:0px;" value="" readonly>
 				</div>
@@ -287,7 +276,6 @@
 				<div class="col-md-1 fontH" style="padding-top:7px;">
 					<label class="control-label" for="registered_at">작성일자</label>
 				</div>
-				
 				<div class="col-md-2 fontH" >
 					<input type="text" class="form-control" id="registered_at" name="registered_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${free.registered_at}" pattern="yyyy-MM-dd" />" readonly>
 				</div>
@@ -295,7 +283,6 @@
 				<div class="col-md-1 fontH" style="padding-top:7px;">
 					<label class="control-label" for="updated_at">수정일자</label>
 				</div>
-				
 				<div class="col-md-2 fontH" >
 					<input type="text" class="form-control" id="updated_at" name="updated_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${free.updated_at}" pattern="yyyy-MM-dd" />" readonly>
 				</div>
@@ -307,7 +294,6 @@
 				<div class="col-md-1 fontH" style="padding-top:4px;">
 					<label class="control-label" for="contents">내용</label>
 				</div>
-				
 				<div class="col-md-10 fontH" style="margin-left: 9px;">
 					<textarea rows="20" cols="140" id="contents" name="contents" style="background-color:white; border-width:0px;" readonly>${free.contents}</textarea>
 				</div>
@@ -334,14 +320,12 @@
 		
 		<form name="replyinsertform">
 			<div class="row" style="border-top:1px solid #e8e8e8; background-color:#fafafa; margin-top:20px;">
-			
 				<div class="col-md-12 fontH" >
-				
 				        <input type="hidden" name="bno" value="${free.no}"> 
 				        <c:if test="${member }">
 				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
 				        	<input class="fontH" type="password" name="reid" size="20" maxlength="20" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
-				        	<textarea name="recontent" rows="5" cols="160" maxlength="1500" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
+				        	<textarea name="recontent" id="recontent" rows="5" cols="160" maxlength="1500" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
 				        </c:if>
 				        <c:if test="${!member }">
 				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
@@ -350,27 +334,14 @@
 				        </c:if><br>
 				        <button class="btn33 btn-primary33 fontH pull-right" type="button" name="replyInsertBtn" style="margin-bottom:10px;">OK</button>
 				  </div>
-				</div><br><br>
+			</div><br><br>
 		</form>
 			
 		<div class="row" > 
 			<label class="control-label fontH" style="font-size:23px;"><span id="replyCnt"></span> Comments</label>
 		</div><br>
-	
 		<div>
 			<div id="replyList"></div><br>
-			
-			<ul class="pagination fontH" style="justify-content: center;">
-				<c:if test="${pageMaker.prev }">
-					<li class="page-item"><a class="page-link fontH" href="/camping/free/reply/list?page=${pageMaker.startPage-1}"> < </a></li>
-				</c:if>
-				<c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-					<li class="page-item <c:out value="${page==cri.page?'active':''}"/>"><a class="page-link fontH" href="/camping/free/reply/list?page=${page}" >${page }</a></li>
-				</c:forEach>
-				<c:if test="${pageMaker.next }">
-					<li class="page-item"><a class="page-link fontH" href="/camping/free/reply/list?page=${pageMaker.endPage+1}"> > </a></li>
-				</c:if>
-			</ul>
 		</div>
 	
 	</div>

@@ -1,5 +1,7 @@
 package kr.green.camping.service.user;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Service;
 
 import kr.green.camping.vo.user.JoinVO;
@@ -7,10 +9,12 @@ import kr.green.camping.vo.user.JoinVO;
 @Service
 public interface MemberService {
 
+	
+	
+	public boolean keepLogin(JoinVO user) throws Exception;
+	public JoinVO getLoginUser(HttpServletRequest request) throws Exception;
 	public JoinVO login(String id, String pw) throws Exception;
-	
 	public void join(JoinVO join) throws Exception;
-	
 	public JoinVO loginById(String id) throws Exception;
 	public void modifyJoin(JoinVO vo) throws Exception;
 	public void deleteUser(JoinVO vo) throws Exception;

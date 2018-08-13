@@ -64,8 +64,8 @@ public class FreeServiceImpl implements FreeService {
 	
 	// 댓글
 	@Override
-	public int replyCount() throws Exception {
-		return freeMapper.replyCount();
+	public Integer replyCount(int bno) throws Exception {
+		return freeMapper.replyCount(bno);
 	}
 	@Override
 	 public List<ReplyVO> replyList(Integer bno) throws Exception{
@@ -77,17 +77,17 @@ public class FreeServiceImpl implements FreeService {
 		return freeMapper.getReplyPage(cri); 
 	}
 	@Override    
-    public int replyInsert(ReplyVO replyVO) throws Exception{
+    public Integer replyInsert(ReplyVO replyVO) throws Exception{
         
         return freeMapper.replyInsert(replyVO);
     }
 	@Override 
-    public int replyUpdate(ReplyVO replyVO) throws Exception{
+    public Integer replyUpdate(ReplyVO replyVO) throws Exception{
         
         return freeMapper.replyUpdate(replyVO);
     }
 	@Override
-    public int replyDelete(int reno) throws Exception{
+    public Integer replyDelete(int reno) throws Exception{
         
         return freeMapper.replyDelete(reno);
     }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.vo.user.CampVO;
 import kr.green.camping.vo.user.LikeVO;
+import kr.green.camping.vo.user.RegionVO;
 
 public interface SearchMapper {
 
@@ -23,8 +24,10 @@ public interface SearchMapper {
 	
 	
 	// region
-	public List<CampVO> getSeoul(CampVO vo) throws Exception;
-	
+    public List<CampVO> regionList(String region_code) throws Exception;
+    public Integer regionCnt(String region_code) throws Exception;
+    public String getRegionCode(String area) throws Exception;
+    
 	
 	// type
 	public CampVO getTypeByNo(CampVO vo) throws Exception;
@@ -35,3 +38,7 @@ public interface SearchMapper {
 	
 	
 }
+
+
+
+

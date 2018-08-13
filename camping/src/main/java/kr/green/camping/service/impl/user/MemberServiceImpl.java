@@ -2,12 +2,14 @@ package kr.green.camping.service.impl.user;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.camping.dao.user.MemberMapper;
 import kr.green.camping.service.user.MemberService;
-import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 
 
@@ -17,10 +19,40 @@ public class MemberServiceImpl implements MemberService{
 	@Resource(name = "memberMapper")
 	private MemberMapper memberMapper;
 	
+	@Resource
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	
+	@Override
+	public boolean keepLogin(JoinVO user) throws Exception {
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+
+		return member;
+	}
+	@Override
+	public JoinVO getLoginUser(HttpServletRequest request) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO) session.getAttribute("user");
+		
+		return user;
+	}
+	
+	
 	@Override
 	public JoinVO login(String id, String pw) throws Exception {
 		
-		JoinVO user = memberMapper.login(id, pw);
+		JoinVO user = memberMapper.loginById(id);
+		
+		if( !(user != null && passwordEncoder.matches(pw, user.getPw()))) {
+			
+			user = null;
+		}
 
 		return user;
 	}

@@ -9,6 +9,7 @@ public class CampVO {
 	private String camp_name;				// �߿����
 	private String address_road;			// ������ ���θ� �ּ�
 	private String address_jibun;			// ������ ���� �ּ�
+	private Integer address_code;			// ������ ���� �ּ�
 	private String camp_tel;				// �߿��� ��ȭ��ȣ
 	private Double latitude;				// ����
 	private Double longtitude;				// �浵
@@ -21,7 +22,12 @@ public class CampVO {
 	private Date updated_at;				// �����Ͻ�
 	private Integer like_cnt;					// ���ƿ�
 	
-	
+	public Integer getAddress_code() {
+		return address_code;
+	}
+	public void setAddress_code(Integer address_code) {
+		this.address_code = address_code;
+	}
 	public Integer getLike_cnt() {
 
 		return like_cnt;

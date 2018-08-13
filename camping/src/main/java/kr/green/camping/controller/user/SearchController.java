@@ -3,8 +3,6 @@ package kr.green.camping.controller.user;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +19,10 @@ import kr.green.camping.pagination.Criteria;
 import kr.green.camping.pagination.PageMaker;
 import kr.green.camping.service.user.SearchService;
 import kr.green.camping.vo.user.CampVO;
+import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 import kr.green.camping.vo.user.LikeVO;
+import kr.green.camping.vo.user.RegionVO;
 
 
 @Controller
@@ -36,6 +36,31 @@ public class SearchController {
 	private SearchService searchService;
 	
 	
+	/*@RequestMapping(value = "/region/list", method = RequestMethod.GET)
+	public List<CampVO> getSearchRegion(String area, Model model, HttpServletRequest request, CampVO vo) throws Exception {
+		
+		로그인 유지
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO) session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+
+		CampVO camp = searchService.getCamp(vo);
+		
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		model.addAttribute("camp", camp);
+		
+		System.out.println(area);
+		
+		return searchService.regionList(vo);
+	}*/
+	
+	
 	@RequestMapping(value = "/region/list", method = RequestMethod.GET)
 	public String getSearchRegion(String area, Model model, HttpServletRequest request) throws Exception {
 		
@@ -43,26 +68,31 @@ public class SearchController {
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
-		
 		boolean member = false;
 		if( user != null) {
 			member = true;
 		}
 		
+		ArrayList<FreeVO> list = null;
+		int totalCount = 0;
 
+		
+		String region_code = searchService.getRegionCode(area);
+		
+		
+		list = (ArrayList)searchService.regionList(region_code);
+		totalCount = searchService.regionCnt(region_code);
+		
+		
+		model.addAttribute("area", area);
+		model.addAttribute("list", list);
+		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
-		
-		System.out.println(area);
 		
 		return "user/board/search/region/list";
 	}
 	
-	@ResponseBody // ajax�� �θ��� ���� ������̼�
-	@RequestMapping(value="/kr.green.camping.dao.user.SearchMapper/getSeoul.do", method = RequestMethod.GET)
-    public List<CampVO> getSeoul(CampVO vo) throws Throwable {
-		return searchService.getSeoul(vo);
- 	}
 	
 	
 	@RequestMapping(value = "/type/list", method = RequestMethod.GET)

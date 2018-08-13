@@ -49,7 +49,7 @@
    	
    	
    	
-<!-- 	<div class="container" style="height:950px">	
+ 	<div class="container" style="height:950px">	
 		<br><br><br><br>
 		<h4 class="fontH" style="text-align:center;">지역별 야영장 찾기</h4>
 		
@@ -80,20 +80,29 @@
 			
 			<div class="fontH" id="map-list">
 			
-				<br><h6>&nbsp;지역을 선택해주세요</h6><hr>
+				<br><h6>&nbsp;<b>${area}</b>의 야영장 목록입니다 (${totalCount})</h6><hr>
+<!-- 				<br><h6>&nbsp;지역을 선택해주세요</h6><hr> -->
 				
-				리스트
+				<!-- 리스트 -->
 				<div class="ex3">
 				
+					<!-- <div class="row" > 
+						<label class="control-label fontH" style="font-size:23px;"><span id="regionCnt"></span> Comments</label>
+					</div><br> -->
+					<div class="fontH" style="margin-left:10px;">
+						<c:forEach items="${list}" var="camp">
+							<a href="/camping/search/type/detail?no=${camp.no}" style="color:black;">${camp.camp_name}</a><br>
+						</c:forEach>
+					</div>
 				</div>
 				
 			</div>
 		</div>
-	</div> -->
+	</div>
 	
 	
 	
-	<div class="container" style="height:950px">	
+	<!-- <div class="container" style="height:950px">	
 		<br><br><br><br>
 		<h4 class="fontH" style="text-align:center;">지역별 야영장 찾기</h4>
 		
@@ -126,19 +135,24 @@
 			
 				<br><h6>&nbsp;지역을 선택해주세요</h6><hr>
 				
-				<!-- 리스트 -->
+				리스트
 				<div class="ex3">
-					
+					<div class="row" > 
+						<label class="control-label fontH" style="font-size:23px;"><span id="regionCnt"></span> Comments</label>
+					</div><br>
+					<div>
+						<div id="regionList"></div>
+					</div>
 				</div>
 				
 			</div>
 		</div>
-	</div>
+	</div> -->
 	 
 	 
 	 
 	<script>
-		$.ajax({ 
+		/* $.ajax({ 
 	        type : "GET", //보내는 타입을 Post방식으로 할지,  GET방식으로 할지 결정
 	        url : "/camping/search/kr.green.camping.dao.user.SearchMapper/getSeoul.do", // /내 프로젝트명/XML파일의namespace/내가불러올XML의Query이름.do 
 	        //dataType:"html",   //데이터를 어떻게 받을지 지정하는 부분인데, 처음에 Json으로 받으려고 했을때 안되서 
@@ -156,7 +170,10 @@
 	        error : function(request, status, error) {
 	            alert("에러가 발생했습니다. 관리자에게 문의하시기 바랍니다");
 	        }
-	    });
+	    }); */
+	    
+	    
+	    
 	</script>
 	
 	

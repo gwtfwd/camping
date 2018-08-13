@@ -38,9 +38,21 @@
 	
 	
 	<!-- region -->
-	<select id="getSeoul" resultType="kr.green.camping.vo.user.CampVO">
-		select camp_name from camp where address_jibun like "%서울%" or address_road like "%서울%"; 
+	<select id="regionList" resultType="kr.green.camping.vo.user.CampVO">
+		select * from camp where region_code = #{region_code} 
+	</select> 
+	
+	<select id="regionCnt" resultType="java.lang.Integer">
+		select count(*) from camp where region_code = #{region_code} 
+	</select> 
+	
+	<select id="getRegionCode" resultType="java.lang.String">
+		select no from region_code where region = #{area}
 	</select>
+	
+	
+	
+	
 	
 	
 	

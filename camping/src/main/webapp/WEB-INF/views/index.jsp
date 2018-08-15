@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    
     <!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
@@ -25,7 +23,6 @@
 		  cursor: pointer;
 		  margin: 5px;
 		}
-		
 		.btn11:hover {
 		  display: inline-block;
 		  border-radius: 25px;
@@ -40,14 +37,12 @@
 		  cursor: pointer;
 		  margin: 5px;
 		}
-		
 		.btn11 span {
 		  cursor: pointer;
 		  display: inline-block;
 		  position: relative;
 		  transition: 0.5s;
 		}
-		
 		.btn11 span:after {
 		  content: '\00bb';
 		  position: absolute;
@@ -56,16 +51,13 @@
 		  right: -20px;
 		  transition: 0.5s;
 		}
-		
 		.btn11:hover span {
 		  padding-right: 25px;
 		}
-		
 		.btn11:hover span:after {
 		  opacity: 1;
 		  right: 0;
 		}
-		
 		.tbbox {
 			border-top-width:1px; 
 			border-top-style:solid;
@@ -74,13 +66,27 @@
 			border-bottom-style:solid;
 			border-bottom-color:#6c757d;
 		}
+		.btn-primary33 {
+		  background-color: #56B37F;
+		  border-color: #56B37F;
+		}
+		.btn33 {
+		  font-size: 20px;
+	 	  padding: 4px 15px;
+		  line-height: 20px;
+		  font-weight: 500;
+		  color:#fff; 
+		  height:51px;
+		  width:150px;
+		  border-width:0px;
+		  text-align:center;
+		  transition: all 200ms ease;
+		  border-radius: 4px;
+	 	}
 	</style>
-    
-    
     
 </head>
 <body>
-	
 	<!-- Header -->
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
@@ -99,26 +105,26 @@
            <div class="carousel-caption d-none d-md-block ">
            		<p style=" font-size:26px; font-weight:bold; ">The Better More Enjoyable!</p>
             	<p style=" font-size:43px; font-weight:bold; margin-top:-15px;">2018 NEW OPEN & RENEWAL</p>
-           		<p style=" font-size:15px; font-weight:bold; margin-top:-15px;">2018³â! »õ·Ó°Ô ¿ÀÇÂÇÒ Ä·ÇÎÀåÀ» ¸¸³ªº¸¼¼¿ä</p>
-            	<button class="button button-white" >ÀÚ¼¼È÷ º¸±â</button>
+           		<p style=" font-size:15px; font-weight:bold; margin-top:-15px;">2018ë…„! ìƒˆë¡­ê²Œ ì˜¤í”ˆí•  ìº í•‘ì¥ì„ ë§Œë‚˜ë³´ì„¸ìš”</p>
+            	<button class="button button-white" >ìì„¸íˆ ë³´ê¸°</button>
             </div> 
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item"  style="background-image: url('resources/images/beach.jpg')">
             <div class="carousel-caption d-none d-md-block">
             	<p style=" font-size:26px; font-weight:bold; ">Healing In The Sea</p>
-            	<p style=" font-size:40px; font-weight:bold; margin-top:-15px; ">¹Ù´Ù ¾Õ¿¡¼­ Áñ±â´Â °¨¼º ±Û·¥ÇÎ</p>
-             	<p style=" font-size:15px; font-weight:bold; margin-top:-10px;">Å¹Æ®ÀÎ ¹Ù´ÙÀü°æÀÌ ÆîÃÄÁø °÷À¸·Î ³î·¯¿À¼¼¿ä </p>
-            	<button class="button button-white" >ÀÚ¼¼È÷ º¸±â</button>
+            	<p style=" font-size:40px; font-weight:bold; margin-top:-15px; ">ë°”ë‹¤ ì•ì—ì„œ ì¦ê¸°ëŠ” ê°ì„± ê¸€ë¨í•‘</p>
+             	<p style=" font-size:15px; font-weight:bold; margin-top:-10px;">íƒíŠ¸ì¸ ë°”ë‹¤ì „ê²½ì´ í¼ì³ì§„ ê³³ìœ¼ë¡œ ë†€ëŸ¬ì˜¤ì„¸ìš” </p>
+            	<button class="button button-white" >ìì„¸íˆ ë³´ê¸°</button>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('resources/images/city.jpg')">  
             <div class="carousel-caption d-none d-md-block">
            	 <p style="font-size:26px; font-weight:bold; margin-left: 6px;">Oasis In The City </p>
-             <p style="font-size:43px; font-weight:bold; margin-top:-15px;">µµ½É ±Û·¥ÇÎÀÇ ¸Ú</p>
-             <p style="font-size:15px; font-weight:bold; margin-top:-10px;">½Ã¿øÇÑ ¹Ù¶÷°ú Ç³°æ, µµ½ÃÀÇ Á¶¸íÀÌ ÇÑµ¥ ¾î¿ì·¯Á® ÀÖ´Â ÀÌ°÷¿¡¼­ »ö´Ù¸¥ ±Û·¥ÇÎ ºĞÀ§±â¸¦ ¸¸³£ÇØº¸¼¼¿ä</p>
-             <button class="button button-white" >ÀÚ¼¼È÷ º¸±â</button>
+             <p style="font-size:43px; font-weight:bold; margin-top:-15px;">ë„ì‹¬ ê¸€ë¨í•‘ì˜ ë©‹</p>
+             <p style="font-size:15px; font-weight:bold; margin-top:-10px;">ì‹œì›í•œ ë°”ëŒê³¼ í’ê²½, ë„ì‹œì˜ ì¡°ëª…ì´ í•œë° ì–´ìš°ëŸ¬ì ¸ ìˆëŠ” ì´ê³³ì—ì„œ ìƒ‰ë‹¤ë¥¸ ê¸€ë¨í•‘ ë¶„ìœ„ê¸°ë¥¼ ë§Œë½í•´ë³´ì„¸ìš”</p>
+             <button class="button button-white" >ìì„¸íˆ ë³´ê¸°</button>
             </div>
           </div>
         </div>
@@ -133,85 +139,74 @@
       </div>
     </header>
    	
-   	
    	<!-- Page Content -->
-
-	<section class="py-5" style="margin-top:200px;">
-	      <div class="container" >
-	      	<div class="row" style="width: 1540px; margin-left:-200px;">
-	      		
-	      		<div class="img-container col-md-1">		
-				</div>
-				
-				
-		        <div class="img-container col-md-4" style="background-image: url('resources/images/tree2.png'); height:500px;">
-	        		<h2 style="font-weight:bold; font-family:Segoe Print; margin-top:40%; font-weight:bold;">
-	        			<a href="/camping/notice/list" style="color:#fff;">NOTICE</a>
-	        		</h2>
-		        	<p class="fontH" style="margin-top:5px; color:#fff; font-size:15px;">¾ß¿µÀåÀÇ »õ·Î¿î ¼Ò½ÄÀ» ¸¸³ªº¸¼¼¿ä </p>
-		        </div>
-		         
-		         <div class="img-container col-md-2" style="background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); height:250px;">	
-		         	<h5 class="fontH" style="margin-top:15%" ><a href="/camping/search/region/list" style="color:#343a40; font-weight:bold;">Áö¿ªº° Ã£±â</a></h5>
-		         	<a href="/camping/search/region/list"><img src='resources/images/route.png' style="width:75px; height:75px; margin-top:15%;"></a>	
-				</div>
-				
-		         <div class="img-container col-md-2" style="background-image: linear-gradient(60deg, #29323c 0%, #485563 100%); height:250px;">	
-		         	<h5 class="fontH" style="margin-top:15%" ><a href="/camping/search/type/list" style="color:#fff; font-weight:bold;">À¯Çüº° Ã£±â</a></h5>
-		         	<a href="/camping/search/type/list"><img src='resources/images/type.png' style="width:75px; height:75px; margin-top:15%;"></a>	
-				</div>
-				
-		         <div class="img-container col-md-2" style="background-color:#C9BA97; height:250px;">	
-		         	<h5 class="fontH" style="margin-top:15%" ><a href="#" style="color:#594104; font-weight:bold;">ÀÌ¿ë ¾È³»</a></h5>
-		         	<a href="#"><img src='resources/images/info.png' style="width:80px; height:80px; margin-top:15%;"></a>	
-				</div>
-				
-				<div class="img-container col-md-1">		
-				</div>
-				
-				
-				<!-- ////////////////////////////////////////////// -->
-				
-				
-				<div class="img-container col-md-1">		
-				</div>
-				
-				<div class="img-container col-md-4" style=" height:0px;">
-		        </div>
-		        
-		         <div class="img-container col-md-2" style="background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%); height:250px; margin-top:-250px;">		
-					<h5 style="margin-top:15%" ><a href="#" style="color:#fff; font-weight:bold; font-family:Meiryo;">REVIEW</a></h5>
-		         	<a href="#"><img src='resources/images/rating.png' style="width:80px; height:80px; margin-top:15%;"></a>	
-				</div>
-				
-		         <div class="img-container col-md-4" style="background-image: url('resources/images/jeju.jpg'); height:250px; margin-top:-250px;">	
-					<p style="margin-top:15%" ><a href="#" style="color:#343a40; font-weight:bold; font-family:Meiryo; font-size:30px; text-decoration: underline;">Jeju Island</a></p>
-				</div>
-				
-		         <div class="img-container col-md-1">		
+   	<section class="py-5" style="margin-top:120px;">
+	      <div class="container fontH" >
+	      	<div class="row">
+				<div class="col-md-12" style="text-align:center;">
+					<label style="font-size:26px; margin-right:10px; color: #343a40;">ì•¼ì˜ì¥ ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰</label>
+					<input type="text" name="search" style="margin-right:10px;width:500px; height:50px; font-size:24px; border: 1px solid #ced4da;color: #555; padding: 0.375rem 0.75rem; border-radius: 4px;" autocomplete="off">
+					<a href="/camping/search/name"><button class="btn33 btn-primary33" type="submit">Search</button></a>
 				</div>
 			</div>
 	      </div>
     </section>
-    
+   	
+	<section class="py-5" style="margin-top:120px;">
+	      <div class="container" >
+	      	<div class="row" style="width: 1540px; margin-left:-200px;">
+	      		<div class="img-container col-md-1"></div>
+		        <div class="img-container col-md-4" style="background-image: url('resources/images/tree2.png'); height:500px;">
+	        		<h2 style="font-weight:bold; font-family:Segoe Print; margin-top:40%; font-weight:bold;">
+	        			<a href="/camping/notice/list" style="color:#fff;">NOTICE</a>
+	        		</h2>
+		        	<p class="fontH" style="margin-top:5px; color:#fff; font-size:15px;">ì•¼ì˜ì¥ì˜ ìƒˆë¡œìš´ ì†Œì‹ì„ ë§Œë‚˜ë³´ì„¸ìš” </p>
+		        </div>
+		        <div class="img-container col-md-2" style="background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); height:250px;">	
+		         	<h5 class="fontH" style="margin-top:15%" ><a href="/camping/search/region/list" style="color:#343a40; font-weight:bold;">ì§€ì—­ë³„ ì°¾ê¸°</a></h5>
+		         	<a href="/camping/search/region/list"><img src='resources/images/route.png' style="width:75px; height:75px; margin-top:15%;"></a>	
+				</div>
+		        <div class="img-container col-md-2" style="background-image: linear-gradient(60deg, #29323c 0%, #485563 100%); height:250px;">	
+		         	<h5 class="fontH" style="margin-top:15%" ><a href="/camping/search/type/list" style="color:#fff; font-weight:bold;">ìœ í˜•ë³„ ì°¾ê¸°</a></h5>
+		         	<a href="/camping/search/type/list"><img src='resources/images/type.png' style="width:75px; height:75px; margin-top:15%;"></a>	
+				</div>
+		        <div class="img-container col-md-2" style="background-color:#C9BA97; height:250px;">	
+		         	<h5 class="fontH" style="margin-top:15%" ><a href="#" style="color:#594104; font-weight:bold;">ì´ìš© ì•ˆë‚´</a></h5>
+		         	<a href="#"><img src='resources/images/info.png' style="width:80px; height:80px; margin-top:15%;"></a>	
+				</div>
+				<div class="img-container col-md-1"></div>
+				
+				<!-- ////////////////////////////////////////////// -->
+				
+				<div class="img-container col-md-1"></div>
+				<div class="img-container col-md-4" style=" height:0px;"></div>
+		         <div class="img-container col-md-2" style="background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%); height:250px; margin-top:-250px;">		
+					<h5 style="margin-top:15%" ><a href="#" style="color:#fff; font-weight:bold; font-family:Meiryo;">REVIEW</a></h5>
+		         	<a href="#"><img src='resources/images/rating.png' style="width:80px; height:80px; margin-top:15%;"></a>	
+				</div>
+		         <div class="img-container col-md-4" style="background-image: url('resources/images/jeju.jpg'); height:250px; margin-top:-250px;">	
+					<p style="margin-top:15%" ><a href="#" style="color:#343a40; font-weight:bold; font-family:Meiryo; font-size:30px; text-decoration: underline;">Jeju Island</a></p>
+				</div>
+		         <div class="img-container col-md-1"></div>
+			</div>
+	      </div>
+    </section>
     
    	<section class="py-5" style="margin-top:120px;">
       <div class="container" >
          <div class="container-fluid fontH tbbox" style="width: 1540px; margin-left:-200px; text-align:center;"><br><br><br><br><br>
-<!--          <div class="container-fluid fontH" style="background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%); width: 1540px; margin-left:-200px; text-align:center;"><br><br><br><br> -->
-			<h4 style=" font-weight:bold; font-color:#343a40;">Áñ°Å¿î ¿©ÇàÀÇ ½ÃÀÛ, Áö±İ ¹Ù·Î ¿¹¾àÇÏ¼¼¿ä!</h4><br>
-			<a href="#"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>½Ç½Ã°£ ¿¹¾à</span></button></a>
+			<h4 style=" font-weight:bold; font-color:#343a40;">ì¦ê±°ìš´ ì—¬í–‰ì˜ ì‹œì‘, ì§€ê¸ˆ ë°”ë¡œ ì˜ˆì•½í•˜ì„¸ìš”!</h4><br>
+			<a href="#"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>ì‹¤ì‹œê°„ ì˜ˆì•½</span></button></a>
 			<br><br><br><br>     
         </div>
       </div>
     </section>
     
-    
     <section class="py-5" style="margin-top:90px;"> 
 		<div class="container">
 			<div class="container-fluid clearfix">
 				<h2 class="fontH" style="text-align: center; font-weight: bold;">BEST 10</h2>
-				<p class="fontH" style="text-align: center; font-weight: bold;">¿ÃÇØÀÇ º£½ºÆ®!&nbsp;&nbsp;°¡Àå ÇÖÇÑ ¾ß¿µÀåÀ» ¼Ò°³ÇÕ´Ï´Ù</p>
+				<p class="fontH" style="text-align: center; font-weight: bold;">ì˜¬í•´ì˜ ë² ìŠ¤íŠ¸!&nbsp;&nbsp;ê°€ì¥ í•«í•œ ì•¼ì˜ì¥ì„ ì†Œê°œí•©ë‹ˆë‹¤</p>
 				<p style="text-align: center;">
 					<a href="#"><img src='resources/images/heart (1).png' width="100px" height="100px" style="color: white;"></a>
 				</p>
@@ -219,8 +214,6 @@
 		</div>
 	</section>
     
-    
-   	
     <section class="py-5" style="background-color:#343a40; margin-top:120px;">
 	      <div class="container" >
 	        <div class="container-fluid clearfix" style="margin-bottom:-60px;"><br><br>
@@ -235,13 +228,9 @@
 			        <p style="text-align:center; font-family:Meiryo; font-size:18px; color:white;">KakaoTalk : camping_info</p>
 			        <p style="text-align:center; font-family:Meiryo; font-size:18px; margin-top:-10px; color:white;">e-mail : camping@gmail.com</p>
 				</div>
-	        </div> <br><br>
-	        <br>
+	        </div> <br><br><br>
 	      </div>
     </section>
-   
-   	<!-- contents -->
-   	
    	
    	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

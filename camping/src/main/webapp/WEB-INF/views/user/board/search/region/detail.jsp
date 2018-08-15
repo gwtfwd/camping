@@ -11,9 +11,11 @@
 	
 	<script src="//code.jquery.com/jquery.min.js"></script>
 	<base href="http://localhost:8080/camping/">
+	
 	<!-- GoogoleMap Asynchronously Loading the API ********************************************* -->	
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8LO7-L-nP5Zbi9z1L5RC94e0bPw5AEpk&callback=initMap"></script>
 	<script>
+	
       function initMap() {
     	  
     	var latitude = ${camp.latitude};
@@ -45,34 +47,34 @@
     </script>
 	
 	<style type="text/css">
-		.container{
-	      min-height:850px;
-	   	}
-	   	.container::-webkit-scrollbar { 
-	       display: none; 
-	   	}
-		.btn-primary11 {
-		  background-color: #1b1e24;
-		  border-color: #1b1e24;
-		}
-		.btn11 {
-		  font-size: 15px;
-		  padding: 4px 15px;
-		  line-height: 20px;
-		  font-weight: 400;
-		  color:white; 
-		  width:100px; 
-		  height:30px;
-		  text-align:center;
-		  -moz-border-radius: 0px;
-		  -webkit-border-radius: 0px;
-		  border-radius: 0px;
-		  -webkit-transition: all 200ms ease;
-		  -moz-transition: all 200ms ease;
-		  -ms-transition: all 200ms ease;
-		  -o-transition: all 200ms ease;
-		  transition: all 200ms ease;
-		}
+	.container{
+      min-height:850px;
+   	}
+   	.container::-webkit-scrollbar { 
+       display: none; 
+   	}
+	.btn-primary11 {
+	  background-color: #1b1e24;
+	  border-color: #1b1e24;
+	}
+	.btn11 {
+	  font-size: 15px;
+	  padding: 0px 15px;
+	  line-height: 20px;
+	  font-weight: 400;
+	  color:white; 
+	  width:100px; 
+	  height:30px;
+	  text-align:center;
+	  -moz-border-radius: 0px;
+	  -webkit-border-radius: 0px;
+	  border-radius: 0px;
+	  -webkit-transition: all 200ms ease;
+	  -moz-transition: all 200ms ease;
+	  -ms-transition: all 200ms ease;
+	  -o-transition: all 200ms ease;
+	  transition: all 200ms ease;
+	}
 	</style>
 
 </head>
@@ -212,7 +214,7 @@
 		</form><br><br>
 		
 		<div style="text-align:center; margin-bottom:70px;">			
-			<a href="/camping/search/type/list"><button type="button" class="btn11 btn-primary11 fontH">목록</button></a>			
+ 			<a href="/camping/search/region/list"><button type="button" class="btn11 btn-primary11 fontH">뒤로가기</button></a>			
 		</div>
 	</div>
 	

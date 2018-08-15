@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,17 +12,16 @@
    	<!-- link -->
    	
    	<style type="text/css">
-   	
-   	.btnSearch{
-   		font-size:16px; 
-   		width:300px; 
-   		background-color:#16a085; 
-   		border-radius:40px; 
-   		border:0px; 
-   		padding:10px; 
-   		color:#fff; 
-   		margin-top:35px;
-   	}
+	   	.btnSearch{
+	   		font-size:16px; 
+	   		width:300px; 
+	   		background-color:#16a085; 
+	   		border-radius:40px; 
+	   		border:0px; 
+	   		padding:10px; 
+	   		color:#fff; 
+	   		margin-top:35px;
+	   	}
    	</style>
    	
    	<!-- mask -->
@@ -56,7 +54,6 @@
 			});
 		});
 	</script>
-   	
 
 </head>
 <body>
@@ -65,11 +62,8 @@
 		비밀번호 찾기
 	</div>
 
-
-
  	<div class="container">
 		<form method="post" id="formId" style="margin-top:30px;">
-		
 			<div>
 				<label class="control-label fontH" for="id" style="margin-left:20px;">아이디</label>
 				<input type="text" class="form-control fontH" id="id" name="id" style="margin-left:20px; width:445px;" autocomplete="off" tabindex=1><br>
@@ -81,7 +75,6 @@
 				<input type="email" class="form-control fontH" id="email" name="email" style="margin-left:20px; width:445px;" autocomplete="off" tabindex=2>
 			</div>
 			
-			
 			<div style="text-align:center;">
 				<button type="submit" class="btnSearch">Search</button>
 			</div>
@@ -89,8 +82,6 @@
 			<div style="width:445px; margin-left:20px; border-top: 1px solid #ced4da;  margin-top:30px; font-size:85%" ><br>
                 가입하신 이메일로 임시비밀번호를 전송해드리겠습니다.
             </div>
-
-
 		</form>
 	</div> 
 

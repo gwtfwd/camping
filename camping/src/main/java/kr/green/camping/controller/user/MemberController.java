@@ -252,7 +252,7 @@ public class MemberController {
 	public String mailSending(String email, String newPw, HttpServletRequest request, Model model) throws Exception{
 
 	    String tomail  = email;    // 받는 사람 이메일
-	    String title   = "변경된 비밀번호 입니다.";      // 제목
+	    String title   = "임시비밀번호 입니다.";      // 제목
 	    String content = newPw;    // 내용
 
 	    try {

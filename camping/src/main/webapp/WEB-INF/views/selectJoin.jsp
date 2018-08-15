@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,6 +10,12 @@
    	<!-- link -->
    	
 	<style>
+		.container{
+	      min-height:850px;
+	   	}
+	   	.container::-webkit-scrollbar { 
+	       display: none; 
+	   	}
 		.button {
 		  display: inline-block;
 		  border-radius: 25px;
@@ -25,7 +30,6 @@
 		  cursor: pointer;
 		  margin: 5px;
 		}
-		
 		.button:hover {
 		  display: inline-block;
 		  border-radius: 25px;
@@ -40,14 +44,12 @@
 		  cursor: pointer;
 		  margin: 5px;
 		}
-		
 		.button span {
 		  cursor: pointer;
 		  display: inline-block;
 		  position: relative;
 		  transition: 0.5s;
 		}
-		
 		.button span:after {
 		  content: '\00bb';
 		  position: absolute;
@@ -56,29 +58,23 @@
 		  right: -20px;
 		  transition: 0.5s;
 		}
-		
 		.button:hover span {
 		  padding-right: 25px;
 		}
-		
 		.button:hover span:after {
 		  opacity: 1;
 		  right: 0;
 		}
 	</style>
 
-
-
 </head>
 <body>
-	
 	<!-- Header -->
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
 	
-	
 	 <section>
-	      <div class="container" style="height:800px; margin-top:150px;">
+	      <div class="container" style="margin-top:150px; margin-bottom:70px;">
 	        <div class="container-fluid clearfix">
 	        	<h4 class="fontH" style="text-align:center;"><b>회원가입</b>을 환영합니다!</h4><br><br>
 	        	
@@ -97,7 +93,6 @@
 	        </div> 
 	      </div>
     </section>
-	
 
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

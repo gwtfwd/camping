@@ -35,25 +35,243 @@
         </select>	
 	
 	
-	
-	
 	<!-- region -->
 	<select id="regionList" resultType="kr.green.camping.vo.user.CampVO">
-		select * from camp where region_code = #{region_code} 
+		select * from camp 
+		where region_code = #{region_code} 
+			<if test="type=='가평군'"> and address_jibun or address_road like '%가평%'</if> 
+			<if test="type=='과천시'"> and address_jibun or address_road like '%과천%'</if> 
+			<if test="type=='광명시'"> and address_jibun or address_road like '%광명%'</if> 
+			<if test="type=='광주시'"> and address_jibun or address_road like '%광주시%'</if> 
+			<if test="type=='구리시'"> and address_jibun or address_road like '%구리%'</if> 
+			<if test="type=='군포시'"> and address_jibun or address_road like '%군포%'</if> 
+			<if test="type=='김포시'"> and address_jibun or address_road like '%김포%'</if> 
+			<if test="type=='남양주시'"> and address_jibun or address_road like '%남양주%'</if> 
+			<if test="type=='동두천시'"> and address_jibun or address_road like '%동두천%'</if> 
+			<if test="type=='부천시'"> and address_jibun or address_road like '%부천%'</if> 
+			<if test="type=='성남시'"> and address_jibun or address_road like '%성남%'</if> 
+			<if test="type=='시흥시'"> and address_jibun or address_road like '%시흥%'</if> 
+			<if test="type=='안산시'"> and address_jibun or address_road like '%안산%'</if> 
+			<if test="type=='양주시'"> and address_jibun or address_road like '%양주%'</if> 
+			<if test="type=='여주시'"> and address_jibun or address_road like '%여주%'</if> 
+			<if test="type=='연천군'"> and address_jibun or address_road like '%연천%'</if> 
+			<if test="type=='오산시'"> and address_jibun or address_road like '%오산%'</if> 
+			<if test="type=='용인시'"> and address_jibun or address_road like '%용인%'</if> 
+			<if test="type=='의왕시'"> and address_jibun or address_road like '%의왕%'</if> 		
+			<if test="type=='의정부시'"> and address_jibun or address_road like '%의정부%'</if> 
+			<if test="type=='이천시'"> and address_jibun or address_road like '%이천%'</if> 
+			<if test="type=='파주시'"> and address_jibun or address_road like '%파주%'</if> 
+			<if test="type=='평택시'"> and address_jibun or address_road like '%평택%'</if> 
+			<if test="type=='포천시'"> and address_jibun or address_road like '%포천%'</if> 
+			<if test="type=='화성시'"> and address_jibun or address_road like '%화성%'</if> 
+			<if test="type=='강릉시'"> and address_jibun or address_road like '%강릉시%'</if> 
+			<if test="type=='강원도고성군'"> and address_jibun or address_road like '%강원도 고성군%'</if> 
+			<if test="type=='동해시'"> and address_jibun or address_road like '%동해시%'</if> 
+			<if test="type=='삼척시'"> and address_jibun or address_road like '%삼척시%'</if> 
+			<if test="type=='양구군'"> and address_jibun or address_road like '%양구군%'</if> 
+			<if test="type=='양양군'"> and address_jibun or address_road like '%양양군%'</if> 
+			<if test="type=='원주시'"> and address_jibun or address_road like '%원주시%'</if> 
+			<if test="type=='인제군'"> and address_jibun or address_road like '%인제군%'</if> 
+			<if test="type=='정선군'"> and address_jibun or address_road like '%정선군%'</if> 
+			<if test="type=='춘천시'"> and address_jibun or address_road like '%춘천시%'</if> 
+			<if test="type=='홍천군'"> and address_jibun or address_road like '%홍천군%'</if> 
+			<if test="type=='화천군'"> and address_jibun or address_road like '%화천군%'</if> 
+			<if test="type=='횡성군'"> and address_jibun or address_road like '%횡성군%'</if> 
+			<if test="type=='공주시'"> and address_jibun or address_road like '%공주시%'</if> 
+			<if test="type=='논산시'"> and address_jibun or address_road like '%논산시%'</if> 
+			<if test="type=='부여군'"> and address_jibun or address_road like '%부여군%'</if> 
+			<if test="type=='서천군'"> and address_jibun or address_road like '%서천군%'</if> 
+			<if test="type=='아산시'"> and address_jibun or address_road like '%아산시%'</if> 
+			<if test="type=='천안시'"> and address_jibun or address_road like '%천안시%'</if> 		
+			<if test="type=='청양군'"> and address_jibun or address_road like '%청양군%'</if> 
+			<if test="type=='괴산군'"> and address_jibun or address_road like '%괴산군%'</if> 
+			<if test="type=='단양군'"> and address_jibun or address_road like '%단양군%'</if> 
+			<if test="type=='영동군'"> and address_jibun or address_road like '%영동군%'</if> 
+			<if test="type=='옥천군'"> and address_jibun or address_road like '%옥천군%'</if> 
+			<if test="type=='음성군'"> and address_jibun or address_road like '%음성군%'</if>
+			<if test="type=='제천시'"> and address_jibun or address_road like '%제천시%'</if> 
+			<if test="type=='증평군'"> and address_jibun or address_road like '%증평군%'</if> 
+			<if test="type=='진천군'"> and address_jibun or address_road like '%진천군%'</if> 
+			<if test="type=='청주시'"> and address_jibun or address_road like '%청주시%'</if> 
+			<if test="type=='충주시'"> and address_jibun or address_road like '%충주시%'</if> 
+			<if test="type=='군산시'"> and address_jibun or address_road like '%군산시%'</if> 
+			<if test="type=='남원시'"> and address_jibun or address_road like '%남원시%'</if> 
+			<if test="type=='순창군'"> and address_jibun or address_road like '%순창군%'</if> 
+			<if test="type=='완주군'"> and address_jibun or address_road like '%완주군%'</if> 
+			<if test="type=='익산시'"> and address_jibun or address_road like '%익산시%'</if> 
+			<if test="type=='임실군'"> and address_jibun or address_road like '%임실군%'</if> 
+			<if test="type=='전주시'"> and address_jibun or address_road like '%전주시%'</if> 
+			<if test="type=='정읍시'"> and address_jibun or address_road like '%정읍시%'</if> 
+			<if test="type=='곡성군'"> and address_jibun or address_road like '%곡성군%'</if> 
+			<if test="type=='광양시'"> and address_jibun or address_road like '%광양시%'</if> 
+			<if test="type=='구례군'"> and address_jibun or address_road like '%구례군%'</if> 
+			<if test="type=='무안군'"> and address_jibun or address_road like '%무안군%'</if> 
+			<if test="type=='보성시'"> and address_jibun or address_road like '%보성시%'</if> 
+			<if test="type=='신안군'"> and address_jibun or address_road like '%신안군%'</if> 		
+			<if test="type=='여수시'"> and address_jibun or address_road like '%여수시%'</if> 
+			<if test="type=='영광군'"> and address_jibun or address_road like '%영광군%'</if> 
+			<if test="type=='영암군'"> and address_jibun or address_road like '%영암군%'</if> 
+			<if test="type=='장성군'"> and address_jibun or address_road like '%장성군%'</if> 
+			<if test="type=='함평군'"> and address_jibun or address_road like '%함평군%'</if> 
+			<if test="type=='화순군'"> and address_jibun or address_road like '%화순군%'</if>
+			<if test="type=='경주시'"> and address_jibun or address_road like '%경주시%'</if> 
+			<if test="type=='구미시'"> and address_jibun or address_road like '%구미시%'</if> 
+			<if test="type=='김천시'"> and address_jibun or address_road like '%김천시%'</if> 
+			<if test="type=='문경시'"> and address_jibun or address_road like '%문경시%'</if> 
+			<if test="type=='봉화군'"> and address_jibun or address_road like '%봉화군%'</if>
+			<if test="type=='상주시'"> and address_jibun or address_road like '%상주시%'</if> 
+			<if test="type=='성주군'"> and address_jibun or address_road like '%성주군%'</if> 
+			<if test="type=='영덕군'"> and address_jibun or address_road like '%영덕군%'</if> 
+			<if test="type=='영양군'"> and address_jibun or address_road like '%영양군%'</if> 
+			<if test="type=='영주시'"> and address_jibun or address_road like '%영주시%'</if>
+			<if test="type=='영천시'"> and address_jibun or address_road like '%영천시%'</if> 
+			<if test="type=='예천군'"> and address_jibun or address_road like '%예천군%'</if> 
+			<if test="type=='울진군'"> and address_jibun or address_road like '%울진군%'</if> 
+			<if test="type=='청도군'"> and address_jibun or address_road like '%청도군%'</if> 
+			<if test="type=='청송군'"> and address_jibun or address_road like '%청송군%'</if>
+			<if test="type=='칠곡군'"> and address_jibun or address_road like '%칠곡군%'</if> 
+			<if test="type=='포항시'"> and address_jibun or address_road like '%포항시%'</if> 
+			<if test="type=='거제시'"> and address_jibun or address_road like '%거제시%'</if> 
+			<if test="type=='거창군'"> and address_jibun or address_road like '%거창군%'</if> 
+			<if test="type=='경상남도고성군'"> and address_jibun or address_road like '%경상남도 고성군%'</if>
+			<if test="type=='김해시'"> and address_jibun or address_road like '%김해시%'</if> 
+			<if test="type=='남해군'"> and address_jibun or address_road like '%남해군%'</if> 
+			<if test="type=='밀양시'"> and address_jibun or address_road like '%밀양시%'</if> 
+			<if test="type=='사천시'"> and address_jibun or address_road like '%사천시%'</if> 
+			<if test="type=='산청군'"> and address_jibun or address_road like '%산청군%'</if>
+			<if test="type=='양산시'"> and address_jibun or address_road like '%양산시%'</if> 
+			<if test="type=='의령군'"> and address_jibun or address_road like '%의령군%'</if> 
+			<if test="type=='진주시'"> and address_jibun or address_road like '%진주시%'</if> 
+			<if test="type=='창원시'"> and address_jibun or address_road like '%창원시%'</if> 
+			<if test="type=='통영시'"> and address_jibun or address_road like '%통영시%'</if> 
+			<if test="type=='하동군'"> and address_jibun or address_road like '%하동군%'</if> 
+			<if test="type=='함안군'"> and address_jibun or address_road like '%함안군%'</if> 
+			<if test="type=='함양군'"> and address_jibun or address_road like '%함양군%'</if> 
+			<if test="type=='합천군'"> and address_jibun or address_road like '%합천군%'</if> 
+			<if test="type=='서귀포시'"> and address_jibun or address_road like '%서귀포시%'</if> 
+			<if test="type=='제주시'"> and address_jibun or address_road like '%제주시%'</if> 
+		order by camp_name asc
 	</select> 
 	
 	<select id="regionCnt" resultType="java.lang.Integer">
-		select count(*) from camp where region_code = #{region_code} 
+		select count(*) from camp 
+		where region_code = #{region_code} 
+			<if test="type=='가평군'"> and address_jibun or address_road like '%가평%'</if> 
+			<if test="type=='과천시'"> and address_jibun or address_road like '%과천%'</if> 
+			<if test="type=='광명시'"> and address_jibun or address_road like '%광명%'</if> 
+			<if test="type=='광주시'"> and address_jibun or address_road like '%광주시%'</if> 
+			<if test="type=='구리시'"> and address_jibun or address_road like '%구리%'</if> 
+			<if test="type=='군포시'"> and address_jibun or address_road like '%군포%'</if> 
+			<if test="type=='김포시'"> and address_jibun or address_road like '%김포%'</if> 
+			<if test="type=='남양주시'"> and address_jibun or address_road like '%남양주%'</if> 
+			<if test="type=='동두천시'"> and address_jibun or address_road like '%동두천%'</if> 
+			<if test="type=='부천시'"> and address_jibun or address_road like '%부천%'</if> 
+			<if test="type=='성남시'"> and address_jibun or address_road like '%성남%'</if> 
+			<if test="type=='시흥시'"> and address_jibun or address_road like '%시흥%'</if> 
+			<if test="type=='안산시'"> and address_jibun or address_road like '%안산%'</if> 
+			<if test="type=='양주시'"> and address_jibun or address_road like '%양주%'</if> 
+			<if test="type=='여주시'"> and address_jibun or address_road like '%여주%'</if> 
+			<if test="type=='연천군'"> and address_jibun or address_road like '%연천%'</if> 
+			<if test="type=='오산시'"> and address_jibun or address_road like '%오산%'</if> 
+			<if test="type=='용인시'"> and address_jibun or address_road like '%용인%'</if> 
+			<if test="type=='의왕시'"> and address_jibun or address_road like '%의왕%'</if> 		
+			<if test="type=='의정부시'"> and address_jibun or address_road like '%의정부%'</if> 
+			<if test="type=='이천시'"> and address_jibun or address_road like '%이천%'</if> 
+			<if test="type=='파주시'"> and address_jibun or address_road like '%파주%'</if> 
+			<if test="type=='평택시'"> and address_jibun or address_road like '%평택%'</if> 
+			<if test="type=='포천시'"> and address_jibun or address_road like '%포천%'</if> 
+			<if test="type=='화성시'"> and address_jibun or address_road like '%화성%'</if> 
+			<if test="type=='강릉시'"> and address_jibun or address_road like '%강릉시%'</if> 
+			<if test="type=='고성군'"> and address_jibun or address_road like '%강원도 고성군%'</if> 
+			<if test="type=='동해시'"> and address_jibun or address_road like '%동해시%'</if> 
+			<if test="type=='삼척시'"> and address_jibun or address_road like '%삼척시%'</if> 
+			<if test="type=='양구군'"> and address_jibun or address_road like '%양구군%'</if> 
+			<if test="type=='양양군'"> and address_jibun or address_road like '%양양군%'</if> 
+			<if test="type=='원주시'"> and address_jibun or address_road like '%원주시%'</if> 
+			<if test="type=='인제군'"> and address_jibun or address_road like '%인제군%'</if> 
+			<if test="type=='정선군'"> and address_jibun or address_road like '%정선군%'</if> 
+			<if test="type=='춘천시'"> and address_jibun or address_road like '%춘천시%'</if> 
+			<if test="type=='홍천군'"> and address_jibun or address_road like '%홍천군%'</if> 
+			<if test="type=='화천군'"> and address_jibun or address_road like '%화천군%'</if> 
+			<if test="type=='횡성군'"> and address_jibun or address_road like '%횡성군%'</if> 
+			<if test="type=='공주시'"> and address_jibun or address_road like '%공주시%'</if> 
+			<if test="type=='논산시'"> and address_jibun or address_road like '%논산시%'</if> 
+			<if test="type=='부여군'"> and address_jibun or address_road like '%부여군%'</if> 
+			<if test="type=='서천군'"> and address_jibun or address_road like '%서천군%'</if> 
+			<if test="type=='아산시'"> and address_jibun or address_road like '%아산시%'</if> 
+			<if test="type=='천안시'"> and address_jibun or address_road like '%천안시%'</if> 		
+			<if test="type=='청양군'"> and address_jibun or address_road like '%청양군%'</if> 
+			<if test="type=='괴산군'"> and address_jibun or address_road like '%괴산군%'</if> 
+			<if test="type=='단양군'"> and address_jibun or address_road like '%단양군%'</if> 
+			<if test="type=='영동군'"> and address_jibun or address_road like '%영동군%'</if> 
+			<if test="type=='옥천군'"> and address_jibun or address_road like '%옥천군%'</if> 
+			<if test="type=='음성군'"> and address_jibun or address_road like '%음성군%'</if>
+			<if test="type=='제천시'"> and address_jibun or address_road like '%제천시%'</if> 
+			<if test="type=='증평군'"> and address_jibun or address_road like '%증평군%'</if> 
+			<if test="type=='진천군'"> and address_jibun or address_road like '%진천군%'</if> 
+			<if test="type=='청주시'"> and address_jibun or address_road like '%청주시%'</if> 
+			<if test="type=='충주시'"> and address_jibun or address_road like '%충주시%'</if> 
+			<if test="type=='군산시'"> and address_jibun or address_road like '%군산시%'</if> 
+			<if test="type=='남원시'"> and address_jibun or address_road like '%남원시%'</if> 
+			<if test="type=='순창군'"> and address_jibun or address_road like '%순창군%'</if> 
+			<if test="type=='완주군'"> and address_jibun or address_road like '%완주군%'</if> 
+			<if test="type=='익산시'"> and address_jibun or address_road like '%익산시%'</if> 
+			<if test="type=='임실군'"> and address_jibun or address_road like '%임실군%'</if> 
+			<if test="type=='전주시'"> and address_jibun or address_road like '%전주시%'</if> 
+			<if test="type=='정읍시'"> and address_jibun or address_road like '%정읍시%'</if> 
+			<if test="type=='곡성군'"> and address_jibun or address_road like '%곡성군%'</if> 
+			<if test="type=='광양시'"> and address_jibun or address_road like '%광양시%'</if> 
+			<if test="type=='구례군'"> and address_jibun or address_road like '%구례군%'</if> 
+			<if test="type=='무안군'"> and address_jibun or address_road like '%무안군%'</if> 
+			<if test="type=='보성시'"> and address_jibun or address_road like '%보성시%'</if> 
+			<if test="type=='신안군'"> and address_jibun or address_road like '%신안군%'</if> 		
+			<if test="type=='여수시'"> and address_jibun or address_road like '%여수시%'</if> 
+			<if test="type=='영광군'"> and address_jibun or address_road like '%영광군%'</if> 
+			<if test="type=='영암군'"> and address_jibun or address_road like '%영암군%'</if> 
+			<if test="type=='장성군'"> and address_jibun or address_road like '%장성군%'</if> 
+			<if test="type=='함평군'"> and address_jibun or address_road like '%함평군%'</if> 
+			<if test="type=='화순군'"> and address_jibun or address_road like '%화순군%'</if>
+			<if test="type=='경주시'"> and address_jibun or address_road like '%경주시%'</if> 
+			<if test="type=='구미시'"> and address_jibun or address_road like '%구미시%'</if> 
+			<if test="type=='김천시'"> and address_jibun or address_road like '%김천시%'</if> 
+			<if test="type=='문경시'"> and address_jibun or address_road like '%문경시%'</if> 
+			<if test="type=='봉화군'"> and address_jibun or address_road like '%봉화군%'</if>
+			<if test="type=='상주시'"> and address_jibun or address_road like '%상주시%'</if> 
+			<if test="type=='성주군'"> and address_jibun or address_road like '%성주군%'</if> 
+			<if test="type=='영덕군'"> and address_jibun or address_road like '%영덕군%'</if> 
+			<if test="type=='영양군'"> and address_jibun or address_road like '%영양군%'</if> 
+			<if test="type=='영주시'"> and address_jibun or address_road like '%영주시%'</if>
+			<if test="type=='영천시'"> and address_jibun or address_road like '%영천시%'</if> 
+			<if test="type=='예천군'"> and address_jibun or address_road like '%예천군%'</if> 
+			<if test="type=='울진군'"> and address_jibun or address_road like '%울진군%'</if> 
+			<if test="type=='청도군'"> and address_jibun or address_road like '%청도군%'</if> 
+			<if test="type=='청송군'"> and address_jibun or address_road like '%청송군%'</if>
+			<if test="type=='칠곡군'"> and address_jibun or address_road like '%칠곡군%'</if> 
+			<if test="type=='포항시'"> and address_jibun or address_road like '%포항시%'</if> 
+			<if test="type=='거제시'"> and address_jibun or address_road like '%거제시%'</if> 
+			<if test="type=='거창군'"> and address_jibun or address_road like '%거창군%'</if> 
+			<if test="type=='고성군'"> and address_jibun or address_road like '%경상남도 고성군%'</if>
+			<if test="type=='김해시'"> and address_jibun or address_road like '%김해시%'</if> 
+			<if test="type=='남해군'"> and address_jibun or address_road like '%남해군%'</if> 
+			<if test="type=='밀양시'"> and address_jibun or address_road like '%밀양시%'</if> 
+			<if test="type=='사천시'"> and address_jibun or address_road like '%사천시%'</if> 
+			<if test="type=='산청군'"> and address_jibun or address_road like '%산청군%'</if>
+			<if test="type=='양산시'"> and address_jibun or address_road like '%양산시%'</if> 
+			<if test="type=='의령군'"> and address_jibun or address_road like '%의령군%'</if> 
+			<if test="type=='진주시'"> and address_jibun or address_road like '%진주시%'</if> 
+			<if test="type=='창원시'"> and address_jibun or address_road like '%창원시%'</if> 
+			<if test="type=='통영시'"> and address_jibun or address_road like '%통영시%'</if> 
+			<if test="type=='하동군'"> and address_jibun or address_road like '%하동군%'</if> 
+			<if test="type=='함안군'"> and address_jibun or address_road like '%함안군%'</if> 
+			<if test="type=='함양군'"> and address_jibun or address_road like '%함양군%'</if> 
+			<if test="type=='합천군'"> and address_jibun or address_road like '%합천군%'</if> 
+			<if test="type=='서귀포시'"> and address_jibun or address_road like '%서귀포시%'</if> 
+			<if test="type=='제주시'"> and address_jibun or address_road like '%제주시%'</if> 
 	</select> 
 	
 	<select id="getRegionCode" resultType="java.lang.String">
 		select no from region_code where region = #{area}
 	</select>
-	
-	
-	
-	
-	
 	
 	
 	<!-- type -->
@@ -62,25 +280,9 @@
 	</select>
 	
 	
-	
-	
-	
 	<!-- 검색 -->
 	<select id="getType" resultType="kr.green.camping.vo.user.CampVO">
-		select no, 
-			camp_type_no, 
-			camp_name, 
-			address_road,
-			address_jibun,
-			camp_tel,
-			latitude,
-			longitude,
-			area,
-			man_agency_tel,
-			man_agency_name,
-			registered_id,
-			registered_at,
-			like_cnt
+		select *
 		from camp
 		where 1 = 1 
 			<if test="type==1">
@@ -114,5 +316,14 @@
 			</if>
 	</select>
 	
+	
+	<!-- 야영장이름으로 검색 -->
+	<select id="searchCamp" resultType="kr.green.camping.vo.user.CampVO">
+		select * from camp where camp_name like #{search} order by camp_name asc
+	</select>
+	
+	<select id="getCountCamp" resultType="java.lang.Integer">
+		select count(no) from camp where camp_name like #{search}
+	</select>
 	
 </mapper>

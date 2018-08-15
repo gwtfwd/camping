@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
 	<!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
@@ -14,66 +12,59 @@
    	<!-- 우편번호 -->
    	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
-	<base href="http://localhost:8080/">
+	<base href="http://localhost:8080/camping/">
 	
 	<style type="text/css">
-	
-	.container{
-      min-height:850px;
-      
-   	}
-   	.container::-webkit-scrollbar { 
-       display: none; 
-   	}
-	
-	
-	.btn-primary11 {
-	  background-color: #1b1e24;
-	  border-color: #1b1e24;
-	}
-	
-	.btn11 {
-	  font-size: 15px;
-	  padding: 4px 15px;
-	  line-height: 20px;
-	  font-weight: 400;
-	  color:white; 
-	  width:100px; 
-	  height:30px;
-	  text-align:center;
-	  -moz-border-radius: 0px;
-	  -webkit-border-radius: 0px;
-	  border-radius: 0px;
-	  -webkit-transition: all 200ms ease;
-	  -moz-transition: all 200ms ease;
-	  -ms-transition: all 200ms ease;
-	  -o-transition: all 200ms ease;
-	  transition: all 200ms ease;
-	}
-	
-	.btn-primary22 {
-	  background-color: #fff;
-	  border-color: #000;
-	}
-	
-	.btn22 {
-	  font-size: 15px;
-	  padding: 4px 15px;
-	  line-height: 25px;
-	  font-weight: 400;
-	  color:black; 
-	  height:36px;
-	  border-width:1px;
-	  text-align:center;
-	  -moz-border-radius: 0px;
-	  -webkit-border-radius: 0px;
-	  border-radius: 4px;
-	  -webkit-transition: all 200ms ease;
-	  -moz-transition: all 200ms ease;
-	  -ms-transition: all 200ms ease;
-	  -o-transition: all 200ms ease;
-	  transition: all 200ms ease;
-	}
+		.container{
+	      min-height:850px;
+	   	}
+	   	.container::-webkit-scrollbar { 
+	       display: none; 
+	   	}
+		.btn-primary11 {
+		  background-color: #1b1e24;
+		  border-color: #1b1e24;
+		}
+		.btn11 {
+		  font-size: 15px;
+		  padding: 4px 15px;
+		  line-height: 20px;
+		  font-weight: 400;
+		  color:white; 
+		  width:100px; 
+		  height:30px;
+		  text-align:center;
+		  -moz-border-radius: 0px;
+		  -webkit-border-radius: 0px;
+		  border-radius: 0px;
+		  -webkit-transition: all 200ms ease;
+		  -moz-transition: all 200ms ease;
+		  -ms-transition: all 200ms ease;
+		  -o-transition: all 200ms ease;
+		  transition: all 200ms ease;
+		}
+		.btn-primary22 {
+		  background-color: #fff;
+		  border-color: #000;
+		}
+		.btn22 {
+		  font-size: 15px;
+		  padding: 4px 15px;
+		  line-height: 25px;
+		  font-weight: 400;
+		  color:black; 
+		  height:36px;
+		  border-width:1px;
+		  text-align:center;
+		  -moz-border-radius: 0px;
+		  -webkit-border-radius: 0px;
+		  border-radius: 4px;
+		  -webkit-transition: all 200ms ease;
+		  -moz-transition: all 200ms ease;
+		  -ms-transition: all 200ms ease;
+		  -o-transition: all 200ms ease;
+		  transition: all 200ms ease;
+		}
 	</style>
 
 </head>
@@ -82,164 +73,119 @@
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
 	
-	
 	<div class="container">	
 		<br><br><br><br>
-		
-		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
 		<h4 class="fontH" style="text-align:center;">회원정보수정</h4> <br><br>
 		
 		<form method="post" id="formId">
+			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="id">아이디</label>
 				</div>
-				
 				<div class="col-md-7">
 					<input type="text" class="form-control fontH" id="id" name="id" value="${join.id }" autocomplete="off" readonly>
 				</div>
 				<div class="col-md-1"></div>
-			</div>
-			<br>
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="name">이름<b style="color: red;">&nbsp;*</b></label>
 				</div>
-				
 				<div class="col-md-7">
 					<input type="text" class="form-control fontH" id="name" name="name" autocomplete="off" value="${join.name}" tabindex=1>
 				</div>
-				
 				<div class="col-md-1"></div>
-			</div>
-			<br>
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="gender">성별<b style="color: red;">&nbsp;*</b></label>
 				</div>
-				
 				<div class="col-md-7">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio"  name="gender" value="male" style="font-size:13px; margin-top:12px;" <c:out value="${join.gender.compareTo('male')==0?'checked':'' }"/> >&nbsp;남자 &nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="radio"  name="gender" value="female" style="font-size:13px; margin-top:12px;" <c:out value="${join.gender.compareTo('female')==0?'checked':'' }"/>>&nbsp;여자
 				</div>
 				<div class="col-md-1"></div>
-			</div>
-			<br>
-			
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;" >
 					<label class="control-label fontH" for="pw">비밀번호<b style="color: red;">&nbsp;*</b></label>
 				</div>
-				
 				<div class="col-md-7">
 					<input type="password" class="form-control fontH" id="pw" name="pw" tabindex=2>
 				</div>
-				
 				<div class="col-md-1"></div>
-			</div>
-			<br>
-			
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="pwck">비밀번호확인<b style="color: red;">&nbsp;*</b></label>
 				</div>
-				
 				<div class="col-md-7">
 					<input type="password" class="form-control fontH" id="pwck" name="pwck" tabindex=3>
 				</div>
-				
 				<div class="col-md-1"></div>
-			</div>
-			<br>
-			
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="phone">휴대전화<b style="color: red;">&nbsp;*</b></label>
 				</div>
-				
 				<div class="col-md-7">
 					<input type="text" class="form-control fontH" id="phone" name="phone" autocomplete="off" value="${join.phone}" tabindex=4>
 				</div>
-	
 				<div class="col-md-1"></div>
-			</div>
-			<br>
-			
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="email">이메일<b style="color: red;">&nbsp;*</b></label>
 				</div>
-				
 				<div class="col-md-7">
 					<input type="email" class="form-control fontH" id="email" name="email" autocomplete="off" value="${join.email}" tabindex=5>
 				</div>
-				
 				<div class="col-md-1"></div>
-			</div>
-			<br>
-			
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="birth">생년월일</label>
 				</div>
-				
 				<div class="col-md-7">
 					<input type="text" class="form-control fontH" id="birth" name="birth" autocomplete="off" value="${join.birth}" tabindex=7> 
 				</div>
 				<div class="col-md-1"></div>
-			</div>
-			<br>
-			
+			</div><br>
 			
 			<div class="row"> 
 				<div class="col-md-1"></div>
-				
 				<div class="col-md-2" style="text-align:right; padding-top:7px;">
 					<label class="control-label fontH" for="address">주소</label>
 				</div>
-				
 				<div class="col-md-7">
-					<!-- <input type="text" class="form-control fontH" id="address" name="address" autocomplete="off" tabindex=8> -->
 					<div class="row">
 						<div class="col-md-3"><input type="text" class="form-control fontH" id="postcode" name="postcode" onclick="openPostcode()" value="${join.postcode}" placeholder="우편번호" ></div>
 						<div class="col-md-3"><input type="button" class="btn22 btn-primary22 fontH" style="width:105px; margin-left:-20px;" onclick="openPostcode()" value="우편번호 >"></div>
 						<div class="col-md-6"></div>
 					</div><br>
-					
-					
 					<input type="text" class="form-control fontH" autocomplete="off" id="address" name ="address" value="${join.address}" placeholder="주소"><br>
 					<input type="text" class="form-control fontH" autocomplete="off" id="address_detail" name="address_detail" value="${join.address_detail}" placeholder="상세주소">
 				</div>
-				
 				<div class="col-md-1"></div>
-			</div>
-			<br><br>
+			</div><br><br>
 			
-				
 			<div style="text-align:center;">			
 				<a href="/camping/member/mypageDetail"> 
 		       		<button type="button" class="btn11 btn-primary11 fontH" style="margin-left:10px">취소</button>
@@ -248,10 +194,8 @@
 		       		<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px" id="modify">완료</button>
 		        </a>			
 			</div>
-					
 		</form>
 	</div>
-	
 	
 	<!-- mask -->
 	<script>
@@ -272,11 +216,7 @@
 			    	    return false;
 			    	}
 			    });
-			  
 		});
-
-	
-	
 		
 	/* 회원가입 유효성 검사 */
 		$(function() {
@@ -335,9 +275,6 @@
 				}, 
 				"Please check your input."
 		);
-    
-    
-    
     
     /* 우편번호조회 */
 	    function openPostcode() {

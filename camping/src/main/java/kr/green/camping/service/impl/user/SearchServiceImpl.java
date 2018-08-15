@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import kr.green.camping.dao.user.SearchMapper;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.user.SearchService;
 import kr.green.camping.vo.user.CampVO;
+import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.LikeVO;
 import kr.green.camping.vo.user.RegionVO;
 
@@ -52,12 +54,19 @@ public class SearchServiceImpl implements SearchService{
 	
 	// region
 	@Override
-	public List<CampVO> regionList(String region_code) throws Exception {
+	/*public List<CampVO> regionList(String region_code) throws Exception {
 		return searchMapper.regionList(region_code);
 	}
 	
 	public Integer regionCnt(String region_code) throws Exception {
 		return searchMapper.regionCnt(region_code);
+	}*/
+	public List<CampVO> regionList(String region_code, String type) throws Exception {
+		return searchMapper.regionList(region_code, type);
+	}
+	
+	public Integer regionCnt(String region_code, String type) throws Exception {
+		return searchMapper.regionCnt(region_code, type);
 	}
 
 	public String getRegionCode(String area) throws Exception {
@@ -90,5 +99,15 @@ public class SearchServiceImpl implements SearchService{
 		return searchMapper.getCountType(type);
 	}
 	
+	
+	// 야영장이름으로 검색
+	@Override
+	public List<CampVO> searchCamp(String search) throws Exception {
+		return searchMapper.searchCamp(search);
+	}
+	@Override
+	public int getCountCamp(String search) throws Exception {
+		return searchMapper.getCountCamp(search);
+	}
 	
 }

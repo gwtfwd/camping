@@ -14,7 +14,6 @@
    	<!-- link -->
    	
    	<style type="text/css">
-   	
    	.btnSearch{
    		font-size:16px; 
    		width:200px; 
@@ -38,7 +37,6 @@
 		}
 	</script>
    	
-
 </head>
 <body>
 	<div class="fontH" style="background-image: linear-gradient(-60deg, #f4d03f 0%, #16a085 100%); color:#fff; padding:20px;">
@@ -46,7 +44,6 @@
 	</div>
 
  	<div class="container">
-		
 		<c:if test="${resultNum == 0}">
 			<div class="fontH" style="text-align:center; margin-top:100px;">
 				${email}로 임시비밀번호를 전송하였습니다.
@@ -54,7 +51,6 @@
 			<div style="text-align:center;">
 				<a href="#" onClick="javascript:closefind();"><button type="button" class="btnSearch">닫기</button></a>
 			</div>
-			
 		</c:if>
 		
 		<c:if test="${resultNum == 1}">
@@ -65,12 +61,6 @@
 				<a href="/camping/member/login/findPw"><button type="button" class="btnSearch">뒤로가기</button></a>
 			</div>
 		</c:if>
-		
-		
-		
-		
-		
-		
 	</div> 
 
 </body>

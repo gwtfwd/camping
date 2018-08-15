@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,17 +12,16 @@
    	<!-- link -->
    	
    	<style type="text/css">
-   	
-   	.btnFindId{
-   		font-size:16px; 
-   		width:300px; 
-   		background-color:#16a085; 
-   		border-radius:40px; 
-   		border:0px; 
-   		padding:10px; 
-   		color:#fff; 
-   		margin-top:35px;
-   	}
+	   	.btnFindId{
+	   		font-size:16px; 
+	   		width:300px; 
+	   		background-color:#16a085; 
+	   		border-radius:40px; 
+	   		border:0px; 
+	   		padding:10px; 
+	   		color:#fff; 
+	   		margin-top:35px;
+	   	}
    	</style>
    	
    	<!-- mask -->
@@ -53,11 +51,9 @@
 				}
 				return true;
 			});
-
 		});
 	</script>
    	
-
 </head>
 <body>
 
@@ -67,23 +63,18 @@
 
  	<div class="container">
 		<form method="post" id="formId" action="/camping/member/login/findId" style="margin-top:30px;">
-		
 			<div>
 				<label class="control-label fontH" for="name" style="margin-left:20px;">이름</label>
 				<input type="text" class="form-control fontH" id="name" name="name" style="margin-left:20px; width:445px;" autocomplete="off" tabindex=1><br>
-			
 				<label class="control-label fontH" for="phone" style="margin-left:20px;">전화번호</label>
 				<input type="text" class="form-control fontH" id="phone" name="phone" style="margin-left:20px; width:445px;" autocomplete="off" tabindex=2>
 			</div>
-			
 			<div style="text-align:center;">
 				<button type="submit" class="btnFindId">Search</button>
 			</div>
-			
 			<div style="width:445px; margin-left:20px; border-top: 1px solid #ced4da;  margin-top:30px; font-size:85%" ><br>
                 이름과 전화번호를 입력해주세요.
             </div>
-            
 		</form>
 	</div> 
 

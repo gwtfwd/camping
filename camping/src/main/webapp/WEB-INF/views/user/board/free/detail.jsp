@@ -5,116 +5,122 @@
 <html lang="en">
 
 <head>
-
 	<!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
 	
 	<script src="//code.jquery.com/jquery.min.js"></script>
-	
+	<base href="http://localhost:8080/camping/">
 	<style type="text/css">
-	
-	.container{
-      min-height:850px;
-   	}
-   	.container::-webkit-scrollbar { 
-       display: none; 
-   	}
-	
-	.btn-primary11 {
-	  background-color: #1b1e24;
-	  border-color: #1b1e24;
-	}
-	
-	.btn11 {
-	  font-size: 15px;
-	  padding: 4px 15px;
-	  line-height: 20px;
-	  font-weight: 400;
-	  color:white; 
-	  width:100px; 
-	  height:30px;
-	  text-align:center;
-	  -moz-border-radius: 0px;
-	  -webkit-border-radius: 0px;
-	  border-radius: 0px;
-	  -webkit-transition: all 200ms ease;
-	  -moz-transition: all 200ms ease;
-	  -ms-transition: all 200ms ease;
-	  -o-transition: all 200ms ease;
-	  transition: all 200ms ease;
-	}
-	
-	.btn-primary33 {
-	  background-color: #6bacce;
-	  border-color: #6bacce;
-	}
-	
-	.btn33 {
-	  font-size: 14px;
- 	  padding: 4px 15px;
-	  line-height: 15px;
-	  font-weight: 400;
-	  color:#fff; 
-	  height:40px;
-	  width:80px;
-	  border-width:0px;
-	  text-align:center;
-	  border-radius: 35px;
-	  transition: all 200ms ease;
- 	}
+		.container{
+	      min-height:850px;
+	   	}
+	   	.container::-webkit-scrollbar { 
+	       display: none; 
+	   	}
+		.btn-primary11 {
+		  background-color: #1b1e24;
+		  border-color: #1b1e24;
+		}
+		.btn11 {
+		  font-size: 15px;
+		  padding: 4px 15px;
+		  line-height: 20px;
+		  font-weight: 400;
+		  color:white; 
+		  width:100px; 
+		  height:30px;
+		  text-align:center;
+		  -moz-border-radius: 0px;
+		  -webkit-border-radius: 0px;
+		  border-radius: 0px;
+		  -webkit-transition: all 200ms ease;
+		  -moz-transition: all 200ms ease;
+		  -ms-transition: all 200ms ease;
+		  -o-transition: all 200ms ease;
+		  transition: all 200ms ease;
+		}
+		.btn-primary33 {
+		  background-color: #6bacce;
+		  border-color: #6bacce;
+		}
+		.btn33 {
+		  font-size: 14px;
+	 	  padding: 4px 15px;
+		  line-height: 15px;
+		  font-weight: 400;
+		  color:#fff; 
+		  height:40px;
+		  width:80px;
+		  border-width:0px;
+		  text-align:center;
+		  border-radius: 35px;
+		  transition: all 200ms ease;
+	 	}
 	</style>
 	
-	
 	<script>
-	$(document).ready(function(){
-		  
-		  $('#delete').click(function() {
-		       var str = document.getElementById('formDetail');
-		       str.submit();
-		       
-		       if (confirm("정말 삭제하시겠습니까?") == true){    //확인
-		    	    document.form.submit();
-		    	}else{   //취소
-		    	    return false;
-		    	}
-		    });
-	});
+		//새로고침, 뒤로가기 막기
+		document.onkeydown = function(e) {
+			
+			 key = (e) ? e.keyCode : event.keyCode;
+			 
+			 if(key==8 || key==116) {
+				  if(e) {
+				  	e.preventDefault();
+				  } 
+				  else {
+				  	event.keyCode = 0;
+				  	event.returnValue = false;
+				  }
+			 }
+		}
 	
+		$(document).ready(function(){
+			  
+			  $('#delete').click(function() {
+			       var str = document.getElementById('formDetail');
+			       str.submit();
+			       
+			       if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+			    	    document.form.submit();
+			    	}else{   //취소
+			    	    return false;
+			    	}
+			    });
+		});
 	
-	$(document).ready(function() {
-	      
-	      /* 댓글목록함수호출 */
-	      replyList();    
-	      
-	      /* 댓글을 등록하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
-	      var bno = '${free.no}';
-	      
-	      /* 댓글등록버튼 클릭시 이벤트발생 */
-	      $('[name=replyInsertBtn]').click(function() {                      
-	         
-	    	  /* name이 replyInsertForm인 내용을 가져와서 
-	            insertData 변수에 담고 replyInsert함수를 호출 */
-	         var insertData = $('[name=replyinsertform]').serialize();
-	    	  
-	    	  if ($('#recontent').val() == null || $('#recontent').val().length < 10){
-	              
-	              alert("최소 10글자 이상 입력하셔야 됩니다.");
-	              $('#recontent').focus();
-	              return ;
-	         }
-	         replyInsert(insertData);                              
-	         
-	      });
-	   });
+		$(document).ready(function() {
+		      
+		      /* 댓글목록함수호출 */
+		      replyList();    
+		      
+		      /* 댓글을 등록하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
+		      var bno = '${free.no}';
+		      
+		      /* 댓글등록버튼 클릭시 이벤트발생 */
+		      $('[name=replyInsertBtn]').click(function() {                      
+		         
+		    	  /* name이 replyInsertForm인 내용을 가져와서 insertData 변수에 담고 replyInsert함수를 호출 */
+	         	var insertData = $('[name=replyinsertform]').serialize();
+		    	  
+	    	  	if ($('#recontent').val() == null || $('#recontent').val().length < 10){
+		              
+		              alert("최소 10글자 이상 입력하셔야 됩니다.");
+		              $('#recontent').focus();
+		              return ;
+		         }
+		         replyInsert(insertData);                              
+		      });
+		});
 		 
 		//댓글 목록 
 		function replyList(){
 			
-		  /* 댓글목록을 표시하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
-	      var bno = '${free.no}';  
+		  	/* 댓글목록을 표시하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
+	      	var bno = '${free.no}';  
 		      
-	      /* ajax로 데이터보내기 */
+	      	/* ajax로 데이터보내기 */
 		    $.ajax({
 		        url : '/camping/free/reply/list',	/* 데이터를 보낼 컨트롤러 경로 */
 		        type : 'get',						/* get방식으로 */
@@ -140,7 +146,6 @@
 	                	a += '<div class="row" style="border:1px solid #C8CACC; border-top:0px; line-height: 70px; vertical-align: middle;">'
 	                		+ '<div class="col-md-12 replyContent'+value.reno+'" style="text-align:left; font-size:14px;">'+ value.recontent + '</div></div>';
 		                
-		                
 		                cnt++;      /* 댓글이 추가되는대로 댓글수 카운트 증가 */
 		            });
 		            
@@ -149,7 +154,6 @@
 		        }
 		    });
 		} 
-		
 		 
 		//댓글 등록
 		function replyInsert(insertData){
@@ -214,7 +218,6 @@
 		function needLogin(x) {
 	      window.location.href = "/camping/member/needLogin"
 	    }
-		
 	</script>
 
 </head>
@@ -228,83 +231,71 @@
 		<h4 style="text-align:center; font-family:Segoe Print;">Detail</h4> <br><br>
 		
 		<form method="post" id="formDetail">
+		
 			<div class="row" style="border-bottom:1px solid #C8CACC; border-top:1px solid #C8CACC;"> 
-				
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="number">번호</label>
 				</div>
-				<div class="col-md-5 fontH">
+				<div class="col-md-4 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="number" name="number" style="background-color:white; border-width:0px;" value="${free.no}" readonly>
 				</div>
 				
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="view">조회수</label>
 				</div>
-				<div class="col-md-3 fontH">
+				<div class="col-md-4 fontH">
 					<input type="text" class="form-control" id="view" name="view" style="background-color:white; border-width:0px;" value="${free.view}" readonly>
 				</div>
-				
 			</div>
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
-			
-				<div class="col-md-1 fontH" style="padding-top:7px;"> 
+				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;"> 
 					<label class="control-label" for="subject">제목</label>
 				</div>
-				<div class="col-md-5 fontH">
+				<div class="col-md-4 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="subject" name="subject" style="background-color:white; border-width:0px;"  value="${free.subject}" readonly>
 				</div>
-				
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="id">작성자</label>
 				</div>
-				<div class="col-md-3 fontH">
+				<div class="col-md-4 fontH">
 					<input type="text" class="form-control" id="id" name="id" style="background-color:white; border-width:0px;" value="${free.registered_id}" readonly>
 				</div>
-				
 			</div>
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
-				
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="file">첨부파일</label>
 				</div>
-				<div class="col-md-5 fontH" >
+				<div class="col-md-4 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="file" name="file" style="background-color:white; border-width:0px;" value="" readonly>
 				</div>
-				
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-1 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="registered_at">작성일자</label>
 				</div>
-				<div class="col-md-2 fontH" >
+				<div class="col-md-2 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="registered_at" name="registered_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${free.registered_at}" pattern="yyyy-MM-dd" />" readonly>
 				</div>
-				
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-1 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="updated_at">수정일자</label>
 				</div>
 				<div class="col-md-2 fontH" >
 					<input type="text" class="form-control" id="updated_at" name="updated_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${free.updated_at}" pattern="yyyy-MM-dd" />" readonly>
 				</div>
-				
-			</div><br>
+			</div>
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
-				
-				<div class="col-md-1 fontH" style="padding-top:4px;">
+				<div class="col-md-2 fontH" style="padding-top:10px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="contents">내용</label>
 				</div>
-				<div class="col-md-10 fontH" style="margin-left: 9px;">
-					<textarea rows="20" cols="140" id="contents" name="contents" style="background-color:white; border-width:0px;" readonly>${free.contents}</textarea>
+				<div class="col-md-9 fontH" style="padding-top:10px;">
+					<textarea rows="20" cols="120" id="contents" name="contents" style="background-color:white; border-width:0px;" readonly>${free.contents}</textarea>
 				</div>
-				
-			</div>
-			<br>
+			</div><br>
 			
-				<!-- <label for="num">첨부파일:</label> -->
 			<div style="text-align:center;">			
 				<a href="/camping/free/list"> 
-		       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">LIST</button>
+		       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">목록</button>
 		        </a>			
 		        <c:if test="${user.id.compareTo(free.registered_id) == 0 }">
 					<a href="/camping/free/modify?no=${free.no}"> 
@@ -316,7 +307,6 @@
 		        </c:if>		
 			</div><br><br>
 		</form>
-		
 		
 		<form name="replyinsertform">
 			<div class="row" style="border-top:1px solid #e8e8e8; background-color:#fafafa; margin-top:20px;">
@@ -340,13 +330,11 @@
 		<div class="row" > 
 			<label class="control-label fontH" style="font-size:23px;"><span id="replyCnt"></span> Comments</label>
 		</div><br>
-		<div>
+		<div style="margin-bottom:50px;">
 			<div id="replyList"></div><br>
 		</div>
-	
 	</div>
 		
-	
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
    	<!-- Footer -->

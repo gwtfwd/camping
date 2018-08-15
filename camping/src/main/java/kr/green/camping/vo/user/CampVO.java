@@ -12,7 +12,7 @@ public class CampVO {
 	private Integer address_code;			// ������ ���� �ּ�
 	private String camp_tel;				// �߿��� ��ȭ��ȣ
 	private Double latitude;				// ����
-	private Double longtitude;				// �浵
+	private Double longitude;				// �浵
 	private Integer area;					// ��������
 	private String man_agency_tel;			// ������� ��ȭ��ȣ
 	private String man_agency_name;			// ���������
@@ -77,11 +77,11 @@ public class CampVO {
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
-	public Double getLongtitude() {
-		return longtitude;
+	public Double getLongitude() {
+		return longitude;
 	}
-	public void setLongtitude(Double longtitude) {
-		this.longtitude = longtitude;
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 	public Integer getArea() {
 		return area;

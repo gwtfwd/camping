@@ -6,33 +6,39 @@
 <html lang="en">
 
 <head>
-
 	<!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
+	<base href="http://localhost:8080/camping/">
+	<base href="http://localhost:8080/camping/">
 	
 	<style type="text/css">
-	
-	.btn-primary11 {
-	  background-color: #1b1e24;
-	  border-color: #1b1e24;
-	  color:white;
-	}
-	
-	.btn11 {
-	  font-size: 12px;
-	  padding: 4px 15px;
-	  line-height: 20px;
-	  font-weight: 400;
-	  -moz-border-radius: 0px;
-	  -webkit-border-radius: 0px;
-	  border-radius: 0px;
-	  -webkit-transition: all 200ms ease;
-	  -moz-transition: all 200ms ease;
-	  -ms-transition: all 200ms ease;
-	  -o-transition: all 200ms ease;
-	  transition: all 200ms ease;
-	}
+		.container{
+	      min-height:850px;
+	      margin-bottom:50px;
+	   	}
+	   	.container::-webkit-scrollbar { 
+	       display: none; 
+	   	}
+		.btn-primary11 {
+		  background-color: #1b1e24;
+		  border-color: #1b1e24;
+		  color:white;
+		}
+		.btn11 {
+		  font-size: 12px;
+		  padding: 4px 15px;
+		  line-height: 20px;
+		  font-weight: 400;
+		  -moz-border-radius: 0px;
+		  -webkit-border-radius: 0px;
+		  border-radius: 0px;
+		  -webkit-transition: all 200ms ease;
+		  -moz-transition: all 200ms ease;
+		  -ms-transition: all 200ms ease;
+		  -o-transition: all 200ms ease;
+		  transition: all 200ms ease;
+		}
 	</style>
 
 </head>
@@ -41,9 +47,8 @@
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
 	
-	<div class="container" style="height:950px">	
+	<div class="container">	
 		<br><br><br><br>
-		<!-- <p style="text-align:center; font-family:Meiryo; color: #343a40; text-decoration:underline; font-size:18px;">NOTICE</p><br> -->
 		<h4 style="text-align:center; font-family:Segoe Print;">Notice</h4><br><br>
 		<form method="post" action="<c:url value='http://localhost:8080/camping/notice/list'/>" >
 			<div class="row"> 

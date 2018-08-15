@@ -9,10 +9,8 @@
 	    width:100%;
 	    height:50px;   
 	    background:#ccc;
-	    margin-top:70px;
 	}
 	</style> 
-
 
 	<!-- Footer -->
     <footer class="py-5 bg-dark">

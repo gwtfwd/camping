@@ -7,6 +7,21 @@
     <!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
+    <script>
+		$(document).ready(function(){
+
+			// 야영장명으로 찾기
+			$('#formId').submit(function(){
+				
+				var search = $("#search");
+				if(search.val() == ""){
+					alert("야영장명을 입력하세요.");
+					return false;
+				}
+				return true;
+			});
+		});
+	</script>
     
     <style>
 		.btn11 {
@@ -141,15 +156,17 @@
    	
    	<!-- Page Content -->
    	<section class="py-5" style="margin-top:120px;">
+   		<form id="formId" action="/camping/search/name">
 	      <div class="container fontH" >
 	      	<div class="row">
 				<div class="col-md-12" style="text-align:center;">
 					<label style="font-size:26px; margin-right:10px; color: #343a40;">야영장 이름으로 검색</label>
-					<input type="text" name="search" style="margin-right:10px;width:500px; height:50px; font-size:24px; border: 1px solid #ced4da;color: #555; padding: 0.375rem 0.75rem; border-radius: 4px;" autocomplete="off">
-					<a href="/camping/search/name"><button class="btn33 btn-primary33" type="submit">Search</button></a>
+					<input type="text" id="search" name="search" style="margin-right:10px;width:500px; height:50px; font-size:24px; border: 1px solid #ced4da;color: #555; padding: 0.375rem 0.75rem; border-radius: 4px;" autocomplete="off">
+					<button class="btn33 btn-primary33" type="submit">Search</button>
 				</div>
 			</div>
 	      </div>
+	     </form>
     </section>
    	
 	<section class="py-5" style="margin-top:120px;">
@@ -196,7 +213,7 @@
       <div class="container" >
          <div class="container-fluid fontH tbbox" style="width: 1540px; margin-left:-200px; text-align:center;"><br><br><br><br><br>
 			<h4 style=" font-weight:bold; font-color:#343a40;">즐거운 여행의 시작, 지금 바로 예약하세요!</h4><br>
-			<a href="#"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
+			<a href="/camping/booking/write"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
 			<br><br><br><br>     
         </div>
       </div>

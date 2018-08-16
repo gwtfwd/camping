@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.green.camping.vo.user.BookingVO;
+import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 
 @Controller
 
-@RequestMapping(value="/reservation/*")
+@RequestMapping(value="/booking/*")
 public class BookingController {
 
 	
 	// 실시간예약하기
-	/*@RequestMapping(value = "/write", method = RequestMethod.GET)
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String reservationWriteGet(HttpServletRequest request, Model model, BookingVO vo) throws Exception {
 		
-		로그인 유지
+		//로그인 유지
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO)session.getAttribute("user");
 		
@@ -36,8 +37,8 @@ public class BookingController {
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		
-		return "user/board/booking/reservation";
-	}*/
+		return "user/board/booking/write";
+	}
 	
 	
 	/*@RequestMapping(value = "/write", method = RequestMethod.POST)
@@ -63,7 +64,22 @@ public class BookingController {
 		return "redirect:/free/list";
 	}*/
 	
+	// 야영장찾기
+	@RequestMapping(value = "/findCamp", method = RequestMethod.GET)
+	public String findIdGet() {
+		
+		return "/user/board/booking/findCamp";
+	}
 	
+	
+	
+	// 예약확인
+	@RequestMapping(value = "/detail")
+	public String freeDetailPost(Model model, HttpServletRequest request) throws Exception {
+		
+		
+		return "user/board/booking/detail";
+	}
 	
 	
 	

@@ -13,6 +13,7 @@
 	<style type="text/css">
 		.container{
 	      min-height:850px;
+	      margin-bottom:70px;
 	   	}
 	   	.container::-webkit-scrollbar { 
 	       display: none; 
@@ -84,13 +85,13 @@
 		<br><br><br><br>
 		<h4 class="fontH" style="text-align:center;">유형별 야영장 찾기</h4><br><br>
 		
-		<div class="row"> 
+		<div class="row" > 
 			
 			<div class="col-md-12"> 
 				<div class="input-group">
 					<form id="typeForm" method="post" action="<c:url value='http://localhost:8080/camping/search/type/list'/>">
-						<select class="form-control11 fontH" name="type" onchange="showType(this.value)" style="width:200px;">
-							<option value="">Select Type</option>
+						<select class="form-control11 fontH" name="type" onchange="showType()" style="width:200px;">
+							<option value="0">Select Type</option>
 							<option value="1">야영장</option>
 							<option value="2">자동차야영장</option>
 							<option value="3">야영장, 자동차야영장</option>
@@ -119,20 +120,20 @@
 						        	<td>
 									    <c:if test="${member}">
 									     	<c:if test="${camp.like_cnt == 0 }">
-									     		<a class="heart"><img src='/camping/resources/images/dislike.png' >
+									     		<a class="heart"><img src='/camping/resources/images/dislike.png' ></a>
 									     		<input type="hidden" class="like-hidden" value="${camp.like_cnt }"/>
-									     		<input type="hidden" class="camp-hidden" value="${camp.no }"/></a>
+									     		<input type="hidden" class="camp-hidden" value="${camp.no }"/>
 									    	</c:if>
 									     	<c:if test="${camp.like_cnt != 0 }">
-									     		<a class="heart"><img src='/camping/resources/images/heart1.png' >
+									     		<a class="heart"><img src='/camping/resources/images/heart1.png' ></a>
 									     		<input type="hidden" class="like-hidden" value="${camp.like_cnt}"/>
-									     		<input type="hidden" class="camp-hidden" value="${camp.no}"/></a>
+									     		<input type="hidden" class="camp-hidden" value="${camp.no}"/>
 									    	</c:if>
 									    </c:if>
 									    <c:if test="${!member}">
 									     	<a href="/camping/member/needLogin"><img src='/camping/resources/images/dislike.png'></a>
 									    </c:if> 
-									    <span  style='margin-left: 5px;' >${camp.like_cnt} Likes</span>
+									    <span style='margin-left: 5px;' >${camp.like_cnt} Likes</span>
 						        	</td>
 						        </tr>
 					        </c:forEach>

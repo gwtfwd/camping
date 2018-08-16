@@ -203,11 +203,11 @@ public class SearchController {
 	}
 	
 	@RequestMapping(value = "/type/list", method = RequestMethod.POST)
-	public String postSearchType(@RequestParam("camp_no") int camp_no, Model model, HttpServletRequest request, Criteria cri, Integer type) throws Exception {
+	public String postSearchType(Integer camp_no, Model model, HttpServletRequest request, Criteria cri, Integer type) throws Exception {
 		
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
-		HashMap <String, Object> hashMap = new HashMap<String, Object>();
+		//HashMap <String, Object> hashMap = new HashMap<String, Object>();
 		
 		boolean member = false;
 		if( user != null) {
@@ -230,22 +230,22 @@ public class SearchController {
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		
-		String user_id = ((JoinVO) request.getSession().getAttribute("login")).getId();
-		
-		LikeVO likevo = new LikeVO();
-		likevo.setCamp_no(camp_no);
-		likevo.setUser_id(user_id);
-
-        int boardlike = searchService.getBoardLike(likevo);
-
+		if(camp_no != null && user != null) {
+			String user_id = user.getId();
+			LikeVO likevo = new LikeVO();
+			likevo.setCamp_no(camp_no);
+			likevo.setUser_id(user_id);
+			
+	        int boardlike = searchService.getBoardLike(likevo);
+	        model.addAttribute("heart",boardlike);
+		}
         
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
 	    model.addAttribute("type",type);
-	    model.addAttribute("heart",boardlike);
+	    
 	    
 
 	    return "user/board/search/type/list";
@@ -318,7 +318,7 @@ public class SearchController {
         return heart;
     }
 	
-	// 이름으로 검색
+	// 야영장명으로 검색
 	@RequestMapping(value = "/name", method = RequestMethod.GET)
 	public String searchCamp(Model model,HttpServletRequest request,String search) throws Exception {
 		
@@ -337,7 +337,12 @@ public class SearchController {
 		list = (ArrayList)searchService.searchCamp("%"+search+"%");
 		totalCount = searchService.getCountCamp("%"+search+"%");
 		
+		boolean camplist = false;
+		if( totalCount != 0) {
+			camplist = true;
+		}
 		
+		model.addAttribute("camplist", camplist);
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("list", list);
@@ -347,9 +352,9 @@ public class SearchController {
 		return "user/board/search/name/list";
 	}
 	
-	// 이름으로 검색
-	@RequestMapping(value = "/name", method = RequestMethod.POST)
-	public String searchCampPost(Model model,HttpServletRequest request,String search) throws Exception {
+	// 야영장명으로 검색 상세보기
+	@RequestMapping(value = "/name/detail", method = RequestMethod.GET)
+	public String nameDetailGet(CampVO vo, Model model, HttpServletRequest request) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -360,20 +365,15 @@ public class SearchController {
 			member = true;
 		}
 		
-		ArrayList<CampVO> list = null;
-		int totalCount = 0;
-		
-		list = (ArrayList)searchService.searchCamp("%"+search+"%");
-		totalCount = searchService.getCountCamp("%"+search+"%");
-		
+		CampVO camp = searchService.getCamp(vo);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
-		model.addAttribute("list", list);
-	    model.addAttribute("search",search);
-		
-		return "user/board/search/name/list";
+		model.addAttribute("camp", camp);
+	    
+		return "user/board/search/name/detail";
 	}
+	
 	
 	
 	

@@ -26,9 +26,21 @@
    	</style>
    	<script>
 	   	$(document).ready(function(){ 
-		    $('#campName').click(function(e){
-		        var campName = $(this).val();
-		        alert(campName);
+		    $('#campInfo').click(function(e){
+		    	
+ 		    	var campName = $('#campName').text();
+ 		    	var campNo = $('#campNo').val();
+ 		    	alert(campName + "," + campNo);
+		        
+			    $.ajax({
+			        url : '/camping/booking/write',	
+			        type : 'post',						
+			        data : {'campName':campName, 'campNo':campNo},
+			        success : function(){
+			        	alert('완료');
+			        	window.close();
+			        }
+			    });
 	    	});
 	    });
     </script>
@@ -44,16 +56,19 @@
  	<div class="container">
 		<h4 class="fontH" style="text-align:center; margin-top:50px;">' ${search} ' (으)로 검색된 결과입니다.</h4>
 		<h6 class="fontH" style="text-align:center;">${totalCount}개의 야영장이 있습니다.</h6>
+		
 		<div style="margin-left:15px; margin-right:15px;">
 			<c:if test="${camplist}">		
 				<div class="fontH" style="text-align:center;margin-top:70px;border:1px solid #C8CACC; margin-bottom:70px;">
 					<c:forEach items="${list}" var="camp">
-						<div style="margin-top:8px;margin-bottom:8px;">
+						<div id="campInfo" style="margin-top:8px;margin-bottom:8px;">
 							<a href="#" id="campName">${camp.camp_name}</a>
+							<input type="hidden" id="campNo" value="${camp.no}">
 						</div>
 					</c:forEach>
 				</div>
 			</c:if>
+			
 			<c:if test="${!camplist}">		
 				<div class="fontH" style="text-align:center;margin-top:170px;">
 					검색된 결과가 없습니다.

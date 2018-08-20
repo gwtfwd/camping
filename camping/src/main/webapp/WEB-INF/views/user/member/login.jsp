@@ -17,8 +17,8 @@
 	       display: none; 
 	   	}
 		.btn-primary11 {
-		  background-color: #1b1e24;
-		  border-color: #1b1e24;
+		  background-color: #3399ff;
+		  border-color: #3399ff;
 		}
 		.btn11 {
 		  font-size: 15px;
@@ -27,7 +27,7 @@
 		  font-weight: 400;
 		  color:white; 
 		  width:100px; 
-		  height:30px;
+		  height:35px;
 		  -moz-border-radius: 0px;
 		  -webkit-border-radius: 0px;
 		  border-radius: 0px;
@@ -37,6 +37,10 @@
 		  -o-transition: all 200ms ease;
 		  transition: all 200ms ease;
 		}
+		.btn-primary22 {
+		  background-color: #090;
+		  border-color: #090;
+		}
 	</style> 
 
 	<script>
@@ -45,8 +49,8 @@
 	    window.onload = function() {
 	 
 	        if (getCookie("id")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
-	            document.loginForm.id.value = getCookie("id"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
-	            document.loginForm.idSave.checked = true; // 체크는 체크됨으로
+	            document.userLoginForm.id.value = getCookie("id"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
+	            document.userLoginForm.idSave.checked = true; // 체크는 체크됨으로
 	        }
 	 
 	    }
@@ -74,7 +78,7 @@
 	    }
 	 
 	    function sendit() {
-	        var frm = document.loginForm;
+	        var frm = document.userLoginForm;
 	        if (!frm.id.value) { //아이디를 입력하지 않으면.
 	            alert("아이디를 입력 해주세요!");
 	            frm.id.focus();
@@ -85,12 +89,12 @@
 	            frm.pw.focus();
 	            return;
 	        }
-	        if (document.loginForm.idSave.checked == true) { // 아이디 저장을 체크 하였을때
-	            setCookie("id", document.loginForm.id.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+	        if (document.userLoginForm.idSave.checked == true) { // 아이디 저장을 체크 하였을때
+	            setCookie("id", document.userLoginForm.id.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
 	        } else { // 아이디 저장을 체크 하지 않았을때
-	            setCookie("id", document.loginForm.id.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+	            setCookie("id", document.userLoginForm.id.value, 0); //날짜를 0으로 저장하여 쿠키삭제
 	        }
-	        document.loginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
+	        document.userLoginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
 	    }
 	    
 	    /* 아이디찾기 */
@@ -111,14 +115,98 @@
    	<!-- Header -->
 	
 	<div class="container">
+        <h1 style="text-align:center; font-family:Segoe Print; margin-top:150px;"><b>welcome</b></h1>
+        
+		<div class="row">
+            <div class="col-md-6" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px; border-top:#3399ff 3px solid; ">
+            	<form method="post" id="userLoginForm" name="userLoginForm" >
+	                <div style="margin-top:50px; margin-bottom:50px;">
+	                	<div style="text-align:center;">
+	                		<h3 style="color:#333;">개인회원</h3>
+	                    </div><br>
+	                    <div class="form-group" >
+	                        <div class="col-md-12">                                            
+	                            <div class="input-group">
+	                                <input type="text" id="id" name="id" class="form-control" placeholder="ID" autocomplete="off"/>
+	                            </div>                                            
+	                        </div>
+	                    </div>
+	                    <div class="form-group" >
+	                        <div class="col-md-12 ">                                            
+	                            <div class="input-group">
+	                                <input type="password" id="pw" name="pw" class="form-control" placeholder="PASSWORD"/>
+	                            </div>                                            
+	                        </div>
+	                    </div>
+	                    <div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
+	                        <input type="checkbox" name="idSave" value="saveOk"/> 아이디 저장
+	                    </div>
+	                    <div class="col-md-12">
+	                    	<a href="/camping/member/login"><button type="submit" onclick="sendit()" class="btn11 btn-primary11 pull-right fontH">Login</button></a>
+	                	</div>
+	                	<div class="form-group">
+	                		<br>
+	                        <label ><a href="#" onClick="javascript:openfindId();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">아이디 찾기</a></label><br>
+	                        <label ><a href="#" onClick="javascript:openfindPw();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">비밀번호 찾기</a></label>
+	                    </div>
+	                	<div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
+	                        <label style="vertical-align: bottom;">아직 회원이 아니신가요?</label>
+	                       <a href="/camping/selectJoin"> <button type="button" class="btn11 btn-primary11 pull-right">Join</button></a>
+	                    </div>
+	                </div>
+                 </form>
+            </div>
+            <div class="col-md-6" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px; border-top:#090 3px solid; border-left:0px;">
+            	<form method="post" id="userLoginForm" name="userLoginForm" >
+	                <div style="margin-top:50px; margin-bottom:50px;">
+	                	<div style="text-align:center;">
+	                		<h3 style="color:#333;">관리자회원</h3>
+	                    </div><br>
+	                    <div class="form-group" >
+	                        <div class="col-md-12">                                            
+	                            <div class="input-group">
+	                                <input type="text" id="id" name="id" class="form-control" placeholder="ID" autocomplete="off"/>
+	                            </div>                                            
+	                        </div>
+	                    </div>
+	                    <div class="form-group" >
+	                        <div class="col-md-12 ">                                            
+	                            <div class="input-group">
+	                                <input type="password" id="pw" name="pw" class="form-control" placeholder="PASSWORD"/>
+	                            </div>                                            
+	                        </div>
+	                    </div>
+	                    <div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
+	                        <input type="checkbox" name="idSave" value="saveOk"/> 아이디 저장
+	                    </div>
+	                    <div class="col-md-12">
+	                    	<a href="/camping/member/login"><button type="submit" onclick="sendit()" class="btn11 btn-primary22 pull-right fontH">Login</button></a>
+	                	</div>
+	                	<div class="form-group">
+	                		<br>
+	                        <label ><a href="#" onClick="javascript:openfindId();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">아이디 찾기</a></label><br>
+	                        <label ><a href="#" onClick="javascript:openfindPw();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">비밀번호 찾기</a></label>
+	                    </div>
+	                	<div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
+	                        <label style="vertical-align: bottom;">아직 회원이 아니신가요?</label>
+	                       <a href="/camping/selectJoin"> <button type="button" class="btn11 btn-primary22 pull-right">Join</button></a>
+	                    </div>
+	                </div>
+                 </form>
+            </div>
+		</div>
+	</div>
+	
+	
+<!-- 	<div class="container">
 		
 		<div class="row">
 			<div class="col-md-3"></div>
             <div class="col-md-6">
             	<form method="post" id="loginForm" name="loginForm" >
                     <div>
-                        <div><br><br><br><br><br><br><br><br>
-                            <h3 style="text-align:center; font-family:Segoe Print;">welcome</h3><br><br>
+                        <div><br><br><br><br><br><br>
+                            <h2 style="text-align:center; font-family:Segoe Print;">welcome</h2><br><br><br>
                         </div>
                         <div >  
                             <div class="form-group" >
@@ -156,7 +244,7 @@
             </div>
             <div class="col-md-3"></div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

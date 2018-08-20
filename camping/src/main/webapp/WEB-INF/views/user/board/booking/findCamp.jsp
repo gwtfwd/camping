@@ -27,6 +27,8 @@
 	<script>
 		$(document).ready(function(){
 
+			$('#search').focus();
+			
 			// 야영장찾기
 			$('#formId').submit(function(){
 				// id가 camp_name인 객체를 name이라는 변수에 저장

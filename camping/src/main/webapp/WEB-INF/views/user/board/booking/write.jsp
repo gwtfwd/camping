@@ -77,7 +77,8 @@
 					<label style="float:right; padding-top:7px;" for="camp_name">야영장명</label>				
 				</div>
 				<div class="col-md-6 fontH">
-					<input type="text" class="form-control fontH" id="camp_name" name="camp_name" onClick="javascript:openfindCamp();" placeholder="검색해서 찾기" tabindex=1>
+					<input type="text" class="form-control fontH" id="camp_name" name="camp_name" onClick="javascript:openfindCamp();" value="${campName}" placeholder="검색해서 찾기" tabindex=1>
+					<input type="hidden" value="${campNo}">
 				</div>
 				<div class="col-md-1"></div>
 			</div>

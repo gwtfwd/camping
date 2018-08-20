@@ -19,13 +19,14 @@
 		.button {
 		  display: inline-block;
 		  border-radius: 25px;
-		  background-color: #000;
+		  background-color: #3399ff;
 		  /* border: 1px #000 solid; */
 		  color: #FFF;
 		  text-align: center;
-		  font-size: 20px;
-		  width: 300px;
-		  height: 50px;
+		  font-size: 17px;
+	      font-weight: 800;
+		  width: 150px;
+		  height: 40px;
 		  transition: all 0s;
 		  cursor: pointer;
 		  margin: 5px;
@@ -34,12 +35,13 @@
 		  display: inline-block;
 		  border-radius: 25px;
 		  background-color: #FFF;
-		  border: 1.5px #000 solid; 
-		  color: #000;
+		  border: 1.5px #3399ff solid; 
+		  color: #3399ff;
 		  text-align: center;
-		  font-size: 20px;
-		  width: 300px;
-		  height: 50px;
+		  font-size: 17px;
+		  font-weight: 800;
+		  width: 150px;
+		  height: 40px;
 		  transition: all 0s;
 		  cursor: pointer;
 		  margin: 5px;
@@ -65,6 +67,57 @@
 		  opacity: 1;
 		  right: 0;
 		}
+		.button1 {
+		  display: inline-block;
+		  border-radius: 25px;
+		  background-color: #090;
+		  border: 1px #090 solid;
+		  color: #FFF;
+		  text-align: center;
+		  font-size: 17px;
+		  font-weight: 800;
+		  width: 150px;
+		  height: 40px;
+		  transition: all 0s;
+		  cursor: pointer;
+		  margin: 5px;
+		}
+		.button1:hover {
+		  display: inline-block;
+		  border-radius: 25px;
+		  background-color: #FFF;
+		  border: 1.5px #090 solid; 
+		  color: #090;
+		  text-align: center;
+		  font-size: 17px;
+		  font-weight: 800;
+		  width: 150px;
+		  height: 40px;
+		  transition: all 0s;
+		  cursor: pointer;
+		  margin: 5px;
+		}
+		.button1 span {
+		  cursor: pointer;
+		  display: inline-block;
+		  position: relative;
+		  transition: 0.5s;
+		}
+		.button1 span:after {
+		  content: '\00bb';
+		  position: absolute;
+		  opacity: 0;
+		  top: 0;
+		  right: -20px;
+		  transition: 0.5s;
+		}
+		.button1:hover span {
+		  padding-right: 25px;
+		}
+		.button1:hover span:after {
+		  opacity: 1;
+		  right: 0;
+		}
 	</style>
 
 </head>
@@ -73,26 +126,26 @@
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
 	
-	 <section>
-	      <div class="container" style="margin-top:150px; margin-bottom:70px;">
-	        <div class="container-fluid clearfix">
-	        	<h4 class="fontH" style="text-align:center;"><b>회원가입</b>을 환영합니다!</h4><br><br>
-	        	
-		        <div class="img-container" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px;">
-	        		<a href="#"><img src='resources/images/user.png' width="180px" height="180px" style="margin-top:50px"></a><br><br>
-	        		<!-- <p class="fontH" style="font-size:15px; color:#6c757d;">전국 야영장 정보를 알고싶은 분<br><br> -->
-	        		<a href="/camping/member/join"><button class="button" style="vertical-align:middle; margin-bottom:50px;"><span>개인 회원 가입</span></button></a>
-		         </div>
-		         
-		         <div class="img-container" style="margin-top:100px; border:#C5C6C7 1px solid; margin-left:40px;  width:450px;" >		
-	       			<a href="#"><img src='resources/images/admin.png' width="180px" height="180px" style="margin-top:50px"></a><br><br>
-	       			<!-- <p class="fontH" style="font-size:15px; ">야영장을 등록하고 관리하는 분<br><br> -->
-	       			<a href="#"><button class="button" style="vertical-align:middle; margin-bottom:50px;"><span>관리자 회원 가입</span></button></a>
-				</div>
-				
-	        </div> 
-	      </div>
-    </section>
+      <div class="container" style="margin-top:150px;">
+       	<h3 class="fontH" style="text-align:center;"><b>회원가입</b>을 환영합니다</h3><br><br>
+       	
+       	<div class="row" style="text-align:center;">
+	        <div class="col-md-6 fontH" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px; border-top:#3399ff 3px solid; "><br><br><br>
+        		
+        		<h3 style="color:#333;">개인회원</h3>
+        		<label style="color:#666;">개인회원 가입을 원하시면 선택해주세요.</label><br><br>
+        		<a href="/camping/member/join"><button class="button" style="vertical-align:middle; margin-bottom:50px;"><span>회원가입</span></button></a><br>
+	         </div>
+	         
+	         <div class="col-md-6 fontH" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px; border-top:#090 3px solid; border-left:0px;"><br><br><br>	
+       			
+       			<h3 style="color:#333;">관리자회원</h3>
+        		<label style="color:#666;">관리자회원 가입을 원하시면 선택해주세요.</label><br><br>
+       			
+       			<a href="#"><button class="button1" style="vertical-align:middle; margin-bottom:50px;"><span>회원가입</span></button></a><br>
+			</div>
+        </div> 
+      </div>
 
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

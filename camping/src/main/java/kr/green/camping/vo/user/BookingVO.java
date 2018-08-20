@@ -1,7 +1,5 @@
 package kr.green.camping.vo.user;
 
-import java.sql.Time;
-import java.util.Date;
 
 public class BookingVO {
 
@@ -9,16 +7,22 @@ public class BookingVO {
 	private String user_name;
 	private String user_id;
 	private String camp_name;
-	private Date booking_at;
+	private Integer camp_no;
+	private String booking_at;
 	private Integer people;
-	private Time coming_time;
 	
 	
 	
-	public Date getBooking_at() {
+	public Integer getCamp_no() {
+		return camp_no;
+	}
+	public void setCamp_no(Integer camp_no) {
+		this.camp_no = camp_no;
+	}
+	public String getBooking_at() {
 		return booking_at;
 	}
-	public void setBooking_at(Date booking_at) {
+	public void setBooking_at(String booking_at) {
 		this.booking_at = booking_at;
 	}
 	public Integer getNo() {
@@ -51,16 +55,4 @@ public class BookingVO {
 	public void setPeople(Integer people) {
 		this.people = people;
 	}
-	public Time getComing_time() {
-		return coming_time;
-	}
-	public void setComing_time(Time coming_time) {
-		this.coming_time = coming_time;
-	}
-	
-	
-	
-	
-	
-	
 }

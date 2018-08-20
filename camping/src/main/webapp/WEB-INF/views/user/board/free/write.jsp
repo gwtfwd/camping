@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -15,7 +14,7 @@
 	<style type="text/css">
 		.container{
 	      min-height:850px;
-	      
+	      margin-bottom:50px;
 	   	}
 	   	.container::-webkit-scrollbar { 
 	       display: none; 
@@ -54,7 +53,8 @@
 		<br><br><br><br>
 		<h4 style="text-align:center; font-family:Segoe Print;">Write</h4> <br><br>
 		
-		<form method="post" id="formDetail">
+		<!-- 사진, 동영상 등 글자가 아닌 파일은 모드 Multipart 형식의 데이터 -->
+		<form method="post" id="formDetail" enctype="multipart/form-data">
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC; border-top:1px solid #C8CACC;"> 
 				<div class="col-md-1 fontH" style="padding-top:7px;"> 

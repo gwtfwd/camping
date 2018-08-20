@@ -1,7 +1,5 @@
 package kr.green.camping.controller.user;
 
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.green.camping.service.user.SearchService;
-import kr.green.camping.vo.user.CampVO;
 import kr.green.camping.vo.user.JoinVO;
 
 @Controller

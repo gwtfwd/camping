@@ -4,13 +4,21 @@
   
 <mapper namespace="kr.green.camping.dao.user.BookingMapper">
 
+	<insert id="bookingInsert" parameterType="kr.green.camping.vo.user.BookingVO">
+        insert into booking (user_name, user_id, camp_name, camp_no, booking_at, people) values(#{user_name}, #{user_id}, #{camp_name}, #{camp_no}, #{booking_at}, #{people}) 
+    </insert>
 	
+	<select id="getBookingByNo" resultType="kr.green.camping.vo.user.BookingVO">
+		select * from booking where user_id = #{user.id} order by no desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
 	
-
+	<select id="getBookingCount" resultType="java.lang.Integer">
+		select count(*) from booking where user_id = #{user.id}
+	</select>
 	
-
-	
-	
+	<select id="getBooking" resultType="kr.green.camping.vo.user.BookingVO">
+		select * from booking where no = #{no}
+	</select>
 	
 	
 </mapper>

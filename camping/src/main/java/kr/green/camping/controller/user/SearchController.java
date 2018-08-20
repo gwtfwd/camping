@@ -65,8 +65,6 @@ public class SearchController {
 
 		String region_code = searchService.getRegionCode(area);
 		
-		//list = (ArrayList)searchService.regionList(region_code);
-		//totalCount = searchService.regionCnt(region_code);
 		list = (ArrayList)searchService.regionList(region_code,type);
 		totalCount = searchService.regionCnt(region_code,type);
 		

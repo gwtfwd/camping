@@ -25,7 +25,7 @@
 		
 		// 야영장찾기
 		function openfindCamp(){  
-		    window.open("/camping/booking/findCamp",'_blank','toolbar=no,location=no,status=no, menubar=no, scrollbars=auto, width=490, height=400, top=100, left=100');  
+		    window.open("/camping/booking/findCamp",'_blank','toolbar=no,location=no,status=no, menubar=no, scrollbars=auto, width=520, height=500, top=100, left=100');  
 		} 
 		</script>
 	
@@ -65,8 +65,6 @@
 	<!-- Header -->
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
-   	
-   	
 	
 	<div class="container" >	
 		<br><br><br><br>
@@ -88,7 +86,7 @@
 					<label style="float:right; padding-top:7px;" for="user_name">예약자명</label>				
 				</div>
 				<div class="col-md-6 fontH">
-					<input type="text" class="form-control fontH" id="user_name" name="user_name" autocomplete="off" tabindex=2>
+					<input type="text" class="form-control fontH" id="user_name" name="user_name" autocomplete="off" value="${user.name}" style="background-color:#fff;" readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -97,7 +95,7 @@
 					<label style="float:right; padding-top:7px;" for="user_phone">휴대전화</label>				
 				</div>
 				<div class="col-md-6 fontH">
-					<input type="text" class="form-control fontH" id="user_phone" name="user_phone" autocomplete="off" tabindex=3>
+					<input type="text" class="form-control fontH" id="user_phone" name="user_phone" autocomplete="off" tabindex=2>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -106,7 +104,7 @@
 					<label style="float:right; padding-top:7px;" for="booking_at">예약날짜/시간</label>				
 				</div>
 				<div class="col-md-6 fontH" >
-					<input type="text" class="datepicker-here form-control fontH" id="booking_at" name="booking_at" data-timepicker="true" data-range="true" data-multiple-dates-separator=" - " data-language="en" tabindex=4/>
+					<input type="text" class="datepicker-here form-control fontH" id="booking_at" name="booking_at" data-timepicker="true" autocomplete="off" data-range="true" data-multiple-dates-separator=" - " data-language="en" tabindex=3/>
 				</div>
 			</div>
 			<div class="row" style="margin-top:7px;">
@@ -114,19 +112,10 @@
 					<label style="float:right; padding-top:7px;" for="people">인원수</label>				
 				</div>
 				<div class="col-md-6 fontH">
-					<input type="text" class="form-control fontH" id="people" name="people" autocomplete="off" tabindex=6>
+					<input type="text" class="form-control fontH" id="people" name="people" autocomplete="off" placeholder="숫자만 입력해주세요." tabindex=4>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
-			<!-- <div class="row" style="margin-top:7px;">
-				<div class="col-md-3 fontH">
-					<label style="float:right; padding-top:7px;" for="coming_time">입실시간</label>				
-				</div>
-				<div class="col-md-7 fontH">
-					<input type="text" class="form-control fontH" id="coming_time" name="coming_time" autocomplete="off" tabindex=7>
-				</div>
-				<div class="col-md-1"></div>
-			</div> -->
 			
 			<div style="text-align:center; margin-top: 100px;">			
 				<a href="/camping" >
@@ -137,12 +126,8 @@
 	       		</a>
 			</div>
 			
-			
 		</form>		
 	</div>
-	
-	
-	
 	
 	<!-- Footer -->
   	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

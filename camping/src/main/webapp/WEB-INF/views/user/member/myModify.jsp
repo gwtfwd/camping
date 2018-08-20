@@ -17,6 +17,7 @@
 	<style type="text/css">
 		.container{
 	      min-height:850px;
+	      margin-bottom:50px;
 	   	}
 	   	.container::-webkit-scrollbar { 
 	       display: none; 

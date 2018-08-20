@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -14,6 +14,7 @@
 	<style type="text/css">
 		.container{
 	      min-height:850px;
+	      margin-bottom:50px;
 	   	}
 	   	.container::-webkit-scrollbar { 
 	       display: none; 
@@ -60,7 +61,7 @@
 	</style>
 	
 	<script>
-		//»õ·Î°íÄ§, µÚ·Î°¡±â ¸·±â
+		//ìƒˆë¡œê³ ì¹¨, ë’¤ë¡œê°€ê¸° ë§‰ê¸°
 		document.onkeydown = function(e) {
 			
 			 key = (e) ? e.keyCode : event.keyCode;
@@ -82,9 +83,9 @@
 			       var str = document.getElementById('formDetail');
 			       str.submit();
 			       
-			       if (confirm("Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?") == true){    //È®ÀÎ
+			       if (confirm("ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?") == true){    //í™•ì¸
 			    	    document.form.submit();
-			    	}else{   //Ãë¼Ò
+			    	}else{   //ì·¨ì†Œ
 			    	    return false;
 			    	}
 			    });
@@ -92,21 +93,21 @@
 	
 		$(document).ready(function() {
 		      
-		      /* ´ñ±Û¸ñ·ÏÇÔ¼öÈ£Ãâ */
+		      /* ëŒ“ê¸€ëª©ë¡í•¨ìˆ˜í˜¸ì¶œ */
 		      replyList();    
 		      
-		      /* ´ñ±ÛÀ» µî·ÏÇÏ±â À§ÇØ ÀÚÀ¯°Ô½ÃÆÇÀÇ °Ô½Ã±Û¹øÈ£ ºÒ·¯¿Í¼­ º¯¼ö freeNo¿¡ ´ã±â */
+		      /* ëŒ“ê¸€ì„ ë“±ë¡í•˜ê¸° ìœ„í•´ ììœ ê²Œì‹œíŒì˜ ê²Œì‹œê¸€ë²ˆí˜¸ ë¶ˆëŸ¬ì™€ì„œ ë³€ìˆ˜ freeNoì— ë‹´ê¸° */
 		      var bno = '${free.no}';
 		      
-		      /* ´ñ±Ûµî·Ï¹öÆ° Å¬¸¯½Ã ÀÌº¥Æ®¹ß»ı */
+		      /* ëŒ“ê¸€ë“±ë¡ë²„íŠ¼ í´ë¦­ì‹œ ì´ë²¤íŠ¸ë°œìƒ */
 		      $('[name=replyInsertBtn]').click(function() {                      
 		         
-		    	  /* nameÀÌ replyInsertFormÀÎ ³»¿ëÀ» °¡Á®¿Í¼­ insertData º¯¼ö¿¡ ´ã°í replyInsertÇÔ¼ö¸¦ È£Ãâ */
+		    	  /* nameì´ replyInsertFormì¸ ë‚´ìš©ì„ ê°€ì ¸ì™€ì„œ insertData ë³€ìˆ˜ì— ë‹´ê³  replyInsertí•¨ìˆ˜ë¥¼ í˜¸ì¶œ */
 	         	var insertData = $('[name=replyinsertform]').serialize();
 		    	  
 	    	  	if ($('#recontent').val() == null || $('#recontent').val().length < 10){
 		              
-		              alert("ÃÖ¼Ò 10±ÛÀÚ ÀÌ»ó ÀÔ·ÂÇÏ¼Å¾ß µË´Ï´Ù.");
+		              alert("ìµœì†Œ 10ê¸€ì ì´ìƒ ì…ë ¥í•˜ì…”ì•¼ ë©ë‹ˆë‹¤.");
 		              $('#recontent').focus();
 		              return ;
 		         }
@@ -114,30 +115,30 @@
 		      });
 		});
 		 
-		//´ñ±Û ¸ñ·Ï 
+		//ëŒ“ê¸€ ëª©ë¡ 
 		function replyList(){
 			
-		  	/* ´ñ±Û¸ñ·ÏÀ» Ç¥½ÃÇÏ±â À§ÇØ ÀÚÀ¯°Ô½ÃÆÇÀÇ °Ô½Ã±Û¹øÈ£ ºÒ·¯¿Í¼­ º¯¼ö freeNo¿¡ ´ã±â */
+		  	/* ëŒ“ê¸€ëª©ë¡ì„ í‘œì‹œí•˜ê¸° ìœ„í•´ ììœ ê²Œì‹œíŒì˜ ê²Œì‹œê¸€ë²ˆí˜¸ ë¶ˆëŸ¬ì™€ì„œ ë³€ìˆ˜ freeNoì— ë‹´ê¸° */
 	      	var bno = '${free.no}';  
 		      
-	      	/* ajax·Î µ¥ÀÌÅÍº¸³»±â */
+	      	/* ajaxë¡œ ë°ì´í„°ë³´ë‚´ê¸° */
 		    $.ajax({
-		        url : '/camping/free/reply/list',	/* µ¥ÀÌÅÍ¸¦ º¸³¾ ÄÁÆ®·Ñ·¯ °æ·Î */
-		        type : 'get',						/* get¹æ½ÄÀ¸·Î */
-		        data : {'bno':bno},					/* ¾Æ±î ´ãÀº º¯¼ö¿¡ ´ãÀº bno(°Ô½ÃÆÇ¹øÈ£)¸¦ ÄÁÆ®·Ñ·¯ ¸Å°³º¯¼ö·Î º¸³¿ */
-		        success : function(data){			 /* ¼º°øÇÏ¸é ¾Æ·¡ ÅÂ±×½ÇÇà */
+		        url : '/camping/free/reply/list',	/* ë°ì´í„°ë¥¼ ë³´ë‚¼ ì»¨íŠ¸ë¡¤ëŸ¬ ê²½ë¡œ */
+		        type : 'get',						/* getë°©ì‹ìœ¼ë¡œ */
+		        data : {'bno':bno},					/* ì•„ê¹Œ ë‹´ì€ ë³€ìˆ˜ì— ë‹´ì€ bno(ê²Œì‹œíŒë²ˆí˜¸)ë¥¼ ì»¨íŠ¸ë¡¤ëŸ¬ ë§¤ê°œë³€ìˆ˜ë¡œ ë³´ëƒ„ */
+		        success : function(data){			 /* ì„±ê³µí•˜ë©´ ì•„ë˜ íƒœê·¸ì‹¤í–‰ */
 		        	
 		            var a =''; 		
-		            var cnt = 0;         /* ´ñ±Û¼ö º¯¼ö¼±¾ğ */
+		            var cnt = 0;         /* ëŒ“ê¸€ìˆ˜ ë³€ìˆ˜ì„ ì–¸ */
 		        
-		            $.each(data, function(key, value){ 			/* foreach¸¦ µ¹¸®¸é¼­ ¾Æ·¡ÀÇ ÅÂ±×Ãß°¡ */
+		            $.each(data, function(key, value){ 			/* foreachë¥¼ ëŒë¦¬ë©´ì„œ ì•„ë˜ì˜ íƒœê·¸ì¶”ê°€ */
 		                
 		                a += '<div class="row" style="border:1px solid #C8CACC; line-height: 30px; vertical-align: middle; font-size:14px;"><div class="col-md-1">'
 		               		+ value.reid + '</div>'
 		                	+ '<div class="col-md-10" style="font-size:12px;">' + value.redate + '</div>'
 		                	
 		                	+ '<div class="col-md-1" style="text-align: right;">' 
-		                	+ '<a onclick="replyUpdate('+value.reno+',\''+value.recontent+'\');">'				/*   \' ´Â µû¿ÈÇ¥¸¦ ÀÇ¹Ì   */
+		                	+ '<a onclick="replyUpdate('+value.reno+',\''+value.recontent+'\');">'				/*   \' ëŠ” ë”°ì˜´í‘œë¥¼ ì˜ë¯¸   */
 		                	+ '<img src="<c:url value='/resources/images/edit.png'/>"></a>' 
 		                	
 		                    + '&nbsp;&nbsp; <a onclick="replyDelete('+value.reno+');">'
@@ -146,16 +147,16 @@
 	                	a += '<div class="row" style="border:1px solid #C8CACC; border-top:0px; line-height: 70px; vertical-align: middle;">'
 	                		+ '<div class="col-md-12 replyContent'+value.reno+'" style="text-align:left; font-size:14px;">'+ value.recontent + '</div></div>';
 		                
-		                cnt++;      /* ´ñ±ÛÀÌ Ãß°¡µÇ´Â´ë·Î ´ñ±Û¼ö Ä«¿îÆ® Áõ°¡ */
+		                cnt++;      /* ëŒ“ê¸€ì´ ì¶”ê°€ë˜ëŠ”ëŒ€ë¡œ ëŒ“ê¸€ìˆ˜ ì¹´ìš´íŠ¸ ì¦ê°€ */
 		            });
 		            
-		            $('#replyCnt').html(cnt);   /* ´ñ±Û¼ö Ç¥½ÃÇÏ°í ½ÍÀº spanÅÂ±×¿¡ id¸¦ ÁÖ°í ±× ¾ÆÀÌµğ¸¦ html¿¡ cnt¸¦ ´ã¾Æ È­¸é¿¡ »Ñ·ÁÁÖ±â */
-		            $("#replyList").html(a);   /* ±×¸®°í ÀÌ°Í ¶ÇÇÑ ¿ª½Ã id°¡ replyList¸¦ html¿¡ a¿¡ ´ã¾Ò´ø µ¥ÀÌÅÍ¸¦ È­¸é¿¡ »Ñ·ÁÁÖ±â */
+		            $('#replyCnt').html(cnt);   /* ëŒ“ê¸€ìˆ˜ í‘œì‹œí•˜ê³  ì‹¶ì€ spaníƒœê·¸ì— idë¥¼ ì£¼ê³  ê·¸ ì•„ì´ë””ë¥¼ htmlì— cntë¥¼ ë‹´ì•„ í™”ë©´ì— ë¿Œë ¤ì£¼ê¸° */
+		            $("#replyList").html(a);   /* ê·¸ë¦¬ê³  ì´ê²ƒ ë˜í•œ ì—­ì‹œ idê°€ replyListë¥¼ htmlì— aì— ë‹´ì•˜ë˜ ë°ì´í„°ë¥¼ í™”ë©´ì— ë¿Œë ¤ì£¼ê¸° */
 		        }
 		    });
 		} 
 		 
-		//´ñ±Û µî·Ï
+		//ëŒ“ê¸€ ë“±ë¡
 		function replyInsert(insertData){
 		    $.ajax({
 		        url : '/camping/free/reply/insert',
@@ -163,26 +164,26 @@
 		        data : insertData,
 		        success : function(data){
 		            if(data == 1) {
-		            	replyList(); //´ñ±Û ÀÛ¼º ÈÄ ´ñ±Û ¸ñ·Ï reload
+		            	replyList(); //ëŒ“ê¸€ ì‘ì„± í›„ ëŒ“ê¸€ ëª©ë¡ reload
 		                $('[name=recontent]').val('');
 		            }
 		        }
 		    });
 		}
 		 
-		//´ñ±Û ¼öÁ¤ - ´ñ±Û ³»¿ë Ãâ·ÂÀ» input ÆûÀ¸·Î º¯°æ 
+		//ëŒ“ê¸€ ìˆ˜ì • - ëŒ“ê¸€ ë‚´ìš© ì¶œë ¥ì„ input í¼ìœ¼ë¡œ ë³€ê²½ 
 		function replyUpdate(reno, recontent){
 		    var a ='';
 		    
 		    a += '<div class="input-group">'
 			    + '<input type="text" class="form-control" name="recontent_'+reno+'" value="'+recontent+'"/>'
-			    + '<span class="input-group-btn"><button class="btn33 btn-primary33" type="button" onclick="replyUpdateProc('+reno+');" style="margin-left:10px;">¼öÁ¤</button> </span>'
+			    + '<span class="input-group-btn"><button class="btn33 btn-primary33" type="button" onclick="replyUpdateProc('+reno+');" style="margin-left:10px;">ìˆ˜ì •</button> </span>'
 			    +'</div>';
 		    
 		    $('.replyContent'+reno).html(a);
 		} 
 		 
-		//´ñ±Û ¼öÁ¤
+		//ëŒ“ê¸€ ìˆ˜ì •
 		function replyUpdateProc(reno){
 		    var updateContent = $('[name=recontent_'+reno+']').val();
 		    
@@ -191,12 +192,12 @@
 		        type : 'get',
 		        data : {'recontent' : updateContent, 'reno' : reno},
 		        success : function(data){
-		            if(data == 1) replyList(reno); //´ñ±Û ¼öÁ¤ÈÄ ¸ñ·Ï Ãâ·Â 
+		            if(data == 1) replyList(reno); //ëŒ“ê¸€ ìˆ˜ì •í›„ ëª©ë¡ ì¶œë ¥ 
 		        }
 		    });
 		}
 		 
-		//´ñ±Û »èÁ¦ 
+		//ëŒ“ê¸€ ì‚­ì œ 
 		function replyDelete(reno){
 			
 			var bno = '${free.no}'; 
@@ -209,8 +210,8 @@
 		        	'reno' : reno
 		        },
 		        success : function(data){
-		            if(data == 1) replyList(reno); //´ñ±Û »èÁ¦ÈÄ ¸ñ·Ï Ãâ·Â 
-		            alert("»èÁ¦µÇ¾ú½À´Ï´Ù.");
+		            if(data == 1) replyList(reno); //ëŒ“ê¸€ ì‚­ì œí›„ ëª©ë¡ ì¶œë ¥ 
+		            alert("ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 		        }
 		    });
 		}
@@ -234,14 +235,14 @@
 		
 			<div class="row" style="border-bottom:1px solid #C8CACC; border-top:1px solid #C8CACC;"> 
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="number">¹øÈ£</label>
+					<label class="control-label" for="number">ë²ˆí˜¸</label>
 				</div>
 				<div class="col-md-4 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="number" name="number" style="background-color:white; border-width:0px;" value="${free.no}" readonly>
 				</div>
 				
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="view">Á¶È¸¼ö</label>
+					<label class="control-label" for="view">ì¡°íšŒìˆ˜</label>
 				</div>
 				<div class="col-md-4 fontH">
 					<input type="text" class="form-control" id="view" name="view" style="background-color:white; border-width:0px;" value="${free.view}" readonly>
@@ -250,34 +251,41 @@
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;"> 
-					<label class="control-label" for="subject">Á¦¸ñ</label>
+					<label class="control-label" for="subject">ì œëª©</label>
 				</div>
 				<div class="col-md-4 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="subject" name="subject" style="background-color:white; border-width:0px;"  value="${free.subject}" readonly>
 				</div>
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="id">ÀÛ¼ºÀÚ</label>
+					<label class="control-label" for="id">ì‘ì„±ì</label>
 				</div>
 				<div class="col-md-4 fontH">
 					<input type="text" class="form-control" id="id" name="id" style="background-color:white; border-width:0px;" value="${free.registered_id}" readonly>
 				</div>
 			</div>
 			
-			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
+			<div class="row" style="border-bottom:1px solid #C8CACC;" name="file" id="file" > 
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="file">Ã·ºÎÆÄÀÏ</label>
+					<label class="control-label" for="file">ì²¨ë¶€íŒŒì¼</label>
 				</div>
 				<div class="col-md-4 fontH" style="border-right:1px solid #C8CACC;">
-					<input type="text" class="form-control" id="file" name="file" style="background-color:white; border-width:0px;" value="" readonly>
+					<c:if test="${fileName != null }">
+		      			<a href="/camping/free/download?fileName=${free.filepath}" target="_blank">${fileName}</a>
+		      		</c:if>
+		      		<c:if test="${fileName == null }">
+		      			ì²¨ë¶€íŒŒì¼ ì—†ìŒ
+		      		</c:if>
+				
+				
 				</div>
 				<div class="col-md-1 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="registered_at">ÀÛ¼ºÀÏÀÚ</label>
+					<label class="control-label" for="registered_at">ì‘ì„±ì¼ì</label>
 				</div>
 				<div class="col-md-2 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="registered_at" name="registered_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${free.registered_at}" pattern="yyyy-MM-dd" />" readonly>
 				</div>
 				<div class="col-md-1 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="updated_at">¼öÁ¤ÀÏÀÚ</label>
+					<label class="control-label" for="updated_at">ìˆ˜ì •ì¼ì</label>
 				</div>
 				<div class="col-md-2 fontH" >
 					<input type="text" class="form-control" id="updated_at" name="updated_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${free.updated_at}" pattern="yyyy-MM-dd" />" readonly>
@@ -286,7 +294,7 @@
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
 				<div class="col-md-2 fontH" style="padding-top:10px;border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="contents">³»¿ë</label>
+					<label class="control-label" for="contents">ë‚´ìš©</label>
 				</div>
 				<div class="col-md-9 fontH" style="padding-top:10px;">
 					<textarea rows="20" cols="120" id="contents" name="contents" style="background-color:white; border-width:0px;" readonly>${free.contents}</textarea>
@@ -295,14 +303,14 @@
 			
 			<div style="text-align:center;">			
 				<a href="/camping/free/list"> 
-		       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">¸ñ·Ï</button>
+		       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">ëª©ë¡</button>
 		        </a>			
 		        <c:if test="${user.id.compareTo(free.registered_id) == 0 }">
 					<a href="/camping/free/modify?no=${free.no}"> 
-			       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">¼öÁ¤</button>
+			       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">ìˆ˜ì •</button>
 			        </a>			
 					<a href="/camping/free/delete?no=${free.no}"> 
-			       		<button id="delete" type="button" class="btn11 btn-primary11 fontH pull-right" >»èÁ¦</button>
+			       		<button id="delete" type="button" class="btn11 btn-primary11 fontH pull-right" >ì‚­ì œ</button>
 			        </a>	
 		        </c:if>		
 			</div><br><br>
@@ -315,12 +323,12 @@
 				        <c:if test="${member }">
 				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
 				        	<input class="fontH" type="password" name="reid" size="20" maxlength="20" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
-				        	<textarea name="recontent" id="recontent" rows="5" cols="160" maxlength="1500" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
+				        	<textarea name="recontent" id="recontent" rows="5" cols="135" maxlength="1500" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
 				        </c:if>
 				        <c:if test="${!member }">
 				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
 				        	<input class="fontH" type="password" name="reid" size="20" maxlength="20" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
-				        	<textarea name="recontent" rows="5" cols="160" maxlength="1500" onfocus="needLogin(this)" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
+				        	<textarea name="recontent" rows="5" cols="135" maxlength="1500" onfocus="needLogin(this)" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
 				        </c:if><br>
 				        <button class="btn33 btn-primary33 fontH pull-right" type="button" name="replyInsertBtn" style="margin-bottom:10px;">OK</button>
 				  </div>

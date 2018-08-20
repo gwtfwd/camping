@@ -20,7 +20,7 @@
 	   		border:0px; 
 	   		padding:10px; 
 	   		color:#fff; 
-	   		margin-top:35px;
+	   		margin-top:50px;
 	   	}
    	</style>
    	
@@ -50,15 +50,15 @@
 	</div>
 
  	<div class="container">
-		<form method="post" id="formId" action="/camping/booking/findCamp" style="margin-top:60px;">
+		<form id="formId" action="/camping/booking/findCampName" style="margin-top:70px;">
 			<div>
-				<label class="control-label fontH" for="camp_name" style="margin-left:20px;">야영장명</label>
-				<input type="text" class="form-control fontH" id="camp_name" name="camp_name" style="margin-left:20px; width:445px;" autocomplete="off" ><br>
+				<label class="control-label fontH" for="search" style="margin-left:20px;">야영장명</label>
+				<input type="text" class="form-control fontH" id="search" name="search" style="margin-left:20px; width:470px;" autocomplete="off" ><br>
 			</div>
 			<div style="text-align:center;">
 				<button type="submit" class="btnFindCamp">Search</button>
 			</div>
-			<div style="width:445px; margin-left:20px; border-top: 1px solid #ced4da; margin-top:42px; font-size:85%" ><br>
+			<div style="width:470px; margin-left:20px; border-top: 1px solid #ced4da; margin-top:105px; font-size:85%" ><br>
                 야영장명을 입력해주세요.
             </div>
 		</form>

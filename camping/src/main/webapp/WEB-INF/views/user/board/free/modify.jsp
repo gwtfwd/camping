@@ -14,6 +14,7 @@
 	<style type="text/css">
 		.container{
 	      min-height:850px;
+	      margin-bottom:50px;
 	   	}
 	   	.container::-webkit-scrollbar { 
 	       display: none; 
@@ -49,50 +50,69 @@
   	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
    	<!-- Header -->
 	
-	<div class="container" style="height:880px">	
+	<div class="container">	
 		<br><br><br><br>
 		<h4 style="text-align:center; font-family:Segoe Print;">Modify</h4> <br><br>
 		
 		<form method="post">
 		
 			<div class="row" style="border-bottom:1px solid #C8CACC; border-top:1px solid #C8CACC;"> 
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;">
 					<label class="control-label" for="num">번호</label>
 				</div>
-				<div class="col-md-10 fontH">
+				<div class="col-md-9 fontH">
 					<input type="text" class="form-control" id="num" name="number" style="background-color:white; border-width:0px;" value="${free.no}" readonly>
 				</div>
 			</div>
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
-				<div class="col-md-1 fontH" style="padding-top:7px;"> 
+				<div class="col-md-2 fontH" style="padding-top:7px;"> 
 					<label class="control-label" for="subject">제목</label>
 				</div>
-				<div class="col-md-5 fontH">
+				<div class="col-md-6 fontH">
 					<input type="text" class="form-control" id="subject" name="subject" style="background-color:white; border-width:0px;"  value="${free.subject}" >
 				</div>
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;">
 					<label class="control-label" for="id">작성자</label>
 				</div>
-				<div class="col-md-3 fontH">
+				<div class="col-md-2 fontH">
 					<input type="text" class="form-control" id="id" name="id" style="background-color:white; border-width:0px;" value="${free.registered_id}" readonly>
 				</div>
 			</div>
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
-				<div class="col-md-1 fontH" style="padding-top:7px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;">
 					<label class="control-label" for="file">첨부파일</label>
 				</div>
-				<div class="col-md-10 fontH" >
-					<input type="text" class="form-control" id="file" name="file" style="background-color:white; border-width:0px;" >
+				<div class="col-md-9 fontH" name="fileName" style="padding-top:7px;margin-left:12px;">
+					<c:if test="${fileName != null }">
+		      			<a href="/free/download?fileName=${free.filepath}"
+		      			 target="_blank">${fileName}</a>
+		      			<a href="/free/modify?np=${free.no}&del=1">
+		      				<img src='resources/images/deleted.png'>
+		      			</a>
+		      		</c:if>
+		      		<c:if test="${fileName == null }">
+		      			첨부파일 없음
+		      		</c:if>
 				</div>
-			</div><br>
+			</div>
 			
 			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
-				<div class="col-md-1 fontH" style="padding-top:4px;">
+				<div class="col-md-2 fontH" style="padding-top:7px;">
+					<label class="control-label" for="fileModify">첨부파일 수정</label>
+				</div>
+				<div class="col-md-9 fontH">
+					<input type="file" class="form-control fontH" name="file" style="background-color:white; border-width:0px;"/>
+				</div>
+			</div>
+			
+			
+			<div class="row" style="border-bottom:1px solid #C8CACC;"> 
+				<div class="col-md-2 fontH" style="padding-top:4px;">
 					<label class="control-label" for="contents">내용</label>
 				</div>
-				<div class="col-md-10 fontH" style="margin-left: 9px;">
+				<div class="col-md-9 fontH" style="margin-left: 9px;">
 					<textarea rows="20" cols="140" id="contents" name="contents" style="background-color:white; border-width:0px;">${free.contents}</textarea>
 				</div>
 			</div><br>

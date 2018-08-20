@@ -54,6 +54,11 @@
 
 		<c:if test="${camplist}">		
 			<div class="fontH" style="text-align:center;margin-top:70px;border:1px solid #C8CACC; margin-bottom:70px;">
+				<div class="row" style="margin-top:8px;margin-bottom:8px;">
+					<div class="col-md-1"></div>
+					<div class="col-md-4"><b>야영장명</b></div>
+					<div class="col-md-6"><b>주소</b></div>
+				</div>
 				<c:forEach items="${list}" var="camp">
 					<div class="row" style="margin-top:8px;margin-bottom:8px;">
 						<div class="col-md-1"></div>

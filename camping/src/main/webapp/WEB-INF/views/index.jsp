@@ -213,7 +213,12 @@
       <div class="container" >
          <div class="container-fluid fontH tbbox" style="width: 1540px; margin-left:-200px; text-align:center;"><br><br><br><br><br>
 			<h4 style=" font-weight:bold; font-color:#343a40;">즐거운 여행의 시작, 지금 바로 예약하세요!</h4><br>
-			<a href="/camping/booking/write"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
+			<c:if test="${!member}">
+				<a href="/camping/member/needLogin"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
+			</c:if>
+			<c:if test="${member}">
+				<a href="/camping/booking/write"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
+			</c:if>
 			<br><br><br><br>     
         </div>
       </div>

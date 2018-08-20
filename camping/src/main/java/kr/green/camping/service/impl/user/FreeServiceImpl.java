@@ -1,16 +1,20 @@
 package kr.green.camping.service.impl.user;
 
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.camping.dao.user.FreeMapper;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.user.FreeService;
 import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.ReplyVO;
+import kr.green.camping.utils.UploadFileUtils;
 
 @Service("freeService")
 public class FreeServiceImpl implements FreeService {
@@ -32,12 +36,40 @@ public class FreeServiceImpl implements FreeService {
 		return resultVO;
 	}
 	@Override
-	public void writeFree(FreeVO vo) throws Exception {
+	public void writeFree(FreeVO vo, MultipartFile file, String uploadPath) throws Exception {
+		
+		if(file != null) {
+			String filePath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+			vo.setFilepath(filePath);
+		}
 		
 		freeMapper.writeFree(vo);
 	}
 	@Override
-	public void modifyFree(FreeVO vo) throws Exception {
+	public void modifyFree(FreeVO vo, MultipartFile file, String uploadPath, Integer del) throws Exception {
+		
+		//수정된 날짜로 created_date를 업데이트
+		Date created_date = new Date();
+		vo.setUpdated_at(created_date);
+		//기존 첨부파일 경로를 가져오기 위함
+		FreeVO tmp = freeMapper.getFreeByNo(vo);
+	
+		//수정될 첨부파일이 있는 경우
+		if(file != null && file.getOriginalFilename().length()!= 0) {
+			String filePath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+			vo.setFilepath(filePath);
+		}
+		//수정될 첨부파일이 없지만 기존 첨부파일이 지워져야 하는 경우
+		else if(del != null && tmp.getFilepath() != null) {
+			//실제 파일을 삭제
+			new File(uploadPath + tmp.getFilepath().replace('/', File.separatorChar)).delete();
+			vo.setFilepath(null);
+		}
+		//수정될 파일이 없고 기존 파일을 유지하는 경우
+		else {
+			vo.setFilepath(tmp.getFilepath());
+		}
+		
 		freeMapper.modifyFree(vo);
 	}
 	@Override

@@ -15,11 +15,11 @@
 	</select>
 	
 	<insert id="writeFree">
-		insert into free (subject, contents, registered_id, registered_at, name) values (#{subject}, #{contents}, #{registered_id}, now(), #{name})
+		insert into free (subject, contents, registered_id, registered_at, name, filepath) values (#{subject}, #{contents}, #{registered_id}, now(), #{name}, #{filepath})
 	</insert>
 	
 	<update id="modifyFree">
-		update free set subject=#{subject}, contents=#{contents}, updated_at=now(), updated_id=#{registered_id}, reply_cnt = #{reply_cnt } where no=#{no}
+		update free set subject=#{subject}, contents=#{contents}, updated_at=now(), updated_id=#{registered_id}, reply_cnt = #{reply_cnt },filepath = #{filepath} where no=#{no}
 	</update>
 	
 	<delete id="deleteFree">

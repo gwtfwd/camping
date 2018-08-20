@@ -26,16 +26,25 @@
 		           	<li><a href="/camping/search/type/list" class="nav-link-kr">유형별 찾기</a></li>
 		         </ul> 
 		    </li>
+		    <c:if test="${!member}">
+	            <li class="nav-item"><a class="nav-link-kr" href="#" >예약안내</a>
+	            	 <ul>
+			           	<li><a href="/camping/member/needLogin" class="nav-link-kr">실시간예약</a></li>
+			           	<li><a href="/camping/member/needLogin" class="nav-link-kr">예약확인</a></li>
+			         </ul> 
+			    </li>
+		    </c:if>
+		    <c:if test="${member}">
             <li class="nav-item"><a class="nav-link-kr" href="#" >예약안내</a>
             	 <ul>
 		           	<li><a href="/camping/booking/write" class="nav-link-kr">실시간예약</a></li>
-		           	<li><a href="/camping/booking/detail" class="nav-link-kr">예약확인</a></li>
-		           	<li><a href="#" class="nav-link-kr">예약취소</a></li>
+		           	<li><a href="/camping/booking/list" class="nav-link-kr">예약확인</a></li>
 		         </ul> 
 		    </li>
+		    </c:if>
             <li class="nav-item"><a class="nav-link-kr" href="#" >커뮤니티</a>
             	<ul>
-		           	<li><a href="#" class="nav-link-kr">야영장후기</a></li>
+		           	<li><a href="/camping/review/list" class="nav-link-kr">야영장후기</a></li>
 		           	<li><a href="/camping/free/list" class="nav-link-kr">자유게시판</a></li>
 		        </ul> 
 		    </li>

@@ -1,5 +1,7 @@
 package kr.green.camping.controller.user;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +9,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +29,7 @@ import kr.green.camping.service.user.MemberService;
 import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 import kr.green.camping.vo.user.ReplyVO;
+import kr.green.camping.utils.MediaUtils;
 
 @Controller
 
@@ -36,6 +43,9 @@ public class FreeController {
 	/** MemeberService */
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	@Resource
+	private String uploadPath;
 	
 	
 	// 자유게시판 리스트
@@ -103,6 +113,14 @@ public class FreeController {
 		
 		FreeVO free = freeService.getFree(vo);
 		
+		//파일명 수정하는 과정
+		String filepath = free.getFilepath();
+		if(filepath != null) {
+			// filepath : /년/월/일/uuid_파일명
+			String fileName = filepath.substring(filepath.lastIndexOf("_")+1);
+			model.addAttribute("fileName", fileName);
+		}
+		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("free", free);
@@ -110,10 +128,39 @@ public class FreeController {
 		return "user/board/free/detail";
 	}
 	
+	@ResponseBody
+	@RequestMapping("/download")
+	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
+		
+	    InputStream in = null;
+	    ResponseEntity<byte[]> entity = null;
+	    
+	    try{
+	    	String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
+	    	
+	        /*	확장자를 통해 미디어 타입 정보를 가져옴*/
+	        MediaType mType = MediaUtils.getMediaType(FormatName);
+	        
+	        HttpHeaders headers = new HttpHeaders();
+	        in = new FileInputStream(uploadPath+fileName);
+	        
+        	fileName = fileName.substring(fileName.indexOf("_")+1);
+	        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+	        headers.add("Content-Disposition",  "attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
+	        entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in),headers,HttpStatus.CREATED);
+	    }catch(Exception e) {
+	        e.printStackTrace();
+	        entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+	    }finally {
+	        in.close();
+	    }
+	    return entity;
+	}
+	
 	
 	// 자유게시판 등록
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String boardWriteGet(HttpServletRequest request, Model model, FreeVO vo, MultipartFile file) throws Exception {
+	public String boardWriteGet(HttpServletRequest request, Model model, FreeVO vo) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -149,7 +196,7 @@ public class FreeController {
 			member = true;
 		}
 		
-		freeService.writeFree(vo);
+		freeService.writeFree(vo, file, uploadPath);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
@@ -160,7 +207,7 @@ public class FreeController {
 	
 	// 자유게시판 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public String freeModifyGet(HttpServletRequest request, FreeVO vo, Model model, int no) throws Exception {
+	public String freeModifyGet(HttpServletRequest request, FreeVO vo, Model model, int no,Integer del) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -174,7 +221,18 @@ public class FreeController {
 		
 		FreeVO free = freeService.getFree(vo);
 		free.setNo(no);
-		
+		if(del != null && del == 1) {
+			//db불러온 게시판의 정보에서 업로드 파일 경로를 지움
+			//db에서는 지우지 않음
+			free.setFilepath(null);
+		}
+		//파일명 수정하는 과정
+		String filepath = free.getFilepath();
+		if(filepath != null) {
+		//filepath : /년/월/일/uuid_파일명
+			String fileName = filepath.substring(filepath.indexOf("_")+1);
+			model.addAttribute("fileName", fileName);
+		}
 		
 		model.addAttribute("free", free);
 		model.addAttribute("member", member);
@@ -185,7 +243,7 @@ public class FreeController {
 	
 	
 	@RequestMapping(value="/modify", method= RequestMethod.POST)
-	public String freeModifyPost(FreeVO vo, HttpServletRequest request, Model model) throws Exception {
+	public String freeModifyPost(FreeVO vo, HttpServletRequest request, Model model, MultipartFile file, Integer del) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -199,9 +257,7 @@ public class FreeController {
 		
 		vo.setUpdated_id(user.getId());
 		
-		System.out.println(vo.getUpdated_id());
-		
-		freeService.modifyFree(vo);
+		freeService.modifyFree(vo, file, uploadPath, del);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
@@ -231,7 +287,7 @@ public class FreeController {
 	//댓글 등록 
     @RequestMapping("/reply/insert") 
     @ResponseBody
-    private Integer replyInsert(@RequestParam int bno, @RequestParam String recontent, HttpServletRequest request) throws Exception{
+    private Integer replyInsert(@RequestParam int bno, @RequestParam String recontent, HttpServletRequest request, MultipartFile file, Integer del) throws Exception{
         
     	HttpSession session = request.getSession();
 		JoinVO user = (JoinVO)session.getAttribute("user");
@@ -257,7 +313,7 @@ public class FreeController {
         free.setReply_cnt(reply_cnt);
 
         /* 마지막으로 free에 담았던 정보를 가지고 자유게시판의 정보를 수정 */
-        freeService.modifyFree(free);
+        freeService.modifyFree(free, file, uploadPath, del);
         
     	
         return 1;
@@ -280,7 +336,7 @@ public class FreeController {
     //댓글 삭제
     @RequestMapping("/reply/delete/{reno}")   
     @ResponseBody
-    private Integer replyDelete(Integer reno, @RequestParam Integer bno) throws Exception{
+    private Integer replyDelete(Integer reno, @RequestParam Integer bno, MultipartFile file, Integer del) throws Exception{
     	
     	freeService.replyDelete(reno);
     	
@@ -297,7 +353,7 @@ public class FreeController {
        free.setReply_cnt(reply_cnt);
 
        /* 마지막으로 free에 담았던 정보를 가지고 자유게시판의 정보를 수정 */
-       freeService.modifyFree(free);
+       freeService.modifyFree(free, file, uploadPath, del);
         
         return 1;
     }

@@ -13,9 +13,15 @@ public class FreeVO {
 	private String updated_id;
 	private Date updated_at;
 	private Integer view;
+	private String filepath;
 	private Integer reply_cnt;
 	
-	
+	public String getFilepath() {
+		return filepath;
+	}
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
+	}
 	public Integer getReply_cnt() {
 		return reply_cnt;
 	}

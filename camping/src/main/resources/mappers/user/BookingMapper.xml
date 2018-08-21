@@ -20,5 +20,9 @@
 		select * from booking where no = #{no}
 	</select>
 	
+	<select id="getBookingByCampNo" resultType="kr.green.camping.vo.user.CampVO">
+		select * from camp where no = #{camp_no}
+	</select>
+	
 	
 </mapper>

@@ -32,7 +32,7 @@
 			// 야영장찾기
 			$('#formId').submit(function(){
 				// id가 camp_name인 객체를 name이라는 변수에 저장
-				var name = $("#camp_name");
+				var name = $("#search");
 				if(name.val() == ""){
 					alert("야영장명을 입력하세요.");
 					

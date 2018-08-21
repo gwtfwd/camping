@@ -8761,9 +8761,9 @@ button.bg-dark:focus {
 }
 
 .text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	text-overflow: ellipsis;  /* ...으로 표시 */
+  	overflow: hidden;	 /* 두줄로 표시되는 경우 내용 숨기기 */
+  	white-space: nowrap;	 /* 두줄이 될 경우 두줄까지 안가고 한줄로 표시 */
 }
 
 .text-left {

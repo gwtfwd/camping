@@ -36,7 +36,7 @@ public class BookingController {
 	
 	// 실시간예약하기
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	public String reservationWriteGet(HttpServletRequest request, Model model, BookingVO vo, String campName, Integer campNo) throws Exception {
+	public String reservationWriteGet(HttpServletRequest request, Model model, BookingVO vo) throws Exception {
 		
 		//로그인 유지
 		HttpSession session = request.getSession();
@@ -52,15 +52,13 @@ public class BookingController {
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
-		model.addAttribute("campName", campName);
-		model.addAttribute("campNo", campNo);
 		
 		return "user/board/booking/write";
 	}
 	
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String boardWritePost(HttpServletRequest request, Model model, BookingVO vo, String campName, Integer campNo) throws Exception {
+	public String boardWritePost(HttpServletRequest request, Model model, BookingVO vo) throws Exception {
 		
 		//로그인 유지
 		HttpSession session = request.getSession();
@@ -78,8 +76,6 @@ public class BookingController {
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
-		model.addAttribute("campName", campName);
-		model.addAttribute("campNo", campNo);
 		
 		return "redirect:/booking/list";
 	}
@@ -152,7 +148,7 @@ public class BookingController {
 	
 	// 예약확인
 	@RequestMapping(value = "/detail")
-	public String freeDetailPost(Model model, HttpServletRequest request,BookingVO vo) throws Exception {
+	public String freeDetailPost(Model model, HttpServletRequest request,BookingVO vo, Integer camp_no) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -163,11 +159,14 @@ public class BookingController {
 			member = true;
 		}
 		
+		CampVO camp = bookingService.getBookingByCampNo(camp_no);
+		
 		BookingVO booking = bookingService.getBooking(vo);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("booking", booking);
+		model.addAttribute("camp", camp);
 		
 		return "user/board/booking/detail";
 	}

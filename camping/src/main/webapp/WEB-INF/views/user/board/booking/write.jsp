@@ -21,12 +21,73 @@
 		$(document).ready(function(){
 			  $('#user_phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});	
 			  $('#coming_time').mask('00:00', {placeholder: "__:__  (ex 14:00)"});	
+		
+			  $('#formId').submit(function(){
+					
+					var name = $("#camp_name");
+					if(name.val() == ""){
+						alert("야영장명을 검색하세요.");
+						
+						// return false 면 submit을 실행하지 않고 멈춤
+						return false;
+					}
+					
+					var phone = $("#user_phone");
+					if(phone.val() == ""){
+						alert("휴대전화를 입력하세요.");
+						
+						return false;
+					}
+					
+					var at = $("#booking_at");
+					if(at.val() == ""){
+						alert("예약날짜/시간을 입력하세요.");
+						
+						return false;
+					}
+					
+					var people = $("#people");
+					if(people.val() == ""){
+						alert("인원수를 입력하세요.");
+						
+						return false;
+					}
+					return true;
+					
+				});
 		});
 		
 		// 야영장찾기
 		function openfindCamp(){  
 		    window.open("/camping/booking/findCamp",'_blank','toolbar=no,location=no,status=no, menubar=no, scrollbars=auto, width=520, height=500, top=100, left=100');  
 		} 
+		
+		// 인원수
+		$(function() {
+			$("form")
+				.validate( {
+					rules : {
+						people : {
+							regex : /^[0-9]*$/
+						}
+					},
+					//규칙체크 실패시 출력될 메시지
+					messages : {
+						people : {
+							regex : "숫자만 입력해주세요."
+						}
+					}
+				});
+		})
+		
+		$.validator.addMethod(
+				"regex", 
+				function(value, element, regexp) {
+					var re = new RegExp(regexp);
+					return this.optional(element) || re.test(value);
+				}, 
+				"Please check your input."
+		);
 		</script>
 	
 	<style type="text/css">
@@ -70,15 +131,15 @@
 		<br><br><br><br>
 		<h4 class="fontH" style="text-align:center;">실시간 예약하기</h4>
 		
-		<form method="post" id="fromId" style="border:0px solid #C8CACC; margin-top:100px;">
+		<form method="post" id="formId" style="border:0px solid #C8CACC; margin-top:100px;">
 			
 			<div class="row" >
 				<div class="col-md-3 fontH">
 					<label style="float:right; padding-top:7px;" for="camp_name">야영장명</label>				
 				</div>
 				<div class="col-md-6 fontH">
-					<input type="text" class="form-control fontH" id="camp_name" name="camp_name" onClick="javascript:openfindCamp();" value="${campName}" placeholder="검색해서 찾기" tabindex=1>
-					<input type="hidden" value="${campNo}">
+					<input type="text" class="form-control fontH" id="camp_name" name="camp_name" onClick="javascript:openfindCamp();" placeholder="검색해서 찾기" tabindex=1>
+					<input type="hidden" id="camp_no" name="camp_no">
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -126,7 +187,6 @@
 	       			<button type="submit" class="btn11 btn-primary11 fontH" style="margin-left:10px">예약</button>
 	       		</a>
 			</div>
-			
 		</form>		
 	</div>
 	

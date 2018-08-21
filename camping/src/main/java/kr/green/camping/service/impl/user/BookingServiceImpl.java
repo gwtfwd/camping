@@ -10,7 +10,7 @@ import kr.green.camping.dao.user.BookingMapper;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.user.BookingService;
 import kr.green.camping.vo.user.BookingVO;
-import kr.green.camping.vo.user.FreeVO;
+import kr.green.camping.vo.user.CampVO;
 import kr.green.camping.vo.user.JoinVO;
 
 @Service("bookingService")
@@ -36,6 +36,12 @@ public class BookingServiceImpl implements BookingService{
 	
 	public BookingVO getBooking(BookingVO vo) throws Exception{
 		BookingVO resultVO = bookingMapper.getBooking(vo);
+		
+		return resultVO;
+	}
+	
+	public CampVO getBookingByCampNo(Integer camp_no) throws Exception{
+		CampVO resultVO = bookingMapper.getBookingByCampNo(camp_no);
 		
 		return resultVO;
 	}

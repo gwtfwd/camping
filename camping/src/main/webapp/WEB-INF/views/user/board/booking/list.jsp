@@ -61,7 +61,7 @@
 						<c:forEach items="${list}" var="booking">
 							<tr>
 								<td><a href="/camping/booking/detail?no=${booking.no}" style="color: black;">${booking.booking_at}</a></td>
-								<td>${booking.camp_name}</td>
+								<td><a href="/camping/booking/detail?no=${booking.no}" style="color: black;">${booking.camp_name}</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

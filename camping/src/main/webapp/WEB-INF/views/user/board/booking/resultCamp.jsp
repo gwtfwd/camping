@@ -26,26 +26,18 @@
    	</style>
    	<script>
 	   	$(document).ready(function(){ 
-		    $('#campInfo').click(function(e){
+		    $('.campInfo').click(function(e){
 		    	
- 		    	var campName = $('#campName').text();
- 		    	var campNo = $('#campNo').val();
- 		    	alert(campName + "," + campNo);
+ 		    	var campName = $(this).text();
+ 		    	var campNo = $(this).attr('no');
 		        
-			    $.ajax({
-			        url : '/camping/booking/write',	
-			        type : 'post',						
-			        data : {'campName':campName, 'campNo':campNo},
-			        success : function(){
-			        	alert('완료');
-			        	window.close();
-			        }
-			    });
+ 		    	opener.document.getElementById("camp_name").value=campName;
+ 		    	opener.document.getElementById("camp_no").value=campNo;
+ 		    	
+ 		    	window.close();
 	    	});
 	    });
     </script>
-   	
-   	
 </head>
 <body>
 
@@ -60,12 +52,13 @@
 		<div style="margin-left:15px; margin-right:15px;">
 			<c:if test="${camplist}">		
 				<div class="fontH" style="text-align:center;margin-top:70px;border:1px solid #C8CACC; margin-bottom:70px;">
+				
 					<c:forEach items="${list}" var="camp">
-						<div id="campInfo" style="margin-top:8px;margin-bottom:8px;">
-							<a href="#" id="campName">${camp.camp_name}</a>
-							<input type="hidden" id="campNo" value="${camp.no}">
+						<div style="margin-top:8px;margin-bottom:8px;">
+							<a href="#" class="campInfo" no="${camp.no}">${camp.camp_name}</a>
 						</div>
 					</c:forEach>
+					
 				</div>
 			</c:if>
 			

@@ -1,5 +1,7 @@
 package kr.green.camping.vo.user;
 
+import java.util.Date;
+
 public class ReviewVO {
 
 	private Integer no;
@@ -9,8 +11,30 @@ public class ReviewVO {
 	private String user_name;
 	private String filepath;
 	private Integer view;
+	private Date registered_at;
+	private Date updated_at;
+	private Integer reply_cnt;
 	
 	
+	
+	public Date getRegistered_at() {
+		return registered_at;
+	}
+	public void setRegistered_at(Date registered_at) {
+		this.registered_at = registered_at;
+	}
+	public Date getUpdated_at() {
+		return updated_at;
+	}
+	public void setUpdated_at(Date updated_at) {
+		this.updated_at = updated_at;
+	}
+	public Integer getReply_cnt() {
+		return reply_cnt;
+	}
+	public void setReply_cnt(Integer reply_cnt) {
+		this.reply_cnt = reply_cnt;
+	}
 	public Integer getNo() {
 		return no;
 	}

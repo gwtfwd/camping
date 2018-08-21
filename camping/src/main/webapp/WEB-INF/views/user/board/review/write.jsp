@@ -85,7 +85,7 @@
 					<label class="control-label" for="contents">내용</label>
 				</div>
 				<div class="col-md-9 fontH" style="margin-left: 9px;">
-					<textarea rows="20" cols="140" id="contents" name="contents" style="background-color:white; border-width:0px; padding-top:7px;" autocomplete="off"></textarea>
+					<textarea rows="20" cols="100" id="contents" name="contents" style="background-color:white; border-width:0px; padding-top:7px;" autocomplete="off"></textarea>
 				</div>
 			</div><br><br>
 			

@@ -142,7 +142,7 @@
        			<h3 style="color:#333;">관리자회원</h3>
         		<label style="color:#666;">관리자회원 가입을 원하시면 선택해주세요.</label><br><br>
        			
-       			<a href="#"><button class="button1" style="vertical-align:middle; margin-bottom:50px;"><span>회원가입</span></button></a><br>
+       			<a href="/camping/admin/member/join"><button class="button1" style="vertical-align:middle; margin-bottom:50px;"><span>회원가입</span></button></a><br>
 			</div>
         </div> 
       </div>

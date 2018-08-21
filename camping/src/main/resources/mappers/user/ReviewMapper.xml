@@ -13,7 +13,49 @@
 	</select>
 	
 	<insert id="writeReview">
-		insert into review (subject, contents, user_id, user_name, filepath, view) values (#{subject}, #{contents}, #{user_id}, #{user_name}, #{filepath}, #{view})
+		insert into review (subject, contents, user_id, user_name, filepath, view, registered_at) values (#{subject}, #{contents}, #{user_id}, #{user_name}, #{filepath}, #{view}, now())
 	</insert>
+	
+	<select id="getReviewByNo" resultType="kr.green.camping.vo.user.ReviewVO">
+		select * from review where no = #{no}
+	</select>
+	
+	<update id="view">
+		update review set view = view + 1 where no = #{no}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 댓글 -->
+	
+	<select id="replyCount" resultType="java.lang.Integer">
+        select count(*) from reply where bno = #{bno}
+    </select>
+    
+    <select id="replyList" resultType="kr.green.camping.vo.user.ReplyVO">
+        select * from reply where bno = #{bno}
+    </select>
+    
+    <select id="getReplyPage" resultType="kr.green.camping.vo.user.ReplyVO">
+		select * from reply order by reno desc limit #{pageStart}, #{perPageNum} 
+	</select>
+    
+    <insert id="replyInsert" parameterType="kr.green.camping.vo.user.ReplyVO">
+        insert into reply (reno, bno, recontent, reid, redate) values(#{reno}, #{bno}, #{recontent}, #{reid}, now()) 
+    </insert>
+    
+   <update id="replyUpdate" parameterType="kr.green.camping.vo.user.ReplyVO">
+        update reply set recontent = #{recontent} where reno = #{reno}
+    </update>
+    
+    <delete id="replyDelete" parameterType="java.lang.Integer">
+        delete from reply where reno = #{reno}
+    </delete>
 	
 </mapper>

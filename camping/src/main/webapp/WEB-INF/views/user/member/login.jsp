@@ -54,6 +54,15 @@
 	        }
 	 
 	    }
+		
+	    window.onload = function() {
+	   	 
+	        if (getCookie("adminId")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
+	            document.adminLoginForm.adminId.value = getCookie("adminId"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
+	            document.adminLoginForm.adminIdSave.checked = true; // 체크는 체크됨으로
+	        }
+	 
+	    }
 	 
 	    function setCookie(name, value, expiredays) //쿠키 저장함수
 	    {
@@ -95,6 +104,26 @@
 	            setCookie("id", document.userLoginForm.id.value, 0); //날짜를 0으로 저장하여 쿠키삭제
 	        }
 	        document.userLoginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
+	    }
+	    
+	    function adminsendit() {
+	        var frm = document.adminLoginForm;
+	        if (!frm.adminId.value) { //아이디를 입력하지 않으면.
+	            alert("아이디를 입력 해주세요!");
+	            frm.adminId.focus();
+	            return;
+	        }
+	        if (!frm.adminPw.value) { //패스워드를 입력하지 않으면.
+	            alert("패스워드를 입력 해주세요!");
+	            frm.adminPw.focus();
+	            return;
+	        }
+	        if (document.adminLoginForm.adminIdSave.checked == true) { // 아이디 저장을 체크 하였을때
+	            setCookie("id", document.adminLoginForm.adminId.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+	        } else { // 아이디 저장을 체크 하지 않았을때
+	            setCookie("id", document.adminLoginForm.adminId.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+	        }
+	        document.adminLoginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
 	    }
 	    
 	    /* 아이디찾기 */
@@ -157,7 +186,7 @@
                  </form>
             </div>
             <div class="col-md-6" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px; border-top:#090 3px solid; border-left:0px;">
-            	<form method="post" id="userLoginForm" name="userLoginForm" >
+            	<form method="post" id="adminLoginForm" name="adminLoginForm" >
 	                <div style="margin-top:50px; margin-bottom:50px;">
 	                	<div style="text-align:center;">
 	                		<h3 style="color:#333;">관리자회원</h3>
@@ -165,22 +194,22 @@
 	                    <div class="form-group" >
 	                        <div class="col-md-12">                                            
 	                            <div class="input-group">
-	                                <input type="text" id="id" name="id" class="form-control" placeholder="ID" autocomplete="off"/>
+	                                <input type="text" id="adminId" name="adminId" class="form-control" placeholder="ID" autocomplete="off"/>
 	                            </div>                                            
 	                        </div>
 	                    </div>
 	                    <div class="form-group" >
 	                        <div class="col-md-12 ">                                            
 	                            <div class="input-group">
-	                                <input type="password" id="pw" name="pw" class="form-control" placeholder="PASSWORD"/>
+	                                <input type="password" id="adminPw" name="adminPw" class="form-control" placeholder="PASSWORD"/>
 	                            </div>                                            
 	                        </div>
 	                    </div>
 	                    <div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
-	                        <input type="checkbox" name="idSave" value="saveOk"/> 아이디 저장
+	                        <input type="checkbox" name="adminIdSave" value="saveOk"/> 아이디 저장
 	                    </div>
 	                    <div class="col-md-12">
-	                    	<a href="/camping/member/login"><button type="submit" onclick="sendit()" class="btn11 btn-primary22 pull-right fontH">Login</button></a>
+	                    	<a href="/camping/admin/member/login"><button type="submit" onclick="adminsendit()" class="btn11 btn-primary22 pull-right fontH">Login</button></a>
 	                	</div>
 	                	<div class="form-group">
 	                		<br>

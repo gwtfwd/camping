@@ -66,7 +66,7 @@
    	
 	<div class="container">
 		<br><br><br><br>
-		<h4 class="fontH" style="text-align: center;">야영장 후기</h4><br><br><br>
+		<h4 class="fontH" style="text-align: center;"><b>야영장 후기</b></h4><br><br><br>
 
 		
 		<div class="row">
@@ -75,8 +75,9 @@
 					<a href="/camping/review/detail?no=${review.no}">
 						<img src="<c:out value='/camping/resources/upload${review.filepath}'/>" class="test">
 					</a><br>	
-					<a href="/camping/review/detail?no=${review.no}">${review.subject}</a><br>
-					${review.user_name}<br><br><br>	
+					<a href="/camping/review/detail?no=${review.no}"><b>${review.subject}</b></a>
+					<span class="fontH" style="margin-left: 5px;">[${review.reply_cnt}]</span><br>
+					<label class="fontH" style="color:rgba(0,0,0,0.4);">${review.user_name}</label><br><br><br>	
 				</div>
 			</c:forEach>
 		</div>	

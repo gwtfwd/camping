@@ -12,6 +12,7 @@ import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.user.ReviewService;
 import kr.green.camping.utils.UploadFileUtils;
 import kr.green.camping.vo.user.FreeVO;
+import kr.green.camping.vo.user.ReplyVO;
 import kr.green.camping.vo.user.ReviewVO;
 
 @Service("reviewService")
@@ -41,9 +42,53 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewMapper.writeReview(vo);
 	}
 	
+	@Override
+	public ReviewVO getReview(ReviewVO vo) throws Exception {
+
+		ReviewVO resultVO = reviewMapper.getReviewByNo(vo);
+		
+		return resultVO;
+	}
+	
+	@Override
+	public int view(ReviewVO vo) throws Exception {
+		return reviewMapper.view(vo);
+	}
 	
 	
 	
 	
+	
+	
+	
+	// 댓글
+		@Override
+		public Integer replyCount(int bno) throws Exception {
+			return reviewMapper.replyCount(bno);
+		}
+		@Override
+		 public List<ReplyVO> replyList(Integer bno) throws Exception{
+		        
+	        return reviewMapper.replyList(bno);
+	    }
+		@Override
+		public List<ReplyVO> getReplyPage(Criteria cri) throws Exception {
+			return reviewMapper.getReplyPage(cri); 
+		}
+		@Override    
+	    public Integer replyInsert(ReplyVO replyVO) throws Exception{
+	        
+	        return reviewMapper.replyInsert(replyVO);
+	    }
+		@Override 
+	    public Integer replyUpdate(ReplyVO replyVO) throws Exception{
+	        
+	        return reviewMapper.replyUpdate(replyVO);
+	    }
+		@Override
+	    public Integer replyDelete(int reno) throws Exception{
+	        
+	        return reviewMapper.replyDelete(reno);
+	    }
 	
 }

@@ -10,31 +10,6 @@
 	</select>
 
 	
-	<!-- 좋아요 -->
-	 	<insert id="insertBoardLike">
-            INSERT INTO liketo (camp_no, user_id)
-            VALUES (#{camp_no}, #{user_id})
-        </insert>
-
-        <delete id="deleteBoardLike">
-            DELETE FROM liketo
-            WHERE camp_no = #{camp_no} AND user_id = #{user_id}
-        </delete>
-
-        <select id="updateBoardLike">
-            UPDATE camp
-            SET
-            like_cnt = (SELECT COUNT(*)
-            FROM liketo
-            WHERE camp_no = #{camp_no})
-            WHERE no = #{camp_no}
-        </select>
-
-        <select id="getBoardLike" resultType="int">
-            SELECT COUNT(like_no) FROM liketo WHERE camp_no = #{camp_no} AND user_id = #{user_id}
-        </select>	
-	
-	
 	<!-- region -->
 	<select id="regionList" resultType="kr.green.camping.vo.user.CampVO">
 		select * from camp 
@@ -315,7 +290,6 @@
 				 and camp_type_no = 'P0002'
 			</if>
 	</select>
-	
 	
 	<!-- 야영장이름으로 검색 -->
 	<select id="searchCamp" resultType="kr.green.camping.vo.user.CampVO">

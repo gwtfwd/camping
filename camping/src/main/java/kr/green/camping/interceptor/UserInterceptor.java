@@ -12,7 +12,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		try {
-			if (request.getSession().getAttribute("user") == null) {
+			if (request.getSession().getAttribute("user") == null && request.getSession().getAttribute("admin") == null) {
 				
 				response.sendRedirect(request.getContextPath() + "/member/needLogin");
 				return false;

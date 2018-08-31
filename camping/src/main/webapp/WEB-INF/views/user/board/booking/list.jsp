@@ -53,8 +53,10 @@
 				<table class="table table-hover" style="width: 100%">
 					<thead style="text-align: center;">
 						<tr>
-							<th style="width: 50%">예약일시</th>
-							<th style="width: 50%">야영장명</th>
+							<th style="width: 30%">예약일시</th>
+							<th style="width: 40%">야영장명</th>
+							<th style="width: 15%">예약상태</th>
+							<th style="width: 15%">취소상태</th>
 						</tr>
 					</thead>
 					<tbody class="fontH" style="text-align: center;">
@@ -62,6 +64,8 @@
 							<tr>
 								<td><a href="/camping/booking/detail?no=${booking.no}" style="color: black;">${booking.booking_at}</a></td>
 								<td><a href="/camping/booking/detail?no=${booking.no}" style="color: black;">${booking.camp_name}</a></td>
+								<td>${booking.book_status}</td>
+								<td>${booking.can_status}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

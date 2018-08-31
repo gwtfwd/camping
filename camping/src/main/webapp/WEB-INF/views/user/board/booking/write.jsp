@@ -20,7 +20,6 @@
 		// mask
 		$(document).ready(function(){
 			  $('#user_phone').mask('(000)-0000-0000', {placeholder: "(___)-____-____"});	
-			  $('#coming_time').mask('00:00', {placeholder: "__:__  (ex 14:00)"});	
 		
 			  $('#formId').submit(function(){
 					
@@ -138,8 +137,9 @@
 					<label style="float:right; padding-top:7px;" for="camp_name">야영장명</label>				
 				</div>
 				<div class="col-md-6 fontH">
-					<input type="text" class="form-control fontH" id="camp_name" name="camp_name" onClick="javascript:openfindCamp();" autocomplete="off" placeholder="검색해서 찾기" tabindex=1>
+					<input type="text" class="form-control fontH" id="camp_name" name="camp_name" onClick="javascript:openfindCamp();" autocomplete="off" style="background-color:white;" placeholder="검색해서 찾기"readonly>
 					<input type="hidden" id="camp_no" name="camp_no">
+					<input type="hidden" id="camp_registered_id" name="camp_registered_id">
 				</div>
 				<div class="col-md-1"></div>
 			</div>

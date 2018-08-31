@@ -15,11 +15,11 @@
 	</select>
 	
 	<insert id="writeFree">
-		insert into free (subject, contents, registered_id, registered_at, name, filepath) values (#{subject}, #{contents}, #{registered_id}, now(), #{name}, #{filepath})
+		insert into free (no,subject, contents, registered_id, registered_at, name, filepath, admin, notice) values (#{no},#{subject}, #{contents}, #{registered_id}, now(), #{name}, #{filepath}, #{admin}, #{notice})
 	</insert>
 	
 	<update id="modifyFree">
-		update free set subject=#{subject}, contents=#{contents}, updated_at=now(), updated_id=#{registered_id}, reply_cnt = #{reply_cnt },filepath = #{filepath} where no=#{no}
+		update free set subject=#{subject}, contents=#{contents}, updated_at=now(), updated_id=#{registered_id},reply_cnt=#{reply_cnt}, filepath = #{filepath} where no=#{no}
 	</update>
 	
 	<delete id="deleteFree">
@@ -29,12 +29,16 @@
 	<update id="view">
 		update free set view = view + 1 where no = #{no}
 	</update>
+	
+	<delete id="replyDeleteByBno">
+        delete from reply where bno = #{bno}
+    </delete>
 
 	
 	<!-- 검색 -->
 	<select id="searchFree" resultType="kr.green.camping.vo.user.FreeVO">
 		select * from free
-		where 1 = 1 
+		where notice ='false' || notice is null
 			<if test="type==1">
 				 and subject like #{search}
 			</if>
@@ -57,7 +61,7 @@
 			count(no)
 		from
 			free
-		where 1=1
+		where notice ='false' || notice is null
 			<if test="type==1">
 				 and subject like #{search}
 			</if>
@@ -67,9 +71,18 @@
 			<if test="type==3">
 				 and name like #{search}
 			</if>
-			<if test="type==3">
-				 and id like #{search}
+			<if test="type==4">
+				 and registered_id like #{search}
 			</if>
+	</select>
+	
+	<!-- 공지 -->
+	<select id="searchFreeByNotice" resultType="kr.green.camping.vo.user.FreeVO">
+		select * from free where notice='true' order by no desc 
+	</select>
+	
+	<select id="getCountFreeByNotice" resultType="java.lang.Integer">
+		select count(*)	from free where notice='true'
 	</select>
 	
 	
@@ -80,7 +93,11 @@
     </select>
     
     <select id="replyList" resultType="kr.green.camping.vo.user.ReplyVO">
-        select * from reply where bno = #{bno}
+        select * from reply where bno = #{bno} limit #{cri.pageStart}, #{cri.perPageNum} 
+    </select>
+    
+    <select id="replyListByReno" resultType="kr.green.camping.vo.user.ReplyVO">
+        select * from reply where reno = #{reno} 
     </select>
     
     <select id="getReplyPage" resultType="kr.green.camping.vo.user.ReplyVO">
@@ -98,8 +115,6 @@
     <delete id="replyDelete" parameterType="java.lang.Integer">
         delete from reply where reno = #{reno}
     </delete>
-
-	
 
 	
 	

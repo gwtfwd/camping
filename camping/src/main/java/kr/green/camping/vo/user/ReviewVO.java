@@ -14,9 +14,16 @@ public class ReviewVO {
 	private Date registered_at;
 	private Date updated_at;
 	private Integer reply_cnt;
+	private Integer star;
 	
 	
 	
+	public Integer getStar() {
+		return star;
+	}
+	public void setStar(Integer star) {
+		this.star = star;
+	}
 	public Date getRegistered_at() {
 		return registered_at;
 	}

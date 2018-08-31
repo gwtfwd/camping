@@ -12,9 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.green.camping.dao.user.FreeMapper;
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.user.FreeService;
+import kr.green.camping.utils.UploadFileUtils;
 import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.ReplyVO;
-import kr.green.camping.utils.UploadFileUtils;
 
 @Service("freeService")
 public class FreeServiceImpl implements FreeService {
@@ -38,7 +38,7 @@ public class FreeServiceImpl implements FreeService {
 	@Override
 	public void writeFree(FreeVO vo, MultipartFile file, String uploadPath) throws Exception {
 		
-		if(file != null) {
+		if(file != null && file.getSize() != 0) {
 			String filePath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
 			vo.setFilepath(filePath);
 		}
@@ -73,11 +73,14 @@ public class FreeServiceImpl implements FreeService {
 		freeMapper.modifyFree(vo);
 	}
 	@Override
-	public void deleteFree(FreeVO vo) throws Exception {
-		freeMapper.deleteFree(vo);
+	public void deleteFree(Integer bno) throws Exception {
+		
+		freeMapper.replyDeleteByBno(bno);
+		freeMapper.deleteFree(bno);
 	}
+	
 	@Override
-	public int view(FreeVO vo) throws Exception {
+	public Integer view(FreeVO vo) throws Exception {
 		return freeMapper.view(vo);
 	}
 	
@@ -92,18 +95,35 @@ public class FreeServiceImpl implements FreeService {
 		return freeMapper.getCountFree(search, type);
 	}
 	
+	// 공지
+	@Override
+	public List<FreeVO> searchFreeByNotice() throws Exception {
+		return freeMapper.searchFreeByNotice();
+	}
+	@Override
+	public int getCountFreeByNotice() throws Exception {
+		return freeMapper.getCountFreeByNotice();
+	}
+	
 	
 	
 	// 댓글
 	@Override
-	public Integer replyCount(int bno) throws Exception {
+	public Integer replyCount(Integer bno, Criteria cri) throws Exception {
 		return freeMapper.replyCount(bno);
 	}
 	@Override
-	 public List<ReplyVO> replyList(Integer bno) throws Exception{
+	 public List<ReplyVO> replyList(Integer bno, Criteria cri) throws Exception{
 	        
-        return freeMapper.replyList(bno);
+        return freeMapper.replyList(bno,cri);
     }
+	@Override
+	public ReplyVO replyListByReno(ReplyVO reply) throws Exception{
+		
+		ReplyVO replyVO = freeMapper.replyListByReno(reply);
+		
+		return replyVO;
+	}
 	@Override
 	public List<ReplyVO> getReplyPage(Criteria cri) throws Exception {
 		return freeMapper.getReplyPage(cri); 

@@ -16,23 +16,10 @@ public interface SearchService {
 	//camp
 	public CampVO getCamp(CampVO vo) throws Exception;
 	
-	
-	// 좋아요
-	public int getBoardLike(LikeVO vo) throws Exception;
-    public void insertBoardLike(LikeVO vo) throws Exception;
-    public void deleteBoardLike(LikeVO vo) throws Exception;
-	
-	
-	
 	// region
-	//public List<CampVO> regionList(String region_code) throws Exception;
-	//public Integer regionCnt(String region_code) throws Exception;
 	public List<CampVO> regionList(String region_code, String type) throws Exception;
 	public Integer regionCnt(String region_code, String type) throws Exception;
 	public String getRegionCode(String area) throws Exception;
-	
-	
-	
 	
 	// type
 	public CampVO getTypeByNo(CampVO vo) throws Exception;

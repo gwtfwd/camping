@@ -26,24 +26,46 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	@Override
-	public List<BookingVO> getBookingByNo(JoinVO user,Criteria cri) throws Exception {
-		return bookingMapper.getBookingByNo(user,cri);
+	public List<BookingVO> getBookingById(JoinVO user,Criteria cri) throws Exception {
+		return bookingMapper.getBookingById(user,cri);
 	}
 	@Override
 	public Integer getBookingCount(JoinVO user) throws Exception {
 		return bookingMapper.getBookingCount(user);
 	}
-	
+	@Override
 	public BookingVO getBooking(BookingVO vo) throws Exception{
 		BookingVO resultVO = bookingMapper.getBooking(vo);
 		
 		return resultVO;
 	}
-	
-	public CampVO getBookingByCampNo(Integer camp_no) throws Exception{
-		CampVO resultVO = bookingMapper.getBookingByCampNo(camp_no);
+	@Override
+	public CampVO getCampByCampNo(Integer camp_no) throws Exception{
+		CampVO resultVO = bookingMapper.getCampByCampNo(camp_no);
 		
 		return resultVO;
 	}
+	@Override
+	public void modifyBooking(BookingVO vo) throws Exception {
+		
+		bookingMapper.modifyBooking(vo);
+	}
+	
+	/*예약취소*/
+	@Override
+	public boolean setCancel(BookingVO vo) throws Exception {
+			
+		BookingVO booking = bookingMapper.getBooking(vo);
+		
+		if(booking != null) {
+			booking.setBook_status(null);
+			booking.setCan_status("취소대기");
+			bookingMapper.modifyBooking(booking);
+			return true;
+		}
+		return false;
+	}
+	
+	
 	
 }

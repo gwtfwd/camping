@@ -41,6 +41,8 @@
 	
 	<beans:bean id="loginInterceptor" class="kr.green.camping.interceptor.LoginInterceptor"></beans:bean>
 	
+	<beans:bean id="adminLoginInterceptor" class="kr.green.camping.interceptor.AdminLoginInterceptor"></beans:bean>
+	
 	<beans:bean id="userInterceptor" class="kr.green.camping.interceptor.UserInterceptor"></beans:bean>
 	
 	<beans:bean id="authInterceptor" class="kr.green.camping.interceptor.AuthInterceptor"></beans:bean>
@@ -48,10 +50,15 @@
 	
 	<interceptors>
 	
-		<!-- 로그인 path가 주어졌을 때 loginInterceptor가 호출하도록 interceptor태그에 등록 -->
+		<!-- 로그인 path(post)가 주어졌을 때 loginInterceptor가 호출하도록 interceptor태그에 등록 -->
 		<interceptor>
 			<mapping path="/member/login"/>
        		<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/member/login"/>
+       		<beans:ref bean="adminLoginInterceptor"/>
 		</interceptor>
 	
 		<interceptor>

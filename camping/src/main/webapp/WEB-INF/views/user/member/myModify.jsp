@@ -228,7 +228,7 @@
 							minlength : 8,
 							regex : /^(?=\w{8,20})(\w*((\d[a-zA-Z])|([a-zA-Z]\d))\w*)$/
 						},
-						pw_chk : {
+						pwck : {
 							equalTo : pw
 						},
 						name : {
@@ -250,7 +250,7 @@
 						minlength : "최소 8글자이상이어야 합니다",
 						regex : "비밀번호는 영문자와 숫자가 1개이상 포함되어 있어야 하며, 8~20자 이어야 합니다."
 					},
-					pw_chk : {
+					pwck : {
 						equalTo : "비밀번호가 일치하지 않습니다."
 					},
 					name : {

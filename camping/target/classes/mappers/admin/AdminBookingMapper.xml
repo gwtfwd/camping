@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.green.camping.dao.admin.AdminBookingMapper">
+
+	<select id="getBookingById" resultType="kr.green.camping.vo.user.BookingVO">
+		select * from booking where camp_registered_id = #{admin.adminId} order by no desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<select id="getBookingCount" resultType="java.lang.Integer">
+		select count(*) from booking where camp_registered_id = #{admin.adminId} 
+	</select>
+	
+	<select id="bookingByNo" resultType="kr.green.camping.vo.user.BookingVO">
+		select * from booking where no = #{no}
+	</select>
+	
+	<update id="updateBooking">
+		update booking set booking_at=#{booking_at}, people=#{people}, book_status=#{book_status}, can_status=#{can_status} where no=#{no}
+	</update>
+	
+</mapper>

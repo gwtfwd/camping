@@ -29,38 +29,9 @@ public class SearchServiceImpl implements SearchService{
 		CampVO resultVO = searchMapper.getCampByNo(vo);
 		return resultVO;
 	}
-
-	
-	
-	// 좋아요
-	@Override
-    public void insertBoardLike(LikeVO vo) throws Exception {
-		searchMapper.insertBoardLike(vo);
-		searchMapper.updateBoardLike(vo.getCamp_no());
-    }
-
-    @Override
-    public void deleteBoardLike(LikeVO vo) throws Exception {
-    	searchMapper.deleteBoardLike(vo);
-    	searchMapper.updateBoardLike(vo.getCamp_no());
-    }
-    
-    @Override
-    public int getBoardLike(LikeVO vo) throws Exception {
-            return searchMapper.getBoardLike(vo);
-    }
-	 
-	 
 	
 	// region
 	@Override
-	/*public List<CampVO> regionList(String region_code) throws Exception {
-		return searchMapper.regionList(region_code);
-	}
-	
-	public Integer regionCnt(String region_code) throws Exception {
-		return searchMapper.regionCnt(region_code);
-	}*/
 	public List<CampVO> regionList(String region_code, String type) throws Exception {
 		return searchMapper.regionList(region_code, type);
 	}
@@ -77,7 +48,6 @@ public class SearchServiceImpl implements SearchService{
 	}
 	
 	
-	
 	// TYPE
 	@Override
 	public CampVO getTypeByNo(CampVO vo) throws Exception {
@@ -85,7 +55,6 @@ public class SearchServiceImpl implements SearchService{
 		CampVO resultVO = searchMapper.getTypeByNo(vo);
 		return resultVO;
 	}
-	
 	
 	
 	// 검색

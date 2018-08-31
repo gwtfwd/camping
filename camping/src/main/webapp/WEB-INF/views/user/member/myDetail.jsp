@@ -64,7 +64,7 @@
 					<label class="control-label fontH" for="id">아이디</label>
 				</div>
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="id" name="id" autocomplete="off" value="${join.id}" readonly>
+					<input type="text" class="form-control fontH" id="id" name="id" autocomplete="off" value="${join.id}" style="background-color:white;"readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div><br>
@@ -75,7 +75,7 @@
 					<label class="control-label fontH" for="name">이름</label>
 				</div>
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="name" name="name" value="${join.name}" autocomplete="off" readonly>
+					<input type="text" class="form-control fontH" id="name" name="name" value="${join.name}" autocomplete="off" style="background-color:white;"readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div><br>
@@ -99,7 +99,7 @@
 					<label class="control-label fontH" for="pw">비밀번호</label>
 				</div>
 				<div class="col-md-7">
-					<input type="password" class="form-control fontH" id="pw" name="pw" readonly>
+					<input type="password" class="form-control fontH" id="pw" name="pw" style="background-color:white;"readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div><br>
@@ -110,7 +110,7 @@
 					<label class="control-label fontH" for="phone">휴대전화</label>
 				</div>
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="phone" name="phone" value="${join.phone}" autocomplete="off" readonly>
+					<input type="text" class="form-control fontH" id="phone" name="phone" value="${join.phone}" autocomplete="off" style="background-color:white;"readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div><br>
@@ -121,7 +121,7 @@
 					<label class="control-label fontH" for="email">이메일</label>
 				</div>
 				<div class="col-md-7">
-					<input type="email" class="form-control fontH" id="email" name="email" value="${join.email}" autocomplete="off" readonly>
+					<input type="email" class="form-control fontH" id="email" name="email" value="${join.email}" autocomplete="off" style="background-color:white;"readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div><br>
@@ -132,7 +132,7 @@
 					<label class="control-label fontH" for="birth">생년월일</label>
 				</div>
 				<div class="col-md-7">
-					<input type="text" class="form-control fontH" id="birth" name="birth" value="${join.birth}" autocomplete="off" readonly> 
+					<input type="text" class="form-control fontH" id="birth" name="birth" value="${join.birth}" autocomplete="off" style="background-color:white;"readonly> 
 				</div>
 				<div class="col-md-1"></div>
 			</div><br>
@@ -144,11 +144,11 @@
 				</div>
 				<div class="col-md-7">
 					<div class="row">
-						<div class="col-md-3"><input type="text" class="form-control fontH" id="postcode" name="postcode" value="${join.postcode}" readonly></div>
+						<div class="col-md-3"><input type="text" class="form-control fontH" id="postcode" name="postcode" value="${join.postcode}" style="background-color:white;"readonly></div>
 						<div class="col-md-9"></div>
 					</div><br>
-					<input type="text" class="form-control fontH" autocomplete="off" id="address" name ="address" value="${join.address}" readonly><br>
-					<input type="text" class="form-control fontH" autocomplete="off" id="address_detail" name="address_detail" value="${join.address_detail}" readonly>
+					<input type="text" class="form-control fontH" autocomplete="off" id="address" name ="address" value="${join.address}" style="background-color:white;"readonly><br>
+					<input type="text" class="form-control fontH" autocomplete="off" id="address_detail" name="address_detail" value="${join.address_detail}" style="background-color:white;"readonly>
 				</div>
 				<div class="col-md-1"></div>
 			</div><br><br>

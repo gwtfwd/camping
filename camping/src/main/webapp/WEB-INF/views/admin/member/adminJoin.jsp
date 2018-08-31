@@ -198,7 +198,7 @@
 				async:true,
 				type:'POST',
 				data:adminId,
-				url:"camping/admin/member/dup",
+				url:"/camping/admin/member/dup",
 				dataType:"json",
 				contentType:"application/json; charset=UTF-8",
 				success : function(data){

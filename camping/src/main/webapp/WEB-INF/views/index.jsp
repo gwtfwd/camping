@@ -82,17 +82,16 @@
 			border-bottom-color:#6c757d;
 		}
 		.btn-primary33 {
-		  background-color: #090;
-		  border-color: #090;
+			background-image:url('/resources/images/search.png');		
+			background-color:white;
 		}
 		.btn33 {
 		  font-size: 20px;
-	 	  padding: 4px 15px;
 		  line-height: 20px;
 		  font-weight: 500;
 		  color:#fff; 
-		  height:51px;
-		  width:150px;
+		  height:45px;
+		  width:45px;
 		  border-width:0px;
 		  text-align:center;
 		  transition: all 200ms ease;
@@ -155,14 +154,14 @@
     </header>
    	
    	<!-- Page Content -->
-   	<section class="py-5" style="margin-top:120px;">
+   	<section class="py-5" style="margin-top:90px;">
    		<form id="formId" action="/camping/search/name">
 	      <div class="container fontH" >
 	      	<div class="row">
-				<div class="col-md-12" style="text-align:center;">
-					<label style="font-size:26px; margin-right:10px; color: #343a40;">야영장 이름으로 검색</label>
-					<input type="text" id="search" name="search" style="margin-right:10px;width:500px; height:50px; font-size:24px; border: 1px solid #ced4da;color: #555; padding: 0.375rem 0.75rem; border-radius: 4px;" autocomplete="off">
-					<button class="btn33 btn-primary33" type="submit">Search</button>
+				<div class="col-md-12 fontH" style="text-align:center;">
+					<label style="font-size:26px; margin-right:10px; color: #343a40;"><b>야영장 찾기</b></label>
+					<input type="text" id="search" name="search" style="width:400px; height:45px; font-size:23px; border: 1px solid #ced4da;color: #555;" autocomplete="off">
+					<button class="btn33 btn-primary33" type="submit"><img src='resources/images/search.png' style="width:45px; height:45px; margin-bottom: 10px; margin-left:-11px;"></button>
 				</div>
 			</div>
 	      </div>
@@ -209,20 +208,29 @@
 	      </div>
     </section>
     
-   	<section class="py-5" style="margin-top:120px;">
-      <div class="container" >
-         <div class="container-fluid fontH tbbox" style="width: 1540px; margin-left:-200px; text-align:center;"><br><br><br><br><br>
-			<h4 style=" font-weight:bold; font-color:#343a40;">즐거운 여행의 시작, 지금 바로 예약하세요!</h4><br>
-			<c:if test="${!member}">
-				<a href="/camping/member/needLogin"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
-			</c:if>
-			<c:if test="${member}">
-				<a href="/camping/booking/write"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
-			</c:if>
-			<br><br><br><br>     
-        </div>
-      </div>
-    </section>
+    <c:if test="${member}">
+	   	<section class="py-5" style="margin-top:120px;">
+	      <div class="container" >
+	         <div class="container-fluid fontH tbbox" style="width: 1540px; margin-left:-200px; text-align:center;"><br><br><br><br><br>
+				<h4 style=" font-weight:bold; font-color:#343a40;">즐거운 여행의 시작, 지금 바로 예약하세요!</h4><br>
+					<a href="/camping/booking/write"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
+				<br><br><br><br>     
+	        </div>
+	      </div>
+	    </section>
+   	</c:if>
+   	
+   	<c:if test="${!member && !adminMember}">
+	   	<section class="py-5" style="margin-top:120px;">
+	      <div class="container" >
+	         <div class="container-fluid fontH tbbox" style="width: 1540px; margin-left:-200px; text-align:center;"><br><br><br><br><br>
+				<h4 style=" font-weight:bold; font-color:#343a40;">즐거운 여행의 시작, 지금 바로 예약하세요!</h4><br>
+					<a href="/camping/member/needLogin"><button class="btn11" style="vertical-align:middle; margin-bottom:50px; font-weight:bold;"><span>실시간 예약</span></button></a>
+				<br><br><br><br>     
+	        </div>
+	      </div>
+	    </section>
+    </c:if>
     
     <section class="py-5" style="margin-top:90px;"> 
 		<div class="container">

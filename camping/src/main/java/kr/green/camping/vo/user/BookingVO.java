@@ -1,5 +1,6 @@
 package kr.green.camping.vo.user;
 
+import java.util.Date;
 
 public class BookingVO {
 
@@ -10,9 +11,44 @@ public class BookingVO {
 	private Integer camp_no;
 	private String booking_at;
 	private Integer people;
+	private Date registered_at;
+	private Date updated_at;
+	private String camp_registered_id;
+	private String book_status;
+	private String can_status;
 	
 	
 	
+	public String getBook_status() {
+		return book_status;
+	}
+	public void setBook_status(String book_status) {
+		this.book_status = book_status;
+	}
+	public String getCan_status() {
+		return can_status;
+	}
+	public void setCan_status(String can_status) {
+		this.can_status = can_status;
+	}
+	public String getCamp_registered_id() {
+		return camp_registered_id;
+	}
+	public void setCamp_registered_id(String camp_registered_id) {
+		this.camp_registered_id = camp_registered_id;
+	}
+	public Date getRegistered_at() {
+		return registered_at;
+	}
+	public void setRegistered_at(Date registered_at) {
+		this.registered_at = registered_at;
+	}
+	public Date getUpdated_at() {
+		return updated_at;
+	}
+	public void setUpdated_at(Date updated_at) {
+		this.updated_at = updated_at;
+	}
 	public Integer getCamp_no() {
 		return camp_no;
 	}

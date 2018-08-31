@@ -15,23 +15,11 @@ public interface SearchMapper {
 	// camp
 	public CampVO getCampByNo(CampVO vo) throws Exception;
 	
-	
-	// 좋아요
-    public int getBoardLike(LikeVO vo) throws Exception;
-    public void insertBoardLike(LikeVO vo) throws Exception;
-    public void deleteBoardLike(LikeVO vo) throws Exception;
-    public void updateBoardLike(int camp_no) throws Exception;
-	
-	
-	
 	// region
-    //public List<CampVO> regionList(String region_code) throws Exception;
-    //public Integer regionCnt(String region_code) throws Exception;
     public List<CampVO> regionList(@Param("region_code") String region_code, @Param("type") String type) throws Exception;
     public Integer regionCnt(@Param("region_code") String region_code, @Param("type") String type) throws Exception;
     public String getRegionCode(String area) throws Exception;
     
-	
 	// type
 	public CampVO getTypeByNo(CampVO vo) throws Exception;
 	

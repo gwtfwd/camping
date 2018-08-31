@@ -29,8 +29,6 @@
 	</delete>
 	
   	
-	
-	
 	<!-- 아이디찾기 -->
 	<select id="getid" resultType="kr.green.camping.vo.user.JoinVO">
 		select * from account where name = #{name} and phone = #{phone}
@@ -41,7 +39,18 @@
 		select * from account where id = #{id} and phone = #{phone} and email = #{email}
 	</select>
 	
+	<!-- user리스트 -->
+	<select id="searchUser" resultType="kr.green.camping.vo.user.JoinVO">
+		select * from account order by id asc limit #{cri.pageStart},#{cri.perPageNum}
+	</select>
 	
+	<select id="getCountUser" resultType="java.lang.Integer">
+		select count(*) from account
+	</select>
+	
+	<select id="getUserById" resultType="kr.green.camping.vo.user.JoinVO">
+		select * from account where id = #{id}
+	</select>
 	
 	
 </mapper>

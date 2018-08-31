@@ -30,9 +30,11 @@
 		    	
  		    	var campName = $(this).text();
  		    	var campNo = $(this).attr('no');
+ 		    	var campId = $(this).attr('campId');
 		        
  		    	opener.document.getElementById("camp_name").value=campName;
  		    	opener.document.getElementById("camp_no").value=campNo;
+ 		    	opener.document.getElementById("camp_registered_id").value=campId;
  		    	
  		    	window.close();
 	    	});
@@ -55,7 +57,7 @@
 				
 					<c:forEach items="${list}" var="camp">
 						<div style="margin-top:8px;margin-bottom:8px;">
-							<a href="#" class="campInfo" no="${camp.no}">${camp.camp_name}</a>
+							<a href="#" class="campInfo" no="${camp.no}" campId="${camp.registered_id}">${camp.camp_name}</a>
 						</div>
 					</c:forEach>
 					

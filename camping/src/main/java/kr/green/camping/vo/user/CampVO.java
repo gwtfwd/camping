@@ -6,6 +6,7 @@ public class CampVO {
 
 	private Integer no;						// �Ϸù�ȣ
 	private String camp_type_no;			// �߿��� ���� �Ϸù�ȣ
+	private String camp_type;			// �߿��� ���� �Ϸù�ȣ
 	private String camp_name;				// �߿����
 	private String address_road;			// ������ ���θ� �ּ�
 	private String address_jibun;			// ������ ���� �ּ�
@@ -20,20 +21,76 @@ public class CampVO {
 	private String updated_id;				// ������id
 	private Date registered_at;				// ����Ͻ�
 	private Date updated_at;				// �����Ͻ�
-	private Integer like_cnt;					// ���ƿ�
+	private String region_code;					// ���ƿ�
+	private Integer max_people;
+	private Integer parking;
+	private String convenience;
+	private String safety;
+	private String etc;
+	private String time;
+	private String charge;
 	
+	
+	
+	public String getCamp_type() {
+		return camp_type;
+	}
+	public void setCamp_type(String camp_type) {
+		this.camp_type = camp_type;
+	}
+	public Integer getMax_people() {
+		return max_people;
+	}
+	public void setMax_people(Integer max_people) {
+		this.max_people = max_people;
+	}
+	public Integer getParking() {
+		return parking;
+	}
+	public void setParking(Integer parking) {
+		this.parking = parking;
+	}
+	public String getConvenience() {
+		return convenience;
+	}
+	public void setConvenience(String convenience) {
+		this.convenience = convenience;
+	}
+	public String getSafety() {
+		return safety;
+	}
+	public void setSafety(String safety) {
+		this.safety = safety;
+	}
+	public String getEtc() {
+		return etc;
+	}
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getCharge() {
+		return charge;
+	}
+	public void setCharge(String charge) {
+		this.charge = charge;
+	}
+	public String getRegion_code() {
+		return region_code;
+	}
+	public void setRegion_code(String region_code) {
+		this.region_code = region_code;
+	}
 	public Integer getAddress_code() {
 		return address_code;
 	}
 	public void setAddress_code(Integer address_code) {
 		this.address_code = address_code;
-	}
-	public Integer getLike_cnt() {
-
-		return like_cnt;
-	}
-	public void setLike_cnt(Integer like_cnt) {
-		this.like_cnt = like_cnt;
 	}
 	public Integer getNo() {
 		return no;

@@ -13,8 +13,7 @@ import kr.green.camping.vo.user.JoinVO;
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	
-	/*Controller¿¡¼­ Model¿¡ À¯Àú Á¤º¸¸¦ ÀúÀåÇÏÁö ¾Ê¾ÒÀ¸¸é modelMap.get("user")¸¦ ÇßÀ» ¶§ null°ªÀÌ µé¾î°¡°í ÀÖÀ¸¸é ÀúÀåÇÑ Á¤º¸¸¦ °¡Á®¿Â´Ù.
-	°¡Á®¿Â Á¤º¸°¡ nullÀÌ ¾Æ´Ï¸é ÇØ´ç À¯Àú Á¤º¸¸¦ ¼¼¼Ç¿¡ ÀúÀå*/
+	/*ì»¨íŠ¸ë¡¤ëŸ¬ë³´ë‹¤ ë¨¼ì € ìˆ˜í–‰ë˜ëŠ” ë©”ì„œë“œ*/
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		
@@ -25,11 +24,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 		}
-		
-		
-		
 	}
-		
+	
+	// postHandle : ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ìˆ˜í–‰ë˜ê³  í™”ë©´ì´ ë³´ì—¬ì§€ê¸° ì§ì „ì— ìˆ˜í–‰ë˜ëŠ” ë©”ì„œë“œ
 	
 	
 }

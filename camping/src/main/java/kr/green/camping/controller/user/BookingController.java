@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.camping.pagination.Criteria;
 import kr.green.camping.pagination.PageMaker;
 import kr.green.camping.service.user.BookingService;
 import kr.green.camping.service.user.SearchService;
+import kr.green.camping.vo.admin.AdminJoinVO;
 import kr.green.camping.vo.user.BookingVO;
 import kr.green.camping.vo.user.CampVO;
 import kr.green.camping.vo.user.FreeVO;
@@ -66,6 +68,7 @@ public class BookingController {
 		
 		vo.setUser_id(user.getId());
 		vo.setUser_name(user.getName());
+		vo.setBook_status("예약대기");
 		
 		boolean member = false;
 		if( user != null) {
@@ -99,7 +102,7 @@ public class BookingController {
 		ArrayList<BookingVO> list = null;
 		int totalCount = 0;
 		
-		list = (ArrayList)bookingService.getBookingByNo(user,cri);
+		list = (ArrayList)bookingService.getBookingById(user,cri);
 		totalCount = bookingService.getBookingCount(user);
 		
 		PageMaker pageMaker = new PageMaker();
@@ -148,7 +151,7 @@ public class BookingController {
 	
 	// 예약확인
 	@RequestMapping(value = "/detail")
-	public String freeDetailPost(Model model, HttpServletRequest request,BookingVO vo, Integer camp_no) throws Exception {
+	public String freeDetailPost(Model model, HttpServletRequest request,BookingVO vo) throws Exception {
 		
 		/*로그인 유지*/
 		HttpSession session = request.getSession();
@@ -159,9 +162,9 @@ public class BookingController {
 			member = true;
 		}
 		
-		CampVO camp = bookingService.getBookingByCampNo(camp_no);
-		
 		BookingVO booking = bookingService.getBooking(vo);
+		
+		CampVO camp = bookingService.getCampByCampNo(booking.getCamp_no());
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
@@ -171,8 +174,54 @@ public class BookingController {
 		return "user/board/booking/detail";
 	}
 	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String bookingModifyGet(HttpServletRequest request, BookingVO vo, Model model) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO)session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		BookingVO booking = bookingService.getBooking(vo);
+		
+		model.addAttribute("booking", booking);
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		
+		return "/user/board/booking/modify";
+	}
 	
 	
+	@RequestMapping(value="/modify", method= RequestMethod.POST)
+	public String bookingModifyPost(BookingVO vo, HttpServletRequest request, Model model) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		JoinVO user = (JoinVO)session.getAttribute("user");
+		
+		boolean member = false;
+		if( user != null) {
+			member = true;
+		}
+		
+		bookingService.modifyBooking(vo);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("user", user);
+		
+		return "redirect:/booking/list";
+	}
 	
+	@RequestMapping(value = "/cancel")
+	public String bookingCancel(Model model, HttpServletRequest request,BookingVO vo) throws Exception {
+		
+		bookingService.setCancel(vo);
+		
+		return "redirect:/booking/list";
+	}
 	
 }

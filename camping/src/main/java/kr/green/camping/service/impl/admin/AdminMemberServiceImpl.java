@@ -1,13 +1,17 @@
 package kr.green.camping.service.impl.admin;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.camping.dao.admin.AdminMemberMapper;
+import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.admin.AdminMemberService;
 import kr.green.camping.vo.admin.AdminJoinVO;
+import kr.green.camping.vo.user.JoinVO;
 
 @Service("adminMemberService")
 public class AdminMemberServiceImpl implements AdminMemberService{
@@ -31,7 +35,7 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 		
 		AdminJoinVO user = adminMemberMapper.adminById(adminId);
 		
-		if( !(user != null && passwordEncoder.matches(adminPw, user.getPw()))) {
+		if( !(user != null && passwordEncoder.matches(adminPw, user.getAdminPw()))) {
 			
 			user = null;
 		}
@@ -46,4 +50,30 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 
 		return user;
 	}
+	
+	@Override
+	public void modifyJoin(AdminJoinVO adminJoin) throws Exception {
+		adminMemberMapper.modifyJoin(adminJoin);
+	}
+	
+	// user 리스트
+	@Override
+	public List<AdminJoinVO> searchAdmin(Criteria cri) throws Exception {
+		return adminMemberMapper.searchAdmin(cri);
+	}
+	@Override
+	public Integer getCountAdmin() throws Exception {
+		return adminMemberMapper.getCountAdmin();
+	}
+	@Override
+	public AdminJoinVO getAdmin(AdminJoinVO vo) throws Exception {
+
+		AdminJoinVO resultVO = adminMemberMapper.getAdminById(vo);
+		
+		return resultVO;
+	}
+	
+	
+	
+	
 }

@@ -1,6 +1,8 @@
 package kr.green.camping.service.impl.user;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,7 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.camping.dao.user.MemberMapper;
+import kr.green.camping.pagination.Criteria;
 import kr.green.camping.service.user.MemberService;
+import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 
 
@@ -129,7 +133,22 @@ public class MemberServiceImpl implements MemberService{
 		return false;
 	}
 	
-	
+	// user 리스트
+	@Override
+	public List<JoinVO> searchUser(Criteria cri) throws Exception {
+		return memberMapper.searchUser(cri);
+	}
+	@Override
+	public Integer getCountUser() throws Exception {
+		return memberMapper.getCountUser();
+	}
+	@Override
+	public JoinVO getUser(JoinVO vo) throws Exception {
+
+		JoinVO resultVO = memberMapper.getUserById(vo);
+		
+		return resultVO;
+	}
 		
 		
 		

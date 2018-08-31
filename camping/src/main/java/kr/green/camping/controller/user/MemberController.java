@@ -1,6 +1,7 @@
 package kr.green.camping.controller.user;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.camping.pagination.Criteria;
+import kr.green.camping.pagination.PageMaker;
 import kr.green.camping.service.user.MemberService;
+import kr.green.camping.vo.admin.AdminJoinVO;
 import kr.green.camping.vo.user.FreeVO;
 import kr.green.camping.vo.user.JoinVO;
 
@@ -443,6 +447,68 @@ public class MemberController {
 		
 		return "redirect:/member/logout";
 	}
+	
+	// user 리스트
+	@RequestMapping(value = "/userList")
+	public String getFree(Model model, Criteria cri, HttpServletRequest request) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		AdminJoinVO admin = (AdminJoinVO) session.getAttribute("admin");
+		
+		boolean adminMember = false;
+		if( admin != null) {
+			adminMember = true;
+		}
+		
+		if(cri == null) 
+			cri = new Criteria();
+		
+		ArrayList<JoinVO> list = null;
+		int totalCount = 0;
+
+		list = (ArrayList)memberService.searchUser(cri);
+		totalCount = memberService.getCountUser();
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCriteria(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+
+		model.addAttribute("adminMember", adminMember);
+		model.addAttribute("admin", admin);
+		model.addAttribute("list", list);
+	    model.addAttribute("pageMaker", pageMaker);
+	    model.addAttribute("cri",cri);
+	    
+		return "superadmin/member/userList";
+	}
+	
+	
+	@RequestMapping(value = "/userList/detail")
+	public String userDetailPost(JoinVO vo, Model model, HttpServletRequest request) throws Exception {
+		
+		/*로그인 유지*/
+		HttpSession session = request.getSession();
+		AdminJoinVO admin = (AdminJoinVO) session.getAttribute("admin");
+		
+		boolean adminMember = false;
+		if( admin != null) {
+			adminMember = true;
+		}
+		
+		JoinVO user = memberService.getUser(vo);
+		
+		model.addAttribute("adminMember", adminMember);
+		model.addAttribute("admin", admin);
+		model.addAttribute("user", user);
+		
+		return "superadmin/member/userDetail";
+	}
+	
+	
+	
+	
 	
 }
 

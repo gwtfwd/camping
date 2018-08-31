@@ -49,11 +49,11 @@
 	
 		$(document).ready(function(){
 			  
-			  $('#delete').click(function() {
+			  $('#cancel').click(function() {
 			       var str = document.getElementById('formDetail');
 			       str.submit();
 			       
-			       if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+			       if (confirm("예약을 취소하시겠습니까?") == true){    //확인
 			    	    document.form.submit();
 			    	}else{   //취소
 			    	    return false;
@@ -114,8 +114,14 @@
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="user_name">예약자명</label>
 				</div>
-				<div class="col-md-9 fontH">
+				<div class="col-md-7 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="user_name" name="user_name" style="background-color:white; border-width:0px;" value="${booking.user_name}" readonly>
+				</div>
+				<div class="col-md-1 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;">
+					<label class="control-label" for="registered_at">작성일시</label>
+				</div>
+				<div class="col-md-2 fontH">
+					<input type="text" class="form-control" id="registered_at" name="registered_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${booking.registered_at}" pattern="yyyy-MM-dd" />" readonly>
 				</div>
 			</div>
 			
@@ -123,8 +129,14 @@
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;"> 
 					<label class="control-label" for="booking_at">예약일시</label>
 				</div>
-				<div class="col-md-9 fontH">
+				<div class="col-md-7 fontH"  style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="booking_at" name="booking_at" style="background-color:white; border-width:0px;" value="${booking.booking_at}" readonly>
+				</div>
+				<div class="col-md-1 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;"> 
+					<label class="control-label" for="updated_at">수정일시</label>
+				</div>
+				<div class="col-md-2 fontH">
+					<input type="text" class="form-control" id="updated_at" name="updated_at" style="background-color:white; border-width:0px;" value="<fmt:formatDate value="${booking.updated_at}" pattern="yyyy-MM-dd" />" readonly>
 				</div>
 			</div>
 			
@@ -148,8 +160,8 @@
 			</div><br>
 			
 			<div style="text-align:center;">			
-				<a href="/camping/booking/delete?no=${booking.no}"> 
-		       		<button id="delete" type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">예약취소</button>
+				<a href="/camping/booking/cancel?no=${booking.no}"> 
+		       		<button id="cancel" type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">예약취소</button>
 		        </a>	
 		        <a href="/camping/booking/modify?no=${booking.no}"> 
 		       		<button type="button" class="btn11 btn-primary11 fontH pull-right" style="margin-left:10px">예약변경</button>

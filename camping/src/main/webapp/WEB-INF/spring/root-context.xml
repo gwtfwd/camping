@@ -70,6 +70,18 @@
 		    <property name="mapperInterface" value="kr.green.camping.dao.admin.AdminMemberMapper"></property>
 		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		</bean>
+		
+		<!-- @Resource(name = "myCampMapper") -->
+		<bean id="myCampMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		    <property name="mapperInterface" value="kr.green.camping.dao.admin.MyCampMapper"></property>
+		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		</bean>
+		
+		<!-- @Resource(name = "adminBookingMapper") -->
+		<bean id="adminBookingMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		    <property name="mapperInterface" value="kr.green.camping.dao.admin.AdminBookingMapper"></property>
+		    <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		</bean>
 
 		<!-- <mybatis-spring:scan base-package="kr.green.camping.dao.user"/> -->
 		

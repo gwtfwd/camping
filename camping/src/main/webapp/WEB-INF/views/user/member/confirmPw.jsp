@@ -4,11 +4,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+	
 	<!-- link -->
   	<jsp:include page="/WEB-INF/views/common/link.jsp"></jsp:include>
    	<!-- link -->
-   	
+   	<base href="http://localhost:8080/camping/">
 	<style type="text/css">
 		.container{
 	      min-height:850px;

@@ -13,7 +13,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
-		/* 세션에 저장된 유저 정보를 얻기위해nrequest를 이용하여 세션 정보를 가져오고 세션에서 유저 정보가 있는지 확인한다.*/
+		/* 세션에 저장된 유저 정보를 얻기위해 request를 이용하여 세션 정보를 가져오고 세션에서 유저 정보가 있는지 확인한다.*/
 		
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");

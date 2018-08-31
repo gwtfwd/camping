@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="kr.green.camping.dao.admin.MyCampMapper">
+
+	<select id="getMyCampByNo" resultType="kr.green.camping.vo.user.CampVO">
+		select * from camp where registered_id = #{admin.adminId} order by no desc limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	<select id="getMyCampCount" resultType="java.lang.Integer">
+		select count(*) from camp where registered_id = #{admin.adminId}
+	</select>
+	
+	<select id="getMyCamp" resultType="kr.green.camping.vo.user.CampVO">
+		select * from camp where no = #{no}
+	</select>
+	
+	<update id="modifyMyCamp">
+		update camp set camp_type_no=#{camp_type_no}, camp_name=#{camp_name}, region_code=#{region_code}, address_road=#{address_road}, address_jibun = #{address_jibun},
+			camp_tel = #{camp_tel}, latitude = #{latitude}, longitude = #{longitude}, area = #{area}, man_agency_tel = #{man_agency_tel}, man_agency_tel = #{man_agency_tel},
+			man_agency_name = #{man_agency_name}, updated_at = now()
+		where no=#{no}
+	</update>
+	
+	<insert id="writeMyCamp">
+		insert into camp (camp_type, camp_name, region_code, address_road, address_jibun, camp_tel, latitude, longitude, area, max_people, parking, convenience, safety, etc, time, charge, man_agency_tel, man_agency_name, registered_id, registered_at) 
+		values (#{camp_type},#{camp_name}, #{region_code}, #{address_road}, #{address_jibun}, #{camp_tel}, #{latitude}, #{longitude},#{area}, #{max_people}, #{parking}, #{convenience}, #{safety}, #{etc}, #{time}, #{charge}, #{man_agency_tel}, #{man_agency_name}, #{registered_id}, now())
+	</insert>
+	
+</mapper>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.green.camping.service.user.SearchService;
+import kr.green.camping.vo.admin.AdminJoinVO;
 import kr.green.camping.vo.user.JoinVO;
 
 @Controller
@@ -25,16 +26,16 @@ public class HomeController {
 		
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
-		
+		AdminJoinVO admin = (AdminJoinVO) session.getAttribute("admin");
 		
 		boolean member = false;
 		if( user != null) {
 			member = true;
 		}
-
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
+		model.addAttribute("admin", admin);
 		
 		return "/index";
 	}

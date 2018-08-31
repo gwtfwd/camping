@@ -67,16 +67,31 @@
 	<div class="container">
 		<br><br><br><br>
 		<h4 class="fontH" style="text-align: center;"><b>야영장 후기</b></h4><br><br><br>
-
 		
 		<div class="row">
-			<c:forEach items="${list}" var="review" varStatus="status">
-				<div class="col-md-4" style="text-align:center;">
+			<c:forEach items="${list}" var="review">
+				<div class="col-md-4">
 					<a href="/camping/review/detail?no=${review.no}">
 						<img src="<c:out value='/camping/resources/upload${review.filepath}'/>" class="test">
 					</a><br>	
-					<a href="/camping/review/detail?no=${review.no}"><b>${review.subject}</b></a>
-					<span class="fontH" style="margin-left: 5px;">[${review.reply_cnt}]</span><br>
+					<a href="/camping/review/detail?no=${review.no}" style="text-align:left;"><b>${review.subject}</b></a>
+					<span class="pull-right" style="margin-right:10px;">
+						<c:if test="${review.star==1}">
+							<img src="resources/images/star1.PNG" width="120" height="25">
+						</c:if>
+						<c:if test="${review.star==2}">
+							<img src="resources/images/star2.PNG" width="120" height="25">
+						</c:if>
+						<c:if test="${review.star==3}">
+							<img src="resources/images/star3.PNG" width="120" height="25">
+						</c:if>
+						<c:if test="${review.star==4}">
+							<img src="resources/images/star4.PNG" width="120" height="25">
+						</c:if>
+						<c:if test="${review.star==5}">
+							<img src="resources/images/star5.PNG" width="120" height="25">
+						</c:if>
+					</span><br>
 					<label class="fontH" style="color:rgba(0,0,0,0.4);">${review.user_name}</label><br><br><br>	
 				</div>
 			</c:forEach>
@@ -84,7 +99,7 @@
 		
 		<div class="row">	
 			<div class="col-md-12" style="margin-top:7px;">
-				<c:if test="${member}">
+				<c:if test="${member || admin.admin.compareTo('superadmin')==0}">
 					<div style="height:32px;">
 						<a href="/camping/review/write"><button type="button" class="btn11 btn-primary11 fontH pull-right" >Write</button></a><br>
 					</div>

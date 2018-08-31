@@ -54,7 +54,7 @@
 		<br><br><br><br>
 		<h4 style="text-align:center; font-family:Segoe Print;">Modify</h4> <br><br>
 		
-		<form method="post">
+		<form method="post" enctype="multipart/form-data">
 		
 			<div class="row" style="border-bottom:1px solid #C8CACC; border-top:1px solid #C8CACC;"> 
 				<div class="col-md-2 fontH" style="padding-top:7px;">
@@ -86,9 +86,9 @@
 				</div>
 				<div class="col-md-9 fontH" name="fileName" style="padding-top:7px;margin-left:12px;">
 					<c:if test="${fileName != null }">
-		      			<a href="/free/download?fileName=${free.filepath}"
+		      			<a href="/camping/free/download?fileName=${free.filepath}"
 		      			 target="_blank">${fileName}</a>
-		      			<a href="/free/modify?np=${free.no}&del=1">
+		      			<a href="/camping/free/modify?no=${free.no}&del=1">
 		      				<img src='resources/images/deleted.png'>
 		      			</a>
 		      		</c:if>

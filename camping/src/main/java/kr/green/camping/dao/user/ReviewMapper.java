@@ -13,16 +13,9 @@ public interface ReviewMapper {
 	public Integer getCountReview() throws Exception;
 	public void writeReview(ReviewVO vo) throws Exception;
 	public ReviewVO getReviewByNo(ReviewVO vo) throws Exception;
-	public int view(ReviewVO vo) throws Exception;
+	public Integer view(ReviewVO vo) throws Exception;
+	public void modifyReview(ReviewVO vo) throws Exception;
+	public void deleteReview(ReviewVO vo) throws Exception;
 	
 	
-	
-	
-	// 댓글
-    public Integer replyCount(int bno) throws Exception;
-    public List<ReplyVO> replyList(Integer bno) throws Exception;
-    public List<ReplyVO> getReplyPage(Criteria cri) throws Exception;
-    public Integer replyInsert(ReplyVO replyVO) throws Exception;
-    public Integer replyUpdate(ReplyVO replyVO) throws Exception;
-    public Integer replyDelete(int reno) throws Exception;
 }

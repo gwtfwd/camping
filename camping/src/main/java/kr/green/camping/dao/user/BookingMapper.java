@@ -12,11 +12,11 @@ import kr.green.camping.vo.user.JoinVO;
 public interface BookingMapper {
 
 	public void bookingInsert(BookingVO vo) throws Exception;
-	public List<BookingVO> getBookingByNo(@Param("user") JoinVO user,@Param("cri")Criteria cri) throws Exception;
+	public List<BookingVO> getBookingById(@Param("user") JoinVO user,@Param("cri")Criteria cri) throws Exception;
 	public Integer getBookingCount(@Param("user") JoinVO user) throws Exception;
 	public BookingVO getBooking(BookingVO vo) throws Exception;
-	public CampVO getBookingByCampNo(Integer camp_no) throws Exception;
-	
+	public CampVO getCampByCampNo(Integer camp_no) throws Exception;
+	public void modifyBooking(BookingVO vo) throws Exception;
 	
 	
 	

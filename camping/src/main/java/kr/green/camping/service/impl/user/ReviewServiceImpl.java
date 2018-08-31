@@ -1,5 +1,7 @@
 package kr.green.camping.service.impl.user;
 
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -51,44 +53,45 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public int view(ReviewVO vo) throws Exception {
+	public Integer view(ReviewVO vo) throws Exception {
 		return reviewMapper.view(vo);
+	}
+	@Override
+	public void modifyReview(ReviewVO vo, MultipartFile file, String uploadPath, Integer del) throws Exception {
+		
+		//수정된 날짜로 created_date를 업데이트
+		Date created_date = new Date();
+		vo.setUpdated_at(created_date);
+		
+		//기존 첨부파일 경로를 가져오기 위함
+		ReviewVO tmp = reviewMapper.getReviewByNo(vo);
+	
+		//수정될 첨부파일이 있는 경우
+		if(file != null && file.getOriginalFilename().length()!= 0) {
+			String filePath = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(),file.getBytes());
+			vo.setFilepath(filePath);
+		}
+		//수정될 첨부파일이 없지만 기존 첨부파일이 지워져야 하는 경우
+		else if(del != null && tmp.getFilepath() != null) {
+			//실제 파일을 삭제
+			new File(uploadPath + tmp.getFilepath().replace('/', File.separatorChar)).delete();
+			vo.setFilepath(null);
+		}
+		//수정될 파일이 없고 기존 파일을 유지하는 경우
+		else {
+			vo.setFilepath(tmp.getFilepath());
+		}
+		
+		reviewMapper.modifyReview(vo);
+	}
+	@Override
+	public void deleteReview(ReviewVO vo) throws Exception {
+		reviewMapper.deleteReview(vo);
 	}
 	
 	
 	
 	
 	
-	
-	
-	// 댓글
-		@Override
-		public Integer replyCount(int bno) throws Exception {
-			return reviewMapper.replyCount(bno);
-		}
-		@Override
-		 public List<ReplyVO> replyList(Integer bno) throws Exception{
-		        
-	        return reviewMapper.replyList(bno);
-	    }
-		@Override
-		public List<ReplyVO> getReplyPage(Criteria cri) throws Exception {
-			return reviewMapper.getReplyPage(cri); 
-		}
-		@Override    
-	    public Integer replyInsert(ReplyVO replyVO) throws Exception{
-	        
-	        return reviewMapper.replyInsert(replyVO);
-	    }
-		@Override 
-	    public Integer replyUpdate(ReplyVO replyVO) throws Exception{
-	        
-	        return reviewMapper.replyUpdate(replyVO);
-	    }
-		@Override
-	    public Integer replyDelete(int reno) throws Exception{
-	        
-	        return reviewMapper.replyDelete(reno);
-	    }
 	
 }

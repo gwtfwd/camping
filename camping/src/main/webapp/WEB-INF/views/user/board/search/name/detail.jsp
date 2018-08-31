@@ -91,19 +91,13 @@
 					<label class="control-label" for="type">야영장타입</label>
 				</div>
 				<div class="col-md-4 fontH" style="border-right:1px solid #C8CACC;">
-					<input type="text" class="form-control" id="type" name="type" style="background-color:white; border-width:0px;" readonly>
+					<input type="text" class="form-control" id="type" name="type" style="background-color:white; border-width:0px;" value="${camp.camp_type}" readonly>
 				</div>
 				<div class="col-md-2 fontH" style="padding-top:7px; border-right:1px solid #C8CACC;text-align:center;">
 					<label class="control-label" for="max">1일최대수용인원수</label>
 				</div>
-				<div class="col-md-2 fontH" style="border-right:1px solid #C8CACC;">
-					<input type="text" class="form-control" id="max" name="max" style="background-color:white; border-width:0px;" readonly>
-				</div>
-				<div class="col-md-1 fontH" style="padding-top:7px; border-right:1px solid #C8CACC;text-align:center;">
-					<label class="control-label" for="like">추천수</label>
-				</div>
-				<div class="col-md-1 fontH">
-					<input type="text" class="form-control" id="like" name="like" style="background-color:white; border-width:0px;" value="${camp.like_cnt } " readonly>
+				<div class="col-md-2 fontH">
+					<input type="text" class="form-control" id="max" name="max" style="background-color:white; border-width:0px;" value="${camp.max_people}" readonly>
 				</div>
 			</div>
 			
@@ -118,7 +112,7 @@
 					<label class="control-label" for="parking">주차장면수</label>
 				</div>
 				<div class="col-md-4 fontH">
-					<input type="text" class="form-control" id="parking" name="parking" style="background-color:white; border-width:0px;" readonly>
+					<input type="text" class="form-control" id="parking" name="parking" style="background-color:white; border-width:0px;" value="${camp.parking}" readonly>
 				</div>
 			</div>
 			
@@ -145,7 +139,7 @@
 					<label class="control-label" for="convenient">편의시설</label>
 				</div>
 				<div class="col-md-10 fontH">
-					<input type="text" class="form-control" id="convenient" name="convenient" style="background-color:white; border-width:0px;" readonly>
+					<input type="text" class="form-control" id="convenient" name="convenient" style="background-color:white; border-width:0px;" value="${camp.convenience}" readonly>
 				</div>
 			</div>
 			
@@ -154,7 +148,7 @@
 					<label class="control-label" for="">안전시설</label>
 				</div>
 				<div class="col-md-10 fontH">
-					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" readonly>
+					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" value="${camp.safety}" readonly>
 				</div>
 			</div>
 			
@@ -163,7 +157,7 @@
 					<label class="control-label" for="">기타부대시설</label>
 				</div>
 				<div class="col-md-10 fontH">
-					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" readonly>
+					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" value="${camp.etc}" readonly>
 				</div>
 			</div>
 			
@@ -172,7 +166,7 @@
 					<label class="control-label" for="">이용시간</label>
 				</div>
 				<div class="col-md-10 fontH">
-					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" readonly>
+					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" value="${camp.time}" readonly>
 				</div>
 			</div>
 			
@@ -181,7 +175,7 @@
 					<label class="control-label" for="">이용요금</label>
 				</div>
 				<div class="col-md-10 fontH">
-					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" readonly>
+					<input type="text" class="form-control" id="" name="" style="background-color:white; border-width:0px;" value="${camp.charge}"readonly>
 				</div>
 			</div>
 			

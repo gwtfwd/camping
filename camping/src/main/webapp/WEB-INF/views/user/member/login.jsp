@@ -119,9 +119,9 @@
 	            return;
 	        }
 	        if (document.adminLoginForm.adminIdSave.checked == true) { // 아이디 저장을 체크 하였을때
-	            setCookie("id", document.adminLoginForm.adminId.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
+	            setCookie("adminId", document.adminLoginForm.adminId.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
 	        } else { // 아이디 저장을 체크 하지 않았을때
-	            setCookie("id", document.adminLoginForm.adminId.value, 0); //날짜를 0으로 저장하여 쿠키삭제
+	            setCookie("adminId", document.adminLoginForm.adminId.value, 0); //날짜를 0으로 저장하여 쿠키삭제
 	        }
 	        document.adminLoginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
 	    }
@@ -148,7 +148,7 @@
         
 		<div class="row">
             <div class="col-md-6" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px; border-top:#3399ff 3px solid; ">
-            	<form method="post" id="userLoginForm" name="userLoginForm" >
+            	<form method="post" id="userLoginForm" name="userLoginForm" action="/camping/member/login">
 	                <div style="margin-top:50px; margin-bottom:50px;">
 	                	<div style="text-align:center;">
 	                		<h3 style="color:#333;">개인회원</h3>
@@ -171,7 +171,7 @@
 	                        <input type="checkbox" name="idSave" value="saveOk"/> 아이디 저장
 	                    </div>
 	                    <div class="col-md-12">
-	                    	<a href="/camping/member/login"><button type="submit" onclick="sendit()" class="btn11 btn-primary11 pull-right fontH">Login</button></a>
+	                    	<button type="submit" onclick="sendit()" class="btn11 btn-primary11 pull-right fontH">Login</button>
 	                	</div>
 	                	<div class="form-group">
 	                		<br>
@@ -185,8 +185,11 @@
 	                </div>
                  </form>
             </div>
+            
+            
+            
             <div class="col-md-6" style="margin-top:100px; border:#C5C6C7 1px solid; width:450px; border-top:#090 3px solid; border-left:0px;">
-            	<form method="post" id="adminLoginForm" name="adminLoginForm" >
+            	<form method="post" id="adminLoginForm" name="adminLoginForm" action="/camping/admin/member/login">
 	                <div style="margin-top:50px; margin-bottom:50px;">
 	                	<div style="text-align:center;">
 	                		<h3 style="color:#333;">관리자회원</h3>
@@ -206,15 +209,15 @@
 	                        </div>
 	                    </div>
 	                    <div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
-	                        <input type="checkbox" name="adminIdSave" value="saveOk"/> 아이디 저장
+	                        <input type="checkbox" name="adminIdSave" value="adminSaveOk"/> 아이디 저장
 	                    </div>
 	                    <div class="col-md-12">
-	                    	<a href="/camping/admin/member/login"><button type="submit" onclick="adminsendit()" class="btn11 btn-primary22 pull-right fontH">Login</button></a>
+	                    	<button type="submit" onclick="adminsendit()" class="btn11 btn-primary22 pull-right fontH">Login</button>
 	                	</div>
 	                	<div class="form-group">
 	                		<br>
-	                        <label ><a href="#" onClick="javascript:openfindId();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">아이디 찾기</a></label><br>
-	                        <label ><a href="#" onClick="javascript:openfindPw();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">비밀번호 찾기</a></label>
+	                        <label ><a onClick="javascript:openfindId();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">아이디 찾기</a></label><br>
+	                        <label ><a onClick="javascript:openfindPw();" class="col-md-3 col-xs-12 control-label fontH" style="font-size:13px; color:black;">비밀번호 찾기</a></label>
 	                    </div>
 	                	<div class="col-md-12 fontH" style="font-size:13px;">                                                                                                                                        
 	                        <label style="vertical-align: bottom;">아직 회원이 아니신가요?</label>

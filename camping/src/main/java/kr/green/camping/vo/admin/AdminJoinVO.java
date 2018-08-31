@@ -2,45 +2,48 @@ package kr.green.camping.vo.admin;
 
 public class AdminJoinVO {
 	
-	private String id;
-	private String name;
-	private String pw;
-	private String phone;
-	private String email;
+	// jsp의 name의 이름과 같아야 함
+	
+	private String adminId;
+	private String adminName;
+	private String adminPw;
+	private String adminPhone;
+	private String adminEmail;
 	private String admin;
 	private String camp_name;
-	private String camp_no;
+	private Integer camp_no;
 	
 	
-	public String getId() {
-		return id;
+	
+	public String getAdminId() {
+		return adminId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
 	}
-	public String getName() {
-		return name;
+	public String getAdminName() {
+		return adminName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
 	}
-	public String getPw() {
-		return pw;
+	public String getAdminPw() {
+		return adminPw;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setAdminPw(String adminPw) {
+		this.adminPw = adminPw;
 	}
-	public String getPhone() {
-		return phone;
+	public String getAdminPhone() {
+		return adminPhone;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setAdminPhone(String adminPhone) {
+		this.adminPhone = adminPhone;
 	}
-	public String getEmail() {
-		return email;
+	public String getAdminEmail() {
+		return adminEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
 	}
 	public String getAdmin() {
 		return admin;
@@ -54,10 +57,10 @@ public class AdminJoinVO {
 	public void setCamp_name(String camp_name) {
 		this.camp_name = camp_name;
 	}
-	public String getCamp_no() {
+	public Integer getCamp_no() {
 		return camp_no;
 	}
-	public void setCamp_no(String camp_no) {
+	public void setCamp_no(Integer camp_no) {
 		this.camp_no = camp_no;
 	}
 	

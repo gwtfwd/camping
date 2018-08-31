@@ -15,7 +15,23 @@ public class FreeVO {
 	private Integer view;
 	private String filepath;
 	private Integer reply_cnt;
+	private String admin;
+	private String notice;
 	
+	
+	
+	public String getNotice() {
+		return notice;
+	}
+	public void setNotice(String notice) {
+		this.notice = notice;
+	}
+	public String getAdmin() {
+		return admin;
+	}
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
 	public String getFilepath() {
 		return filepath;
 	}

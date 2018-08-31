@@ -4,13 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.green.camping.dao.admin.AdminMemberMapper">
-  
+
+	<!-- DB의 컬럼명이랑 클래스의 변수명이 다를 때 사용 -->
+  	<resultMap id="admin" type="kr.green.camping.vo.admin.AdminJoinVO">
+  		<id property="adminId" column="id"/>
+  		<result property="adminName" column="name"/>
+  		<result property="adminPw" column="pw"/>
+  		<result property="adminPhone" column="phone"/>
+  		<result property="adminEmail" column="email"/>
+  	</resultMap>
+  	
 	<insert id="adminJoin" >
-		insert into account (id, name, pw, phone, email, admin) 
-		values (#{adminJoin.id}, #{adminJoin.name}, #{adminJoin.pw}, #{adminJoin.phone}, #{join.email}, #{adminJoin.admin})
+		insert into admin_account (id, name, pw, phone, email, admin) 
+		values (#{adminJoin.adminId}, #{adminJoin.adminName}, #{adminJoin.adminPw}, #{adminJoin.adminPhone}, #{adminJoin.adminEmail}, #{adminJoin.admin})
 	</insert>
 	
-	<select id="adminById" resultType="kr.green.camping.vo.admin.AdminJoinVO">
+	<select id="adminById" resultMap="admin">
+		select * from admin_account where id = #{adminId}
+	</select>
+	
+	<update id="modifyJoin">
+		update admin_account set name=#{adminJoin.adminName}, pw=#{adminJoin.adminPw}, phone=#{adminJoin.adminPhone}, email=#{adminJoin.adminEmail}, camp_name=#{adminJoin.camp_name}, camp_no=#{adminJoin.camp_no} where id=#{adminJoin.adminId}
+	</update>
+	
+	<!-- admin리스트 -->
+	<select id="searchAdmin" resultMap="admin">
+		select * from admin_account where admin="admin" order by id asc limit #{cri.pageStart},#{cri.perPageNum}
+	</select>
+	
+	<select id="getCountAdmin" resultType="java.lang.Integer">
+		select count(*) from admin_account where admin="admin"
+	</select>
+
+	<select id="getAdminById" resultMap="admin">
 		select * from admin_account where id = #{adminId}
 	</select>
 	

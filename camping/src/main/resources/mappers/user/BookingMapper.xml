@@ -5,10 +5,10 @@
 <mapper namespace="kr.green.camping.dao.user.BookingMapper">
 
 	<insert id="bookingInsert" parameterType="kr.green.camping.vo.user.BookingVO">
-        insert into booking (user_name, user_id, camp_name, camp_no, booking_at, people) values(#{user_name}, #{user_id}, #{camp_name}, #{camp_no}, #{booking_at}, #{people}) 
+        insert into booking (user_name, user_id, camp_name, camp_no, camp_registered_id, booking_at, people, registered_at, book_status,can_status) values(#{user_name}, #{user_id}, #{camp_name}, #{camp_no}, #{camp_registered_id}, #{booking_at}, #{people}, now(), #{book_status},#{can_status}) 
     </insert>
 	
-	<select id="getBookingByNo" resultType="kr.green.camping.vo.user.BookingVO">
+	<select id="getBookingById" resultType="kr.green.camping.vo.user.BookingVO">
 		select * from booking where user_id = #{user.id} order by no desc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
@@ -20,9 +20,12 @@
 		select * from booking where no = #{no}
 	</select>
 	
-	<select id="getBookingByCampNo" resultType="kr.green.camping.vo.user.CampVO">
+	<select id="getCampByCampNo" resultType="kr.green.camping.vo.user.CampVO">
 		select * from camp where no = #{camp_no}
 	</select>
 	
+	<update id="modifyBooking">
+		update booking set booking_at=#{booking_at}, people=#{people}, updated_at=now(), book_status=#{book_status}, can_status=#{can_status} where no=#{no}
+	</update>
 	
 </mapper>

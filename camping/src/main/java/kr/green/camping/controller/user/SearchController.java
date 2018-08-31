@@ -160,12 +160,6 @@ public class SearchController {
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
 		
-		/*
-		 * heart != null && camp_no != null
-		 * 추천이 안되어 있으면 추천해주고 좋아요수 증가
-		 * 추천이 되어있ㅇ면 추천 해제하고 좋아요수 감소
-		 * */
-		
 		boolean member = false;
 		if( user != null) {
 			member = true;
@@ -187,9 +181,6 @@ public class SearchController {
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		for(CampVO tmp:list) {
-        	System.out.println(tmp.getLike_cnt());
-        }
 		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
@@ -205,7 +196,6 @@ public class SearchController {
 		
 		HttpSession session = request.getSession();
 		JoinVO user = (JoinVO) session.getAttribute("user");
-		//HashMap <String, Object> hashMap = new HashMap<String, Object>();
 		
 		boolean member = false;
 		if( user != null) {
@@ -228,24 +218,12 @@ public class SearchController {
 		pageMaker.setCriteria(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		if(camp_no != null && user != null) {
-			String user_id = user.getId();
-			LikeVO likevo = new LikeVO();
-			likevo.setCamp_no(camp_no);
-			likevo.setUser_id(user_id);
-			
-	        int boardlike = searchService.getBoardLike(likevo);
-	        model.addAttribute("heart",boardlike);
-		}
-        
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("list", list);
 	    model.addAttribute("pageMaker", pageMaker);
 	    model.addAttribute("type",type);
 	    
-	    
-
 	    return "user/board/search/type/list";
 	}
 
@@ -263,58 +241,13 @@ public class SearchController {
 		
 		CampVO camp = searchService.getCamp(vo);
 		
-		
-		/*String user_id = ((JoinVO) request.getSession().getAttribute("login")).getId();
-		
-		LikeVO likevo = new LikeVO();
-		likevo.setCamp_no(camp_no);
-		likevo.setUser_id(user_id);
-
-        int boardlike = searchService.getBoardLike(likevo);
-        System.out.println(boardlike);*/
-		
 		model.addAttribute("member", member);
 		model.addAttribute("user", user);
 		model.addAttribute("camp", camp);
-		/*model.addAttribute("heart",boardlike);*/
 	    
 		return "user/board/search/type/detail";
 	}
 	
-	
-	@ResponseBody
-    @RequestMapping(value = "/heart")
-    //public  Map<Object, Object> heart(@RequestBody HttpServletRequest httpRequest) throws Exception {
-	public  int heart( Integer heart,  Integer camp_no, HttpServletRequest httpRequest) throws Exception {
-
-//        int heart = Integer.parseInt(httpRequest.getParameter("heart"));
-//        int camp_no = Integer.parseInt(httpRequest.getParameter("camp_no"));
-		JoinVO user = (JoinVO) httpRequest.getSession().getAttribute("user");
-        String user_id = "";
-        user_id = user.getId();
-
-        LikeVO likeVO = new LikeVO();
-
-        likeVO.setCamp_no(camp_no);
-        likeVO.setUser_id(user_id);
-
-        System.out.println(heart);
-
-        /*
-		 * heart != null && camp_no != null
-		 * 추천이 안되어 있으면 추천해주고 좋아요수 증가
-		 * 추천이 되어있ㅇ면 추천 해제하고 좋아요수 감소
-		 * */
-        
-        if(heart >= 1) {
-            searchService.deleteBoardLike(likeVO);
-            heart=0;
-        } else {
-        	searchService.insertBoardLike(likeVO);
-            heart=1;
-        }
-        return heart;
-    }
 	
 	// 야영장명으로 검색
 	@RequestMapping(value = "/name", method = RequestMethod.GET)

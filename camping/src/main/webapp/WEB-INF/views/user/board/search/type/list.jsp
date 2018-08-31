@@ -43,36 +43,6 @@
 		function showType(){
 			$('#typeForm').submit();
 		}
-		
-		$(document).ready(function () {
-
-	        $(".heart").on("click", function () {
-				
-	            var heart = $(this).children(".like-hidden").val();
-	            var camp = $(this).children(".camp-hidden").val();
-				console.log(heart+","+camp);
-				
-	            var sendData = {'camp_no' : camp,'heart' : heart};
-	            var d;
-	            $.ajax({
-	                url :'/camping/search/heart',
-	                type :'GET',
-	                data : sendData,
-	                success : function(data){
-	                    d = data;
-	                    console.log(data);
-	                    console.log(d);
-	                } 
-	            });
-	            console.log(d);
-	            if(d==1) {
-                    $(this).children.prop("src","/camping/resources/images/dislike.png");
-                }
-                else{
-                    $(this).children.prop("src","/camping/resources/images/heart1.png");
-                }
-	        });
-	    });
 	</script>
 
 </head>
@@ -105,51 +75,34 @@
 					<table class="table table-hover" style="width:100%">
 				        <thead style="text-align:center;">
 				            <tr>
-				                <th style="width:10%">no</th>
-				                <th style="width:35%">야영장명</th>
-				                <th style="width:40%">주소</th>
-				                <th style="width:15%">추천</th>
+				                <!-- <th style="width:10%">no</th> -->
+				                <th style="width:50%">야영장명</th>
+				                <th style="width:50%">주소</th>
 				            </tr>
 				        </thead>
 				        <tbody class="fontH" style="text-align:center;">
 				           <c:forEach items="${list}" var="camp" >
 						    	<tr>
-						        	<td>${camp.no}</td>
+						        	<%-- <td>${camp.no}</td> --%>
 						        	<td><a href="/camping/search/type/detail?no=${camp.no}" style="color:black;">${camp.camp_name}</a></td>
 						        	<td>${camp.address_road}</td>
-						        	<td>
-									    <c:if test="${member}">
-									     	<c:if test="${camp.like_cnt == 0 }">
-									     		<a class="heart"><img src='/camping/resources/images/dislike.png' ></a>
-									     		<input type="hidden" class="like-hidden" value="${camp.like_cnt }"/>
-									     		<input type="hidden" class="camp-hidden" value="${camp.no }"/>
-									    	</c:if>
-									     	<c:if test="${camp.like_cnt != 0 }">
-									     		<a class="heart"><img src='/camping/resources/images/heart1.png' ></a>
-									     		<input type="hidden" class="like-hidden" value="${camp.like_cnt}"/>
-									     		<input type="hidden" class="camp-hidden" value="${camp.no}"/>
-									    	</c:if>
-									    </c:if>
-									    <c:if test="${!member}">
-									     	<a href="/camping/member/needLogin"><img src='/camping/resources/images/dislike.png'></a>
-									    </c:if> 
-									    <span style='margin-left: 5px;' >${camp.like_cnt} Likes</span>
-						        	</td>
 						        </tr>
 					        </c:forEach>
 				        </tbody>
 				  </table><br>
-				  <ul class="pagination fontH" style="justify-content:center;">
-					  <c:if test="${pageMaker.prev }">
-						<li class="page-item"><a class="page-link fontH" href="/camping/search/type/list?page=${pageMaker.startPage-1}&search=${search}&type=${type}"> < </a></li>
-					  </c:if>
-					  <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-					  	<li class="page-item <c:out value="${page==cri.page?'active':''}"/>"><a class="page-link fontH" href="/camping/search/type/list?page=${page }&search=${search}&type=${type}">${page }</a></li>
-					  </c:forEach>
-					  <c:if test="${pageMaker.next }">
-					  	<li class="page-item"><a class="page-link fontH" href="/camping/search/type/list?page=${pageMaker.endPage+1}&search=${search}&type=${type}"> > </a></li>
-				   	  </c:if>	
-				   </ul>
+				  <div>
+					  <ul class="pagination fontH" style="justify-content:center;">
+						  <c:if test="${pageMaker.prev }">
+							<li class="page-item"><a class="page-link fontH" href="/camping/search/type/list?page=${pageMaker.startPage-1}&search=${search}&type=${type}"> < </a></li>
+						  </c:if>
+						  <c:forEach var="page" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+						  	<li class="page-item <c:out value="${page==cri.page?'active':''}"/>"><a class="page-link fontH" href="/camping/search/type/list?page=${page }&search=${search}&type=${type}">${page }</a></li>
+						  </c:forEach>
+						  <c:if test="${pageMaker.next }">
+						  	<li class="page-item"><a class="page-link fontH" href="/camping/search/type/list?page=${pageMaker.endPage+1}&search=${search}&type=${type}"> > </a></li>
+					   	  </c:if>	
+					   </ul>
+				   </div>
 			   </form>
 		 	</div> 
 	 	</div>

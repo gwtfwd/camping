@@ -240,7 +240,7 @@
 				async:true,
 				type:'POST',
 				data:id,
-				url:"camping/member/dup",
+				url:"/camping/member/dup",
 				dataType:"json",
 				contentType:"application/json; charset=UTF-8",
 				success : function(data){

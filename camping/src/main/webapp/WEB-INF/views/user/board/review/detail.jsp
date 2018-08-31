@@ -58,6 +58,55 @@
 		  border-radius: 35px;
 		  transition: all 200ms ease;
 	 	}
+	 	.star-input>.input,
+		.star-input>.input>input:checked+label {
+			display: inline-block;
+			vertical-align:middle;
+			background:url('resources/images/grade_img.png') no-repeat;
+		}
+		.star-input {
+			display:inline-block; 
+			white-space:nowrap;
+			width:160px;
+			height:40px;
+			padding:0px;
+			line-height:30px;
+		}
+		.star-input>.input {
+			display:inline-block;
+			width:150px;
+			background-size:150px;
+			height:28px;
+			white-space:nowrap;
+			overflow:hidden;
+			position: relative;
+		}
+		.star-input>.input>input{
+			position:absolute;
+			width:1px;
+			height:1px;
+			opacity:0;
+		}
+		.star-input>.input>label{
+			width:30px;
+			height:0;
+			padding:28px 0 0 0;
+			overflow: hidden;
+			float:left;
+			cursor: pointer;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.star-input>.input>input:checked+label{
+			background-size: 150px;
+			background-position: 0 bottom;
+		}
+		.star-input>.input>label[for="p1"]{width:30px;z-index:5;}
+		.star-input>.input>label[for="p2"]{width:60px;z-index:4;}
+		.star-input>.input>label[for="p3"]{width:90px;z-index:3;}
+		.star-input>.input>label[for="p4"]{width:120px;z-index:2;}
+		.star-input>.input>label[for="p5"]{width:150px;z-index:1;}
 	</style>
 	
 	<script>
@@ -91,135 +140,11 @@
 			    });
 		});
 	
-		$(document).ready(function() {
-		      
-		      /* 댓글목록함수호출 */
-		      replyList();    
-		      
-		      /* 댓글을 등록하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
-		      var bno = '${review.no}';
-		      
-		      /* 댓글등록버튼 클릭시 이벤트발생 */
-		      $('[name=replyInsertBtn]').click(function() {                      
-		         
-		    	  /* name이 replyInsertForm인 내용을 가져와서 insertData 변수에 담고 replyInsert함수를 호출 */
-	         	var insertData = $('[name=replyinsertform]').serialize();
-		    	  
-	    	  	if ($('#recontent').val() == null || $('#recontent').val().length < 10){
-		              
-		              alert("최소 10글자 이상 입력하셔야 됩니다.");
-		              $('#recontent').focus();
-		              return ;
-		         }
-		         replyInsert(insertData);                              
-		      });
-		});
-		 
-		//댓글 목록 
-		function replyList(){
-			
-		  	/* 댓글목록을 표시하기 위해 자유게시판의 게시글번호 불러와서 변수 freeNo에 담기 */
-	      	var bno = '${review.no}';  
-		      
-	      	/* ajax로 데이터보내기 */
-		    $.ajax({
-		        url : '/camping/review/reply/list',	/* 데이터를 보낼 컨트롤러 경로 */
-		        type : 'get',						/* get방식으로 */
-		        data : {'bno':bno},					/* 아까 담은 변수에 담은 bno(게시판번호)를 컨트롤러 매개변수로 보냄 */
-		        success : function(data){			 /* 성공하면 아래 태그실행 */
-		        	
-		            var a =''; 		
-		            var cnt = 0;         /* 댓글수 변수선언 */
-		        
-		            $.each(data, function(key, value){ 			/* foreach를 돌리면서 아래의 태그추가 */
-		                
-		                a += '<div class="row" style="border:1px solid #C8CACC; line-height: 30px; vertical-align: middle; font-size:14px;"><div class="col-md-1">'
-		               		+ value.reid + '</div>'
-		                	+ '<div class="col-md-10" style="font-size:12px;">' + value.redate + '</div>'
-		                	
-		                	+ '<div class="col-md-1" style="text-align: right;">' 
-		                	+ '<a onclick="replyUpdate('+value.reno+',\''+value.recontent+'\');">'				/*   \' 는 따옴표를 의미   */
-		                	+ '<img src="<c:url value='/resources/images/edit.png'/>"></a>' 
-		                	
-		                    + '&nbsp;&nbsp; <a onclick="replyDelete('+value.reno+');">'
-		                    + '<img src="<c:url value='/resources/images/deleted.png'/>"></a> </div></div>';
-		                    
-	                	a += '<div class="row" style="border:1px solid #C8CACC; border-top:0px; line-height: 70px; vertical-align: middle;">'
-	                		+ '<div class="col-md-12 replyContent'+value.reno+'" style="text-align:left; font-size:14px;">'+ value.recontent + '</div></div>';
-		                
-		                cnt++;      /* 댓글이 추가되는대로 댓글수 카운트 증가 */
-		            });
-		            
-		            $('#replyCnt').html(cnt);   /* 댓글수 표시하고 싶은 span태그에 id를 주고 그 아이디를 html에 cnt를 담아 화면에 뿌려주기 */
-		            $("#replyList").html(a);   /* 그리고 이것 또한 역시 id가 replyList를 html에 a에 담았던 데이터를 화면에 뿌려주기 */
-		        }
-		    });
-		} 
-		 
-		//댓글 등록
-		function replyInsert(insertData){
-		    $.ajax({
-		        url : '/camping/review/reply/insert',
-		        type : 'get',
-		        data : insertData,
-		        success : function(data){
-		            if(data == 1) {
-		            	replyList(); //댓글 작성 후 댓글 목록 reload
-		                $('[name=recontent]').val('');
-		            }
-		        }
-		    });
-		}
-		 
-		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-		function replyUpdate(reno, recontent){
-		    var a ='';
-		    
-		    a += '<div class="input-group">'
-			    + '<input type="text" class="form-control" name="recontent_'+reno+'" value="'+recontent+'"/>'
-			    + '<span class="input-group-btn"><button class="btn33 btn-primary33" type="button" onclick="replyUpdateProc('+reno+');" style="margin-left:10px;">수정</button> </span>'
-			    +'</div>';
-		    
-		    $('.replyContent'+reno).html(a);
-		} 
-		 
-		//댓글 수정
-		function replyUpdateProc(reno){
-		    var updateContent = $('[name=recontent_'+reno+']').val();
-		    
-		    $.ajax({
-		        url : '/camping/review/reply/update',
-		        type : 'get',
-		        data : {'recontent' : updateContent, 'reno' : reno},
-		        success : function(data){
-		            if(data == 1) replyList(reno); //댓글 수정후 목록 출력 
-		        }
-		    });
-		}
-		 
-		//댓글 삭제 
-		function replyDelete(reno){
-			
-			var bno = '${review.no}'; 
-			
-		    $.ajax({
-		        url : '/camping/review/reply/delete/'+reno,
-		        type : 'get',
-		        data : {
-		        	'bno' : bno,
-		        	'reno' : reno
-		        },
-		        success : function(data){
-		            if(data == 1) replyList(reno); //댓글 삭제후 목록 출력 
-		            alert("삭제되었습니다.");
-		        }
-		    });
-		}
-
 		function needLogin(x) {
 	      window.location.href = "/camping/member/needLogin"
 	    }
 		
+		// 썸네일
 		function readURL(input) { 
 			if (input.files && input.files[0]) {
 			   var reader = new FileReader();
@@ -229,7 +154,6 @@
 			   reader.readAsDataURL(input.files[0]); 
 			 }
 		}
-			   
 	</script>
 
 </head>
@@ -248,8 +172,28 @@
 				<div class="col-md-2 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;"> 
 					<label class="control-label" for="subject">제목</label>
 				</div>
-				<div class="col-md-9 fontH">
+				<div class="col-md-7 fontH" style="border-right:1px solid #C8CACC;">
 					<input type="text" class="form-control" id="subject" name="subject" style="background-color:white; border-width:0px;"  value="${review.subject}" readonly>
+					
+				</div>
+				<div class="col-md-1 fontH" style="padding-top:7px;border-right:1px solid #C8CACC;text-align:center;"> 
+					<label class="control-label" for="star">평점</label>
+				</div>
+				<div class="col-md-2 fontH" style="text-align:center;">
+					<span class="star-input">
+						<span class="input" style="border:0px;">
+					    	<input type="radio" name="star" value="1" id="p1" <c:out value="${review.star==1?'checked':'' }"/>>
+					    	<label for="p1">1</label>
+					    	<input type="radio" name="star" value="2" id="p2" <c:out value="${review.star==2?'checked':'' }"/>>
+					    	<label for="p2">2</label>
+					    	<input type="radio" name="star" value="3" id="p3" <c:out value="${review.star==3?'checked':'' }"/>>
+					    	<label for="p3">3</label>
+					    	<input type="radio" name="star" value="4" id="p4" <c:out value="${review.star==4?'checked':'' }"/>>
+					    	<label for="p4">4</label>
+					    	<input type="radio" name="star" value="5" id="p5" <c:out value="${review.star==5?'checked':'' }"/>>
+					    	<label for="p5">5</label>
+					  	</span>
+					</span>
 				</div>
 			</div>
 			
@@ -323,32 +267,6 @@
 		        </c:if>		
 			</div><br><br>
 		</form>
-		
-		<form name="replyinsertform">
-			<div class="row" style="border-top:1px solid #e8e8e8; background-color:#fafafa; margin-top:20px;">
-				<div class="col-md-12 fontH" >
-				        <input type="hidden" name="bno" value="${review.no}"> 
-				        <c:if test="${member }">
-				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
-				        	<input class="fontH" type="password" name="reid" size="20" maxlength="20" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
-				        	<textarea name="recontent" id="recontent" rows="5" cols="135" maxlength="1500" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
-				        </c:if>
-				        <c:if test="${!member }">
-				        	<input class="fontH" type="text" name="reid" size="20" maxlength="20" value="${user.id}" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px;" placeholder="Writer" readonly>
-				        	<input class="fontH" type="password" name="reid" size="20" maxlength="20" onfocus="needLogin(this)" style="width: 171px; height: 36px; border:1px solid #e8e8e8; margin-top:20px; padding: 0 13px" placeholder="Password"> <br/>
-				        	<textarea name="recontent" rows="5" cols="135" maxlength="1500" onfocus="needLogin(this)" style="margin-top:10px; margin-bottom:10px; border:1px solid #e8e8e8;"></textarea>
-				        </c:if><br>
-				        <button class="btn33 btn-primary33 fontH pull-right" type="button" name="replyInsertBtn" style="margin-bottom:10px;">OK</button>
-				  </div>
-			</div><br><br>
-		</form>
-			
-		<div class="row" > 
-			<label class="control-label fontH" style="font-size:23px;"><span id="replyCnt"></span> Comments</label>
-		</div><br>
-		<div style="margin-bottom:50px;">
-			<div id="replyList"></div><br>
-		</div>
 	</div>
 		
 	<!-- Footer -->
